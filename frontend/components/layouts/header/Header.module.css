@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #010A13;
+  border-bottom: 1px solid #C89B3C;
+  grid-area: h;
+}
+
+.logo {
+  display: inline-block;
+  text-align: center;
+  font-size: 1.5rem;
+  flex-grow: 1;
+}

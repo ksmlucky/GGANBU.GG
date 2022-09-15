@@ -28,13 +28,29 @@
   width: 5.5em;
 }
 
+.btncham{
+  /* background: none; */
+  border: none;
+  padding: 0;
+  width: 5em;
+}
+
 .btn:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+}
+
+.btncham:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .lineImg {
   width: 4em;
   height: auto;
+}
+
+.championpick{
+  width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: 700px) {

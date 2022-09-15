@@ -1,9 +1,9 @@
 import styles from "./CSInput.module.css";
 
-export default function CSInput({ setCsinput }) {
+export default function CSInput({ csInput }) {
   function changes(e) {
     let champion_name = e.target.value;
-    setCsinput(champion_name);
+    csInput(champion_name)
   }
 
   return (
@@ -13,7 +13,7 @@ export default function CSInput({ setCsinput }) {
           type="search"
           id="search"
           className={styles.input}
-          placeholder="소환사 아이디를 검색하세요"
+          placeholder="챔피언을 검색하세요"
           onChange={changes}
         />
       </div>

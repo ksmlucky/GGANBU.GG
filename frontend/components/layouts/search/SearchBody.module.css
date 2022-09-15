@@ -1,7 +1,10 @@
 .label{
+    display : flex;
+    flex-direction :row;
     font-size :1em;
     color : black;
     margin :1em;
+    text-align: center;
 }
 
 .win{
@@ -27,4 +30,8 @@
     margin-left : 0.5em;
     display: flex;
     flex-direction: row;
+}
+
+.item{
+    margin-left : 1em;
 }

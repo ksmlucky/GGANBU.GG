@@ -26,12 +26,12 @@ export default function SearchBody() {
                                     <img className={styles.spell} src={spell2Img} width={35} height={35}></img>
                                 </div>
                                 <div>
-                                    <img className={styles.item} src={`${cham.item1}`=== "" ? "/item/noItem.png":`"/item/${cham.item1}.png"`}></img>
-                                    <img className={styles.item} src={`${cham.item2}`=== "" ? "/item/noItem.png":`"/item/${cham.item2}.png"`}></img>
-                                    <img className={styles.item} src={`${cham.item3}`=== "" ? "/item/noItem.png":`"/item/${cham.item3}.png"`}></img>
-                                    <img className={styles.item} src={`${cham.item4}`=== "" ? "/item/noItem.png":`"/item/${cham.item4}.png"`}></img>
-                                    <img className={styles.item} src={`${cham.item5}`=== "" ? "/item/noItem.png":`"/item/${cham.item5}.png"`}></img>
-                                    <img className={styles.item} src={`${cham.item6}`=== "" ? "/item/noItem.png":`"/item/${cham.item6}.png"`}></img>
+                                    <img className={styles.item} src={`${cham.item1}`=== "" ? "/item/noItem.png":`"/item/${cham.item1}.png"`} width={35} height={35}></img>
+                                    <img className={styles.item} src={`${cham.item2}`=== "" ? "/item/noItem.png":`"/item/${cham.item2}.png"`} width={35} height={35}></img>
+                                    <img className={styles.item} src={`${cham.item3}`=== "" ? "/item/noItem.png":`"/item/${cham.item3}.png"`} width={35} height={35}></img>
+                                    <img className={styles.item} src={`${cham.item4}`=== "" ? "/item/noItem.png":`"/item/${cham.item4}.png"`} width={35} height={35}></img>
+                                    <img className={styles.item} src={`${cham.item5}`=== "" ? "/item/noItem.png":`"/item/${cham.item5}.png"`} width={35} height={35}></img>
+                                    <img className={styles.item} src={`${cham.item6}`=== "" ? "/item/noItem.png":`"/item/${cham.item6}.png"`} width={35} height={35}></img>
                                 </div>
                         </div>
                     </div>

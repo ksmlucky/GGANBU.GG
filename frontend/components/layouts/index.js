@@ -4,6 +4,7 @@ import Navigation from "./navigation/Navigation";
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
 import { classNames } from "./../../utils/classNames";
+import RecommandList from "../recommandList/RecommandList";
 
 /* -------------------------------------------------------------------------- */
 
@@ -14,6 +15,18 @@ export function BaseLayout() {
         <Navigation />
       </Header>
       <Main></Main>
+      <Footer></Footer>
+    </div>
+  );
+}
+
+export function RecommandLayout() {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <RecommandList></RecommandList>
       <Footer></Footer>
     </div>
   );

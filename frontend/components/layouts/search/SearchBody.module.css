@@ -1,0 +1,30 @@
+.label{
+    font-size :1em;
+    color : black;
+    margin :1em;
+}
+
+.win{
+    display : flex;
+    margin: 2em;
+    width:95%;
+    background-color :aqua;
+    border-color :gold;
+    border-style : solid;
+    border-radius : 1em;
+}
+.lose{
+    display : flex;
+    margin : 2em;
+    width:95%; 
+    background-color :red;
+    border-color :gold;
+    border-style : solid;
+    border-radius : 1em;
+}
+
+.spell{
+    margin-left : 0.5em;
+    display: flex;
+    flex-direction: row;
+}

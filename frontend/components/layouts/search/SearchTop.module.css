@@ -1,0 +1,22 @@
+.icon{
+    padding : 0.5em;
+    display : flex;
+    flex-direction : row;
+
+}
+
+.label{
+    display: flex;
+    flex-direction : row;
+    font-weight: 500;
+    font-size: 3em;
+}
+
+@media screen and (max-width: 961px) {
+    .icon{
+        padding : 0.5em;
+        font-weight: 400;
+        color: #5B5A56;
+        font-size: 2em;
+    }
+  }

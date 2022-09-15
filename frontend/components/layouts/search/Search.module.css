@@ -1,0 +1,15 @@
+.main{
+    gap: 2em;
+    background: #1E282D;
+    grid-area: m;
+}
+
+.searchTop{
+    display: flex;
+    justify-content : space-between;
+    flex-direction: row;
+}
+
+.input{
+    padding : 2em;
+}

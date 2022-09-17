@@ -8,26 +8,26 @@ import Detail from "./../chooseChampion/CChampion";
 
 /* -------------------------------------------------------------------------- */
 
-export function BaseLayout() {
+export function BaseLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Main></Main>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }
 
-export function DetailLayout() {
+export function DetailLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Detail></Detail>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }

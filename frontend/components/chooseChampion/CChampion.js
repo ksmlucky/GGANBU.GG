@@ -12,17 +12,17 @@ export default function Detail() {
   let [csinput, setCsinput] = useState("");
   let [cham, Setcham] = useState("");
   let [idxs, SetIdxs] = useState("");
+  let [curimg, Setcurimg] = useState(false);
 
-
-  useEffect(()=>{
+  useEffect(() => {
     if (picked) {
       refer.current.map((el, idx) => {
-        if ( el&&picked.indexOf(el.id)!==-1){
+        if (el && picked.indexOf(el.id) !== -1) {
           nodrag(String(idx));
         }
-      })
+      });
     }
-  },[csinput] )
+  }, [csinput]);
 
   function searching(text) {
     let name = csinput.toLowerCase();
@@ -59,7 +59,7 @@ export default function Detail() {
       refer.current[num].style.filter = "saturate(0)";
       setPicked((picked) => {
         const newPicked = [...picked];
-        if ( name&&picked.indexOf(name) ===-1){
+        if (name && picked.indexOf(name) === -1) {
           newPicked.push(name);
         }
         return newPicked;
@@ -81,13 +81,13 @@ export default function Detail() {
 
   const csInput = (input) => {
     refer.current.map((el, idx) => {
-      if (el){
-      el.draggable = true;
-      el.style.filter = "saturate(1)";
+      if (el) {
+        el.draggable = true;
+        el.style.filter = "saturate(1)";
       }
-    })
-    setCsinput(input)
-  }
+    });
+    setCsinput(input);
+  };
 
   return (
     <>
@@ -111,7 +111,6 @@ export default function Detail() {
                 }
               })
               .map((item, idx) => {
-  
                 return (
                   <li key={idx} className={styles.li}>
                     <button

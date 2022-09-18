@@ -33,6 +33,7 @@
   border: none;
   padding: 0;
   width: 5em;
+  border: 2px solid var(--gold3);
 }
 
 .btn:hover {

@@ -7,6 +7,11 @@
   grid-area: m;
 }
 
+.cursor{
+  width: 100px;
+  height: 100px;
+}
+
 .choose {
   display: flex;
   flex-direction: column;

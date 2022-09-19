@@ -21,7 +21,7 @@ function useStickyState(defaultValue, key) {
 }
 
 export default function Recommand() {
-  const [mode, setMode] = useStickyState("light", "theme");
+  const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
     document.body.dataset.theme = mode;

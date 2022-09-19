@@ -15,13 +15,13 @@
     align-items: center;
     list-style: none;
     margin: 0;
-    padding: 0.5em;
-    gap: 1em;
+    padding: 1vw;
+    gap: 1vw;
 }
 
 .a {
     flex-grow: 1;
-    font-size: 1em;
+    font-size: 1vw;
 }
 
 .li {
@@ -29,22 +29,10 @@
     text-align: center;
     font-weight: 500;
     color: var(--gray2);
-    font-size: 1.2em;
+    font-size: clamp(0.5vw, 1vw, 1.5vw);
 }
 
 .li:hover {
     color: var(--white2);
     cursor: url(/cursor/cursorPointer.png), auto;
-}
-
-@media screen and (max-width: 700px) {
-    .li {
-        font-size: 0.8em;
-    }
-}
-
-@media screen and (max-width: 420px) {
-    .li {
-        font-size: 0.5em;
-    }
 }

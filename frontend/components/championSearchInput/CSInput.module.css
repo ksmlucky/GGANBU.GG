@@ -1,21 +1,21 @@
   .container {
     display: flex;
-    gap: 10px;
+    gap: 1vw;
   }
 
   .input {
     background: var(--white1);
     border: 3px solid (--gold3);
     color: var(--black1);
-    padding: 0.6em 1.2em;
-    font-size: 1em;
+    padding: 0.6vw 1.2vw;
+    font-size: 1vw;
     text-align: center;
     width: 30vw;
     height: 3vh;
   }
 
   .btn {
-    background: bar(--black2);
+    background: var(--black2);
     border: 3px solid var(--gold3);
     padding: 0;
     margin: 0;
@@ -23,16 +23,4 @@
 
   .btn:hover {
     cursor: url(/cursor/cursorPointer.png), auto;
-  }
-
-  @media screen and (max-width: 700px) {
-    .input {
-      font-size: 0.8em;
-    }
-  }
-
-  @media screen and (max-width: 420px) {
-    .input {
-      font-size: 0.5em;
-    }
   }

@@ -21,7 +21,7 @@ function useStickyState(defaultValue, key) {
 
 // app
 export default function Detail() {
-  const [mode, setMode] = useStickyState("light", "theme");
+  const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
     document.body.dataset.theme = mode;

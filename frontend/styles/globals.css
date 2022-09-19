@@ -3,10 +3,11 @@ body {
   background: #010A13;
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-  Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, Spiegel, sans-serif;
   overflow-y: hidden;
   overflow-x: hidden;
+  cursor: url(/cursor/cursor.png), auto;
+
 }
 
 a {
@@ -19,12 +20,58 @@ a {
   color: #F0E6D2;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+body[data-theme="dark"] {
+  --blue1: #CDFAFA;
+  --blue2: #0AC8B9;
+  --blue3: #0397AB;
+  --blue4: #005A82;
+  --blue5: #0A323C;
+  --blue6: #091428;
+  --blue7: #0A1428;
+  --gold1: #C8AA6E;
+  --gold2: #C8AA6E;
+  --gold3: #C89B3C;
+  --gold4: #785A28;
+  --gold5: #463714;
+  --gold6: #32281E;
+  --gray1: #A09B8C;
+  --gray1: #5B5A56;
+  --gray1: #3C3C41;
+  --gray1: #1E2328;
+  --gray1: #1E282D;
+  --white: #F0E6D2;
+  --black: #010A13;
+  --btntext: #ffffff;
+  --btnbg: #000000;
+}
+
+body[data-theme="light"] {
+  --blue1: #CDFAFA;
+  --blue2: #0AC8B9;
+  --blue3: #0397AB;
+  --blue4: #005A82;
+  --blue5: #0A323C;
+  --blue6: #091428;
+  --blue7: #0A1428;
+  --gold1: #C8AA6E;
+  --gold2: #C8AA6E;
+  --gold3: #F53419;
+  --gold4: #785A28;
+  --gold5: #463714;
+  --gold6: #32281E;
+  --gray1: #A09B8C;
+  --gray1: #5B5A56;
+  --gray1: #3C3C41;
+  --gray1: #1E2328;
+  --gray1: #1E282D;
+  --white: #F0E6D2;
+  --black: #010A13;
+  --btntext: #000000;
+  --btnbg: #ffffff;
+}
+
+@font-face {
+  font-family: "Spiegel";
+  font-weight: 200;
+  src: url("/fonts/Spiegel_TT_Regular.ttf") format("truetype");
 }

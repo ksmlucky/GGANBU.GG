@@ -5,19 +5,32 @@ import Main from "./main/Main";
 import Footer from "./footer/Footer";
 import Search from "./search/Search"
 import { classNames } from "./../../utils/classNames";
+import Detail from "./../chooseChampion/CChampion";
 import RecommandList from "../recommandList/RecommandList";
 import Ranking from "../ranking/Ranking";
 
 /* -------------------------------------------------------------------------- */
 
-export function BaseLayout() {
+export function BaseLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Main></Main>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function DetailLayout({ setMode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Detail></Detail>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Header from "./header/Header";
 import Navigation from "./navigation/Navigation";
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
+import Search from "./search/Search"
 import { classNames } from "./../../utils/classNames";
 import RecommandList from "../recommandList/RecommandList";
 import Ranking from "../ranking/Ranking";
@@ -21,8 +22,21 @@ export function BaseLayout() {
   );
 }
 
-export function RecommandLayout() {
+export function SearchLayout() {
+
   return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Search></Search>
+      <Footer></Footer>
+    </div>
+  );
+}
+
+export function RecommandLayout() {
+    return (
     <div className={styles.container}>
       <Header>
         <Navigation />

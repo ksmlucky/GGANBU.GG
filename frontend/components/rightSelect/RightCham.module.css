@@ -23,7 +23,7 @@
 
 .btn {
   background: none;
-  border: 5px solid #3C3C41;
+  border: 5px solid var(--gray3);
   padding: 1px;
   width: 5.5em;
 }

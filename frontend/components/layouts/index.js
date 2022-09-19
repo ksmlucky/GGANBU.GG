@@ -3,7 +3,7 @@ import Header from "./header/Header";
 import Navigation from "./navigation/Navigation";
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
-import Search from "../search/Search"
+import Search from "../search/Search";
 import { classNames } from "./../../utils/classNames";
 import Detail from "./../chooseChampion/CChampion";
 import RecommandList from "../recommandList/RecommandList";
@@ -35,39 +35,38 @@ export function DetailLayout({ setMode }) {
   );
 }
 
-export function SearchLayout() {
-
+export function SearchLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Search></Search>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }
 
-export function RecommandLayout() {
-    return (
+export function RecommandLayout({ setMode }) {
+  return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <RecommandList></RecommandList>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }
 
-export function RankingLayout() {
+export function RankingLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Ranking></Ranking>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }

@@ -2,7 +2,7 @@
       display: flex;
         justify-content: center;
         align-items: center;
-  background: #010A13;
+  background: var(--black2);
   border-top: 1px solid #463714;
   grid-area: f;
 }
@@ -13,6 +13,6 @@
 }
 
 .mode{
-  color:var(--btntext);
-  background: var(--btnbg);
+  color:var(--white1);
+  background: var(--black1);
 }

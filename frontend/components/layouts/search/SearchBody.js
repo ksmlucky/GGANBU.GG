@@ -8,6 +8,9 @@ const champion =[
 export default function SearchBody() {
   return (
     <>
+        <div>
+        <button className={styles.btn}>갱신</button>
+        </div>
         <div className={styles.result}>
             {champion.map((cham, idx)=>{
                 let championImg = `/champion/tiles/${cham.cham}_0.jpg`

@@ -40,3 +40,11 @@
     height: 3em;
     margin : 1em;
 }
+
+.btn {
+    background: green;
+    border: 3px solid #C89B3C;
+    float: right;
+    margin-right : 5%;
+    margin-bottom : 2%;
+}

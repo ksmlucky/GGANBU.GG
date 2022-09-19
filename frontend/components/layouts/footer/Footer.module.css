@@ -1,0 +1,18 @@
+.footer {
+      display: flex;
+        justify-content: center;
+        align-items: center;
+  background: #010A13;
+  border-top: 1px solid #463714;
+  grid-area: f;
+}
+
+.copyright{
+ letter-spacing: 0.8px;
+ word-spacing: 1px;
+}
+
+.mode{
+  color:var(--btntext);
+  background: var(--btnbg);
+}

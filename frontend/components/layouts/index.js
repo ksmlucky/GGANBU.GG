@@ -3,7 +3,7 @@ import Header from "./header/Header";
 import Navigation from "./navigation/Navigation";
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
-import Search from "./search/Search"
+import Search from "../search/Search"
 import { classNames } from "./../../utils/classNames";
 import Detail from "./../chooseChampion/CChampion";
 import RecommandList from "../recommandList/RecommandList";

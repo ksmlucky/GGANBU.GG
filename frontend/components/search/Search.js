@@ -1,7 +1,7 @@
 import SearchTop from "./SearchTop";
 import SearchBody from "./SearchBody";
 import styles from "./Search.module.css";
-import Input from "../../inputs/Input";
+import Input from "../inputs/Input";
 
 export default function Search() {
   return (

@@ -5,6 +5,7 @@ import Main from "./main/Main";
 import Footer from "./footer/Footer";
 import { classNames } from "./../../utils/classNames";
 import RecommandList from "../recommandList/RecommandList";
+import Ranking from "../ranking/Ranking";
 
 /* -------------------------------------------------------------------------- */
 
@@ -27,6 +28,18 @@ export function RecommandLayout() {
         <Navigation />
       </Header>
       <RecommandList></RecommandList>
+      <Footer></Footer>
+    </div>
+  );
+}
+
+export function RankingLayout() {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Ranking></Ranking>
       <Footer></Footer>
     </div>
   );

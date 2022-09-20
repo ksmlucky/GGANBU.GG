@@ -11,3 +11,5 @@ COPY --from=build-stage /var/jenkins_home/workspace/GGANBU/frontend/.next /usr/s
 COPY --from=build-stage /var/jenkins_home/workspace/GGANBU/frontend/deploy_conf/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
 CMD ["npm", "run", "start"]
+CMD ["nginx", "-g","daemon off;"]
+

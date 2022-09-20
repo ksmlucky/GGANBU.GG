@@ -5,7 +5,6 @@ COPY yarn.lock ./
 RUN apt-get update && apt-get upgrade -y && \
     apt-get install -y nodejs \
     npm 
-RUN npm install
 COPY . .
 RUN npm run build
 FROM nginx:stable-alpine as production-stage

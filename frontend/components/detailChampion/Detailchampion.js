@@ -18,7 +18,7 @@ export default function DetailChampion() {
             {id ? clist.find((element) => element.en === id).ko : null}
           </span>
           <div>
-            <img></img>
+            <img src={`/champion/tiles/${id}_0.jpg`}></img>
             <img></img>
             <img></img>
             <img></img>

@@ -1,4 +1,4 @@
-import { ChooseChampionLayout } from "../components/layouts/index";
+import { RecommandResultLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
 // app
 
@@ -20,7 +20,7 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function Recommand() {
+export default function Recommandresult() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function Recommand() {
 
   return (
     <div>
-      <ChooseChampionLayout setMode={setMode} />
+      <RecommandResultLayout setMode={setMode} />
     </div>
   );
 }

@@ -1,11 +1,11 @@
-import styles from "./CChampion.module.css";
+import styles from "./CCChampion.module.css";
 import championList from "../../utils/champion";
 import CSInput from "../championSearchInput/CSInput";
 import { useEffect, useRef, useState } from "react";
 import LeftCham from "../leftSelect/LeftCham";
 import RightCham from "../rightSelect/RightCham";
 
-export default function ChooseChampion() {
+export default function ClickChooseChampion() {
   const clist = championList(); //챔피언 목록
   const [pickchampion, SetPickchampion] = useState(""); //마우스로 잡은 챔피언(한국어)
   const [pickchampionEng, SetPickchampionEng] = useState(""); //마우스로 잡은 챔피언(영어)

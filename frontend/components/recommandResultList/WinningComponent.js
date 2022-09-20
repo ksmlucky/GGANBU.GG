@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./RecommandList.module.css";
+import styles from "./RecommandResultList.module.css";
 
 export default function WinningComponent(props) {
   console.log(props.winning);

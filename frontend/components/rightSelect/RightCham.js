@@ -1,15 +1,40 @@
 import styles from "./RightCham.module.css";
 import { useEffect, useState } from "react";
 
-export default function RightCham({ cham, Setcham, idxs, nodrag, yesdrag }) {
-  let [line, Setline] = useState("");
-  let champion = cham;
-  let idx = idxs;
-
+export default function RightCham({
+  pickchampionindex,
+  selectedchampion,
+  SetSelectedchampion,
+  pickchampion,
+  pickchampionEng,
+}) {
+  let [line, Setline] = useState(""); //현재 라인 선택(영어)
+  let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
   let [lineCham, SetLineCham] = useState([
-    { id: "1", lines: "top", champ: "", links: "/line/top.png", idx: "" },
-    { id: "2", lines: "jungle", champ: "", links: "/line/jungle.png", idx: "" },
-    { id: "3", lines: "mid", champ: "", links: "/line/mid.png", idx: "" },
+    {
+      id: "1",
+      lines: "top",
+      champ: "",
+      kchamp: "",
+      links: "/line/top.png",
+      idx: "",
+    },
+    {
+      id: "2",
+      lines: "jungle",
+      champ: "",
+      kchamp: "",
+      links: "/line/jungle.png",
+      idx: "",
+    },
+    {
+      id: "3",
+      lines: "mid",
+      champ: "",
+      kchamp: "",
+      links: "/line/mid.png",
+      idx: "",
+    },
     {
       id: "4",
       lines: "support",
@@ -20,62 +45,69 @@ export default function RightCham({ cham, Setcham, idxs, nodrag, yesdrag }) {
     { id: "5", lines: "bot", champ: "", links: "/line/bot.png", idx: "" },
   ]);
 
-  // useEffect(() => {
-  //   let before = [...lineCham];
-  //   let after = before.map((check) => {
-  //     return check.lines === line ? { ...check, champ: champion } : check;
-  //   });
-  //   SetLineCham(after);
-  // }, [cham]);
-
-  function changeLine(line, champion, idx) {
-    let before = [...lineCham];
-    let after = before.map((check) => {
-      return check.lines === line
-        ? { ...check, champ: champion, idx: idx }
-        : check;
+  function reset(id, line) {
+    //선택된 챔피언 중에서 해당 챔피언을 제거
+    const newselectedchampion = selectedchampion.filter(
+      (selected) => selected !== lineCham[id - 1].kchamp
+    );
+    SetSelectedchampion(newselectedchampion); //갱신
+    let newlinecham = lineCham.map((check) => {
+      //라인별 챔피언 상황에 추가
+      return check.lines === line ? { ...check, champ: "", kchamp: "" } : check;
     });
-    SetLineCham(after);
+    SetLineCham(newlinecham);
   }
 
-  function reset(line) {
-    let before = [...lineCham];
-    let nums = null;
-    let after = before.map((check) => {
-      if (check.lines === line) {
-        nums = check.idx;
-        yesdrag(nums);
-      }
-      return check.lines === line ? { ...check, champ: "", idx: "" } : check;
-    });
-    SetLineCham(after);
-  }
-
-  function Drop(event) {
-    console.log(event);
+  function Drop(event, id) {
+    let beforenewselectedchampion = [...selectedchampion];
+    //잘 찾아왔으면 진행
     if (event.target.className.toLowerCase().includes("rightcham")) {
-      let newline = event.target.id;
-      changeLine(newline, champion, idx);
-      setTimeout(() => {
-        nodrag(idx);
-      }, 100);
+      //라인이 선택되어있지 않으면 진행
+      if (event.target.id !== line) {
+        //먼저 선택된 챔피언이 있으면 없애주고 진행
+        if (lineCham[id - 1].kchamp) {
+          beforenewselectedchampion = selectedchampion.filter(
+            (selected) => selected !== lineCham[id - 1].kchamp
+          );
+          SetSelectedchampion(beforenewselectedchampion); //우선 제거
+        }
+        //선택된 리스트에 챔피언이 없다면
+        if (beforenewselectedchampion.indexOf(pickchampion) === -1) {
+          beforenewselectedchampion.push(pickchampion);
+          SetSelectedchampion(beforenewselectedchampion); //선택 리스트에 추가
+          //라인별 챔피언 상황에 추가
+          let newlinecham = lineCham.map((check) => {
+            return check.lines === event.target.id
+              ? { ...check, champ: pickchampionEng, kchamp: pickchampion }
+              : check;
+          });
+          SetLineCham(newlinecham);
+        }
+      } else {
+        event.target.src = `/images/none.png`;
+      }
     }
-    setTimeout(() => {
-      Setcham("");
-    }, 100);
   }
+
   function dragOver(event) {
     event.preventDefault();
     // console.log(event);
   }
   function dragEnter(event) {
     event.preventDefault();
-    // console.log(event);
-    event.target.src = `/champion/tiles/${champion}_0.jpg`;
+    SetEnterline(event.target.id);
+    if (event.target.id !== line) {
+      event.target.src = `/champion/tiles/${pickchampionEng}_0.jpg`;
+    }
   }
-  function dragLeave(event) {
+  function dragLeave(event, champion) {
     event.preventDefault();
-    event.target.src = `/images/none.png`;
+    SetEnterline("");
+    if (champion) {
+      event.target.src = `/champion/tiles/${champion}_0.jpg`;
+    } else {
+      event.target.src = `/images/none.png`;
+    }
   }
 
   return (
@@ -87,12 +119,12 @@ export default function RightCham({ cham, Setcham, idxs, nodrag, yesdrag }) {
               <img
                 className={styles.btncham}
                 onClick={() => {
-                  reset(item.lines);
+                  reset(item.id, item.lines);
                 }}
                 onDragOver={(event) => dragOver(event)}
                 onDragEnter={(event) => dragEnter(event)}
-                onDragLeave={(event) => dragLeave(event)}
-                onDrop={(event) => Drop(event)}
+                onDragLeave={(event) => dragLeave(event, item.champ)}
+                onDrop={(event) => Drop(event, item.id)}
                 id={item.lines}
                 src={
                   item.champ
@@ -101,12 +133,11 @@ export default function RightCham({ cham, Setcham, idxs, nodrag, yesdrag }) {
                 }
                 draggable={false}
               ></img>
-
               <button
                 className={styles.btn}
                 onClick={() => {
+                  reset(item.id, item.lines);
                   Setline(item.lines);
-                  console.log(line, champion);
                 }}
               >
                 <img src={item.links} className={styles.lineImg} />

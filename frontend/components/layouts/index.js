@@ -9,6 +9,7 @@ import ChooseChampion from "./../chooseChampion/CChampion";
 import RecommandResultList from "../recommandResultList/RecommandResultList";
 import Ranking from "../ranking/Ranking";
 import ClickChooseChampion from "../clickChooseChampion/CCChampion";
+import DetailChampion from "../detailChampion/Detailchampion";
 
 /* -------------------------------------------------------------------------- */
 
@@ -79,6 +80,18 @@ export function DetailLayout({ setMode }) {
         <Navigation />
       </Header>
       <ClickChooseChampion></ClickChooseChampion>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function DetailResultLayout({ setMode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <DetailChampion></DetailChampion>
       <Footer setMode={setMode}></Footer>
     </div>
   );

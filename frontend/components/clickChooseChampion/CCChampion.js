@@ -1,9 +1,7 @@
 import styles from "./CCChampion.module.css";
 import championList from "../../utils/champion";
-import CSInput from "../championSearchInput/CSInput";
+import CCSInput from "../clickChampionSearchInput/CCSInput";
 import { useEffect, useRef, useState } from "react";
-import LeftCham from "../leftSelect/LeftCham";
-import RightCham from "../rightSelect/RightCham";
 
 export default function ClickChooseChampion() {
   const clist = championList(); //챔피언 목록
@@ -11,17 +9,10 @@ export default function ClickChooseChampion() {
   const [pickchampionEng, SetPickchampionEng] = useState(""); //마우스로 잡은 챔피언(영어)
   let [pickchampionindex, SetPickchampionindex] = useState(); //마우스로 잡은 챔피언의 index(숫자)
   let [csinput, setCsinput] = useState(""); //챔피언 검색을 위한 입력 결과(한국어)
-  const [selectedchampion, SetSelectedchampion] = useState([]); //선택한 챔피언(한국어)
 
-  // 사용자가 객체(object)를 드래그하려고 시작할 때 발생함.
-  const onDragStart = (event) => {
-    SetPickchampion(event.target.id);
-    SetPickchampionEng(event.target.alt);
-  };
-
-  // 잡은 Item을 놓았을 때 발생
-  const onDragEnd = (event) => {
-    SetPickchampion("");
+  const click = (en) => {
+    console.log(en);
+    SetPickchampionEng(en);
   };
 
   const csInput = (input) => {
@@ -31,13 +22,6 @@ export default function ClickChooseChampion() {
   return (
     <>
       <main className={styles.main}>
-        <LeftCham
-          pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
-          selectedchampion={selectedchampion}
-          SetSelectedchampion={SetSelectedchampion}
-          pickchampion={pickchampion}
-          pickchampionEng={pickchampionEng}
-        />
         <div className={styles.choose}>
           <ul className={styles.ul}>
             {clist
@@ -52,7 +36,12 @@ export default function ClickChooseChampion() {
               .map((item, idx) => {
                 return (
                   <li key={idx} className={styles.li}>
-                    <button className={styles.btn}>
+                    <button
+                      className={styles.btn}
+                      onClick={() => {
+                        click(item.en);
+                      }}
+                    >
                       <img
                         src={`/champion/tiles/${item.en}_0.jpg`}
                         id={item.ko}
@@ -60,20 +49,13 @@ export default function ClickChooseChampion() {
                         index={item.index}
                         selected={item.selected}
                         className={styles.img}
-                        draggable={
-                          selectedchampion.indexOf(item.ko) === -1
-                            ? true
-                            : false
-                        }
                         style={{
-                          filter:
-                            selectedchampion.indexOf(item.ko) === -1
-                              ? "saturate(1)"
-                              : "saturate(0)",
+                          border:
+                            item.en === pickchampionEng
+                              ? "2px solid var(--gold3)"
+                              : "none",
                         }}
-                        onDragStart={onDragStart}
-                        onDragEnd={onDragEnd}
-                        // ref={(el) => (refer.current[idx] = el)}
+                        draggable={false}
                       />
                       <span className={styles.name}>{item.ko}</span>
                     </button>
@@ -81,15 +63,8 @@ export default function ClickChooseChampion() {
                 );
               })}
           </ul>
-          <CSInput csInput={csInput} />
+          <CCSInput csInput={csInput} pickchampionEng={pickchampionEng} />
         </div>
-        <RightCham
-          pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
-          selectedchampion={selectedchampion}
-          SetSelectedchampion={SetSelectedchampion}
-          pickchampion={pickchampion}
-          pickchampionEng={pickchampionEng}
-        />
       </main>
     </>
   );

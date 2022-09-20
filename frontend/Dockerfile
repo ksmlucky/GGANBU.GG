@@ -5,11 +5,11 @@ COPY yarn.lock ./
 RUN npm install
 COPY . .
 RUN npm run build
+RUN npm run start
 FROM nginx:stable-alpine as production-stage
 
 COPY --from=build-stage /var/jenkins_home/workspace/GGANBU/frontend/.next /usr/share/nginx/html
 COPY --from=build-stage /var/jenkins_home/workspace/GGANBU/frontend/deploy_conf/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
-RUN npm run start
 CMD ["nginx", "-g","daemon off;"]
 

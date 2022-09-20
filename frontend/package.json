@@ -2,6 +2,12 @@
   "name": "next_intro",
   "version": "0.1.0",
   "private": true,
+  "config": {
+    "next": {
+      "host": "172.26.13.93",
+      "port": "3000"
+    }
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

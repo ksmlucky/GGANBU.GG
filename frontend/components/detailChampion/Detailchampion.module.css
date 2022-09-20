@@ -1,0 +1,33 @@
+.container {
+  width: 100vw;
+  height: 100%;
+  margin: 0;
+  background: var(--red1);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 3fr 3fr 2.5fr;
+  grid-template-areas:
+    'p r'
+    's s'
+    'i i';
+}
+
+.profile {
+  background: var(--gold1);
+    grid-area: p;
+}
+
+.rune {
+    background: var(--gold5);
+      grid-area: r;
+}
+
+.skill {
+    background: var(--gold3);
+      grid-area: s;
+}
+
+.item {
+    background: var(--gold4);
+      grid-area: i;
+}

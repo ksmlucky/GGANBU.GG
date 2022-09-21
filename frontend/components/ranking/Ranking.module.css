@@ -1,81 +1,119 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
-  background: #1e282d;
+  background: var(--gray5);
   grid-area: m;
 }
 
 .h1 {
-  width: 80%;
+  width: 100%;
+  padding-left: 100px;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  width: 80em;
-  height: 30em;
-  padding: 0.5%;
-  background-color: white;
-  position: relative;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* width: 100%; */
+  height: 75vh;
+  /* padding: 0.5%; */
+  /* background-color: var(--white1); */
+  /* position: relative; */
+  overflow-y: scroll;
 }
 
-.articles {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 2em;
-  padding: 0;
-  padding-left: 2em;
-  padding-right: 2em;
-  width: 100%;
-  height: 90%;
-  gap: 0.2em;
-  overflow-y: scroll;
-  position: relative;
+.container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  /* background: var(--gold2); */
+  border-radius: 50px;
+  filter: opacity(0);
+}
+
+.container::-webkit-scrollbar-track {
+  filter: opacity(0);
 }
 
 .border {
-  background-image: url("../../public/border/border5.png");
-  background-repeat: no-repeat;
-  background-size: 100% 99%;
+  /* background-image: url("../../public/border/border5.png"); */
+  /* background-repeat: no-repeat; */
+  /* background-size: 100% 99%; */
+  width: 80vw;
+  text-align: center;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+}
+
+.head {
+  table-layout: fixed;
+}
+
+.head th {
+  position: sticky;
+  top: 0px;
 }
 
 .att {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  padding: 0;
-  padding-top: 0.5em;
-  padding-left: 2%;
-  padding-right: 2%;
-  justify-content: space-around;
-  position: absolute;
-  z-index: 1;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* width: 80%; */
+  /* padding: 0; */
+  /* padding-top: 0.5vw; */
+  /* padding-left: 2vw; */
+  /* padding-right: 2vw; */
+  /* justify-content: space-around; */
+  /* position: absolute; */
+  /* z-index: 1; */
+  /* position: sticky; */
 }
 
-.att div {
-  width: 10em;
-  text-align: center;
+.att th {
+  padding-bottom: 0.7vw;
+  background-color: var(--gray5);
+  /* width: 10vw; */
+  /* text-align: center; */
+  /* font-size: 0.8vw; */
+  /* position:sticky ; */
+}
+
+.articles {
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* flex-wrap: wrap; */
+  /* margin-top: 2vw; */
+  /* padding: 0; */
+  /* padding-left: 2vw; */
+  /* padding-right: 2vw; */
+  /* width: 100%; */
+  /* height: 80%; */
+  /* gap: 100px; */
+  /* overflow-y: scroll; */
+  /* position: relative; */
+  
 }
 
 .article {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 9%;
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  /* height: 9%; */
   background-image: url("../../public/border/borderRank.png");
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  /* gap: 10px; */
+
 }
 
-.article div {
-  width: 10em;
-  text-align: center;
+.article td {
+  /* width: 15vw; */
+  /* text-align: center; */
+  font-size: 1vw;
 }
 
 .buttons {
@@ -83,20 +121,20 @@
 }
 
 .button {
-  color: black;
+  color: var(--black1);
 }
 
 .imgs {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 0.4em;
+  gap: 10px;
 }
 
 .img {
-  width: 2em;
-  height: 2em;
-  border: 1px solid white;
+  width: 2vw;
+  height: 2vw;
+  border: 1px solid var(--white1);
 }
 
 .progress {
@@ -105,12 +143,12 @@
 }
 
 .progress::-webkit-progress-bar {
-  background-color: brown;
+  background-color: var(--brown1);
   border-radius: 8px;
 }
 
 .progress::-webkit-progress-value {
-  background-color: gold;
+  background-color: var(--gold7);
   border-radius: 8px;
 }
 

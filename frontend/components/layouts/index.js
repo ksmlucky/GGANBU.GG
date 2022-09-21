@@ -3,11 +3,13 @@ import Header from "./header/Header";
 import Navigation from "./navigation/Navigation";
 import Main from "./main/Main";
 import Footer from "./footer/Footer";
-import Search from "../search/Search"
+import Search from "../search/Search";
 import { classNames } from "./../../utils/classNames";
-import Detail from "./../chooseChampion/CChampion";
-import RecommandList from "../recommandList/RecommandList";
+import ChooseChampion from "./../chooseChampion/CChampion";
+import RecommandResultList from "../recommandResultList/RecommandResultList";
 import Ranking from "../ranking/Ranking";
+import ClickChooseChampion from "../clickChooseChampion/CCChampion";
+import DetailChampion from "../detailChampion/Detailchampion";
 
 /* -------------------------------------------------------------------------- */
 
@@ -23,51 +25,74 @@ export function BaseLayout({ setMode }) {
   );
 }
 
-export function DetailLayout({ setMode }) {
+export function ChooseChampionLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
-      <Detail></Detail>
+      <ChooseChampion></ChooseChampion>
       <Footer setMode={setMode}></Footer>
     </div>
   );
 }
 
-export function SearchLayout() {
-
+export function SearchLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Search></Search>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }
 
-export function RecommandLayout() {
-    return (
+export function RecommandResultLayout({ setMode }) {
+  return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
-      <RecommandList></RecommandList>
-      <Footer></Footer>
+      <RecommandResultList></RecommandResultList>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }
 
-export function RankingLayout() {
+export function RankingLayout({ setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
       <Ranking></Ranking>
-      <Footer></Footer>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function DetailLayout({ setMode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <ClickChooseChampion></ClickChooseChampion>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function DetailResultLayout({ setMode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <DetailChampion></DetailChampion>
+      <Footer setMode={setMode}></Footer>
     </div>
   );
 }

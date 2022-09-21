@@ -22,33 +22,34 @@ export default function Ranking() {
         <h1>Ranking</h1>
       </div>
       <div className={styles.container}>
-        <div className={styles.att}>
-          <div>Rank</div>
-          <div>Summoner</div>
-          <div>Tier</div>
-          <div>LP</div>
-          <div>Most Champion</div>
-          <div>Win Rate</div>
-        </div>
-        <div className={styles.border}>
-          <div className={styles.articles}>
-            {/* <div className="styles.articleContainer"> */}
+        <table className={styles.border}>
+          <thead className={styles.head}>
+            <tr className={styles.att}>
+              <th>Rank</th>
+              <th>Summoner</th>
+              <th>Tier</th>
+              <th>LP</th>
+              <th>Most Champion</th>
+              <th>Win Rate</th>
+            </tr>
+          </thead>
+          <tbody className={styles.articles}>
             {user
               .filter((num, idx) => {
                 return parseInt(idx / 100) + 1 === page ? num : null;
               })
               .map((user, idx) => {
                 return (
-                  <div
+                  <tr
                     key={idx}
                     className={styles.article}
                     ref={idx === 0 ? scrollRef : null}
                   >
-                    <div>{user.rank}</div>
-                    <div>{user.summoner}</div>
-                    <div>{user.tier}</div>
-                    <div>{user.lp}</div>
-                    <div className={styles.imgs}>
+                    <td>{user.rank}</td>
+                    <td>{user.summoner}</td>
+                    <td>{user.tier}</td>
+                    <td>{user.lp}</td>
+                    <td className={styles.imgs}>
                       <img
                         src={`/champion/tiles/${user.mostChampion[0]}_0.jpg`}
                         className={styles.img}
@@ -61,21 +62,20 @@ export default function Ranking() {
                         src={`/champion/tiles/${user.mostChampion[2]}_0.jpg`}
                         className={styles.img}
                       ></img>
-                    </div>
-                    <div>
+                    </td>
+                    <td>
                       <progress
                         className={styles.progress}
                         value={user.winRate}
                         min="0"
                         max="100"
                       ></progress>
-                    </div>
-                  </div>
+                    </td>
+                  </tr>
                 );
               })}
-            {/* </div> */}
-          </div>
-        </div>
+          </tbody>
+        </table>
       </div>
       <div className={styles.buttons}>
         {lenArr.map((num, idx) => {

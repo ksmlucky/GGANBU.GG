@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 2em;
-    background: #1E282D;
+    gap: 2vw;
+    background: var(--gray5);
     grid-area: m;
 }

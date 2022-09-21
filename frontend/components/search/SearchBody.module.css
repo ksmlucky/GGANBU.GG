@@ -2,7 +2,7 @@
     display : flex;
     flex-direction :row;
     font-size :1em;
-    color : black;
+    color : var(--black1);
     margin :1em;
     text-align: center;
 }
@@ -11,8 +11,8 @@
     display : flex;
     margin: 2em;
     width:95%;
-    background-color :aqua;
-    border-color :gold;
+    background-color :var(--blue8);
+    border-color :var(--gold8);
     border-style : solid;
     border-radius : 1em;
 }
@@ -20,8 +20,8 @@
     display : flex;
     margin : 2em;
     width:95%; 
-    background-color :red;
-    border-color :gold;
+    background-color :var(--red1);
+    border-color :var(--gold8);
     border-style : solid;
     border-radius : 1em;
 }
@@ -42,8 +42,8 @@
 }
 
 .btn {
-    background: green;
-    border: 3px solid #C89B3C;
+    background: var(--green1);
+    border: 3px solid var(--gold3);
     float: right;
     margin-right : 5%;
     margin-bottom : 2%;

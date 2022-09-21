@@ -1,4 +1,5 @@
 import styles from "./CSInput.module.css";
+import Link from "next/link";
 
 export default function CSInput({ csInput }) {
   function dragover(event) {
@@ -10,6 +11,8 @@ export default function CSInput({ csInput }) {
     let champion_name = e.target.value;
     csInput(champion_name);
   }
+
+  const result = "/recommandresult";
 
   return (
     <form className={styles.container}>
@@ -25,7 +28,9 @@ export default function CSInput({ csInput }) {
           }}
         />
       </div>
-      <button className={styles.btn}>Search</button>
+      <Link href={result}>
+        <button className={styles.btn}>Search</button>
+      </Link>
     </form>
   );
 }

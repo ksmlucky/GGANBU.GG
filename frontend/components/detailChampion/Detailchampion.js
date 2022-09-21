@@ -11,23 +11,91 @@ export default function DetailChampion() {
 
   return (
     <div>
-      <div className={styles.container}>
-        <div className={styles.profile}>
-          <img src={`/champion/tiles/${id}_0.jpg`}></img>
-          <span>
-            {id ? clist.find((element) => element.en === id).ko : null}
-          </span>
-          <div>
-            <img src={`/champion/tiles/${id}_0.jpg`}></img>
-            <img></img>
-            <img></img>
-            <img></img>
-            <img></img>
+      <div className={styles.boxflexs}>
+        <div className={styles.container}>
+          <div className={styles.profile}>
+            <div className={styles.tiles}>
+              <img src={id ? `/champion/tiles/${id}_0.jpg` : null}></img>
+            </div>
+
+            <div className={styles.name}>
+              <span>
+                {id ? clist.find((element) => element.en === id).ko : null}
+              </span>
+            </div>
+
+            <div className={styles.skills}>
+              <img
+                src={
+                  id
+                    ? `/passive/${
+                        clist.find((element) => element.en === id).passive
+                      }.png`
+                    : null
+                }
+              ></img>
+              <img
+                src={
+                  id
+                    ? `/skill/${
+                        clist.find((element) => element.en === id).Q
+                      }.png`
+                    : null
+                }
+              ></img>
+              <img
+                src={
+                  id
+                    ? `/skill/${
+                        clist.find((element) => element.en === id).W
+                      }.png`
+                    : null
+                }
+              ></img>
+              <img
+                src={
+                  id
+                    ? `/skill/${
+                        clist.find((element) => element.en === id).E
+                      }.png`
+                    : null
+                }
+              ></img>
+              <img
+                src={
+                  id
+                    ? `/skill/${
+                        clist.find((element) => element.en === id).R
+                      }.png`
+                    : null
+                }
+              ></img>
+            </div>
           </div>
+          <div className={styles.rune}>
+            <div className={styles.primary}>
+              <div className={styles.PrimaryMain}></div>
+              <div className={styles.PrimaryRowOne}></div>
+              <div className={styles.PrimaryRowTwo}></div>
+              <div className={styles.PrimaryRowThree}></div>
+              <div className={styles.PrimaryRowFour}></div>
+            </div>
+            <div className={styles.secondary}>
+              <div className={styles.SecondaryMain}></div>
+              <div className={styles.SecondaryRowOne}></div>
+              <div className={styles.SecondaryRowTwo}></div>
+              <div className={styles.SecondaryRowThree}></div>
+            </div>
+            <div className={styles.statmods}>
+              <div className={styles.StatmodsMain}></div>
+              <div className={styles.StatmodsRowOne}></div>
+              <div className={styles.StatmodsRowTwo}></div>
+              <div className={styles.StatmodsRowThree}></div>
+            </div>
+          </div>
+          <div className={styles.skill}></div>
+          <div className={styles.item}></div>
         </div>
-        <div className={styles.rune}></div>
-        <div className={styles.skill}></div>
-        <div className={styles.item}></div>
       </div>
     </div>
   );

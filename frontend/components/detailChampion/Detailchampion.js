@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import styles from "./Detailchampion.module.css";
 import championList from "../../utils/champion";
+import DetailChart from "../detailChart/DetailChart";
 import { useEffect } from "react";
 
 export default function DetailChampion() {
@@ -18,7 +19,9 @@ export default function DetailChampion() {
             <button>compare</button>
             <button>wordcloud</button>
           </div>
-          <div className={styles.contentContainer}></div>
+          <div className={styles.contentContainer}>
+            <DetailChart></DetailChart>
+          </div>
         </div>
       </div>
     </div>

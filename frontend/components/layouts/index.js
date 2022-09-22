@@ -85,13 +85,13 @@ export function DetailLayout({ setMode }) {
   );
 }
 
-export function DetailResultLayout({ setMode }) {
+export function DetailResultLayout({ setMode, mode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
-      <DetailChampion></DetailChampion>
+      <DetailChampion mode={mode}></DetailChampion>
       <Footer setMode={setMode}></Footer>
     </div>
   );

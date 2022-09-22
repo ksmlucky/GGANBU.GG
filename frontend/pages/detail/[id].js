@@ -29,7 +29,7 @@ export default function DetailResult() {
 
   return (
     <div>
-      <DetailResultLayout setMode={setMode} />
+      <DetailResultLayout setMode={setMode} mode={mode}/>
     </div>
   );
 }

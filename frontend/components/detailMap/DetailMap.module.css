@@ -1,0 +1,89 @@
+.container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.tdmap{
+    display: inline-block;
+    width: 70%;
+    height: 70%;
+
+}
+
+.toppointcontainer{
+    position: absolute;
+    top: 5%;
+    left: 37%;
+    width: 10vw;
+    height: 10vh;
+}
+
+.junglepointcontainer{
+    position: absolute;
+    top: 25%;
+    left: 39%;
+    width: 10vw;
+    height: 10vh;
+}
+
+.midpointcontainer{
+    position: absolute;
+    top: 23%;
+    left: 47%;
+    width: 10vw;
+    height: 10vh;
+}
+
+.botpointcontainer{
+    position: absolute;
+    top: 43%;
+    left: 60%;
+    width: 10vw;
+    height: 10vh;
+}
+
+.supportpointcontainer{
+    position: absolute;
+    top: 48%;
+    left: 56%;
+    width: 10vw;
+    height: 10vh;
+}
+
+.toppoint{
+    width: 100%;
+    height: 6vw;
+}
+
+.junglepoint{
+    width: 100%;
+    height: 6vw;
+}
+
+
+.midpoint{
+    width: 100%;
+    height: 6vw;
+}
+
+
+.botpoint{
+    width: 100%;
+    height: 6vw;
+}
+
+
+.supportpoint{
+    width: 100%;
+    height: 6vw;
+}
+
+.numtexts{
+    position: absolute;
+    top: 1vw;
+    left: 3.5vw;
+    font-size: 1.5vw;
+}

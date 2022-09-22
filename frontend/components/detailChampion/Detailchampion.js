@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styles from "./Detailchampion.module.css";
 import championList from "../../utils/champion";
 import { useEffect } from "react";
+import Wordcloud from "../wordcloud/Wordcloud";
 
 export default function DetailChampion() {
   const router = useRouter();
@@ -18,7 +19,9 @@ export default function DetailChampion() {
             <button>compare</button>
             <button>wordcloud</button>
           </div>
-          <div className={styles.contentContainer}></div>
+          <div className={styles.contentContainer}>
+            <Wordcloud />
+          </div>
         </div>
       </div>
     </div>

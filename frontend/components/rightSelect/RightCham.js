@@ -137,7 +137,6 @@ export default function RightCham({
                 className={styles.btn}
                 onClick={() => {
                   reset(item.id, item.lines);
-                  Setline(item.lines);
                 }}
               >
                 <img src={item.links} className={styles.lineImg} />

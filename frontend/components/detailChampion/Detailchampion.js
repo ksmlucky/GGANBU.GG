@@ -11,23 +11,15 @@ export default function DetailChampion() {
 
   return (
     <div>
-      <div className={styles.container}>
-        <div className={styles.profile}>
-          <img src={`/champion/tiles/${id}_0.jpg`}></img>
-          <span>
-            {id ? clist.find((element) => element.en === id).ko : null}
-          </span>
-          <div>
-            <img src={`/champion/tiles/${id}_0.jpg`}></img>
-            <img></img>
-            <img></img>
-            <img></img>
-            <img></img>
+      <div className={styles.boxflexs}>
+        <div className={styles.container}>
+          <div className={styles.buttonContainer}>
+            <button>Lines</button>
+            <button>compare</button>
+            <button>wordcloud</button>
           </div>
+          <div className={styles.contentContainer}></div>
         </div>
-        <div className={styles.rune}></div>
-        <div className={styles.skill}></div>
-        <div className={styles.item}></div>
       </div>
     </div>
   );

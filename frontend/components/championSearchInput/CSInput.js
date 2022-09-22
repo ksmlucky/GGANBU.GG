@@ -16,20 +16,21 @@ export default function CSInput({ csInput }) {
 
   return (
     <form className={styles.container}>
-      <div className="search">
+      <div className={styles.search}>
         <input
-          type="search"
+          type="text"
           id="search"
-          className={styles.input}
           placeholder="챔피언을 검색하세요"
           onChange={changes}
           onDragOver={(event) => {
             dragover(event);
           }}
+          required={true}
         />
+        <i></i>
       </div>
       <Link href={result}>
-        <button className={styles.btn}>Search</button>
+        <button className={styles.btn}>Result</button>
       </Link>
     </form>
   );

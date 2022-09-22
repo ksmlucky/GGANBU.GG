@@ -25,6 +25,7 @@ export default function DetailChampion() {
             </div>
 
             <div className={styles.skills}>
+            <div>
               <img
                 src={
                   id
@@ -34,6 +35,9 @@ export default function DetailChampion() {
                     : null
                 }
               ></img>
+              <i>P</i>
+              </div>
+              <div>
               <img
                 src={
                   id
@@ -43,6 +47,9 @@ export default function DetailChampion() {
                     : null
                 }
               ></img>
+              <i>Q</i>
+              </div>
+              <div>
               <img
                 src={
                   id
@@ -52,6 +59,9 @@ export default function DetailChampion() {
                     : null
                 }
               ></img>
+              <i>W</i>
+              </div>
+              <div>
               <img
                 src={
                   id
@@ -61,6 +71,9 @@ export default function DetailChampion() {
                     : null
                 }
               ></img>
+              <i>E</i>
+              </div>
+              <div>
               <img
                 src={
                   id
@@ -70,6 +83,8 @@ export default function DetailChampion() {
                     : null
                 }
               ></img>
+              <i>R</i>
+              </div>
             </div>
           </div>
           <div className={styles.rune}>

@@ -13,103 +13,12 @@ export default function DetailChampion() {
     <div>
       <div className={styles.boxflexs}>
         <div className={styles.container}>
-          <div className={styles.profile}>
-            <div className={styles.tiles}>
-              <img src={id ? `/champion/tiles/${id}_0.jpg` : null}></img>
-            </div>
-
-            <div className={styles.name}>
-              <span>
-                {id ? clist.find((element) => element.en === id).ko : null}
-              </span>
-            </div>
-
-            <div className={styles.skills}>
-            <div>
-              <img
-                src={
-                  id
-                    ? `/passive/${
-                        clist.find((element) => element.en === id).passive
-                      }.png`
-                    : null
-                }
-              ></img>
-              <i>P</i>
-              </div>
-              <div>
-              <img
-                src={
-                  id
-                    ? `/skill/${
-                        clist.find((element) => element.en === id).Q
-                      }.png`
-                    : null
-                }
-              ></img>
-              <i>Q</i>
-              </div>
-              <div>
-              <img
-                src={
-                  id
-                    ? `/skill/${
-                        clist.find((element) => element.en === id).W
-                      }.png`
-                    : null
-                }
-              ></img>
-              <i>W</i>
-              </div>
-              <div>
-              <img
-                src={
-                  id
-                    ? `/skill/${
-                        clist.find((element) => element.en === id).E
-                      }.png`
-                    : null
-                }
-              ></img>
-              <i>E</i>
-              </div>
-              <div>
-              <img
-                src={
-                  id
-                    ? `/skill/${
-                        clist.find((element) => element.en === id).R
-                      }.png`
-                    : null
-                }
-              ></img>
-              <i>R</i>
-              </div>
-            </div>
+          <div className={styles.buttonContainer}>
+            <button>Lines</button>
+            <button>compare</button>
+            <button>wordcloud</button>
           </div>
-          <div className={styles.rune}>
-            <div className={styles.primary}>
-              <div className={styles.PrimaryMain}></div>
-              <div className={styles.PrimaryRowOne}></div>
-              <div className={styles.PrimaryRowTwo}></div>
-              <div className={styles.PrimaryRowThree}></div>
-              <div className={styles.PrimaryRowFour}></div>
-            </div>
-            <div className={styles.secondary}>
-              <div className={styles.SecondaryMain}></div>
-              <div className={styles.SecondaryRowOne}></div>
-              <div className={styles.SecondaryRowTwo}></div>
-              <div className={styles.SecondaryRowThree}></div>
-            </div>
-            <div className={styles.statmods}>
-              <div className={styles.StatmodsMain}></div>
-              <div className={styles.StatmodsRowOne}></div>
-              <div className={styles.StatmodsRowTwo}></div>
-              <div className={styles.StatmodsRowThree}></div>
-            </div>
-          </div>
-          <div className={styles.skill}></div>
-          <div className={styles.item}></div>
+          <div className={styles.contentContainer}></div>
         </div>
       </div>
     </div>

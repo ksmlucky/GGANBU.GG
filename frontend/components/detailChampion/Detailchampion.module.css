@@ -1,4 +1,5 @@
 .boxflexs{
+  position: relative;
     width: 100vw;
       height: 100%;
   display: flex;
@@ -7,84 +8,41 @@
   background: green;
 }
 .container {
-  width: 90vw;
-  height: 90%;
+  position: absolute;
+  width: 99vw;
+  height: 98%;
+  bottom: 1%;
   background: var(--red1);
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 2fr 3fr 2.5fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 10fr;
   grid-template-areas:
-    'p r'
-    's s'
-    'i i';
+    'b'
+    'c'
 
 }
 
-.profile {
-  background: var(--gold1);
-  grid-area: p;
-
-  display: grid;
-
-  grid-template-rows: 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-
-  grid-template-areas:
-    'label0 label1'
-    'label0 label2';
-
-  grid-column-gap: 15px;
-  grid-row-gap: 15px;
-  height: 100%;
-}
-
-.tiles {
-  grid-area: label0;
-  background-color: red;
+.buttonContainer{
+  grid-area: b;
+  background: yellow;
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
 }
 
-.tiles img {
-  width: 15vw;
+.buttonContainer button{
+  color: black;
+  background: none;
+  border: none;
+  cursor: url(/cursor/cursorPointer.png), auto;
+}
+.buttonContainer button:hover{
+  background: red;
 }
 
-.name {
-  grid-area: label1;
-  background-color: purple;
-  display: flex;
-  justify-content:flex-start ;
-  align-items: center;
-}
+.contentContainer{
+  grid-area: c;
+  background: blue;
 
-.name span {
-  font-size: 5vw;
-}
-
-.skills {
-  grid-area: label2;
-  background-color: aqua;
-  display: flex;
-  justify-content:flex-start ;
-  align-items: center;
-}
-
-.skills img {
-  width: 4vw;
-}
-
-.rune {
-  background: var(--gold5);
-  grid-area: r;
-}
-
-.skill {
-  background: var(--gold3);
-  grid-area: s;
-}
-
-.item {
-  background: var(--gold4);
-  grid-area: i;
 }

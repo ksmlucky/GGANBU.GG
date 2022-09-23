@@ -148,7 +148,7 @@ export default function LeftCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `item/noItem.png`;
         }
       }
     }

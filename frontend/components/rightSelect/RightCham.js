@@ -154,7 +154,7 @@ export default function RightCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `item/noItem.png`;
         }
       }
     }

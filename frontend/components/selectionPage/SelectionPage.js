@@ -18,7 +18,7 @@ export default function SelectionPage() {
           {list.map((item) => {
             return (
               <div key={item.id}>
-                <Link href={`/plays/${item.links}`}>
+                <Link href={`${item.links}`}>
                   <li className={styles.li}>{item.text}</li>
                 </Link>
               </div>

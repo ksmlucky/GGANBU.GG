@@ -1,0 +1,16 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--gray5);
+  grid-area: m;
+}
+
+.wordcloud {
+  display: flex;
+  align-items: center;
+  width: 99vw;
+  height: 80vh;
+}

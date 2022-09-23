@@ -1,0 +1,46 @@
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  background: black;
+}
+
+.wrapper{
+width: 40vw;
+border-radius: 15px;
+padding: 25px 30px;
+background-color: #ffffff;
+box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.wrapper i{
+  cursor: pointer;
+}
+
+.topBar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.topBar i {
+  font-size: 1vw;
+  color: #515c6f; 
+}
+
+.topBar span{
+  font-size: 2vw;
+  color: #515c6f;
+}
+
+.imgArea{
+  height: 25vw;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.imgArea {
+  
+}

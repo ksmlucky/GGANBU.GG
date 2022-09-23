@@ -11,6 +11,11 @@ import Ranking from "../ranking/Ranking";
 import ClickChooseChampion from "../clickChooseChampion/CCChampion";
 import DetailChampion from "../detailChampion/Detailchampion";
 import SelectionPage from "../selectionPage/SelectionPage";
+
+import Multi from "../multi/Multi";
+
+import Music from "../music/Music";
+
 /* -------------------------------------------------------------------------- */
 
 export function BaseLayout({ setMode }) {
@@ -44,6 +49,17 @@ export function SearchLayout({ setMode }) {
         <Navigation />
       </Header>
       <Search></Search>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+export function MultiLayout({ setMode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Multi></Multi>
       <Footer setMode={setMode}></Footer>
     </div>
   );
@@ -104,6 +120,18 @@ export function SelectionLayout({ setMode, mode }) {
         <Navigation />
       </Header>
       <SelectionPage mode={mode}></SelectionPage>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function MusicLayout({ setMode, mode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Music mode={mode}></Music>
       <Footer setMode={setMode}></Footer>
     </div>
   );

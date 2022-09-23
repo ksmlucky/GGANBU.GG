@@ -1,7 +1,27 @@
 import styles from "./CSInput.module.css";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function CSInput({ csInput }) {
+export default function CSInput({
+  csInput,
+  selectline,
+  leftchampion,
+  rightchampion,
+}) {
+  const router = useRouter();
+  function resultfunc() {
+    const line = ["top", "jungle", "mid", "bot", "support"];
+    let myline = line.indexOf(selectline);
+    console.log(myline);
+    if (selectline) {
+      if (rightchampion[myline].champ) {
+        router.push(result);
+      } else {
+        alert("no counter line enemy select");
+      }
+    }
+  }
+
   function dragover(event) {
     event.preventDefault();
     event.dataTransfer.dropEffect = "none";
@@ -15,7 +35,7 @@ export default function CSInput({ csInput }) {
   const result = "/recommandresult";
 
   return (
-    <form className={styles.container}>
+    <div className={styles.container}>
       <div className={styles.search}>
         <input
           type="text"
@@ -29,9 +49,14 @@ export default function CSInput({ csInput }) {
         />
         <i></i>
       </div>
-      <Link href={result}>
-        <button className={styles.btn}>Result</button>
-      </Link>
-    </form>
+      <button
+        className={styles.btn}
+        onClick={() => {
+          resultfunc();
+        }}
+      >
+        Result
+      </button>
+    </div>
   );
 }

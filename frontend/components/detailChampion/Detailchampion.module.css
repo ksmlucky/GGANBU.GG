@@ -44,7 +44,6 @@
 
 .contentContainer {
   grid-area: c;
-  background: blue;
   display: flex;
   justify-content: center;
   align-items: center;

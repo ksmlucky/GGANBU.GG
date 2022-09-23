@@ -1,0 +1,42 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--gray5);
+  grid-area: m;
+  position: relative;
+  z-index: 1000;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  width: 80vw;
+  height: 40vw;
+  background-color: aqua;
+  position: absolute;
+  top: 1vw;
+}
+
+.button {
+  width: 7vw;
+  height: 3vw;
+  background-color: black;
+}
+
+.buttons {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  width: 15vw;
+  top: 35vw;
+}
+
+.search {
+  width: 70vw;
+  height: 30vw;
+  background-color: brown;
+  margin-top: 3vw;
+}

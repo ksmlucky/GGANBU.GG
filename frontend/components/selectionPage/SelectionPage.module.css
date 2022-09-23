@@ -1,0 +1,31 @@
+.container {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray3);
+}
+
+.ul {
+  width: 80vw;
+  height: 60%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10vw;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.li {
+  display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  width: 15vw;
+  height: 10vw;
+  flex-grow: 1;
+  list-style: none;
+  font-size: 2vw;
+  border: 2px solid var(--gold3);
+}

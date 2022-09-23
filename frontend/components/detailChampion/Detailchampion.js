@@ -1,9 +1,10 @@
 import { useRouter } from "next/router";
 import styles from "./Detailchampion.module.css";
 import championList from "../../utils/champion";
+import DetailMap from "../detailMap/DetailMap";
 import { useEffect } from "react";
 
-export default function DetailChampion() {
+export default function DetailChampion({mode}) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -18,7 +19,9 @@ export default function DetailChampion() {
             <button>compare</button>
             <button>wordcloud</button>
           </div>
-          <div className={styles.contentContainer}></div>
+          <div className={styles.contentContainer}>
+           <DetailMap mode={mode}></DetailMap>
+          </div>
         </div>
       </div>
     </div>

@@ -122,7 +122,7 @@ export default function RightCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `/item/noItem.png`;
         }
       }
     }
@@ -154,7 +154,7 @@ export default function RightCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noItem.png`;
+          event.target.src = `/item/noItem.png`;
         }
       }
     }
@@ -182,7 +182,7 @@ export default function RightCham({
                     : disableline.indexOf(item.lines) !== -1 &&
                       item.lines !== line
                     ? "/images/none.png"
-                    : "item/noitem.png"
+                    : "/item/noItem.png"
                 }
                 draggable={false}
               ></img>

@@ -241,7 +241,7 @@ export default function DetailChart() {
                   }}
                 >
                   <img
-                    src={`/champion/champion_icon/${item.en.toLowerCase()}.png`}
+                    src={`/champion/tiles/${item.en}_0.jpg`}
                     id={item.ko}
                     alt={item.en}
                     index={item.index}

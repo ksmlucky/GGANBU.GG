@@ -11,7 +11,15 @@ export default function ChooseChampion() {
   const [pickchampionEng, SetPickchampionEng] = useState(""); //마우스로 잡은 챔피언(영어)
   let [pickchampionindex, SetPickchampionindex] = useState(); //마우스로 잡은 챔피언의 index(숫자)
   let [csinput, setCsinput] = useState(""); //챔피언 검색을 위한 입력 결과(한국어)
-  const [selectedchampion, SetSelectedchampion] = useState([]); //선택한 챔피언(한국어)
+  const [selectedchampion, SetSelectedchampion] = useState([]); //선택한 챔피언(전체)(한국어)
+  const [leftchampion, SetLeftchampion] = useState([]); //선택한 챔피언(우리팀)
+  const [rightchampion, SetRightchampion] = useState([]); //선택한 챔피언(상대팀)
+
+  const [selectline, Setselectline] = useState("top");
+
+  useEffect(() => {
+    SetSelectedchampion([]);
+  }, [selectline]);
 
   // 사용자가 객체(object)를 드래그하려고 시작할 때 발생함.
   const onDragStart = (event) => {
@@ -37,6 +45,8 @@ export default function ChooseChampion() {
           SetSelectedchampion={SetSelectedchampion}
           pickchampion={pickchampion}
           pickchampionEng={pickchampionEng}
+          Setselectline={Setselectline}
+          SetLeftchampion={SetLeftchampion}
         />
         <div className={styles.choose}>
           <ul className={styles.ul}>
@@ -81,7 +91,12 @@ export default function ChooseChampion() {
                 );
               })}
           </ul>
-          <CSInput csInput={csInput} />
+          <CSInput
+            csInput={csInput}
+            selectline={selectline}
+            leftchampion={leftchampion}
+            rightchampion={rightchampion}
+          />
         </div>
         <RightCham
           pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
@@ -89,6 +104,8 @@ export default function ChooseChampion() {
           SetSelectedchampion={SetSelectedchampion}
           pickchampion={pickchampion}
           pickchampionEng={pickchampionEng}
+          selectline={selectline}
+          SetRightchampion={SetRightchampion}
         />
       </main>
     </>

@@ -13,6 +13,7 @@
     "@svgr/webpack": "^6.3.1",
     "chart.js": "^3.9.1",
     "chartjs-adapter-luxon": "^1.2.0",
+    "jsesc": "^3.0.2",
     "luxon": "^3.0.3",
     "next": "12.2.5",
     "normalize.css": "^8.0.1",
@@ -20,7 +21,9 @@
     "react": "18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
-    "react-wordcloud": "^1.2.7"
+    "react-wordcloud": "^1.2.7",
+    "unicode-match-property-ecmascript": "^2.0.0",
+    "unicode-match-property-value-ecmascript": "^2.0.0"
   },
   "devDependencies": {
     "eslint": "8.22.0",

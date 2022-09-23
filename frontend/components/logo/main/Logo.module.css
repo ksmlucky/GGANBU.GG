@@ -1,6 +1,27 @@
 .container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  width: 20vw;
+  width: 40vw;
   height: 10vh;
+}
+
+.h1 span{
+  font-size: 3vw;
+}
+
+.logo{
+  border-right: 2px solid #ffffff;
+  animation: blink 0.75s infinite;
+}
+
+@keyframes blink {
+  from {
+    border: none;
+  }
+
+  to {
+    border-color: 2px solid #ffffff;
+  }
 }

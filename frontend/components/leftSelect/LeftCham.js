@@ -7,6 +7,8 @@ export default function LeftCham({
   SetSelectedchampion,
   pickchampion,
   pickchampionEng,
+  Setselectline,
+  SetLeftchampion,
 }) {
   let [line, Setline] = useState("top"); //현재 라인 선택(영어)
   let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
@@ -35,15 +37,31 @@ export default function LeftCham({
       links: "/line/mid.png",
       idx: "",
     },
+    { id: "4", lines: "bot", champ: "", links: "/line/bot.png", idx: "" },
     {
-      id: "4",
+      id: "5",
       lines: "support",
       champ: "",
       links: "/line/support.png",
       idx: "",
     },
-    { id: "5", lines: "bot", champ: "", links: "/line/bot.png", idx: "" },
   ]);
+
+  const [disableline, Setdisableline] = useState([]);
+
+  useEffect(() => {
+    if (line === "top") {
+      Setdisableline(["top", "jungle"]);
+    } else if (line === "jungle") {
+      Setdisableline(["jungle", "top", "mid"]);
+    } else if (line === "mid") {
+      Setdisableline(["mid", "jungle"]);
+    } else if (line === "bot") {
+      Setdisableline(["bot", "support"]);
+    } else if (line === "support") {
+      Setdisableline(["support", "bot"]);
+    }
+  }, [line]);
 
   function reset(id, line) {
     //선택된 챔피언 중에서 해당 챔피언을 제거
@@ -56,35 +74,50 @@ export default function LeftCham({
       return check.lines === line ? { ...check, champ: "", kchamp: "" } : check;
     });
     SetLineCham(newlinecham);
+    SetLeftchampion(newlinecham);
   }
 
   function Drop(event, id) {
     let beforenewselectedchampion = [...selectedchampion];
     //잘 찾아왔으면 진행
     if (event.target.className.toLowerCase().includes("leftcham")) {
-      //라인이 선택되어있지 않으면 진행
-      if (event.target.id !== line) {
-        //먼저 선택된 챔피언이 있으면 없애주고 진행
-        if (lineCham[id - 1].kchamp) {
-          beforenewselectedchampion = selectedchampion.filter(
-            (selected) => selected !== lineCham[id - 1].kchamp
-          );
-          SetSelectedchampion(beforenewselectedchampion); //우선 제거
-        }
-        //선택된 리스트에 챔피언이 없다면
-        if (beforenewselectedchampion.indexOf(pickchampion) === -1) {
-          beforenewselectedchampion.push(pickchampion);
-          SetSelectedchampion(beforenewselectedchampion); //선택 리스트에 추가
-          //라인별 챔피언 상황에 추가
-          let newlinecham = lineCham.map((check) => {
-            return check.lines === event.target.id
-              ? { ...check, champ: pickchampionEng, kchamp: pickchampion }
-              : check;
-          });
-          SetLineCham(newlinecham);
+      //표시되야할 라인인지 확인하고 진행
+      if (
+        disableline.indexOf(event.target.id) !== -1 &&
+        event.target.id !== line
+      ) {
+        if (event.target.id !== line) {
+          //라인이 선택되어있지 않으면 진행
+          //먼저 선택된 챔피언이 있으면 없애주고 진행
+          if (lineCham[id - 1].kchamp) {
+            beforenewselectedchampion = selectedchampion.filter(
+              (selected) => selected !== lineCham[id - 1].kchamp
+            );
+            SetSelectedchampion(beforenewselectedchampion); //우선 제거
+          }
+          //선택된 리스트에 챔피언이 없다면
+          if (beforenewselectedchampion.indexOf(pickchampion) === -1) {
+            beforenewselectedchampion.push(pickchampion);
+            SetSelectedchampion(beforenewselectedchampion); //선택 리스트에 추가
+            //라인별 챔피언 상황에 추가
+            let newlinecham = lineCham.map((check) => {
+              return check.lines === event.target.id
+                ? { ...check, champ: pickchampionEng, kchamp: pickchampion }
+                : check;
+            });
+            SetLineCham(newlinecham);
+            SetLeftchampion(newlinecham);
+          }
         }
       } else {
-        event.target.src = `/images/none.png`;
+        if (
+          disableline.indexOf(event.target.id) !== -1 &&
+          event.target.id !== line
+        ) {
+          event.target.src = `/images/none.png`;
+        } else {
+          event.target.src = `item/noitem.png`;
+        }
       }
     }
   }
@@ -96,18 +129,38 @@ export default function LeftCham({
   function dragEnter(event) {
     event.preventDefault();
     SetEnterline(event.target.id);
-    if (event.target.id !== line) {
-      event.target.src = `/champion/tiles/${pickchampionEng}_0.jpg`;
+    if (disableline.indexOf(event.target.id) !== -1) {
+      if (event.target.id !== line) {
+        event.target.src = `/champion/tiles/${pickchampionEng}_0.jpg`;
+      }
     }
   }
   function dragLeave(event, champion) {
     event.preventDefault();
     SetEnterline("");
-    if (champion) {
-      event.target.src = `/champion/tiles/${champion}_0.jpg`;
-    } else {
-      event.target.src = `/images/none.png`;
+    if (disableline.indexOf(event.target.id) !== -1) {
+      if (champion) {
+        event.target.src = `/champion/tiles/${champion}_0.jpg`;
+      } else {
+        if (
+          disableline.indexOf(event.target.id) !== -1 &&
+          event.target.id !== line
+        ) {
+          event.target.src = `/images/none.png`;
+        } else {
+          event.target.src = `item/noitem.png`;
+        }
+      }
     }
+  }
+
+  function allreset(saveline) {
+    let newlinecham = lineCham.map((check) => {
+      //라인별 챔피언 상황에 추가
+      return { ...check, champ: "", kchamp: "" };
+    });
+    SetLineCham(newlinecham);
+    SetLeftchampion(newlinecham);
   }
 
   return (
@@ -128,6 +181,8 @@ export default function LeftCham({
                 onClick={() => {
                   reset(item.id, item.lines);
                   Setline(item.lines);
+                  Setselectline(item.lines);
+                  allreset(item.lines);
                 }}
               >
                 <img src={item.links} className={styles.lineImg} />
@@ -145,7 +200,10 @@ export default function LeftCham({
                 src={
                   item.champ
                     ? `/champion/tiles/${item.champ}_0.jpg`
-                    : "/images/none.png"
+                    : disableline.indexOf(item.lines) !== -1 &&
+                      item.lines !== line
+                    ? "/images/none.png"
+                    : "item/noitem.png"
                 }
                 draggable={false}
               ></img>

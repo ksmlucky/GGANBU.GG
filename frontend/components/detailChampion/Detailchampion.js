@@ -23,9 +23,9 @@ export default function DetailChampion({ mode }) {
             <button>wordcloud</button>
           </div>
           <div className={styles.contentContainer}>
-            <DetailMap mode={mode}></DetailMap>
+            {/* <DetailMap mode={mode}></DetailMap> */}
             <DetailChart></DetailChart>
-            <Wordcloud />
+            {/* <Wordcloud /> */}
           </div>
         </div>
       </div>

@@ -18,9 +18,8 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr;
   grid-template-areas:
-    'b'
-    'c'
-
+    "b"
+    "c";
 }
 
 .buttonContainer {
@@ -39,7 +38,6 @@
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
-
 .buttonContainer button:hover {
   background: red;
 }
@@ -50,5 +48,4 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }

@@ -5,8 +5,9 @@ import championList from "../../utils/champion";
 import DetailMap from "../detailMap/DetailMap";
 import DetailChart from "../detailChart/DetailChart";
 import { useEffect } from "react";
+import Wordcloud from "../wordcloud/Wordcloud";
 
-export default function DetailChampion({mode}) {
+export default function DetailChampion({ mode }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -22,8 +23,9 @@ export default function DetailChampion({mode}) {
             <button>wordcloud</button>
           </div>
           <div className={styles.contentContainer}>
-           <DetailMap mode={mode}></DetailMap>
+            <DetailMap mode={mode}></DetailMap>
             <DetailChart></DetailChart>
+            <Wordcloud />
           </div>
         </div>
       </div>

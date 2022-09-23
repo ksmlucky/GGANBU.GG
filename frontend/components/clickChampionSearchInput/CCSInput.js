@@ -11,7 +11,6 @@ export default function CCSInput({ csInput, pickchampionEng }) {
     let champion_name = e.target.value;
     csInput(champion_name);
   }
-
   const result = `/detail/[id]`;
 
   return (

@@ -16,7 +16,7 @@
   width: 100%;
   padding-left: 5vw;
   padding-right: 5vw;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-around;
 }
 
@@ -24,7 +24,7 @@
   width: 13vw;
   height: 35vw;
   background-color: white;
-  margin-bottom: 5.5vw;
+  margin-top: 0.5vw;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@
   width: 13vw;
   height: 35vw;
   background-color: white;
-  margin-bottom: 3vw;
+  margin-top: 3vw;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -51,14 +51,14 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  margin-bottom: 0.5vw;
+  margin-top: 5.5vw;
 }
 .bot {
   width: 13vw;
   height: 35vw;
   background-color: white;
   text-align: center;
-  margin-bottom: 3vw;
+  margin-top: 3vw;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
   width: 13vw;
   height: 35vw;
   background-color: white;
-  margin-bottom: 5.5vw;
+  margin-top: 0.5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -98,5 +98,6 @@
   width: 7vw;
   height: 3vw;
   position: absolute;
-  top: 5vw;
+  top: 1.5vw;
+  z-index: 100;
 }

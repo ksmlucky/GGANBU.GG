@@ -25,6 +25,9 @@ export default function DetailChampion({ mode }) {
             <button onClick={() => Setselectdata("cloud")}>wordcloud</button>
           </div>
           <div className={styles.contentContainer}>
+            {/* <DetailMap mode={mode}></DetailMap> */}
+            {/* <Wordcloud /> */}
+
             {selectdata && selectdata === "map" ? (
               <DetailMap mode={mode} />
             ) : null}

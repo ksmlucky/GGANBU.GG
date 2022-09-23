@@ -10,7 +10,7 @@ import RecommandResultList from "../recommandResultList/RecommandResultList";
 import Ranking from "../ranking/Ranking";
 import ClickChooseChampion from "../clickChooseChampion/CCChampion";
 import DetailChampion from "../detailChampion/Detailchampion";
-
+import SelectionPage from "../selectionPage/SelectionPage";
 /* -------------------------------------------------------------------------- */
 
 export function BaseLayout({ setMode }) {
@@ -92,6 +92,18 @@ export function DetailResultLayout({ setMode, mode }) {
         <Navigation />
       </Header>
       <DetailChampion mode={mode}></DetailChampion>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function SelectionLayout({ setMode, mode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <SelectionPage mode={mode}></SelectionPage>
       <Footer setMode={setMode}></Footer>
     </div>
   );

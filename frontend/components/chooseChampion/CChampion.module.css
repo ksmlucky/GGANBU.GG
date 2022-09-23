@@ -50,6 +50,16 @@
 .img {
   width: 7vw;
   height: auto;
+  animation: showeffect 1s ease;
+}
+
+@keyframes showeffect{
+  0%{
+    width: 0px;
+  }
+  100%{
+    width: 7vw;
+  }
 }
 
 .name {
@@ -74,4 +84,5 @@
   text-decoration: none;
 
   padding-bottom: 20px;
+
 }

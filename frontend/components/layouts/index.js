@@ -11,6 +11,7 @@ import Ranking from "../ranking/Ranking";
 import ClickChooseChampion from "../clickChooseChampion/CCChampion";
 import DetailChampion from "../detailChampion/Detailchampion";
 import SelectionPage from "../selectionPage/SelectionPage";
+import Multi from "../multi/Multi";
 /* -------------------------------------------------------------------------- */
 
 export function BaseLayout({ setMode }) {
@@ -44,6 +45,17 @@ export function SearchLayout({ setMode }) {
         <Navigation />
       </Header>
       <Search></Search>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+export function MultiLayout({ setMode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Multi></Multi>
       <Footer setMode={setMode}></Footer>
     </div>
   );

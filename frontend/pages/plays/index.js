@@ -1,6 +1,5 @@
-import { DetailResultLayout } from "../../components/layouts/index";
+import { SelectionLayout } from "../../components/layouts/index";
 import React, { useEffect } from "react";
-// app
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -20,7 +19,8 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function DetailResult() {
+// app
+export default function Plays() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export default function DetailResult() {
 
   return (
     <div>
-      <DetailResultLayout setMode={setMode} mode={mode}/>
+      <SelectionLayout setMode={setMode} mode={mode} />
     </div>
   );
 }

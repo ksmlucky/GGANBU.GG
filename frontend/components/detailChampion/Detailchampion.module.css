@@ -1,12 +1,13 @@
-.boxflexs{
+.boxflexs {
   position: relative;
-    width: 100vw;
-      height: 100%;
+  width: 100vw;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background: green;
 }
+
 .container {
   position: absolute;
   width: 99vw;
@@ -22,7 +23,7 @@
 
 }
 
-.buttonContainer{
+.buttonContainer {
   grid-area: b;
   background: yellow;
   display: flex;
@@ -31,18 +32,21 @@
   align-items: center;
 }
 
-.buttonContainer button{
+.buttonContainer button {
   color: black;
   background: none;
   border: none;
   cursor: url(/cursor/cursorPointer.png), auto;
 }
-.buttonContainer button:hover{
+
+.buttonContainer button:hover {
   background: red;
 }
 
-.contentContainer{
+.contentContainer {
   grid-area: c;
   background: blue;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

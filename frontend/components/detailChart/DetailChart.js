@@ -69,8 +69,8 @@ export default function DetailChart(){
             data: {
                 labels: ['승률', '픽률', '밴률', 'DPM', '솔로킬 횟수', 'CC기 총 시간'],
                 datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 90, 81, 56, 55],
+                    label: '아트록스',
+                    data: [65, 59, 5, 81, 56, 55],
                     fill: true,
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgb(255, 99, 132)',
@@ -79,8 +79,8 @@ export default function DetailChart(){
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgb(255, 99, 132)'
                   }, {
-                    label: 'My Second Dataset',
-                    data: [28, 48, 40, 19, 96, 27],
+                    label: '리신',
+                    data: [28, 48, 40, 19, 5, 27],
                     fill: true,
                     backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgb(54, 162, 235)',

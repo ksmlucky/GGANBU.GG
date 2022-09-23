@@ -1,6 +1,7 @@
 export default function championList() {
   const championlist = [
     {
+      passive: "Garen_Passive",
       Q: "GarenQ",
       W: "GarenW",
       E: "GarenE",
@@ -10,6 +11,7 @@ export default function championList() {
       en: "Garen",
     },
     {
+      passive: "Galio_Passive",
       Q: "GalioQ",
       W: "GalioW",
       E: "GalioE",
@@ -19,6 +21,7 @@ export default function championList() {
       en: "Galio",
     },
     {
+      passive: "Gangplank_Passive",
       Q: "GangplankQWrapper",
       W: "GangplankW",
       E: "GangplankE",
@@ -28,6 +31,7 @@ export default function championList() {
       en: "Gangplank",
     },
     {
+      passive: "GragasPassiveHeal",
       Q: "GragasQ",
       W: "GragasW",
       E: "GragasE",
@@ -37,6 +41,7 @@ export default function championList() {
       en: "Gragas",
     },
     {
+      passive: "GravesTrueGrit",
       Q: "GravesQLineSpell",
       W: "GravesSmokeGrenade",
       E: "GravesMove",
@@ -46,6 +51,7 @@ export default function championList() {
       en: "Graves",
     },
     {
+      passive: "Gwen_Passive",
       Q: "GwenQ",
       W: "GwenW",
       E: "GwenE",
@@ -55,6 +61,7 @@ export default function championList() {
       en: "Gwen",
     },
     {
+      passive: "Gnar_Passive",
       Q: "GnarQ",
       W: "GnarW",
       E: "GnarE",
@@ -64,6 +71,7 @@ export default function championList() {
       en: "Gnar",
     },
     {
+      passive: "NamiPassive",
       Q: "NamiQ",
       W: "NamiW",
       E: "NamiE",
@@ -73,6 +81,7 @@ export default function championList() {
       en: "Nami",
     },
     {
+      passive: "Nasus_Passive",
       Q: "NasusQ",
       W: "NasusW",
       E: "NasusE",
@@ -82,6 +91,7 @@ export default function championList() {
       en: "Nasus",
     },
     {
+      passive: "Nautilus_StaggeringBlow",
       Q: "NautilusAnchorDrag",
       W: "NautilusPiercingGaze",
       E: "NautilusSplashZone",
@@ -91,6 +101,7 @@ export default function championList() {
       en: "Nautilus",
     },
     {
+      passive: "Nocturne_UmbraBlades",
       Q: "NocturneDuskbringer",
       W: "NocturneShroudofDarkness",
       E: "NocturneUnspeakableHorror",
@@ -100,6 +111,7 @@ export default function championList() {
       en: "Nocturne",
     },
     {
+      passive: "NunuPassive",
       Q: "NunuQ",
       W: "NunuW",
       E: "NunuE",
@@ -109,6 +121,7 @@ export default function championList() {
       en: "Nunu",
     },
     {
+      passive: "Nidalee_Passive",
       Q: "JavelinToss",
       W: "Bushwhack",
       E: "PrimalSurge",
@@ -118,6 +131,7 @@ export default function championList() {
       en: "Nidalee",
     },
     {
+      passive: "Neeko_P",
       Q: "NeekoQ",
       W: "NeekoW",
       E: "NeekoE",
@@ -127,6 +141,7 @@ export default function championList() {
       en: "Neeko",
     },
     {
+      passive: "NIlahP.Nilah",
       Q: "NilahQ",
       W: "NilahW",
       E: "NilahE",
@@ -136,6 +151,7 @@ export default function championList() {
       en: "Nilah",
     },
     {
+      passive: "Darius_Icon_Hemorrhage",
       Q: "DariusCleave",
       W: "DariusNoxianTacticsONH",
       E: "DariusAxeGrabCone",
@@ -145,6 +161,7 @@ export default function championList() {
       en: "Darius",
     },
     {
+      passive: "Diana_Passive_LunarBlade",
       Q: "DianaQ",
       W: "DianaOrbs",
       E: "DianaTeleport",
@@ -154,6 +171,7 @@ export default function championList() {
       en: "Diana",
     },
     {
+      passive: "Draven_passive",
       Q: "DravenSpinning",
       W: "DravenFury",
       E: "DravenDoubleShot",
@@ -163,6 +181,7 @@ export default function championList() {
       en: "Draven",
     },
     {
+      passive: "Ryze_P",
       Q: "RyzeQWrapper",
       W: "RyzeW",
       E: "RyzeE",
@@ -172,6 +191,7 @@ export default function championList() {
       en: "Ryze",
     },
     {
+      passive: "Rakan_P",
       Q: "RakanQ",
       W: "RakanW",
       E: "RakanE",
@@ -181,6 +201,7 @@ export default function championList() {
       en: "Rakan",
     },
     {
+      passive: "Armordillo_ScavengeArmor",
       Q: "PowerBall",
       W: "DefensiveBallCurl",
       E: "PuncturingTaunt",
@@ -190,6 +211,7 @@ export default function championList() {
       en: "Rammus",
     },
     {
+      passive: "LuxIlluminatingFraulein",
       Q: "LuxLightBinding",
       W: "LuxPrismaticWave",
       E: "LuxLightStrikeKugel",
@@ -199,6 +221,7 @@ export default function championList() {
       en: "Lux",
     },
     {
+      passive: "Rumble_JunkyardTitan1",
       Q: "RumbleFlameThrower",
       W: "RumbleShield",
       E: "RumbleGrenade",
@@ -208,6 +231,7 @@ export default function championList() {
       en: "Rumble",
     },
     {
+      passive: "Renata_P.Renata",
       Q: "RenataQ",
       W: "RenataW",
       E: "RenataE",
@@ -217,6 +241,7 @@ export default function championList() {
       en: "Renata",
     },
     {
+      passive: "Renekton_Passive",
       Q: "RenektonCleave",
       W: "RenektonPreExecute",
       E: "RenektonSliceAndDice",
@@ -226,6 +251,7 @@ export default function championList() {
       en: "Renekton",
     },
     {
+      passive: "LeonaSunlight",
       Q: "LeonaShieldOfDaybreak",
       W: "LeonaSolarBarrier",
       E: "LeonaZenithBlade",
@@ -235,6 +261,7 @@ export default function championList() {
       en: "Leona",
     },
     {
+      passive: "RekSai_Passive",
       Q: "RekSaiQ",
       W: "RekSaiW",
       E: "RekSaiE",
@@ -244,6 +271,7 @@ export default function championList() {
       en: "RekSai",
     },
     {
+      passive: "RellP",
       Q: "RellQ",
       W: "RellW_Dismount",
       E: "RellE",
@@ -253,6 +281,7 @@ export default function championList() {
       en: "Rell",
     },
     {
+      passive: "Rengar_P",
       Q: "RengarQ",
       W: "RengarW",
       E: "RengarE",
@@ -262,6 +291,7 @@ export default function championList() {
       en: "Rengar",
     },
     {
+      passive: "Lucian_Passive",
       Q: "LucianQ",
       W: "LucianW",
       E: "LucianE",
@@ -271,6 +301,7 @@ export default function championList() {
       en: "Lucian",
     },
     {
+      passive: "Lulu_PixFaerieCompanion",
       Q: "LuluQ",
       W: "LuluW",
       E: "LuluE",
@@ -280,6 +311,7 @@ export default function championList() {
       en: "Lulu",
     },
     {
+      passive: "LeBlancP",
       Q: "LeblancQ",
       W: "LeblancW",
       E: "LeblancE",
@@ -289,6 +321,7 @@ export default function championList() {
       en: "Leblanc",
     },
     {
+      passive: "LeeSinPassive",
       Q: "BlindMonkQOne",
       W: "BlindMonkWOne",
       E: "BlindMonkEOne",
@@ -298,6 +331,7 @@ export default function championList() {
       en: "LeeSin",
     },
     {
+      passive: "RivenRunicBlades",
       Q: "RivenTriCleave",
       W: "RivenMartyr",
       E: "RivenFeint",
@@ -307,6 +341,7 @@ export default function championList() {
       en: "Riven",
     },
     {
+      passive: "Lissandra_Passive",
       Q: "LissandraQ",
       W: "LissandraW",
       E: "LissandraE",
@@ -316,6 +351,7 @@ export default function championList() {
       en: "Lissandra",
     },
     {
+      passive: "Lillia_Icon_Passive",
       Q: "LilliaQ",
       W: "LilliaW",
       E: "LilliaE",
@@ -325,6 +361,7 @@ export default function championList() {
       en: "Lillia",
     },
     {
+      passive: "MasterYi_Passive1",
       Q: "AlphaStrike",
       W: "Meditate",
       E: "WujuStyle",
@@ -334,6 +371,7 @@ export default function championList() {
       en: "MasterYi",
     },
     {
+      passive: "Maokai_Passive",
       Q: "MaokaiQ",
       W: "MaokaiW",
       E: "MaokaiE",
@@ -343,6 +381,7 @@ export default function championList() {
       en: "Maokai",
     },
     {
+      passive: "Malzahar_Passive",
       Q: "MalzaharQ",
       W: "MalzaharW",
       E: "MalzaharE",
@@ -352,6 +391,7 @@ export default function championList() {
       en: "Malzahar",
     },
     {
+      passive: "Malphite_GraniteShield",
       Q: "SeismicShard",
       W: "Obduracy",
       E: "Landslide",
@@ -361,6 +401,7 @@ export default function championList() {
       en: "Malphite",
     },
     {
+      passive: "MordekaiserPassive",
       Q: "MordekaiserQ",
       W: "MordekaiserW",
       E: "MordekaiserE",
@@ -370,6 +411,7 @@ export default function championList() {
       en: "Mordekaiser",
     },
     {
+      passive: "FallenAngel_Empathize",
       Q: "MorganaQ",
       W: "MorganaW",
       E: "MorganaE",
@@ -379,6 +421,7 @@ export default function championList() {
       en: "Morgana",
     },
     {
+      passive: "DrMundo_P.Dr_Mundo_VGU",
       Q: "DrMundoQ",
       W: "DrMundoW",
       E: "DrMundoE",
@@ -388,6 +431,7 @@ export default function championList() {
       en: "DrMundo",
     },
     {
+      passive: "MissFortune_W",
       Q: "MissFortuneRicochetShot",
       W: "MissFortuneViciousStrikes",
       E: "MissFortuneScattershot",
@@ -397,6 +441,7 @@ export default function championList() {
       en: "MissFortune",
     },
     {
+      passive: "Bard_Passive",
       Q: "BardQ",
       W: "BardW",
       E: "BardE",
@@ -406,6 +451,7 @@ export default function championList() {
       en: "Bard",
     },
     {
+      passive: "VarusPassive",
       Q: "VarusQ",
       W: "VarusW",
       E: "VarusE",
@@ -414,8 +460,18 @@ export default function championList() {
       ko: "바루스",
       en: "Varus",
     },
-    { Q: "ViQ", W: "ViW", E: "ViE", R: "ViR", index: 46, ko: "바이", en: "Vi" },
     {
+      passive: "ViPassive",
+      Q: "ViQ",
+      W: "ViW",
+      E: "ViE",
+      R: "ViR",
+      index: 46,
+      ko: "바이",
+      en: "Vi",
+    },
+    {
+      passive: "VeigarEntropy",
       Q: "VeigarBalefulStrike",
       W: "VeigarDarkMatter",
       E: "VeigarEventHorizon",
@@ -425,6 +481,7 @@ export default function championList() {
       en: "Veigar",
     },
     {
+      passive: "Vayne_NightHunter",
       Q: "VayneTumble",
       W: "VayneSilveredBolts",
       E: "VayneCondemn",
@@ -434,6 +491,7 @@ export default function championList() {
       en: "Vayne",
     },
     {
+      passive: "Icons_Vex_Passive.S_Yordle",
       Q: "VexQ",
       W: "VexW",
       E: "VexE",
@@ -443,6 +501,7 @@ export default function championList() {
       en: "Vex",
     },
     {
+      passive: "Belveth_Passive.Belveth",
       Q: "BelvethQ",
       W: "BelvethW",
       E: "BelvethE",
@@ -452,6 +511,7 @@ export default function championList() {
       en: "Belveth",
     },
     {
+      passive: "VelKoz_Passive",
       Q: "VelkozQ",
       W: "VelkozW",
       E: "VelkozE",
@@ -461,6 +521,7 @@ export default function championList() {
       en: "Velkoz",
     },
     {
+      passive: "Volibear_Icon_P",
       Q: "VolibearQ",
       W: "VolibearW",
       E: "VolibearE",
@@ -470,6 +531,7 @@ export default function championList() {
       en: "Volibear",
     },
     {
+      passive: "Braum_Passive",
       Q: "BraumQ",
       W: "BraumW",
       E: "BraumE",
@@ -479,6 +541,7 @@ export default function championList() {
       en: "Braum",
     },
     {
+      passive: "BrandP",
       Q: "BrandQ",
       W: "BrandW",
       E: "BrandE",
@@ -488,6 +551,7 @@ export default function championList() {
       en: "Brand",
     },
     {
+      passive: "VladimirP",
       Q: "VladimirQ",
       W: "VladimirSanguinePool",
       E: "VladimirE",
@@ -497,6 +561,7 @@ export default function championList() {
       en: "Vladimir",
     },
     {
+      passive: "Blitzcrank_ManaBarrier",
       Q: "RocketGrab",
       W: "Overdrive",
       E: "PowerFist",
@@ -506,6 +571,7 @@ export default function championList() {
       en: "Blitzcrank",
     },
     {
+      passive: "Viego_Passive",
       Q: "ViegoQ",
       W: "ViegoW",
       E: "ViegoE",
@@ -515,6 +581,7 @@ export default function championList() {
       en: "Viego",
     },
     {
+      passive: "Viktor_Passive",
       Q: "ViktorPowerTransfer",
       W: "ViktorGravitonField",
       E: "ViktorDeathRay",
@@ -524,6 +591,7 @@ export default function championList() {
       en: "Viktor",
     },
     {
+      passive: "Poppy_Passive",
       Q: "PoppyQ",
       W: "PoppyW",
       E: "PoppyE",
@@ -533,6 +601,7 @@ export default function championList() {
       en: "Poppy",
     },
     {
+      passive: "SamiraP",
       Q: "SamiraQ",
       W: "SamiraW",
       E: "SamiraE",
@@ -542,6 +611,7 @@ export default function championList() {
       en: "Samira",
     },
     {
+      passive: "Sion_Passive1",
       Q: "SionQ",
       W: "SionW",
       E: "SionE",
@@ -551,6 +621,7 @@ export default function championList() {
       en: "Sion",
     },
     {
+      passive: "SylasP",
       Q: "SylasQ",
       W: "SylasW",
       E: "SylasE",
@@ -560,6 +631,7 @@ export default function championList() {
       en: "Sylas",
     },
     {
+      passive: "Jester_CarefulStrikes",
       Q: "Deceive",
       W: "JackInTheBox",
       E: "TwoShivPoison",
@@ -569,6 +641,7 @@ export default function championList() {
       en: "Shaco",
     },
     {
+      passive: "Senna_Passive",
       Q: "SennaQ",
       W: "SennaW",
       E: "SennaE",
@@ -578,6 +651,7 @@ export default function championList() {
       en: "Senna",
     },
     {
+      passive: "Seraphine_Passive",
       Q: "SeraphineQ",
       W: "SeraphineW",
       E: "SeraphineE",
@@ -587,6 +661,7 @@ export default function championList() {
       en: "Seraphine",
     },
     {
+      passive: "Sejuani_passive",
       Q: "SejuaniQ",
       W: "SejuaniW",
       E: "SejuaniE",
@@ -596,6 +671,7 @@ export default function championList() {
       en: "Sejuani",
     },
     {
+      passive: "Sett_P",
       Q: "SettQ",
       W: "SettW",
       E: "SettE",
@@ -605,6 +681,7 @@ export default function championList() {
       en: "Sett",
     },
     {
+      passive: "Sona_Passive_Charged",
       Q: "SonaQ",
       W: "SonaW",
       E: "SonaE",
@@ -614,6 +691,7 @@ export default function championList() {
       en: "Sona",
     },
     {
+      passive: "Soraka_Passive",
       Q: "SorakaQ",
       W: "SorakaW",
       E: "SorakaE",
@@ -623,6 +701,7 @@ export default function championList() {
       en: "Soraka",
     },
     {
+      passive: "Shen_Passive",
       Q: "ShenQ",
       W: "ShenW",
       E: "ShenE",
@@ -632,6 +711,7 @@ export default function championList() {
       en: "Shen",
     },
     {
+      passive: "ShyvanaReinforcedScales",
       Q: "ShyvanaDoubleAttack",
       W: "ShyvanaImmolationAura",
       E: "ShyvanaFireball",
@@ -641,6 +721,7 @@ export default function championList() {
       en: "Shyvana",
     },
     {
+      passive: "Swain_P",
       Q: "SwainQ",
       W: "SwainW",
       E: "SwainE",
@@ -650,6 +731,7 @@ export default function championList() {
       en: "Swain",
     },
     {
+      passive: "Skarner_Passive",
       Q: "SkarnerVirulentSlash",
       W: "SkarnerExoskeleton",
       E: "SkarnerFracture",
@@ -659,6 +741,7 @@ export default function championList() {
       en: "Skarner",
     },
     {
+      passive: "Sivir_Passive",
       Q: "SivirQ",
       W: "SivirW",
       E: "SivirE",
@@ -668,6 +751,7 @@ export default function championList() {
       en: "Sivir",
     },
     {
+      passive: "XinZhaoP",
       Q: "XinZhaoQ",
       W: "XinZhaoW",
       E: "XinZhaoE",
@@ -677,6 +761,7 @@ export default function championList() {
       en: "XinZhao",
     },
     {
+      passive: "SyndraPassive",
       Q: "SyndraQ",
       W: "SyndraW",
       E: "SyndraE",
@@ -686,6 +771,7 @@ export default function championList() {
       en: "Syndra",
     },
     {
+      passive: "Singed_Passive",
       Q: "PoisonTrail",
       W: "MegaAdhesive",
       E: "Fling",
@@ -695,6 +781,7 @@ export default function championList() {
       en: "Singed",
     },
     {
+      passive: "Thresh_Passive",
       Q: "ThreshQ",
       W: "ThreshW",
       E: "ThreshE",
@@ -704,6 +791,7 @@ export default function championList() {
       en: "Thresh",
     },
     {
+      passive: "Ahri_SoulEater2",
       Q: "AhriOrbofDeception",
       W: "AhriFoxFire",
       E: "AhriSeduce",
@@ -713,6 +801,7 @@ export default function championList() {
       en: "Ahri",
     },
     {
+      passive: "Amumu_Passive",
       Q: "BandageToss",
       W: "AuraofDespair",
       E: "Tantrum",
@@ -722,6 +811,7 @@ export default function championList() {
       en: "Amumu",
     },
     {
+      passive: "AurelionSol_Passive",
       Q: "AurelionSolQ",
       W: "AurelionSolW",
       E: "AurelionSolE",
@@ -731,6 +821,7 @@ export default function championList() {
       en: "AurelionSol",
     },
     {
+      passive: "IvernP",
       Q: "IvernQ",
       W: "IvernW",
       E: "IvernE",
@@ -740,6 +831,7 @@ export default function championList() {
       en: "Ivern",
     },
     {
+      passive: "Azir_Passive",
       Q: "AzirQWrapper",
       W: "AzirW",
       E: "AzirEWrapper",
@@ -749,6 +841,7 @@ export default function championList() {
       en: "Azir",
     },
     {
+      passive: "Akali_P",
       Q: "AkaliQ",
       W: "AkaliW",
       E: "AkaliE",
@@ -758,6 +851,7 @@ export default function championList() {
       en: "Akali",
     },
     {
+      passive: "akshan_p.Akshan",
       Q: "AkshanQ",
       W: "AkshanW",
       E: "AkshanE",
@@ -767,6 +861,7 @@ export default function championList() {
       en: "Akshan",
     },
     {
+      passive: "Aatrox_Passive",
       Q: "AatroxQ",
       W: "AatroxW",
       E: "AatroxE",
@@ -776,6 +871,7 @@ export default function championList() {
       en: "Aatrox",
     },
     {
+      passive: "ApheliosP",
       Q: "ApheliosQ_ClientTooltipWrapper",
       W: "ApheliosW",
       E: "ApheliosE_ClientTooltipWrapper",
@@ -785,6 +881,7 @@ export default function championList() {
       en: "Aphelios",
     },
     {
+      passive: "Alistar_E",
       Q: "Pulverize",
       W: "Headbutt",
       E: "AlistarE",
@@ -794,6 +891,7 @@ export default function championList() {
       en: "Alistar",
     },
     {
+      passive: "Annie_Passive",
       Q: "AnnieQ",
       W: "AnnieW",
       E: "AnnieE",
@@ -803,6 +901,7 @@ export default function championList() {
       en: "Annie",
     },
     {
+      passive: "Anivia_P",
       Q: "FlashFrost",
       W: "Crystallize",
       E: "Frostbite",
@@ -812,6 +911,7 @@ export default function championList() {
       en: "Anivia",
     },
     {
+      passive: "Ashe_P",
       Q: "AsheQ",
       W: "Volley",
       E: "AsheSpiritOfTheHawk",
@@ -821,6 +921,7 @@ export default function championList() {
       en: "Ashe",
     },
     {
+      passive: "Yasuo_Passive",
       Q: "YasuoQ1Wrapper",
       W: "YasuoW",
       E: "YasuoE",
@@ -830,6 +931,7 @@ export default function championList() {
       en: "Yasuo",
     },
     {
+      passive: "Ekko_P",
       Q: "EkkoQ",
       W: "EkkoW",
       E: "EkkoE",
@@ -839,6 +941,7 @@ export default function championList() {
       en: "Ekko",
     },
     {
+      passive: "ElisePassive",
       Q: "EliseHumanQ",
       W: "EliseHumanW",
       E: "EliseHumanE",
@@ -848,6 +951,7 @@ export default function championList() {
       en: "Elise",
     },
     {
+      passive: "MonkeyKingStoneSkin",
       Q: "MonkeyKingDoubleAttack",
       W: "MonkeyKingDecoy",
       E: "MonkeyKingNimbus",
@@ -857,6 +961,7 @@ export default function championList() {
       en: "MonkeyKing",
     },
     {
+      passive: "OrnnP",
       Q: "OrnnQ",
       W: "OrnnW",
       E: "OrnnE",
@@ -866,6 +971,7 @@ export default function championList() {
       en: "Ornn",
     },
     {
+      passive: "OriannaPassive",
       Q: "OrianaIzunaCommand",
       W: "OrianaDissonanceCommand",
       E: "OrianaRedactCommand",
@@ -875,6 +981,7 @@ export default function championList() {
       en: "Orianna",
     },
     {
+      passive: "Olaf_Passive",
       Q: "OlafAxeThrowCast",
       W: "OlafFrenziedStrikes",
       E: "OlafRecklessStrike",
@@ -884,6 +991,7 @@ export default function championList() {
       en: "Olaf",
     },
     {
+      passive: "YonePassive",
       Q: "YoneQ",
       W: "YoneW",
       E: "YoneE",
@@ -893,6 +1001,7 @@ export default function championList() {
       en: "Yone",
     },
     {
+      passive: "Yorick_P",
       Q: "YorickQ",
       W: "YorickW",
       E: "YorickE",
@@ -902,6 +1011,7 @@ export default function championList() {
       en: "Yorick",
     },
     {
+      passive: "Udyr_P.UdyrVGU",
       Q: "UdyrQ",
       W: "UdyrW",
       E: "UdyrE",
@@ -911,6 +1021,7 @@ export default function championList() {
       en: "Udyr",
     },
     {
+      passive: "Urgot_Passive",
       Q: "UrgotQ",
       W: "UrgotW",
       E: "UrgotE",
@@ -920,6 +1031,7 @@ export default function championList() {
       en: "Urgot",
     },
     {
+      passive: "WarwickP",
       Q: "WarwickQ",
       W: "WarwickW",
       E: "WarwickE",
@@ -929,6 +1041,7 @@ export default function championList() {
       en: "Warwick",
     },
     {
+      passive: "YuumiP",
       Q: "YuumiQ",
       W: "YuumiW",
       E: "YuumiE",
@@ -938,6 +1051,7 @@ export default function championList() {
       en: "Yuumi",
     },
     {
+      passive: "Irelia_Passive",
       Q: "IreliaQ",
       W: "IreliaW",
       E: "IreliaE",
@@ -947,6 +1061,7 @@ export default function championList() {
       en: "Irelia",
     },
     {
+      passive: "Evelynn_Passive",
       Q: "EvelynnQ",
       W: "EvelynnW",
       E: "EvelynnE",
@@ -956,6 +1071,7 @@ export default function championList() {
       en: "Evelynn",
     },
     {
+      passive: "Ezreal_RisingSpellForce",
       Q: "EzrealQ",
       W: "EzrealW",
       E: "EzrealE",
@@ -965,6 +1081,7 @@ export default function championList() {
       en: "Ezreal",
     },
     {
+      passive: "Illaoi_P",
       Q: "IllaoiQ",
       W: "IllaoiW",
       E: "IllaoiE",
@@ -974,6 +1091,7 @@ export default function championList() {
       en: "Illaoi",
     },
     {
+      passive: "JarvanIV_MartialCadence",
       Q: "JarvanIVDragonStrike",
       W: "JarvanIVGoldenAegis",
       E: "JarvanIVDemacianStandard",
@@ -983,6 +1101,7 @@ export default function championList() {
       en: "JarvanIV",
     },
     {
+      passive: "XayahPassive",
       Q: "XayahQ",
       W: "XayahW",
       E: "XayahE",
@@ -992,6 +1111,7 @@ export default function championList() {
       en: "Xayah",
     },
     {
+      passive: "ZyraP",
       Q: "ZyraQ",
       W: "ZyraW",
       E: "ZyraE",
@@ -1001,6 +1121,7 @@ export default function championList() {
       en: "Zyra",
     },
     {
+      passive: "ZacPassive",
       Q: "ZacQ",
       W: "ZacW",
       E: "ZacE",
@@ -1010,6 +1131,7 @@ export default function championList() {
       en: "Zac",
     },
     {
+      passive: "Janna_Tailwind",
       Q: "HowlingGale",
       W: "SowTheWind",
       E: "EyeOfTheStorm",
@@ -1019,6 +1141,7 @@ export default function championList() {
       en: "Janna",
     },
     {
+      passive: "Armsmaster_MasterOfArms",
       Q: "JaxLeapStrike",
       W: "JaxEmpowerTwo",
       E: "JaxCounterStrike",
@@ -1028,6 +1151,7 @@ export default function championList() {
       en: "Jax",
     },
     {
+      passive: "shadowninja_P",
       Q: "ZedQ",
       W: "ZedW",
       E: "ZedE",
@@ -1037,6 +1161,7 @@ export default function championList() {
       en: "Zed",
     },
     {
+      passive: "Xerath_Passive1",
       Q: "XerathArcanopulseChargeUp",
       W: "XerathArcaneBarrage2",
       E: "XerathMageSpear",
@@ -1046,6 +1171,7 @@ export default function championList() {
       en: "Xerath",
     },
     {
+      passive: "ZeriP.Zeri",
       Q: "ZeriQ",
       W: "ZeriW",
       E: "ZeriE",
@@ -1055,6 +1181,7 @@ export default function championList() {
       en: "Zeri",
     },
     {
+      passive: "Jayce_Passive",
       Q: "JayceToTheSkies",
       W: "JayceStaticField",
       E: "JayceThunderingBlow",
@@ -1064,6 +1191,7 @@ export default function championList() {
       en: "Jayce",
     },
     {
+      passive: "Zoe_P",
       Q: "ZoeQ",
       W: "ZoeW",
       E: "ZoeE",
@@ -1073,6 +1201,7 @@ export default function championList() {
       en: "Zoe",
     },
     {
+      passive: "ZiggsPassiveReady",
       Q: "ZiggsQ",
       W: "ZiggsW",
       E: "ZiggsE",
@@ -1082,6 +1211,7 @@ export default function championList() {
       en: "Ziggs",
     },
     {
+      passive: "Jhin_P",
       Q: "JhinQ",
       W: "JhinW",
       E: "JhinE",
@@ -1091,6 +1221,7 @@ export default function championList() {
       en: "Jhin",
     },
     {
+      passive: "Zilean_Passive",
       Q: "ZileanQ",
       W: "ZileanW",
       E: "TimeWarp",
@@ -1100,6 +1231,7 @@ export default function championList() {
       en: "Zilean",
     },
     {
+      passive: "Jinx_Passive",
       Q: "JinxQ",
       W: "JinxW",
       E: "JinxE",
@@ -1109,6 +1241,7 @@ export default function championList() {
       en: "Jinx",
     },
     {
+      passive: "GreenTerror_TailSpike",
       Q: "Rupture",
       W: "FeralScream",
       E: "VorpalSpikes",
@@ -1118,6 +1251,7 @@ export default function championList() {
       en: "Chogath",
     },
     {
+      passive: "Karma_Passive",
       Q: "KarmaQ",
       W: "KarmaSpiritBind",
       E: "KarmaSolKimShield",
@@ -1127,6 +1261,7 @@ export default function championList() {
       en: "Karma",
     },
     {
+      passive: "Camille_Passive",
       Q: "CamilleQ",
       W: "CamilleW",
       E: "CamilleE",
@@ -1136,6 +1271,7 @@ export default function championList() {
       en: "Camille",
     },
     {
+      passive: "Kassadin_Passive",
       Q: "NullLance",
       W: "NetherBlade",
       E: "ForcePulse",
@@ -1145,6 +1281,7 @@ export default function championList() {
       en: "Kassadin",
     },
     {
+      passive: "Karthus_Passive",
       Q: "KarthusLayWasteA1",
       W: "KarthusWallOfPain",
       E: "KarthusDefile",
@@ -1154,6 +1291,7 @@ export default function championList() {
       en: "Karthus",
     },
     {
+      passive: "Cassiopeia_Passive",
       Q: "CassiopeiaQ",
       W: "CassiopeiaW",
       E: "CassiopeiaE",
@@ -1163,6 +1301,7 @@ export default function championList() {
       en: "Cassiopeia",
     },
     {
+      passive: "Kaisa_Passive",
       Q: "KaisaQ",
       W: "KaisaW",
       E: "KaisaE",
@@ -1172,6 +1311,7 @@ export default function championList() {
       en: "Kaisa",
     },
     {
+      passive: "Khazix_P",
       Q: "KhazixQ",
       W: "KhazixW",
       E: "KhazixE",
@@ -1181,6 +1321,7 @@ export default function championList() {
       en: "Khazix",
     },
     {
+      passive: "Katarina_Passive",
       Q: "KatarinaQ",
       W: "KatarinaW",
       E: "KatarinaEWrapper",
@@ -1190,6 +1331,7 @@ export default function championList() {
       en: "Katarina",
     },
     {
+      passive: "Kalista_Passive",
       Q: "KalistaMysticShot",
       W: "KalistaW",
       E: "KalistaExpungeWrapper",
@@ -1199,6 +1341,7 @@ export default function championList() {
       en: "Kalista",
     },
     {
+      passive: "Kennen_Passive",
       Q: "KennenShurikenHurlMissile1",
       W: "KennenBringTheLight",
       E: "KennenLightningRush",
@@ -1208,6 +1351,7 @@ export default function championList() {
       en: "Kennen",
     },
     {
+      passive: "Caitlyn_Headshot",
       Q: "CaitlynQ",
       W: "CaitlynW",
       E: "CaitlynE",
@@ -1217,6 +1361,7 @@ export default function championList() {
       en: "Caitlyn",
     },
     {
+      passive: "Kayn_Passive_Primary",
       Q: "KaynQ",
       W: "KaynW",
       E: "KaynE",
@@ -1226,6 +1371,7 @@ export default function championList() {
       en: "Kayn",
     },
     {
+      passive: "Kayle_P",
       Q: "KayleQ",
       W: "KayleW",
       E: "KayleE",
@@ -1235,6 +1381,7 @@ export default function championList() {
       en: "Kayle",
     },
     {
+      passive: "KogMaw_IcathianSurprise",
       Q: "KogMawQ",
       W: "KogMawBioArcaneBarrage",
       E: "KogMawVoidOoze",
@@ -1244,6 +1391,7 @@ export default function championList() {
       en: "KogMaw",
     },
     {
+      passive: "Corki_RapidReload",
       Q: "PhosphorusBomb",
       W: "CarpetBomb",
       E: "GGun",
@@ -1253,6 +1401,7 @@ export default function championList() {
       en: "Corki",
     },
     {
+      passive: "Quinn_Passive",
       Q: "QuinnQ",
       W: "QuinnW",
       E: "QuinnE",
@@ -1262,6 +1411,7 @@ export default function championList() {
       en: "Quinn",
     },
     {
+      passive: "Kled_P",
       Q: "KledQ",
       W: "KledW",
       E: "KledE",
@@ -1271,6 +1421,7 @@ export default function championList() {
       en: "Kled",
     },
     {
+      passive: "Qiyana_Passive",
       Q: "QiyanaQ",
       W: "QiyanaW",
       E: "QiyanaE",
@@ -1280,6 +1431,7 @@ export default function championList() {
       en: "Qiyana",
     },
     {
+      passive: "Kindred_Passive",
       Q: "KindredQ",
       W: "KindredW",
       E: "KindredEWrapper",
@@ -1289,6 +1441,7 @@ export default function championList() {
       en: "Kindred",
     },
     {
+      passive: "Taric_Passive",
       Q: "TaricQ",
       W: "TaricW",
       E: "TaricE",
@@ -1298,6 +1451,7 @@ export default function championList() {
       en: "Taric",
     },
     {
+      passive: "TalonP",
       Q: "TalonQ",
       W: "TalonW",
       E: "TalonE",
@@ -1307,6 +1461,7 @@ export default function championList() {
       en: "Talon",
     },
     {
+      passive: "Taliyah_Passive",
       Q: "TaliyahQ",
       W: "TaliyahWVC",
       E: "TaliyahE",
@@ -1316,6 +1471,7 @@ export default function championList() {
       en: "Taliyah",
     },
     {
+      passive: "TahmKenchP",
       Q: "TahmKenchQ",
       W: "TahmKenchW",
       E: "TahmKenchE",
@@ -1325,6 +1481,7 @@ export default function championList() {
       en: "TahmKench",
     },
     {
+      passive: "Trundle_Passive",
       Q: "TrundleTrollSmash",
       W: "trundledesecrate",
       E: "TrundleCircle",
@@ -1334,6 +1491,7 @@ export default function championList() {
       en: "Trundle",
     },
     {
+      passive: "Tristana_Passive",
       Q: "TristanaQ",
       W: "TristanaW",
       E: "TristanaE",
@@ -1343,6 +1501,7 @@ export default function championList() {
       en: "Tristana",
     },
     {
+      passive: "Tryndamere_Passive",
       Q: "TryndamereQ",
       W: "TryndamereW",
       E: "TryndamereE",
@@ -1352,6 +1511,7 @@ export default function championList() {
       en: "Tryndamere",
     },
     {
+      passive: "Cardmaster_SealFate",
       Q: "WildCards",
       W: "PickACard",
       E: "CardmasterStack",
@@ -1361,6 +1521,7 @@ export default function championList() {
       en: "TwistedFate",
     },
     {
+      passive: "Twitch_Passive",
       Q: "TwitchHideInShadows",
       W: "TwitchVenomCask",
       E: "TwitchExpunge",
@@ -1370,6 +1531,7 @@ export default function championList() {
       en: "Twitch",
     },
     {
+      passive: "Teemo_P",
       Q: "BlindingDart",
       W: "MoveQuick",
       E: "ToxicShot",
@@ -1379,6 +1541,7 @@ export default function championList() {
       en: "Teemo",
     },
     {
+      passive: "PykePassive",
       Q: "PykeQ",
       W: "PykeW",
       E: "PykeE",
@@ -1388,6 +1551,7 @@ export default function championList() {
       en: "Pyke",
     },
     {
+      passive: "Pantheon_Passive",
       Q: "PantheonQ",
       W: "PantheonW",
       E: "PantheonE",
@@ -1397,6 +1561,7 @@ export default function championList() {
       en: "Pantheon",
     },
     {
+      passive: "FiddleSticks_Passive",
       Q: "FiddleSticksQ",
       W: "FiddleSticksW",
       E: "FiddleSticksE",
@@ -1406,6 +1571,7 @@ export default function championList() {
       en: "FiddleSticks",
     },
     {
+      passive: "Fiora_P",
       Q: "FioraQ",
       W: "FioraW",
       E: "FioraE",
@@ -1415,6 +1581,7 @@ export default function championList() {
       en: "Fiora",
     },
     {
+      passive: "Fizz_P",
       Q: "FizzQ",
       W: "FizzW",
       E: "FizzE",
@@ -1424,6 +1591,7 @@ export default function championList() {
       en: "Fizz",
     },
     {
+      passive: "Heimerdinger_Passive",
       Q: "HeimerdingerQ",
       W: "HeimerdingerW",
       E: "HeimerdingerE",
@@ -1433,6 +1601,7 @@ export default function championList() {
       en: "Heimerdinger",
     },
     {
+      passive: "Hecarim_Passive",
       Q: "HecarimRapidSlash",
       W: "HecarimW",
       E: "HecarimRamp",

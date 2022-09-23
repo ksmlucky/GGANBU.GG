@@ -5,7 +5,7 @@ import styles from "./Navigation.module.css";
 
 export default function Navigation() {
   const list = [
-    { id: "1", text: "HOME", links: "/" },
+    { id: "1", text: "PLAYS", links: "/plays" },
     { id: "2", text: "CHAMPION RECOMMAND", links: "/recommand" },
     { id: "3", text: "RANKING", links: "/ranking" },
     { id: "4", text: "CHAMPION DETAIL", links: "/detail" },

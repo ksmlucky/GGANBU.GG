@@ -1,5 +1,62 @@
 .component{
-    color:black;
-    width:80%;
-    height:80%;
+    display :flex;
+    flex-direction : row;
 }
+.chart{
+    background-color: burlywood;
+    width : 40vw;
+    height : 40vw;
+}
+.canvas{
+    background-color :black;
+    width : 80%;
+    height :80%;
+}
+.ul {
+    background-color :red;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    gap: 0.7vw;
+    width: 45vw;
+    height: 45vw;
+    max-height: 40vw;
+    padding: 0.5vw;
+    overflow-y: scroll;
+  }
+
+.ul::-webkit-scrollbar {
+    width: 10px;
+}
+  
+.li {
+    text-decoration: none;
+    padding-bottom: 1px;
+}
+
+.btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: none;
+    border: none;
+}
+.btn:hover {
+    cursor: url(/cursor/cursorPointer.png), auto;
+}
+
+.name {
+    padding-top: 10px;
+    font-size: 0.8vw;
+    text-align: center;
+  }
+
+  .img {
+    width: 5vw;
+    height: auto;
+    animation: showeffect 1s ease;
+  }

@@ -5,7 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: green;
+  /* background: green; */
 }
 
 .container {
@@ -13,7 +13,7 @@
   width: 99vw;
   height: 98%;
   bottom: 1%;
-  background: var(--red1);
+  /* background: var(--red1); */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 10fr;
@@ -39,6 +39,7 @@
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
+
 .buttonContainer button:hover {
   background: red;
 }
@@ -49,4 +50,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
 }

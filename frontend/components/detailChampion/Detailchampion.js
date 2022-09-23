@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
 import styles from "./Detailchampion.module.css";
 import championList from "../../utils/champion";
+
 import DetailMap from "../detailMap/DetailMap";
+import DetailChart from "../detailChart/DetailChart";
 import { useEffect } from "react";
 
 export default function DetailChampion({mode}) {
@@ -21,6 +23,7 @@ export default function DetailChampion({mode}) {
           </div>
           <div className={styles.contentContainer}>
            <DetailMap mode={mode}></DetailMap>
+            <DetailChart></DetailChart>
           </div>
         </div>
       </div>

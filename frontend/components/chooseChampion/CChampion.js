@@ -17,6 +17,8 @@ export default function ChooseChampion() {
 
   const [selectline, Setselectline] = useState("top");
 
+  const [makefive, Setmakefive] = useState(false);
+
   useEffect(() => {
     SetSelectedchampion([]);
   }, [selectline]);
@@ -47,6 +49,8 @@ export default function ChooseChampion() {
           pickchampionEng={pickchampionEng}
           Setselectline={Setselectline}
           SetLeftchampion={SetLeftchampion}
+          makefive={makefive}
+          Setmakefive={Setmakefive}
         />
         <div className={styles.choose}>
           <ul className={styles.ul}>
@@ -106,6 +110,8 @@ export default function ChooseChampion() {
           pickchampionEng={pickchampionEng}
           selectline={selectline}
           SetRightchampion={SetRightchampion}
+          makefive={makefive}
+          Setmakefive={Setmakefive}
         />
       </main>
     </>

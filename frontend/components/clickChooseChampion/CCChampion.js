@@ -3,7 +3,7 @@ import championList from "../../utils/champion";
 import CCSInput from "../clickChampionSearchInput/CCSInput";
 import { useEffect, useRef, useState } from "react";
 
-export default function ClickChooseChampion() {
+export default function ClickChooseChampion(props) {
   const clist = championList(); //챔피언 목록
   const [pickchampion, SetPickchampion] = useState(""); //마우스로 잡은 챔피언(한국어)
   const [pickchampionEng, SetPickchampionEng] = useState(""); //마우스로 잡은 챔피언(영어)
@@ -40,6 +40,9 @@ export default function ClickChooseChampion() {
                       className={styles.btn}
                       onClick={() => {
                         click(item.en);
+                        if (props.clickChamp) {
+                          props.clickChamp(item.en);
+                        }
                       }}
                     >
                       <img

@@ -1,5 +1,7 @@
 import { SearchLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+import Search from "../components/search/Search";
 // app
 
 function useStickyState(defaultValue, key) {
@@ -20,7 +22,7 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function Search() {
+export default function Ssearch() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
@@ -28,8 +30,8 @@ export default function Search() {
   }, [mode]);
 
   return (
-    <div>
-      <SearchLayout setMode={setMode} />
-    </div>
+    <>
+      <Search setMode={setMode}></Search>
+    </>
   );
 }

@@ -1,5 +1,8 @@
 import { RecommandResultLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+
+import RecommandResultList from "../components/recommandResultList/RecommandResultList";
 // app
 
 function useStickyState(defaultValue, key) {
@@ -28,8 +31,8 @@ export default function Recommandresult() {
   }, [mode]);
 
   return (
-    <div>
-      <RecommandResultLayout setMode={setMode} />
-    </div>
+    <>
+      <RecommandResultList setMode={setMode}></RecommandResultList>
+    </>
   );
 }

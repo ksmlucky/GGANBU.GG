@@ -1,5 +1,7 @@
 import { DetailLayout } from "../../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+import ClickChooseChampion from "../../components/clickChooseChampion/CCChampion";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -28,8 +30,8 @@ export default function Detail() {
   }, [mode]);
 
   return (
-    <div>
-      <DetailLayout setMode={setMode} />
-    </div>
+    <>
+      <ClickChooseChampion setMode={setMode} />
+    </>
   );
 }

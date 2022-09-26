@@ -1,5 +1,7 @@
 import { RankingLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+import Ranking from "../components/ranking/Ranking";
 // app
 
 function useStickyState(defaultValue, key) {
@@ -28,8 +30,8 @@ export default function Recommand() {
   }, [mode]);
 
   return (
-    <div>
-      <RankingLayout setMode={setMode} />
-    </div>
+    <>
+      <Ranking setMode={setMode}></Ranking>
+    </>
   );
 }

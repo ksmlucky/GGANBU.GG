@@ -1,5 +1,7 @@
 import { MultiLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+import Multi from "../components/multi/Multi";
 // app
 
 function useStickyState(defaultValue, key) {
@@ -20,7 +22,7 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function Search() {
+export default function multi() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
@@ -28,8 +30,8 @@ export default function Search() {
   }, [mode]);
 
   return (
-    <div>
-      <MultiLayout setMode={setMode} />
-    </div>
+    <>
+            <Multi setMode={setMode}></Multi>
+    </>
   );
 }

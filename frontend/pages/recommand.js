@@ -1,5 +1,7 @@
 import { ChooseChampionLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+import ChooseChampion from "../components/chooseChampion/CChampion";
 // app
 
 function useStickyState(defaultValue, key) {
@@ -28,8 +30,8 @@ export default function Recommand() {
   }, [mode]);
 
   return (
-    <div>
-      <ChooseChampionLayout setMode={setMode} />
-    </div>
+    <>
+      <ChooseChampion setMode={setMode}></ChooseChampion>
+    </>
   );
 }

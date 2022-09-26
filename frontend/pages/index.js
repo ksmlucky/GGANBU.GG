@@ -1,5 +1,7 @@
 import { BaseLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+//import
+import Main from "../components/layouts/main/Main";
 // app
 
 function useStickyState(defaultValue, key) {
@@ -28,8 +30,8 @@ export default function Homepage() {
   }, [mode]);
 
   return (
-    <div>
-      <BaseLayout setMode={setMode} />
-    </div>
+    <>
+      <Main setMode={setMode}></Main>
+    </>
   );
 }

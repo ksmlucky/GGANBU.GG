@@ -1,5 +1,6 @@
 import { AiLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+import Ai from "../components/ai/Ai";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -20,7 +21,7 @@ function useStickyState(defaultValue, key) {
 }
 
 // app
-export default function Ai() {
+export default function ai() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
@@ -28,8 +29,8 @@ export default function Ai() {
   }, [mode]);
 
   return (
-    <div>
-      <AiLayout setMode={setMode} mode={mode} />
-    </div>
+    <>
+      <Ai setMode={setMode} mode={mode} />
+    </>
   );
 }

@@ -92,6 +92,15 @@ export default function Music() {
     }
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
+
+  setInterval(()=>{
+    if(audioPlayer.current){
+    if(audioPlayer.current.currentTime === audioPlayer.current.duration){
+      next();   
+     }
+    }
+  },1000)
+
   // 시간 출력
   const calculateTime = (secs) => {
     if(!isNaN(secs)){
@@ -115,7 +124,6 @@ export default function Music() {
   };
 
   const changePlayerCurrentTime = () => {
-    console.log(progressBar.current.value);
     progressBar.current.style.setProperty(
       "--seek-before-width",
       `${(progressBar.current.value / duration) * 100}%`

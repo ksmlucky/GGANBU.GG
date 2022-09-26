@@ -16,6 +16,10 @@ import Multi from "../multi/Multi";
 
 import Music from "../music/Music";
 
+import Ai from "../ai/Ai";
+
+import Skin3d from "../skin3d/Skin3d";
+
 /* -------------------------------------------------------------------------- */
 
 export function BaseLayout({ setMode }) {
@@ -132,6 +136,30 @@ export function MusicLayout({ setMode, mode }) {
         <Navigation />
       </Header>
       <Music mode={mode}></Music>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function AiLayout({ setMode, mode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Ai mode={mode}></Ai>
+      <Footer setMode={setMode}></Footer>
+    </div>
+  );
+}
+
+export function SkinLayout({ setMode, mode }) {
+  return (
+    <div className={styles.container}>
+      <Header>
+        <Navigation />
+      </Header>
+      <Skin3d mode={mode}></Skin3d>
       <Footer setMode={setMode}></Footer>
     </div>
   );

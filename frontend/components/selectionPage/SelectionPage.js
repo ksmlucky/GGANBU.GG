@@ -7,7 +7,7 @@ export default function SelectionPage() {
     { id: "2", text: "GAME", links: "/game" },
     { id: "3", text: "MUSIC", links: "/music" },
     { id: "4", text: "CALC", links: "/calc" },
-    { id: "5", text: "FACE", links: "/face" },
+    { id: "5", text: "FACE", links: "/ai" },
     { id: "6", text: "CHAMp", links: "/champ" },
   ];
 

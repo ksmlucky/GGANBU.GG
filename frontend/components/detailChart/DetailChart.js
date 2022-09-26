@@ -61,7 +61,17 @@ export default function DetailChart({id, championName}) {
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
   const [compareChampion, setCompareChampion] = useState();
   const [bools, setBools] = useState("");
-  const [dataSet, setDataSet] = useState([]);
+  const [dataSet, setDataSet] = useState([{
+    label: championName,
+    data: [65, 59, 5, 81, 56, 55],
+    fill: true,
+    backgroundColor: "rgba(255, 99, 132, 0.2)",
+    borderColor: "rgb(255, 99, 132)",
+    pointBackgroundColor: "rgb(255, 99, 132)",
+    pointBorderColor: "#fff",
+    pointHoverBackgroundColor: "#fff",
+    pointHoverBorderColor: "rgb(255, 99, 132)",
+  }]);
 
   useEffect(() => {
     if (bools) {
@@ -80,19 +90,7 @@ export default function DetailChart({id, championName}) {
       type: "radar",
       data: {
         labels: ["승률", "픽률", "밴률", "DPM", "솔로킬 횟수", "CC기 총 시간"],
-        datasets: [
-          {
-            label: championName,
-            data: [65, 59, 5, 81, 56, 55],
-            fill: true,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgb(255, 99, 132)",
-            pointBackgroundColor: "rgb(255, 99, 132)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgb(255, 99, 132)",
-          },
-        ],
+        datasets: dataSet,
       },
       options: {
         responsive: false,
@@ -129,6 +127,7 @@ export default function DetailChart({id, championName}) {
     if (bools) {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
+      console.log(ctxx);
       ctx.removeChild(ctxx);
 
       const canv = document.createElement("canvas");
@@ -137,7 +136,6 @@ export default function DetailChart({id, championName}) {
       ctx.appendChild(canv);
 
       const newCtx = document.getElementById("myChart").getContext("2d");
-    
       const config = {
         type: "radar",
         data: {
@@ -149,20 +147,7 @@ export default function DetailChart({id, championName}) {
             "솔로킬 횟수",
             "CC기 총 시간",
           ],
-          datasets: [
-            {
-              label: championName,
-              data: [65, 59, 5, 81, 56, 55],
-              fill: true,
-              backgroundColor: "rgba(255, 99, 132, 0.2)",
-              borderColor: "rgb(255, 99, 132)",
-              pointBackgroundColor: "rgb(255, 99, 132)",
-              pointBorderColor: "#fff",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgb(255, 99, 132)",
-            },            
-
-          ],
+          datasets: dataSet
         },
         options: {
           responsive: false,
@@ -194,8 +179,6 @@ export default function DetailChart({id, championName}) {
       
 
       const myChart = new Chart(newCtx, config);
-      console.log(config.data.datasets);
-      console.log(selectedchampion);
     }
     setBools(true);
 
@@ -211,9 +194,9 @@ export default function DetailChart({id, championName}) {
         <ul className={styles.ul}>
           {clist.map((item, idx) => {
             return (
-              <>
+              <div key={idx}>
               {id !== item.en &&
-              <li key={idx} className={styles.li}>
+              <li className={styles.li}>
                 <button
                   className={styles.btn}
                 >
@@ -225,7 +208,7 @@ export default function DetailChart({id, championName}) {
                     index={item.index}
                     className={styles.img}
                     onClick={() => {
-                      setDataSet((dataSet)=>{
+                      setDataSet((dataSet) => {
                         const newDataSet = [...dataSet]
                         newDataSet.push({
                           label: item.ko,
@@ -237,10 +220,11 @@ export default function DetailChart({id, championName}) {
                           pointBorderColor: "#fff",
                           pointHoverBackgroundColor: "#fff",
                           pointHoverBorderColor: "rgb(255, 99, 132)",
-                        },)
+                        })
                         return newDataSet
-                      })
-
+                      }
+                        )
+                    
                       setSelectedchampion((selectedchampion)=>{
                         const newSelectedChampion = [...selectedchampion]
                         const champNum = newSelectedChampion.findIndex(i=>i === item.ko)
@@ -269,7 +253,7 @@ export default function DetailChart({id, championName}) {
                 <span className={styles.name}>{item.ko}</span>
               </li>
               }
-              </>
+              </div>
             );
           })}
         </ul>

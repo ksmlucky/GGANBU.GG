@@ -28,6 +28,7 @@ import {
   Tooltip,
   SubTitle,
 } from "chart.js";
+import { data } from "@tensorflow/tfjs";
 Chart.register(
   ArcElement,
   LineElement,
@@ -57,13 +58,11 @@ Chart.register(
 
 export default function DetailChart({id, championName}) {
   const clist = championList();
-  const [champion, setChampion] = useState([""]);
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
-  const [compareChampion, setCompareChampion] = useState(championName);
+  const [compareChampion, setCompareChampion] = useState();
   const [bools, setBools] = useState("");
-  function makeList(item) {
-    console.log(item.target.id);
-  }
+  const [dataSet, setDataSet] = useState([]);
+
   useEffect(() => {
     if (bools) {
       const ctx = document.getElementById("chart");
@@ -77,7 +76,7 @@ export default function DetailChart({id, championName}) {
     }
     
     const ctx = document.getElementById("myChart").getContext("2d");
-    const myChart = new Chart(ctx, {
+    let config = {
       type: "radar",
       data: {
         labels: ["승률", "픽률", "밴률", "DPM", "솔로킬 횟수", "CC기 총 시간"],
@@ -121,8 +120,8 @@ export default function DetailChart({id, championName}) {
           },
         },
       },
-    });
-
+    }
+    const myChart = new Chart(ctx, config);
     setBools(true);
   }, []);
 
@@ -138,8 +137,8 @@ export default function DetailChart({id, championName}) {
       ctx.appendChild(canv);
 
       const newCtx = document.getElementById("myChart").getContext("2d");
-
-      const myChart = new Chart(newCtx, {
+    
+      const config = {
         type: "radar",
         data: {
           labels: [
@@ -161,18 +160,8 @@ export default function DetailChart({id, championName}) {
               pointBorderColor: "#fff",
               pointHoverBackgroundColor: "#fff",
               pointHoverBorderColor: "rgb(255, 99, 132)",
-            },
-            {
-              label: compareChampion,
-              data: [28, 48, 40, 19, 5, 27],
-              fill: true,
-              backgroundColor: "rgba(54, 162, 235, 0.2)",
-              borderColor: "rgb(54, 162, 235)",
-              pointBackgroundColor: "rgb(54, 162, 235)",
-              pointBorderColor: "#fff",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgb(54, 162, 235)",
-            },
+            },            
+
           ],
         },
         options: {
@@ -201,11 +190,16 @@ export default function DetailChart({id, championName}) {
             },
           },
         },
-      });
-    }
+      };
+      
 
+      const myChart = new Chart(newCtx, config);
+      console.log(config.data.datasets);
+      console.log(selectedchampion);
+    }
     setBools(true);
-  }, [compareChampion]);
+
+  }, [selectedchampion]);
 
   return (
     <>
@@ -217,13 +211,13 @@ export default function DetailChart({id, championName}) {
         <ul className={styles.ul}>
           {clist.map((item, idx) => {
             return (
+              <>
+              {id !== item.en &&
               <li key={idx} className={styles.li}>
                 <button
                   className={styles.btn}
-                  onClick={(item) => {
-                    makeList(item);
-                  }}
                 >
+
                   <img
                     src={`/champion/tiles/${item.en}_0.jpg`}
                     id={item.ko}
@@ -231,12 +225,51 @@ export default function DetailChart({id, championName}) {
                     index={item.index}
                     className={styles.img}
                     onClick={() => {
-                      setCompareChampion(item.ko);
+                      setDataSet((dataSet)=>{
+                        const newDataSet = [...dataSet]
+                        newDataSet.push({
+                          label: item.ko,
+                          data: [1, 1, 2, 2, 3, 4],
+                          fill: true,
+                          backgroundColor: "rgba(255, 99, 132, 0.2)",
+                          borderColor: "rgb(255, 99, 132)",
+                          pointBackgroundColor: "rgb(255, 99, 132)",
+                          pointBorderColor: "#fff",
+                          pointHoverBackgroundColor: "#fff",
+                          pointHoverBorderColor: "rgb(255, 99, 132)",
+                        },)
+                        return newDataSet
+                      })
+
+                      setSelectedchampion((selectedchampion)=>{
+                        const newSelectedChampion = [...selectedchampion]
+                        const champNum = newSelectedChampion.findIndex(i=>i === item.ko)
+                        if(champNum === -1 && newSelectedChampion.length<5){
+                          newSelectedChampion.push(item.ko)
+                        }
+                        else if(champNum !== -1){
+                          newSelectedChampion.splice(champNum,1)
+                        }
+                        else{
+                          alert('최대 5개까지 비교 가능합니다.')
+                        }
+                        return newSelectedChampion
+                      })
+                      
+                    }}
+                    style={{
+                      filter:
+                        selectedchampion.indexOf(item.ko) === -1
+                          ? "saturate(1)"
+                          : "saturate(0)",
                     }}
                   ></img>
+                
                 </button>
                 <span className={styles.name}>{item.ko}</span>
               </li>
+              }
+              </>
             );
           })}
         </ul>

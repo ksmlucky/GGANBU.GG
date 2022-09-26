@@ -20,14 +20,17 @@ export default function DetailChampion({ mode }) {
       <div className={styles.boxflexs}>
         <div className={styles.container}>
           <div className={styles.buttonContainer}>
+            {id ? (
+              <img
+                src={id ? `/champion/tiles/${id}_0.jpg` : "#"}
+                className={styles.profileImg}
+              ></img>
+            ) : null}
             <button onClick={() => Setselectdata("map")}>Lines</button>
             <button onClick={() => Setselectdata("chart")}>compare</button>
             <button onClick={() => Setselectdata("cloud")}>wordcloud</button>
           </div>
           <div className={styles.contentContainer}>
-            {/* <DetailMap mode={mode}></DetailMap> */}
-            {/* <Wordcloud /> */}
-
             {selectdata && selectdata === "map" ? (
               <DetailMap mode={mode} />
             ) : null}

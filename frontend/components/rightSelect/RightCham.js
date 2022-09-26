@@ -9,6 +9,8 @@ export default function RightCham({
   pickchampionEng,
   selectline,
   SetRightchampion,
+  makefive,
+  Setmakefive,
 }) {
   let [line, Setline] = useState(""); //현재 라인 선택(영어)
   let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
@@ -51,17 +53,37 @@ export default function RightCham({
 
   useEffect(() => {
     if (selectline === "top") {
-      Setdisableline(["top", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["top", "jungle"]);
+      }
     } else if (selectline === "jungle") {
-      Setdisableline(["jungle", "top", "mid"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["jungle", "top", "mid"]);
+      }
     } else if (selectline === "mid") {
-      Setdisableline(["mid", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["mid", "jungle"]);
+      }
     } else if (selectline === "bot") {
-      Setdisableline(["bot", "support"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["bot", "support"]);
+      }
     } else if (selectline === "support") {
-      Setdisableline(["support", "bot"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["support", "bot"]);
+      }
     }
-  }, [selectline]);
+  }, [selectline, makefive]);
 
   useEffect(() => {
     let newlinecham = lineCham.map((check) => {
@@ -122,7 +144,7 @@ export default function RightCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `item/noItem.png`;
         }
       }
     }
@@ -154,7 +176,7 @@ export default function RightCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `item/noItem.png`;
         }
       }
     }
@@ -182,7 +204,7 @@ export default function RightCham({
                     : disableline.indexOf(item.lines) !== -1 &&
                       item.lines !== line
                     ? "/images/none.png"
-                    : "item/noitem.png"
+                    : "item/noItem.png"
                 }
                 draggable={false}
               ></img>

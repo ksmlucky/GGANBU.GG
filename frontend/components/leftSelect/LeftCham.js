@@ -9,6 +9,8 @@ export default function LeftCham({
   pickchampionEng,
   Setselectline,
   SetLeftchampion,
+  makefive,
+  Setmakefive,
 }) {
   let [line, Setline] = useState("top"); //현재 라인 선택(영어)
   let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
@@ -51,17 +53,37 @@ export default function LeftCham({
 
   useEffect(() => {
     if (line === "top") {
-      Setdisableline(["top", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["top", "jungle"]);
+      }
     } else if (line === "jungle") {
-      Setdisableline(["jungle", "top", "mid"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["jungle", "top", "mid"]);
+      }
     } else if (line === "mid") {
-      Setdisableline(["mid", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["mid", "jungle"]);
+      }
     } else if (line === "bot") {
-      Setdisableline(["bot", "support"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["bot", "support"]);
+      }
     } else if (line === "support") {
-      Setdisableline(["support", "bot"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["support", "bot"]);
+      }
     }
-  }, [line]);
+  }, [line, makefive]);
 
   function reset(id, line) {
     //선택된 챔피언 중에서 해당 챔피언을 제거
@@ -116,7 +138,7 @@ export default function LeftCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `item/noItem.png`;
         }
       }
     }
@@ -148,7 +170,7 @@ export default function LeftCham({
         ) {
           event.target.src = `/images/none.png`;
         } else {
-          event.target.src = `item/noitem.png`;
+          event.target.src = `item/noItem.png`;
         }
       }
     }
@@ -165,51 +187,61 @@ export default function LeftCham({
 
   return (
     <>
-      <div className={styles.container}>
-        {Array.from(lineCham).map((item) => {
-          return (
-            <div className={styles.users} key={item.id}>
-              {item.lines == line ? (
+      <div>
+        <div className={styles.container}>
+          {Array.from(lineCham).map((item) => {
+            return (
+              <div className={styles.users} key={item.id}>
+                {item.lines == line ? (
+                  <img
+                    src="/arrow/leftarrow.png"
+                    className={styles.arrow}
+                    id={item.lines}
+                  />
+                ) : null}
+                <button
+                  className={styles.btn}
+                  onClick={() => {
+                    reset(item.id, item.lines);
+                    Setline(item.lines);
+                    Setselectline(item.lines);
+                    allreset(item.lines);
+                    Setmakefive(false);
+                  }}
+                >
+                  <img src={item.links} className={styles.lineImg} />
+                </button>
                 <img
-                  src="/arrow/leftarrow.png"
-                  className={styles.arrow}
+                  className={styles.btncham}
+                  onClick={() => {
+                    reset(item.id, item.lines);
+                  }}
+                  onDragOver={(event) => dragOver(event)}
+                  onDragEnter={(event) => dragEnter(event)}
+                  onDragLeave={(event) => dragLeave(event, item.champ)}
+                  onDrop={(event) => Drop(event, item.id)}
                   id={item.lines}
-                />
-              ) : null}
-              <button
-                className={styles.btn}
-                onClick={() => {
-                  reset(item.id, item.lines);
-                  Setline(item.lines);
-                  Setselectline(item.lines);
-                  allreset(item.lines);
-                }}
-              >
-                <img src={item.links} className={styles.lineImg} />
-              </button>
-              <img
-                className={styles.btncham}
-                onClick={() => {
-                  reset(item.id, item.lines);
-                }}
-                onDragOver={(event) => dragOver(event)}
-                onDragEnter={(event) => dragEnter(event)}
-                onDragLeave={(event) => dragLeave(event, item.champ)}
-                onDrop={(event) => Drop(event, item.id)}
-                id={item.lines}
-                src={
-                  item.champ
-                    ? `/champion/tiles/${item.champ}_0.jpg`
-                    : disableline.indexOf(item.lines) !== -1 &&
-                      item.lines !== line
-                    ? "/images/none.png"
-                    : "item/noitem.png"
-                }
-                draggable={false}
-              ></img>
-            </div>
-          );
-        })}
+                  src={
+                    item.champ
+                      ? `/champion/tiles/${item.champ}_0.jpg`
+                      : disableline.indexOf(item.lines) !== -1 &&
+                        item.lines !== line
+                      ? "/images/none.png"
+                      : "item/noItem.png"
+                  }
+                  draggable={false}
+                ></img>
+              </div>
+            );
+          })}
+        </div>
+        <button
+          onClick={() => {
+            Setmakefive(true);
+          }}
+        >
+          five
+        </button>
       </div>
     </>
   );

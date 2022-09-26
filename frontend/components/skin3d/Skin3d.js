@@ -1,10 +1,15 @@
 import styles from "./Skin3d.module.css";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import CCChampion from "../clickChooseChampion/CCChampion";
 export default function Skin3d() {
   const canvas = useRef();
+  const [champ, setChamp] = useState("");
+  function clickChamp(c) {
+    setChamp(c);
+  }
   useEffect(() => {
     if (canvas.current) {
       let WIDTH = 500;
@@ -81,7 +86,9 @@ export default function Skin3d() {
 
   return (
     <div className={styles.container}>
+      <CCChampion clickChamp={clickChamp}></CCChampion>
       <canvas id="canvasWrap" ref={canvas}></canvas>
+      <div>{champ}</div>
     </div>
   );
 }

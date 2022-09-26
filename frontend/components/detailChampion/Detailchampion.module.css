@@ -29,6 +29,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
+  position: relative;
 }
 
 .buttonContainer button {
@@ -47,4 +48,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.profileImg{
+  position: absolute;
+  width: 4.5vw;
+  left: 3vw;
 }

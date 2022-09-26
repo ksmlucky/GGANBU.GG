@@ -10,7 +10,7 @@ export default function ClickChooseChampion() {
   let [pickchampionindex, SetPickchampionindex] = useState(); //마우스로 잡은 챔피언의 index(숫자)
   let [csinput, setCsinput] = useState(""); //챔피언 검색을 위한 입력 결과(한국어)
 
-  const click = (en) => {
+  const click = (ko, en) => {
     console.log(en);
     SetPickchampionEng(en);
   };
@@ -39,7 +39,7 @@ export default function ClickChooseChampion() {
                     <button
                       className={styles.btn}
                       onClick={() => {
-                        click(item.en);
+                        click(item.ko, item.en);
                       }}
                     >
                       <img

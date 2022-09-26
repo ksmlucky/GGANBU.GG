@@ -55,13 +55,12 @@ Chart.register(
   SubTitle
 );
 
-export default function DetailChart() {
+export default function DetailChart({id, championName}) {
   const clist = championList();
   const [champion, setChampion] = useState([""]);
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
-  const [imsi, setImsi] = useState("아트록");
+  const [compareChampion, setCompareChampion] = useState(championName);
   const [bools, setBools] = useState("");
-  const [myChart, setMyChart] = useState();
   function makeList(item) {
     console.log(item.target.id);
   }
@@ -76,6 +75,7 @@ export default function DetailChart() {
       canv.className = styles.canvas;
       ctx.appendChild(canv);
     }
+    
     const ctx = document.getElementById("myChart").getContext("2d");
     const myChart = new Chart(ctx, {
       type: "radar",
@@ -83,7 +83,7 @@ export default function DetailChart() {
         labels: ["승률", "픽률", "밴률", "DPM", "솔로킬 횟수", "CC기 총 시간"],
         datasets: [
           {
-            label: imsi,
+            label: championName,
             data: [65, 59, 5, 81, 56, 55],
             fill: true,
             backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -92,17 +92,6 @@ export default function DetailChart() {
             pointBorderColor: "#fff",
             pointHoverBackgroundColor: "#fff",
             pointHoverBorderColor: "rgb(255, 99, 132)",
-          },
-          {
-            label: "리신",
-            data: [28, 48, 40, 19, 5, 27],
-            fill: true,
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgb(54, 162, 235)",
-            pointBackgroundColor: "rgb(54, 162, 235)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgb(54, 162, 235)",
           },
         ],
       },
@@ -163,7 +152,7 @@ export default function DetailChart() {
           ],
           datasets: [
             {
-              label: imsi,
+              label: championName,
               data: [65, 59, 5, 81, 56, 55],
               fill: true,
               backgroundColor: "rgba(255, 99, 132, 0.2)",
@@ -174,7 +163,7 @@ export default function DetailChart() {
               pointHoverBorderColor: "rgb(255, 99, 132)",
             },
             {
-              label: "리신",
+              label: compareChampion,
               data: [28, 48, 40, 19, 5, 27],
               fill: true,
               backgroundColor: "rgba(54, 162, 235, 0.2)",
@@ -216,15 +205,10 @@ export default function DetailChart() {
     }
 
     setBools(true);
-  }, [imsi]);
+  }, [compareChampion]);
 
   return (
     <>
-      <button
-        onClick={() => {
-          setImsi("ㅇㅇ");
-        }}
-      ></button>
       <div className={styles.component}>
         <div className={styles.chart} id="chart">
           <canvas className={styles.canvas} id="myChart"></canvas>
@@ -241,13 +225,13 @@ export default function DetailChart() {
                   }}
                 >
                   <img
-                    src={`/champion/champion_icon/${item.en}.png`}
+                    src={`/champion/tiles/${item.en}_0.jpg`}
                     id={item.ko}
                     alt={item.en}
                     index={item.index}
                     className={styles.img}
                     onClick={() => {
-                      setImsi(item.ko);
+                      setCompareChampion(item.ko);
                     }}
                   ></img>
                 </button>

@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5em;
+  background: var(--main);
+  grid-area: m;
+}
+
+.round {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.vs {
+  display: flex;
+  width: 80vw;
+  justify-content: space-around;
+}
+
+.img {
+  width: 49vw;
+  height: 35vw;
+}
+
+.imgContainer {
+  display: flex;
+  flex-direction: column;
+}

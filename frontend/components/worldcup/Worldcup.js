@@ -1,4 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/effect-cards";
+import { EffectCards } from "swiper";
 
 import styles from "./Worldcup.module.css";
 import champion from "../../utils/champion";
@@ -108,6 +115,7 @@ export default function Worldcup() {
           </button>
         </div>
       )}
+
       {round !== 0 && (
         <>
           {round}
@@ -123,10 +131,28 @@ export default function Worldcup() {
               )}
               {round !== "결과" && leftChamp && (
                 <div className={styles.imgContainer}>
-                  <img
-                    src={`/champion/splash/${leftChamp.en}_0.jpg`}
-                    className={styles.img}
-                  ></img>
+                  <Swiper
+                    effect={"cards"}
+                    grabCursor={true}
+                    modules={[EffectCards]}
+                    className={styles.swiper}
+                    loop={true}
+                  >
+                    {skin.map((el, idx) => {
+                      if (el.includes(leftChamp.en)) {
+                        return (
+                          <SwiperSlide
+                            key={idx}
+                            className={styles.swiperslide}
+                            style={{
+                              backgroundImage: `url(/champion/splash/${el})`,
+                              objectFit: "contain",
+                            }}
+                          ></SwiperSlide>
+                        );
+                      }
+                    })}
+                  </Swiper>
                   <button
                     onClick={() => {
                       select(leftChamp);
@@ -138,10 +164,28 @@ export default function Worldcup() {
               )}
               {round !== "결과" && rightChamp && (
                 <div className={styles.imgContainer}>
-                  <img
-                    src={`/champion/splash/${rightChamp.en}_0.jpg`}
-                    className={styles.img}
-                  ></img>
+                  <Swiper
+                    effect={"cards"}
+                    grabCursor={true}
+                    modules={[EffectCards]}
+                    className={styles.swiper}
+                    loop={true}
+                  >
+                    {skin.map((el, idx) => {
+                      if (el.includes(rightChamp.en)) {
+                        return (
+                          <SwiperSlide
+                            key={idx}
+                            className={styles.swiperslide}
+                            style={{
+                              backgroundImage: `url(/champion/splash/${el})`,
+                              objectFit: "contain",
+                            }}
+                          ></SwiperSlide>
+                        );
+                      }
+                    })}
+                  </Swiper>
                   <button
                     onClick={() => {
                       select(rightChamp);

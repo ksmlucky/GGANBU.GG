@@ -28,6 +28,7 @@ import {
   Tooltip,
   SubTitle,
 } from "chart.js";
+import { data } from "@tensorflow/tfjs";
 Chart.register(
   ArcElement,
   LineElement,
@@ -55,16 +56,24 @@ Chart.register(
   SubTitle
 );
 
-export default function DetailChart() {
+export default function DetailChart({id, championName}) {
   const clist = championList();
-  const [champion, setChampion] = useState([""]);
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
-  const [imsi, setImsi] = useState("아트록");
+  const [compareChampion, setCompareChampion] = useState();
   const [bools, setBools] = useState("");
-  const [myChart, setMyChart] = useState();
-  function makeList(item) {
-    console.log(item.target.id);
-  }
+  
+  const [dataSet, setDataSet] = useState([{
+    label: championName,
+    data: [65, 59, 5, 81, 56, 55],
+    fill: true,
+    backgroundColor: "rgba(255, 99, 132, 0.2)",
+    borderColor: "rgb(255, 99, 132)",
+    pointBackgroundColor: "rgb(255, 99, 132)",
+    pointBorderColor: "#fff",
+    pointHoverBackgroundColor: "#fff",
+    pointHoverBorderColor: "rgb(255, 99, 132)",
+  }]);
+
   useEffect(() => {
     if (bools) {
       const ctx = document.getElementById("chart");
@@ -76,35 +85,13 @@ export default function DetailChart() {
       canv.className = styles.canvas;
       ctx.appendChild(canv);
     }
+    
     const ctx = document.getElementById("myChart").getContext("2d");
-    const myChart = new Chart(ctx, {
+    let config = {
       type: "radar",
       data: {
         labels: ["승률", "픽률", "밴률", "DPM", "솔로킬 횟수", "CC기 총 시간"],
-        datasets: [
-          {
-            label: imsi,
-            data: [65, 59, 5, 81, 56, 55],
-            fill: true,
-            backgroundColor: "rgba(255, 99, 132, 0.2)",
-            borderColor: "rgb(255, 99, 132)",
-            pointBackgroundColor: "rgb(255, 99, 132)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgb(255, 99, 132)",
-          },
-          {
-            label: "리신",
-            data: [28, 48, 40, 19, 5, 27],
-            fill: true,
-            backgroundColor: "rgba(54, 162, 235, 0.2)",
-            borderColor: "rgb(54, 162, 235)",
-            pointBackgroundColor: "rgb(54, 162, 235)",
-            pointBorderColor: "#fff",
-            pointHoverBackgroundColor: "#fff",
-            pointHoverBorderColor: "rgb(54, 162, 235)",
-          },
-        ],
+        datasets: dataSet,
       },
       options: {
         responsive: false,
@@ -132,8 +119,8 @@ export default function DetailChart() {
           },
         },
       },
-    });
-
+    }
+    const myChart = new Chart(ctx, config);
     setBools(true);
   }, []);
 
@@ -141,6 +128,7 @@ export default function DetailChart() {
     if (bools) {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
+      console.log(ctxx);
       ctx.removeChild(ctxx);
 
       const canv = document.createElement("canvas");
@@ -149,8 +137,7 @@ export default function DetailChart() {
       ctx.appendChild(canv);
 
       const newCtx = document.getElementById("myChart").getContext("2d");
-
-      const myChart = new Chart(newCtx, {
+      const config = {
         type: "radar",
         data: {
           labels: [
@@ -161,30 +148,7 @@ export default function DetailChart() {
             "솔로킬 횟수",
             "CC기 총 시간",
           ],
-          datasets: [
-            {
-              label: imsi,
-              data: [65, 59, 5, 81, 56, 55],
-              fill: true,
-              backgroundColor: "rgba(255, 99, 132, 0.2)",
-              borderColor: "rgb(255, 99, 132)",
-              pointBackgroundColor: "rgb(255, 99, 132)",
-              pointBorderColor: "#fff",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgb(255, 99, 132)",
-            },
-            {
-              label: "리신",
-              data: [28, 48, 40, 19, 5, 27],
-              fill: true,
-              backgroundColor: "rgba(54, 162, 235, 0.2)",
-              borderColor: "rgb(54, 162, 235)",
-              pointBackgroundColor: "rgb(54, 162, 235)",
-              pointBorderColor: "#fff",
-              pointHoverBackgroundColor: "#fff",
-              pointHoverBorderColor: "rgb(54, 162, 235)",
-            },
-          ],
+          datasets: dataSet
         },
         options: {
           responsive: false,
@@ -212,19 +176,17 @@ export default function DetailChart() {
             },
           },
         },
-      });
-    }
+      };
+      
 
+      const myChart = new Chart(newCtx, config);
+    }
     setBools(true);
-  }, [imsi]);
+
+  }, [selectedchampion]);
 
   return (
     <>
-      <button
-        onClick={() => {
-          setImsi("ㅇㅇ");
-        }}
-      ></button>
       <div className={styles.component}>
         <div className={styles.chart} id="chart">
           <canvas className={styles.canvas} id="myChart"></canvas>
@@ -233,26 +195,87 @@ export default function DetailChart() {
         <ul className={styles.ul}>
           {clist.map((item, idx) => {
             return (
-              <li key={idx} className={styles.li}>
+              <div key={idx}>
+              {id !== item.en &&
+              <li className={styles.li}>
                 <button
                   className={styles.btn}
-                  onClick={(item) => {
-                    makeList(item);
-                  }}
                 >
+
                   <img
-                    src={`/champion/champion_icon/${item.en}.png`}
+                    src={`/champion/tiles/${item.en}_0.jpg`}
                     id={item.ko}
                     alt={item.en}
                     index={item.index}
                     className={styles.img}
                     onClick={() => {
-                      setImsi(item.ko);
+
+                      setDataSet((dataSet) => {
+                        const newDataSet = [...dataSet]
+                        newDataSet.push({
+                          label: item.ko,
+                          data: [1, 1, 2, 2, 3, 4],
+                          fill: true,
+                          backgroundColor: "rgba(255, 99, 132, 0.2)",
+                          borderColor: "rgb(255, 99, 132)",
+                          pointBackgroundColor: "rgb(255, 99, 132)",
+                          pointBorderColor: "#fff",
+                          pointHoverBackgroundColor: "#fff",
+                          pointHoverBorderColor: "rgb(255, 99, 132)",
+                        })
+                        return newDataSet
+                      })
+                    
+                      setSelectedchampion((selectedchampion)=>{
+                        const newSelectedChampion = [...selectedchampion]
+                        const champNum = newSelectedChampion.findIndex(i=>i === item.ko)
+                        if(champNum === -1 && newSelectedChampion.length<5){
+                          newSelectedChampion.push(item.ko)
+                          setDataSet((dataSet) => {
+                            const newDataSet = [...dataSet]
+                            newDataSet.push({
+                              label: item.ko,
+                              data: [1, 1, 2, 2, 3, 4],
+                              fill: true,
+                              backgroundColor: "rgba(255, 99, 132, 0.2)",
+                              borderColor: "rgb(255, 99, 132)",
+                              pointBackgroundColor: "rgb(255, 99, 132)",
+                              pointBorderColor: "#fff",
+                              pointHoverBackgroundColor: "#fff",
+                              pointHoverBorderColor: "rgb(255, 99, 132)",
+                            })
+                            return newDataSet
+                          })
+                        }
+                        else if(champNum !== -1){
+                          newSelectedChampion.splice(champNum,1)
+                          setDataSet((dataSet) => {
+                            const newDataSet = [...dataSet]
+                            const newChampName = newDataSet.findIndex(i=>i.label === item.ko)
+                            newDataSet.splice(champNum)
+                            return newDataSet
+                          })
+                        }
+                        else{
+                          alert('최대 5개까지 비교 가능합니다.')
+                        }
+                        return newSelectedChampion
+                      })
+                      
+                    }}
+                    style={{
+                      filter:
+                        selectedchampion.indexOf(item.ko) === -1
+                          ? "saturate(1)"
+                          : "saturate(0)",
                     }}
                   ></img>
+                
                 </button>
                 <span className={styles.name}>{item.ko}</span>
               </li>
+              }
+              </div>
             );
           })}
         </ul>

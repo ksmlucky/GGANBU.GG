@@ -12,7 +12,6 @@ export default function CCSInput({ csInput, pickchampionEng }) {
     csInput(champion_name);
   }
   const result = `/detail/[id]`;
-
   return (
     <form className={styles.container}>
       <div className="search">

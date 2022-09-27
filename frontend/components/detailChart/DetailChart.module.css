@@ -3,7 +3,7 @@
     flex-direction : row;
 }
 .chart{
-    background-color: burlywood;
+
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -23,7 +23,7 @@
     height :80%;
 }
 .ul {
-    background-color :red;
+
     list-style: none;
     display: flex;
     flex-direction: row;

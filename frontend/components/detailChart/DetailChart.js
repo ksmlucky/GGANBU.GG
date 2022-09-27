@@ -59,7 +59,6 @@ Chart.register(
 export default function DetailChart({id, championName}) {
   const clist = championList();
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
-  const [compareChampion, setCompareChampion] = useState();
   const [bools, setBools] = useState("");
   const [customColor,setCustomColor] = useState(['rgb(255,132,132)', 'rgb(132,132,255)', 'rgb(132,255,132)','rgb(255, 255, 132)', 'rgb(255,132,255)','rgb(132,255,255)'])
   const [customColorTranslucent,setCustomColorTranslucent] = useState(['rgba(255,132,132,0.2','rgba(132,132,255,0.2)', 'rgba(132,255,132,0.2)', 'rgba(255, 255, 132, 0.2)', 'rgba(255,132,255,0.2)','rgba(132,255,255,0.2)'])

@@ -3,20 +3,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--black2);
-  border-top: 1px solid #463714;
+  background: var(--footer);
+  border-top: 1px solid var(--border-on);
   grid-area: f;
 }
 
 .copyright {
   letter-spacing: 0.8px;
   word-spacing: 1px;
+  color: var(--text);
 }
 .modecontainer{
   position: absolute;
     right: 0;
 }
 .mode {
-  color: var(--white1);
-  background: var(--black1);
+  color: var(--text);
+  background: var(--footer);
+  border:none;
 }

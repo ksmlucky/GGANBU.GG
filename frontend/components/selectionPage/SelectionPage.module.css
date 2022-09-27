@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--gray3);
+  background: var(--main);
 }
 
 .ul {
@@ -27,5 +27,5 @@
   flex-grow: 1;
   list-style: none;
   font-size: 2vw;
-  border: 2px solid var(--gold3);
+  border: 2px solid var(--border-on);
 }

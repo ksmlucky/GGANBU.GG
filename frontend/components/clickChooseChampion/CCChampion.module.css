@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background: var(--gray5);
+  background: var(--main);
   grid-area: m;
 }
 

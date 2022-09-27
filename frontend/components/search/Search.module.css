@@ -1,6 +1,6 @@
 .main{
     gap: 2em;
-    background: var(--gray5);
+    background: var(--main);
     grid-area: m;
 }
 

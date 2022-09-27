@@ -24,7 +24,7 @@
 
 .btn {
   background: none;
-  border: 5px solid var(--gray3);
+  border: 5px solid var(--btn);
   padding: 1px;
   width: 5.5vw;
 }
@@ -34,7 +34,7 @@
   border: none;
   padding: 0;
   width: 5vw;
-  border: 2px solid var(--gold3);
+  border: 2px solid var(--border-on);
 }
 
 .btn:hover {

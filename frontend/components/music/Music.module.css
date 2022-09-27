@@ -12,7 +12,7 @@
   height: 70%;
   border-radius: 15px;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background-color: var(--main);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
@@ -28,12 +28,12 @@
 
 .topBar i {
   font-size: 1vw;
-  color: #515c6f;
+  color: var(--text);
 }
 
 .topBar span {
   font-size: 2vw;
-  color: #515c6f;
+  color: var(--text);
 }
 
 .imgArea {

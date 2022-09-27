@@ -8,13 +8,13 @@ import { classNames } from "./../../utils/classNames";
 
 /* -------------------------------------------------------------------------- */
 
-export function BaseLayout({ children,setMode }) {
+export function BaseLayout({ children, setMode }) {
   return (
     <div className={styles.container}>
       <Header>
         <Navigation />
       </Header>
-{children}
+      {children}
       <Footer setMode={setMode}></Footer>
     </div>
   );

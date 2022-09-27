@@ -42,10 +42,21 @@ export default function ChooseChampion() {
     <div>
       <div className={styles.flexbox}>
         <div className={styles.main}>
+                  <div className={styles.titlecontainer}>
+          <div className={styles.h1}>Select Champions</div>
+          <div  className={styles.titleout}> <div className={styles.title}></div></div>
+        </div>
           <button
             className={styles.givefive}
             onClick={() => {
               Setmakefive(true);
+            }}
+            style={{
+              boxShadow: makefive
+                ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
+                : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+              color: makefive ? "var(--select)" : "var(--text)",
             }}
           >
             five
@@ -63,6 +74,7 @@ export default function ChooseChampion() {
           />
           <div className={styles.choose}>
             <ul className={styles.ul}>
+            <div className={styles.round}></div>
               {clist
                 .filter((value) => {
                   if (

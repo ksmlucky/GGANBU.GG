@@ -21,7 +21,7 @@ export default function LeftCham({
       lines: "top",
       champ: "",
       kchamp: "",
-      links: "/line/top.png",
+      links: "/line/top.svg",
       idx: "",
     },
     {
@@ -29,7 +29,7 @@ export default function LeftCham({
       lines: "jungle",
       champ: "",
       kchamp: "",
-      links: "/line/jungle.png",
+      links: "/line/jungle.svg",
       idx: "",
     },
     {
@@ -37,15 +37,15 @@ export default function LeftCham({
       lines: "mid",
       champ: "",
       kchamp: "",
-      links: "/line/mid.png",
+      links: "/line/mid.svg",
       idx: "",
     },
-    { id: "4", lines: "bot", champ: "", links: "/line/bot.png", idx: "" },
+    { id: "4", lines: "bot", champ: "", links: "/line/bot.svg", idx: "" },
     {
       id: "5",
       lines: "support",
       champ: "",
-      links: "/line/support.png",
+      links: "/line/support.svg",
       idx: "",
     },
   ]);
@@ -252,6 +252,9 @@ export default function LeftCham({
                     }}
                   ></img>
                 </div>
+                {item.lines == line ? (
+                  <div className={styles.background}></div>
+                ) : null}
               </div>
             );
           })}

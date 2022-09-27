@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./Navigation.module.css";
-
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 /* -------------------------------------------------------------------------- */
 
 export default function Navigation() {
@@ -13,6 +14,12 @@ export default function Navigation() {
     { id: "6", text: "MULTI SEARCH", links: "/multi" },
   ];
 
+  const router = useRouter();
+
+  useEffect(() => {
+    console.log(router.pathname);
+  }, [router]);
+
   return (
     <>
       <nav className={styles.nav}>
@@ -21,9 +28,22 @@ export default function Navigation() {
             return (
               <div key={item.id}>
                 <Link href={item.links}>
-                  {/* <a className={styles.a}> */}
-                  <li className={styles.li}>{item.text}</li>
-                  {/* </a> */}
+                  <li
+                    className={styles.li}
+                    style={{
+                      boxShadow:
+                        item.links === router.pathname
+                          ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
+                          : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+                      color:
+                        item.links === router.pathname
+                          ? "var(--select)"
+                          : "var(--text)",
+                    }}
+                  >
+                    {item.text}
+                  </li>
                 </Link>
               </div>
             );

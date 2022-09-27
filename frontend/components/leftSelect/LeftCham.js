@@ -1,5 +1,6 @@
 import styles from "./LeftCham.module.css";
 import { useEffect, useState } from "react";
+import { classNames } from "./../../utils/classNames";
 
 export default function LeftCham({
   pickchampionindex,
@@ -136,9 +137,13 @@ export default function LeftCham({
           disableline.indexOf(event.target.id) !== -1 &&
           event.target.id !== line
         ) {
-          event.target.src = `/images/none.png`;
+          event.target.src = `/transparent.png`;
         } else {
-          event.target.src = `item/noItem.png`;
+          event.target.src = `/sleepyporo.gif`;
+          event.target.style.background =
+            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          event.target.style.boxShadow =
+            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -168,9 +173,14 @@ export default function LeftCham({
           disableline.indexOf(event.target.id) !== -1 &&
           event.target.id !== line
         ) {
-          event.target.src = `/images/none.png`;
+          event.target.src = `/transparent.png`;
+          console.log(event);
         } else {
-          event.target.src = `item/noItem.png`;
+          event.target.src = `/sleepyporo.gif`;
+          event.target.style.background =
+            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          event.target.style.boxShadow =
+            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -187,61 +197,65 @@ export default function LeftCham({
 
   return (
     <>
-      <div>
+      <div className={styles.flexbox}>
         <div className={styles.container}>
           {Array.from(lineCham).map((item) => {
             return (
               <div className={styles.users} key={item.id}>
-                {item.lines == line ? (
+                <div className={styles.bg}>
+                  {item.lines == line ? (
+                    <img
+                      src="/transparent.png"
+                      className={styles.arrow}
+                      id={item.lines}
+                    />
+                  ) : null}
                   <img
-                    src="/arrow/leftarrow.png"
-                    className={styles.arrow}
-                    id={item.lines}
+                    src={item.links}
+                    className={styles.lineImg}
+                    onClick={() => {
+                      reset(item.id, item.lines);
+                      Setline(item.lines);
+                      Setselectline(item.lines);
+                      allreset(item.lines);
+                      Setmakefive(false);
+                    }}
                   />
-                ) : null}
-                <button
-                  className={styles.btn}
-                  onClick={() => {
-                    reset(item.id, item.lines);
-                    Setline(item.lines);
-                    Setselectline(item.lines);
-                    allreset(item.lines);
-                    Setmakefive(false);
-                  }}
-                >
-                  <img src={item.links} className={styles.lineImg} />
-                </button>
-                <img
-                  className={styles.btncham}
-                  onClick={() => {
-                    reset(item.id, item.lines);
-                  }}
-                  onDragOver={(event) => dragOver(event)}
-                  onDragEnter={(event) => dragEnter(event)}
-                  onDragLeave={(event) => dragLeave(event, item.champ)}
-                  onDrop={(event) => Drop(event, item.id)}
-                  id={item.lines}
-                  src={
-                    item.champ
-                      ? `/champion/tiles/${item.champ}_0.jpg`
-                      : disableline.indexOf(item.lines) !== -1 &&
+                  <img
+                    className={styles.btncham}
+                    onClick={() => {
+                      reset(item.id, item.lines);
+                    }}
+                    onDragOver={(event) => dragOver(event)}
+                    onDragEnter={(event) => dragEnter(event)}
+                    onDragLeave={(event) => dragLeave(event, item.champ)}
+                    onDrop={(event) => Drop(event, item.id)}
+                    id={item.lines}
+                    src={
+                      item.champ
+                        ? `/champion/tiles/${item.champ}_0.jpg`
+                        : disableline.indexOf(item.lines) !== -1 &&
+                          item.lines !== line
+                        ? "/transparent.png"
+                        : "/sleepyporo.gif"
+                    }
+                    draggable={false}
+                    style={{
+                      boxShadow:
+                        "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+                      background:
+                        disableline.indexOf(item.lines) !== -1 &&
                         item.lines !== line
-                      ? "/images/none.png"
-                      : "item/noItem.png"
-                  }
-                  draggable={false}
-                ></img>
+                          ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
+                          : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
+                    }}
+                  ></img>
+                </div>
               </div>
             );
           })}
         </div>
-        <button
-          onClick={() => {
-            Setmakefive(true);
-          }}
-        >
-          five
-        </button>
       </div>
     </>
   );

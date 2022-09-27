@@ -4,8 +4,18 @@
 }
 .chart{
     background-color: burlywood;
-    width : 40vw;
-    height : 40vw;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-start;
+    gap: 0.7vw;
+    width: 45vw;
+    height: 45vw;
+    max-height: 40vw;
+    padding: 0.5vw;
 }
 .canvas{
     background-color :black;

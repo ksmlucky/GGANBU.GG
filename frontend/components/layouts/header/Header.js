@@ -6,7 +6,7 @@ export default function Header({ children }) {
     <>
       <header className={styles.header}>
         <Link href="/">
-          <a className={styles.logo}>EF.GG</a>
+          <a className={styles.logo}>GGanbu.gg</a>
         </Link>
         {children}
       </header>

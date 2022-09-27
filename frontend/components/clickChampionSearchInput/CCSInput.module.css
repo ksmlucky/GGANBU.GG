@@ -4,9 +4,9 @@
   }
 
   .input {
-    background: var(--white1);
-    border: 3px solid (--gold3);
-    color: var(--black1);
+    background: var(--input-bg);
+    border: 3px solid var(--border-on);
+    color: var(--text);
     padding: 0.6vw 1.2vw;
     font-size: 1vw;
     text-align: center;
@@ -15,8 +15,8 @@
   }
 
   .btn {
-    background: var(--black2);
-    border: 3px solid var(--gold3);
+    background: var(--btn);
+    border: 3px solid var(--border-on);
     padding: 0;
     margin: 0;
   }

@@ -37,41 +37,48 @@ export default function Music() {
   const preview = () => {
     if (audioPlayer) {
       audioPlayer.current.pause();
+      cancelAnimationFrame(animationRef.current);
       const newidx = idx - 1 < 0 ? tracks.length - 1 : idx - 1;
       setPlaying(false);
       audioPlayer.current.src = tracks[newidx].source;
       audioPlayer.current.load();
       setIdx(newidx);
       progressBar.current.value = 0;
-      console.log(tracks[newidx].time);
-      setDuration(tracks[newidx].time);
+      setDuration(audioPlayer.current.duration);
+      animationRef.current = requestAnimationFrame(whilePlaying);
     }
   };
 
   const next = () => {
     if (audioPlayer) {
       audioPlayer.current.pause();
+      cancelAnimationFrame(animationRef.current);
       const newidx = idx + 1 > tracks.length - 1 ? 0 : idx + 1;
       setPlaying(false);
       audioPlayer.current.src = tracks[newidx].source;
       audioPlayer.current.load();
       setIdx(newidx);
       progressBar.current.value = 0;
-      setDuration(tracks[newidx].time);
+      setDuration(audioPlayer.current.duration);
+      animationRef.current = requestAnimationFrame(whilePlaying);
     }
   };
 
   const change = (idx) => {
     if (audioPlayer) {
       audioPlayer.current.pause();
-      const newidx = idx;
+      cancelAnimationFrame(animationRef.current);
       setPlaying(false);
+      const newidx = idx;
+      audioPlayer.current.autoplay = true;
       audioPlayer.current.src = tracks[newidx].source;
       audioPlayer.current.load();
       setIdx(newidx);
       progressBar.current.value = 0;
-      setDuration(tracks[newidx].time);
-      console.log(progressBar.current.value, duration);
+      setDuration(audioPlayer.current.duration);
+      audioPlayer.current.play();
+      setPlaying(true);
+      animationRef.current = requestAnimationFrame(whilePlaying);
     }
   };
 
@@ -80,17 +87,29 @@ export default function Music() {
   useEffect(() => {
     if (audioPlayer) {
       setDuration(Math.floor(audioPlayer.current.duration));
-      progressBar.current.max = Math.floor(audioPlayer.current.duration);
+      progressBar.current.max = duration;
+      setPlaying(true);
     }
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
+
+  setInterval(()=>{
+    if(audioPlayer.current){
+    if(audioPlayer.current.currentTime === audioPlayer.current.duration){
+      next();   
+     }
+    }
+  },1000)
+
   // 시간 출력
   const calculateTime = (secs) => {
+    if(!isNaN(secs)){
     const minutes = Math.floor(secs / 60);
     const seconds = Math.floor(secs % 60);
     return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${
       seconds < 10 ? `0${seconds}` : `${seconds}`
     }`;
+  }
   };
 
   const whilePlaying = () => {
@@ -115,7 +134,7 @@ export default function Music() {
 
   const openURL = () => {
     return window.open(
-      `https://www.google.com/search?q=${tracks[idx].name}`,
+      `https://www.google.com/search?q=${tracks[idx].name}`, //수정
       "_blank"
     );
   };
@@ -130,8 +149,8 @@ export default function Music() {
       name: "Awaken",
       artist: "league of legends",
       album: "/champion/tiles/Aatrox_0.jpg",
-      source: "/mp3/Awaken.mp3",
-      time: "198",
+      source: "/mp3/RISE.mp3",
+      time: "197",
     },
     {
       name: "K_DA-THE-BADDEST",
@@ -187,6 +206,7 @@ export default function Music() {
         <div className={styles.audioPlayer}>
           {/* progress bar */}
           <div>
+          <span>{audioPlayer.current?calculateTime(audioPlayer.current.currentTime)??"00:00": "00:00"}</span>
             <input
               type="range"
               className={styles.progressBar}
@@ -194,6 +214,7 @@ export default function Music() {
               ref={progressBar}
               onChange={changeRange}
             />
+            <span>{audioPlayer.current?calculateTime(audioPlayer.current.duration)??"00:00": "00:00"}</span>
           </div>
         </div>
         {/* progress 끝 */}

@@ -61,6 +61,7 @@ export default function DetailChart({id, championName}) {
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
   const [compareChampion, setCompareChampion] = useState();
   const [bools, setBools] = useState("");
+  
   const [dataSet, setDataSet] = useState([{
     label: championName,
     data: [65, 59, 5, 81, 56, 55],
@@ -208,6 +209,7 @@ export default function DetailChart({id, championName}) {
                     index={item.index}
                     className={styles.img}
                     onClick={() => {
+
                       setDataSet((dataSet) => {
                         const newDataSet = [...dataSet]
                         newDataSet.push({
@@ -222,17 +224,37 @@ export default function DetailChart({id, championName}) {
                           pointHoverBorderColor: "rgb(255, 99, 132)",
                         })
                         return newDataSet
-                      }
-                        )
+                      })
                     
                       setSelectedchampion((selectedchampion)=>{
                         const newSelectedChampion = [...selectedchampion]
                         const champNum = newSelectedChampion.findIndex(i=>i === item.ko)
                         if(champNum === -1 && newSelectedChampion.length<5){
                           newSelectedChampion.push(item.ko)
+                          setDataSet((dataSet) => {
+                            const newDataSet = [...dataSet]
+                            newDataSet.push({
+                              label: item.ko,
+                              data: [1, 1, 2, 2, 3, 4],
+                              fill: true,
+                              backgroundColor: "rgba(255, 99, 132, 0.2)",
+                              borderColor: "rgb(255, 99, 132)",
+                              pointBackgroundColor: "rgb(255, 99, 132)",
+                              pointBorderColor: "#fff",
+                              pointHoverBackgroundColor: "#fff",
+                              pointHoverBorderColor: "rgb(255, 99, 132)",
+                            })
+                            return newDataSet
+                          })
                         }
                         else if(champNum !== -1){
                           newSelectedChampion.splice(champNum,1)
+                          setDataSet((dataSet) => {
+                            const newDataSet = [...dataSet]
+                            const newChampName = newDataSet.findIndex(i=>i.label === item.ko)
+                            newDataSet.splice(champNum)
+                            return newDataSet
+                          })
                         }
                         else{
                           alert('최대 5개까지 비교 가능합니다.')

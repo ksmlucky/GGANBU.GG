@@ -24,9 +24,9 @@ const Keyboard = () => {
   };
 
   function startTimer(timertime) {
-    var hour, min, sec;
+    let hour, min, sec;
 
-    var timer = setInterval(function () {
+    let timer = setInterval(function () {
       timertime--;
 
       min = Math.floor(timertime / 60);
@@ -34,9 +34,9 @@ const Keyboard = () => {
       sec = timertime % 60;
       min = min % 60;
 
-      var th = hour;
-      var tm = min;
-      var ts = sec;
+      let th = hour;
+      let tm = min;
+      let ts = sec;
 
       if (th < 10) {
         th = "0" + hour;

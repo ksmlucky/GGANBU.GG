@@ -1,6 +1,8 @@
 import { SkinLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
 // app
+//import
+import Skin3d from "../components/skin3d/Skin3d";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -28,8 +30,8 @@ export default function Skin() {
   }, [mode]);
 
   return (
-    <div>
-      <SkinLayout setMode={setMode} />
-    </div>
+    <>
+      <Skin3d setMode={setMode} />
+    </>
   );
 }

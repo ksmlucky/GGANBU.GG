@@ -4,7 +4,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
-  background: var(--gray5);
+  background: var(--main);
   grid-area: m;
 }
 
@@ -73,7 +73,7 @@
 
 .att th {
   padding-bottom: 0.7vw;
-  background-color: var(--gray5);
+  background-color: var(--main);
   /* width: 10vw; */
   /* text-align: center; */
   /* font-size: 0.8vw; */
@@ -134,7 +134,7 @@
 .img {
   width: 2vw;
   height: 2vw;
-  border: 1px solid var(--white1);
+  border: 1px solid var(--text);
 }
 
 .progress {
@@ -143,12 +143,12 @@
 }
 
 .progress::-webkit-progress-bar {
-  background-color: var(--brown1);
+  background-color: var(--prevent);
   border-radius: 8px;
 }
 
 .progress::-webkit-progress-value {
-  background-color: var(--gold7);
+  background-color: var(--allow);
   border-radius: 8px;
 }
 

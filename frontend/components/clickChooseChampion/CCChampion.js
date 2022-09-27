@@ -55,7 +55,7 @@ export default function ClickChooseChampion(props) {
                         style={{
                           border:
                             item.en === pickchampionEng
-                              ? "2px solid var(--gold3)"
+                              ? "2px solid var(--border-on)"
                               : "none",
                         }}
                         draggable={false}

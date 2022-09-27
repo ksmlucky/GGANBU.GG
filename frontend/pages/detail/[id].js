@@ -1,6 +1,9 @@
 import { DetailResultLayout } from "../../components/layouts/index";
 import React, { useEffect } from "react";
 // app
+//import
+
+import DetailChampion from "../../components/detailChampion/Detailchampion";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -29,7 +32,7 @@ export default function DetailResult() {
 
   return (
     <div>
-      <DetailResultLayout setMode={setMode} mode={mode}/>
+      <DetailChampion setMode={setMode} mode={mode}/>
     </div>
   );
 }

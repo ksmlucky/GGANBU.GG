@@ -9,10 +9,12 @@
 
 .h1 span{
   font-size: 3vw;
+    color: var(--text);
 }
 
 .logo{
-  border-right: 2px solid #ffffff;
+  border-right: 2px solid var(--border-on);
+  color: var(--text-logo);
   animation: blink 0.75s infinite;
 }
 
@@ -22,6 +24,6 @@
   }
 
   to {
-    border-color: 2px solid #ffffff;
+    border-color: 2px solid var(--border-on);
   }
 }

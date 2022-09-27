@@ -6,12 +6,19 @@ export default function SkillQuiz({setMode}) {
   const clist = championList();
   const [randomChampion, setRandomChampion] = useState(Math.floor(Math.random()*161));
   const [randomSkill, setRandomSkill] = useState(Math.floor(Math.random()*5));
+  const [value, setValue] = useState("");
   const [score, setScore] = useState(0);
   const [gameStart, setGameStart] = useState(false);
+
+
+
   useEffect(()=>{
   },[])
   useEffect(()=>{
-},[randomChampion,randomSkill])
+    setValue("");
+    console.log("점수 : "+score)
+  },[randomChampion,randomSkill])
+
   return (
     <>
         {gameStart === false &&
@@ -25,9 +32,9 @@ export default function SkillQuiz({setMode}) {
         }
         {gameStart ===true && 
         <div className={styles.container}>
+            {timerId}
             해당 스킬을 가진 챔피언을 입력하시오.
-            {clist.findIndex(i=>i.index ===randomChampion) &&
-            <>                    
+            <>                   
                 {randomSkill === 0 ? (
                     <img 
                     src={`/passive/${clist[randomChampion].passive}.png`}
@@ -60,8 +67,13 @@ export default function SkillQuiz({setMode}) {
                     />
                 ) }
             </>
-            }
+            <input className={styles.text} placeholder="챔피언 이름" value={value} onChange={(event)=>{
+                setValue(event.target.value);
+            }}></input>
             <button className={styles.btn} onClick={()=>{
+                if(value === clist[randomChampion].ko){
+                    setScore((score)=>score+1);
+                }
                 setRandomChampion(()=>{
                     return Math.floor(Math.random()*161);
                 });

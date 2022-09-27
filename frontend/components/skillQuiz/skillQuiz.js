@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./skillQuiz.module.css";
 import championList from "../../utils/champion";
 
@@ -8,11 +8,12 @@ export default function SkillQuiz({setMode}) {
   const [randomSkill, setRandomSkill] = useState(Math.floor(Math.random()*5));
   const [value, setValue] = useState("");
   const [score, setScore] = useState(0);
+  const [timer, setTimer] = useState(60);
   const [gameStart, setGameStart] = useState(false);
-
-
+  const intervalId = useRef(null);
 
   useEffect(()=>{
+
   },[])
   useEffect(()=>{
     setValue("");
@@ -22,19 +23,23 @@ export default function SkillQuiz({setMode}) {
   return (
     <>
         {gameStart === false &&
-        <div className={styles.container}>  
+        <div className={styles.container}>
+            1분동안 최대한 많은 문제를 맞추세요!
             <button className={styles.btn} onClick={()=>{
                 setGameStart(true);
+                intervalId.current = setInterval(()=>setTimer((timer)=>timer-1),1000);
             }}>
             게임 시작
             </button>
         </div>
         }
-        {gameStart ===true && 
+
+        {gameStart === true && timer >= 0 &&
+        <>
+        <div className={styles.score}>점수 : {score}</div>
         <div className={styles.container}>
-            {timerId}
-            해당 스킬을 가진 챔피언을 입력하시오.
-            <>                   
+            <div className={styles.timer}>{timer}</div>
+            해당 스킬을 가진 챔피언을 입력하시오.                  
                 {randomSkill === 0 ? (
                     <img 
                     src={`/passive/${clist[randomChampion].passive}.png`}
@@ -66,10 +71,27 @@ export default function SkillQuiz({setMode}) {
                     alt={clist[randomChampion].en}
                     />
                 ) }
-            </>
-            <input className={styles.text} placeholder="챔피언 이름" value={value} onChange={(event)=>{
+
+            <input className={styles.text} 
+            placeholder="챔피언 이름" 
+            value={value} 
+            onChange={(event)=>{
                 setValue(event.target.value);
-            }}></input>
+            }}
+            onKeyDown={(event)=>{
+                if(event.key === 'Enter'){
+                    if(value === clist[randomChampion].ko){
+                        setScore((score)=>score+1);
+                    }
+                    setRandomChampion(()=>{
+                        return Math.floor(Math.random()*161);
+                    });
+                    setRandomSkill(()=>{
+                        return Math.floor(Math.random()*5);
+                    })
+                }
+            }}
+            ></input>
             <button className={styles.btn} onClick={()=>{
                 if(value === clist[randomChampion].ko){
                     setScore((score)=>score+1);
@@ -84,8 +106,21 @@ export default function SkillQuiz({setMode}) {
             제출
             </button>
         </div>
+        </>
         }
+        {gameStart === true && timer <0 &&
+            <div className={styles.container} >{score}점을 획득하셨습니다.
+            <button className={styles.btn} onClick={()=>{
+                setGameStart(false);
+                setScore(0);
+                setTimer(60);
+                clearInterval(intervalId.current);
+            }}>
+            메인화면으로
+            </button>
+            </div>
 
+        }
     </>
   );
 }

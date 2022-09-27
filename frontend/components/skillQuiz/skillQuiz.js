@@ -6,6 +6,7 @@ export default function SkillQuiz({setMode}) {
   const clist = championList();
   const [randomChampion, setRandomChampion] = useState(Math.floor(Math.random()*161));
   const [randomSkill, setRandomSkill] = useState(Math.floor(Math.random()*5));
+  const [score, setScore] = useState(0);
   const [gameStart, setGameStart] = useState(false);
   useEffect(()=>{
   },[])

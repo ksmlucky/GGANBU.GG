@@ -178,7 +178,6 @@ export default function DetailChart({id, championName}) {
         },
       };
       
-
       const myChart = new Chart(newCtx, config);
     }
     setBools(true);
@@ -208,24 +207,7 @@ export default function DetailChart({id, championName}) {
                     alt={item.en}
                     index={item.index}
                     className={styles.img}
-                    onClick={() => {
-
-                      setDataSet((dataSet) => {
-                        const newDataSet = [...dataSet]
-                        newDataSet.push({
-                          label: item.ko,
-                          data: [1, 1, 2, 2, 3, 4],
-                          fill: true,
-                          backgroundColor: "rgba(255, 99, 132, 0.2)",
-                          borderColor: "rgb(255, 99, 132)",
-                          pointBackgroundColor: "rgb(255, 99, 132)",
-                          pointBorderColor: "#fff",
-                          pointHoverBackgroundColor: "#fff",
-                          pointHoverBorderColor: "rgb(255, 99, 132)",
-                        })
-                        return newDataSet
-                      })
-                    
+                    onClick={() => {                    
                       setSelectedchampion((selectedchampion)=>{
                         const newSelectedChampion = [...selectedchampion]
                         const champNum = newSelectedChampion.findIndex(i=>i === item.ko)
@@ -235,7 +217,7 @@ export default function DetailChart({id, championName}) {
                             const newDataSet = [...dataSet]
                             newDataSet.push({
                               label: item.ko,
-                              data: [1, 1, 2, 2, 3, 4],
+                              data: [23, 23, 43, 54, 65, 43],
                               fill: true,
                               backgroundColor: "rgba(255, 99, 132, 0.2)",
                               borderColor: "rgb(255, 99, 132)",
@@ -252,7 +234,7 @@ export default function DetailChart({id, championName}) {
                           setDataSet((dataSet) => {
                             const newDataSet = [...dataSet]
                             const newChampName = newDataSet.findIndex(i=>i.label === item.ko)
-                            newDataSet.splice(champNum)
+                            newDataSet.splice(champNum+1,1)
                             return newDataSet
                           })
                         }

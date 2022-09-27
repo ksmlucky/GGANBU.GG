@@ -12,7 +12,7 @@
   height: 70%;
   border-radius: 15px;
   padding: 25px 30px;
-  background-color: #ffffff;
+  background-color: var(--main);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
@@ -28,12 +28,12 @@
 
 .topBar i {
   font-size: 1vw;
-  color: #515c6f;
+  color: var(--text);
 }
 
 .topBar span {
   font-size: 2vw;
-  color: #515c6f;
+  color: var(--text);
 }
 
 .imgArea {
@@ -43,87 +43,3 @@
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* progressbar */
-.audioPlayer {
-  --primary: #f40082;
-  --secondary: #ffd200;
-
-  align-items: center;
-  display: flex;
-  width: 700px;
-}
-
-.currentTime,
-.duration {
-  font-family: monospace;
-  font-size: 16px;
-  color: #000000;
-}
-
-.currentTime {
-  margin-left: 25px;
-}
-
-.progressBar {
-  --bar-bg: #ffe3d4;
-  --seek-before-width: 0;
-  --seek-before-color: #000000;
-  --knobby: #3452a5;
-  --selectedKnobby: #26c9c3;
-
-  appearance: none;
-  background: var(--bar-bg);
-  ;
-  border-radius: 10px;
-  position: relative;
-  width: 100%;
-  height: 11px;
-  outline: none;
-}
-
-/* progress bar - safari */
-.progressBar::-webkit-slider-runnable-track {
-  background: var(--bar-bg);
-  ;
-  border-radius: 10px;
-  position: relative;
-  width: 100%;
-  height: 11px;
-  outline: none;
-}
-
-/* progress bar - chrome and safari */
-.progressBar::before {
-  content: '';
-  height: 11px;
-  width: var(--seek-before-width);
-  background-color: var(--seek-before-color);
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  cursor: pointer;
-}
-
-/* knobby - chrome and safari */
-.progressBar::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  height: 15px;
-  width: 15px;
-  border-radius: 50%;
-  border: none;
-  background-color: var(--knobby);
-  cursor: pointer;
-  position: relative;
-  margin: -2px 0 0 0;
-  z-index: 3;
-  box-sizing: border-box;
-}
-
-/* knobby while dragging - chrome and safari */
-.progressBar:active::-webkit-slider-thumb {
-  transform: scale(1.2);
-  background: var(--selectedKnobby);
-}

@@ -1,6 +1,8 @@
 import { MusicLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
 // app
+//import
+import Music from "../components/music/Music";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -29,7 +31,7 @@ export default function Homepage() {
 
   return (
     <div>
-      <MusicLayout setMode={setMode} />
+      <Music setMode={setMode} />
     </div>
   );
 }

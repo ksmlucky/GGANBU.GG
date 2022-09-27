@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background: var(--black2);
-  border-bottom: 1px solid var(--gold3);
+  background: var(--header);
+  border-bottom: 1px solid var(--border-on);
   grid-area: h;
 }
 
@@ -12,6 +12,7 @@
   text-align: center;
   font-size: clamp(1vw, 1.5vw, 2vw);
   flex-grow: 1;
+  color: var(--text-logo);
 }
 
 .logo:hover{

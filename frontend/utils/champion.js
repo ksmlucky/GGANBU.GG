@@ -1568,7 +1568,7 @@ export default function championList() {
       R: "FiddleSticksR",
       index: 156,
       ko: "피들스틱",
-      en: "Fiddlesticks",
+      en: "FiddleSticks",
     },
     {
       passive: "Fiora_P",

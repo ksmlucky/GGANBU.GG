@@ -13,11 +13,7 @@ export default function SkillQuiz({setMode}) {
   const intervalId = useRef(null);
 
   useEffect(()=>{
-
-  },[])
-  useEffect(()=>{
     setValue("");
-    console.log("점수 : "+score)
   },[randomChampion,randomSkill])
 
   return (
@@ -103,7 +99,7 @@ export default function SkillQuiz({setMode}) {
                     return Math.floor(Math.random()*5);
                 })
             }}>
-            제출
+            입력
             </button>
         </div>
         </>

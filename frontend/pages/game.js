@@ -21,7 +21,7 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function Homepage() {
+export default function Game() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {

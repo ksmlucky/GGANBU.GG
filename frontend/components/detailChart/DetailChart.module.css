@@ -1,19 +1,25 @@
-.component{
-    display :flex;
-    flex-direction : row;
+.component {
+    display: flex;
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
-.chart{
+
+.chart {
     background-color: burlywood;
-    width : 40vw;
-    height : 40vw;
+    width: 40vw;
+    height: 40vw;
 }
-.canvas{
-    background-color :black;
-    width : 80%;
-    height :80%;
+
+.canvas {
+    background-color: black;
+    width: 80%;
+    height: 80%;
 }
+
 .ul {
-    background-color :red;
+    background-color: red;
     list-style: none;
     display: flex;
     flex-direction: row;
@@ -27,12 +33,12 @@
     max-height: 40vw;
     padding: 0.5vw;
     overflow-y: scroll;
-  }
+}
 
 .ul::-webkit-scrollbar {
     width: 10px;
 }
-  
+
 .li {
     text-decoration: none;
     padding-bottom: 1px;
@@ -45,6 +51,7 @@
     background: none;
     border: none;
 }
+
 .btn:hover {
     cursor: url(/cursor/cursorPointer.png), auto;
 }
@@ -53,10 +60,10 @@
     padding-top: 10px;
     font-size: 0.8vw;
     text-align: center;
-  }
+}
 
-  .img {
+.img {
     width: 5vw;
     height: auto;
     animation: showeffect 1s ease;
-  }
+}

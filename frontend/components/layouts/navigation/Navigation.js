@@ -32,7 +32,7 @@ export default function Navigation() {
                     className={styles.li}
                     style={{
                       boxShadow:
-                        item.links === router.pathname
+                        item.links === router.pathname || (router.pathname !== "/" && router.pathname.includes(item.links))
                           ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
                           : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
 

@@ -27,16 +27,16 @@ export default function DetailChampion({ mode }) {
         <div className={styles.container}>
           <div className={styles.buttonContainer}>
             {id ? (
-              <span className={styles.champname}>{selectdata}</span>
+              <span className={styles.champname}>{id}</span>
             ) : null}
             <button onClick={() => Setselectdata("map")} style={{
-              boxShadow: selectdata === "map" ? "inset 3px 3px 10px #a27e31, inset -3px - 3px 10px #eeb847" : "3px 3px 10px #a27e31, -3px -3px 10px #eeb847",
+              boxShadow: selectdata === "map" ? "inset 5px 5px 10px #b08835, inset -5px -5px 10px #e0ae43" : "5px 5px 10px #b08835, -5px -5px 10px #e0ae43",
             }}>Lines</button>
             <button onClick={() => Setselectdata("chart")} style={{
-              boxShadow: selectdata === "chart" ? "inset 3px 3px 10px #a27e31, inset -3px - 3px 10px #eeb847" : "3px 3px 10px #a27e31, -3px -3px 10px #eeb847",
+              boxShadow: selectdata === "chart" ? "inset 5px 5px 10px #b08835, inset -5px -5px 10px #e0ae43" : "5px 5px 10px #b08835, -5px -5px 10px #e0ae43",
             }}>compare</button>
             <button onClick={() => Setselectdata("cloud")} style={{
-              boxShadow: selectdata === "cloud" ? "inset 3px 3px 10px #a27e31, inset -3px - 3px 10px #eeb847" : "3px 3px 10px #a27e31, -3px -3px 10px #eeb847",
+              boxShadow: selectdata === "cloud" ? "inset 5px 5px 10px #b08835, inset -5px -5px 10px #e0ae43" : "5px 5px 10px #b08835, -5px -5px 10px #e0ae43",
             }}>wordcloud</button>
           </div>
           <div className={styles.contentContainer}>

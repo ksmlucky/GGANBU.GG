@@ -24,6 +24,8 @@
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.2.0",
     "react-wordcloud": "^1.2.7",
+    "regexpu-core": "^5.2.1",
+    "to-fast-properties": "^4.0.0",
     "swiper": "^8.4.2",
     "three": "^0.144.0",
     "unicode-match-property-ecmascript": "^2.0.0",

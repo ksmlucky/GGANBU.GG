@@ -41,7 +41,7 @@ export default function DetailChampion({ mode }) {
           </div>
           <div className={styles.contentContainer}>
             {selectdata && selectdata === "map" ? (
-              <DetailMap mode={mode} />
+              <DetailMap mode={mode}/>
             ) : null}
             {selectdata && selectdata === "chart" ? <DetailChart id={id} championName={championName} /> : null}
             {selectdata && selectdata === "cloud" ? <Wordcloud /> : null}

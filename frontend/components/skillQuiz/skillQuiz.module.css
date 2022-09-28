@@ -28,6 +28,12 @@
     margin-top :1vw;
     color :black;
   }
+  .answer{
+    color : green;
+  }
+  .wrong{
+    color :red;
+  }
   .btn{
     text-decoration: none;
     text-align: center;

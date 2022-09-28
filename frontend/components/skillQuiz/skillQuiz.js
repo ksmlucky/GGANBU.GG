@@ -22,7 +22,7 @@ export default function SkillQuiz({setMode}) {
         {gameStart === false &&
         <div className={styles.container}>
             <div className={styles.quiz}>
-            1분동안 최대한 많은 문제를 맞추세요!
+            1분동안 제시된 스킬을 가진 챔피언을 맞추세요!
             </div>
             <button className={styles.btn} onClick={()=>{
                 setGameStart(true);
@@ -109,7 +109,8 @@ export default function SkillQuiz({setMode}) {
             }}>
             입력
             </button>
-            {info}
+
+            <div className={info==="맞았습니다!" ? styles.answer : styles.wrong}>{info}</div>
             <div className={styles.score}>맞힌 갯수 : {score}</div>
         </div>
         </>
@@ -117,10 +118,10 @@ export default function SkillQuiz({setMode}) {
         {gameStart === true && timer <0 &&
             <div className={styles.container} >    
             {score}개를 맞추셨어요!
-            {score < 2 && " 좀더 분발하세요!"}
-            {score < 5 && score >=2 && " 롤을 해보긴 하셨군요."}
-            {score < 10 && score >=5 && " 상당한 실력의 소유자시군요!"}
-            {score >= 10 && " 대단한 롤창이십니다..!!"}
+            {score < 5 && " 좀더 분발하세요!"}
+            {score < 10 && score >=5 && " 롤을 해보긴 하셨군요."}
+            {score < 15 && score >=10 && " 상당한 실력의 소유자시군요!"}
+            {score >= 15 && " 롤을 그만하셔야 될 것 같습니다!"}
             <button className={styles.btn} onClick={()=>{
                 setGameStart(false);
                 setScore(0);

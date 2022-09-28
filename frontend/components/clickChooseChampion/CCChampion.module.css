@@ -1,10 +1,55 @@
+.flexbox {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .main {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
-  background: var(--gray5);
-  grid-area: m;
+  background: var(--main);
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+}
+
+.titlecontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  margin-top: 20px;
+  gap: 10px;
+  position: absolute;
+  top: 0;
+}
+
+.h1 {
+  width: 100%;
+  font-size: 3vw;
+  text-align: center;
+}
+
+.titleout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  background: url(/border/under_title.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 18%;
+  height: 2vw;
 }
 
 .choose {
@@ -13,8 +58,9 @@
   justify-content: center;
   align-items: center;
   gap: 1vw;
-  height: 60vw;
-  max-height: 45vw;
+  height: 80%;
+  position: relative;
+  z-index: 1;
 }
 
 .ul {
@@ -26,11 +72,12 @@
   align-items: center;
   align-content: flex-start;
   gap: 0.7vw;
-  width: 55vw;
-  height: 45vw;
-  max-height: 40vw;
+  width: 45vw;
+  height: 75%;
   padding: 0.5vw;
+  overflow: hidden;
   overflow-y: scroll;
+  position: relative;
 }
 
 .ul::-webkit-scrollbar {
@@ -49,6 +96,12 @@
 
 .img {
   width: 7vw;
+  height: 10%;
+}
+
+.border {
+  position: absolute;
+  width: 7vw;
   height: auto;
 }
 
@@ -56,6 +109,7 @@
   padding-top: 10px;
   font-size: 0.8vw;
   text-align: center;
+  color: var(--text);
 }
 
 .btn {

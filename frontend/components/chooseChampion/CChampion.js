@@ -17,6 +17,8 @@ export default function ChooseChampion() {
 
   const [selectline, Setselectline] = useState("top");
 
+  const [makefive, Setmakefive] = useState(false);
+
   useEffect(() => {
     SetSelectedchampion([]);
   }, [selectline]);
@@ -37,77 +39,103 @@ export default function ChooseChampion() {
   };
 
   return (
-    <>
-      <main className={styles.main}>
-        <LeftCham
-          pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
-          selectedchampion={selectedchampion}
-          SetSelectedchampion={SetSelectedchampion}
-          pickchampion={pickchampion}
-          pickchampionEng={pickchampionEng}
-          Setselectline={Setselectline}
-          SetLeftchampion={SetLeftchampion}
-        />
-        <div className={styles.choose}>
-          <ul className={styles.ul}>
-            {clist
-              .filter((value) => {
-                if (
-                  csinput == "" ||
-                  value.ko.toLowerCase().includes(csinput.toLocaleLowerCase())
-                ) {
-                  return value;
-                }
-              })
-              .map((item, idx) => {
-                return (
-                  <li key={idx} className={styles.li}>
-                    <button className={styles.btn}>
-                      <img
-                        src={`/champion/tiles/${item.en}_0.jpg`}
-                        id={item.ko}
-                        alt={item.en}
-                        index={item.index}
-                        selected={item.selected}
-                        className={styles.img}
-                        draggable={
-                          selectedchampion.indexOf(item.ko) === -1
-                            ? true
-                            : false
-                        }
-                        style={{
-                          filter:
+    <div>
+      <div className={styles.flexbox}>
+        <div className={styles.main}>
+                  <div className={styles.titlecontainer}>
+          <div className={styles.h1}>Select Champions</div>
+          <div  className={styles.titleout}> <div className={styles.title}></div></div>
+        </div>
+          <button
+            className={styles.givefive}
+            onClick={() => {
+              Setmakefive(true);
+            }}
+            style={{
+              boxShadow: makefive
+                ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
+                : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+              color: makefive ? "var(--select)" : "var(--text)",
+            }}
+          >
+            five
+          </button>
+          <LeftCham
+            pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
+            selectedchampion={selectedchampion}
+            SetSelectedchampion={SetSelectedchampion}
+            pickchampion={pickchampion}
+            pickchampionEng={pickchampionEng}
+            Setselectline={Setselectline}
+            SetLeftchampion={SetLeftchampion}
+            makefive={makefive}
+            Setmakefive={Setmakefive}
+          />
+          <div className={styles.choose}>
+            <ul className={styles.ul}>
+            <div className={styles.round}></div>
+              {clist
+                .filter((value) => {
+                  if (
+                    csinput == "" ||
+                    value.ko.toLowerCase().includes(csinput.toLocaleLowerCase())
+                  ) {
+                    return value;
+                  }
+                })
+                .map((item, idx) => {
+                  return (
+                    <li key={idx} className={styles.li}>
+                      <div className={styles.btn}>
+                        <img
+                          src={`/champion/tiles/${item.en}_0.jpg`}
+                          id={item.ko}
+                          alt={item.en}
+                          index={item.index}
+                          selected={item.selected}
+                          className={styles.img}
+                          draggable={
                             selectedchampion.indexOf(item.ko) === -1
-                              ? "saturate(1)"
-                              : "saturate(0)",
-                        }}
-                        onDragStart={onDragStart}
-                        onDragEnd={onDragEnd}
-                        // ref={(el) => (refer.current[idx] = el)}
-                      />
-                      <span className={styles.name}>{item.ko}</span>
-                    </button>
-                  </li>
-                );
-              })}
-          </ul>
-          <CSInput
-            csInput={csInput}
+                              ? true
+                              : false
+                          }
+                          style={{
+                            filter:
+                              selectedchampion.indexOf(item.ko) === -1
+                                ? "saturate(1)"
+                                : "saturate(0)",
+                          }}
+                          onDragStart={onDragStart}
+                          onDragEnd={onDragEnd}
+                          // ref={(el) => (refer.current[idx] = el)}
+                        />
+                        <span className={styles.name}>{item.ko}</span>
+                      </div>
+                    </li>
+                  );
+                })}
+            </ul>
+            <CSInput
+              csInput={csInput}
+              selectline={selectline}
+              leftchampion={leftchampion}
+              rightchampion={rightchampion}
+            />
+          </div>
+          <RightCham
+            pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
+            selectedchampion={selectedchampion}
+            SetSelectedchampion={SetSelectedchampion}
+            pickchampion={pickchampion}
+            pickchampionEng={pickchampionEng}
             selectline={selectline}
-            leftchampion={leftchampion}
-            rightchampion={rightchampion}
+            SetRightchampion={SetRightchampion}
+            makefive={makefive}
+            Setmakefive={Setmakefive}
           />
         </div>
-        <RightCham
-          pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
-          selectedchampion={selectedchampion}
-          SetSelectedchampion={SetSelectedchampion}
-          pickchampion={pickchampion}
-          pickchampionEng={pickchampionEng}
-          selectline={selectline}
-          SetRightchampion={SetRightchampion}
-        />
-      </main>
-    </>
+      </div>
+    </div>
   );
 }

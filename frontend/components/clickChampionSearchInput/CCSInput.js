@@ -12,10 +12,9 @@ export default function CCSInput({ csInput, pickchampionEng }) {
     csInput(champion_name);
   }
   const result = `/detail/[id]`;
-
   return (
     <form className={styles.container}>
-      <div className="search">
+      <div className={styles.search}>
         <input
           type="search"
           id="search"
@@ -25,7 +24,9 @@ export default function CCSInput({ csInput, pickchampionEng }) {
           onDragOver={(event) => {
             dragover(event);
           }}
+          required={true}
         />
+        <i></i>
       </div>
       <Link href={`/detail/${pickchampionEng}`}>
         <button className={styles.btn}>Show</button>

@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--black2);
+    background: var(--header);
     flex-grow: 10;
     height: 100%;
 }
@@ -28,11 +28,17 @@
     text-decoration: none;
     text-align: center;
     font-weight: 500;
-    color: var(--gray2);
+    color: var(--nav-off);
     font-size: clamp(0.5vw, 1vw, 1.5vw);
+    padding: 0.7vw 1vw;
+    border-radius: 10px;
+box-shadow: 3px 3px 10px var(--btn-on-s),
+        -3px -3px 10px var(--btn-on-l);
 }
 
 .li:hover {
-    color: var(--white2);
+    color: var(--select);
     cursor: url(/cursor/cursorPointer.png), auto;
+    box-shadow: inset 3px 3px 10px var(--btn-off-s),
+            inset -3px -3px 10px var(--btn-off-l);
 }

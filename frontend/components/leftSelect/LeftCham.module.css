@@ -1,56 +1,77 @@
+.flexbox {
+  position: relative;
+  width: 20vw;
+  height: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
+  width: 100%;
   height: 100%;
-  gap: 3vw;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  padding-top: 0.7vw;
-  padding-bottom: 2.5vw;
+  position: absolute;
 }
 
 .users {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  gap: 20px;
+  /* gap: 20px; */
+  width: 100%;
+  height: 20%;
+  position: relative;
+}
+
+.background{
+  position: absolute;
+  width: 90%;
+  height: 100%;
+  background: url(/border/selectline.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 35%;
+  z-index: 0;
 }
 
 .arrow {
-  width: 2vw;
-  height: 3vw;
+  width: 0.7vw;
+  height: 70%;
+  background: var(--select-line);
 }
 
-.btn {
-  background: none;
-  border: 5px solid var(--gray3);
-  padding: 1px;
-  width: 5.5vw;
+.bg {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  width: 75%;
+  height: 90%;
+  z-index: 2;
 }
 
-.btncham{
-  /* background: none; */
+.lineImg {
+  width: 5vw;
+  height: 50%;
+  margin-right: 10%;
+}
+
+.btncham {
   border: none;
   padding: 0;
-  width: 5vw;
-  border: 2px solid var(--gold3);
+  width: 6vw;
+  height: 80%;
 }
 
-.btn:hover {
+.lineImg:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .btncham:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
-}
-
-.lineImg {
-  width: 4vw;
-  height: auto;
-}
-
-.championpick{
-  width: 100%;
-  height: 100%;
 }

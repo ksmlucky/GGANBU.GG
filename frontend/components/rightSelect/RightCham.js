@@ -9,6 +9,8 @@ export default function RightCham({
   pickchampionEng,
   selectline,
   SetRightchampion,
+  makefive,
+  Setmakefive,
 }) {
   let [line, Setline] = useState(""); //현재 라인 선택(영어)
   let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
@@ -18,7 +20,7 @@ export default function RightCham({
       lines: "top",
       champ: "",
       kchamp: "",
-      links: "/line/top.png",
+      links: "/line/top.svg",
       idx: "",
     },
     {
@@ -26,7 +28,7 @@ export default function RightCham({
       lines: "jungle",
       champ: "",
       kchamp: "",
-      links: "/line/jungle.png",
+      links: "/line/jungle.svg",
       idx: "",
     },
     {
@@ -34,15 +36,15 @@ export default function RightCham({
       lines: "mid",
       champ: "",
       kchamp: "",
-      links: "/line/mid.png",
+      links: "/line/mid.svg",
       idx: "",
     },
-    { id: "4", lines: "bot", champ: "", links: "/line/bot.png", idx: "" },
+    { id: "4", lines: "bot", champ: "", links: "/line/bot.svg", idx: "" },
     {
       id: "5",
       lines: "support",
       champ: "",
-      links: "/line/support.png",
+      links: "/line/support.svg",
       idx: "",
     },
   ]);
@@ -51,17 +53,37 @@ export default function RightCham({
 
   useEffect(() => {
     if (selectline === "top") {
-      Setdisableline(["top", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["top", "jungle"]);
+      }
     } else if (selectline === "jungle") {
-      Setdisableline(["jungle", "top", "mid"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["jungle", "top", "mid"]);
+      }
     } else if (selectline === "mid") {
-      Setdisableline(["mid", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["mid", "jungle"]);
+      }
     } else if (selectline === "bot") {
-      Setdisableline(["bot", "support"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["bot", "support"]);
+      }
     } else if (selectline === "support") {
-      Setdisableline(["support", "bot"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["support", "bot"]);
+      }
     }
-  }, [selectline]);
+  }, [selectline, makefive]);
 
   useEffect(() => {
     let newlinecham = lineCham.map((check) => {
@@ -120,9 +142,13 @@ export default function RightCham({
           disableline.indexOf(event.target.id) !== -1 &&
           event.target.id !== line
         ) {
-          event.target.src = `/images/none.png`;
+          event.target.src = `/transparent.png`;
         } else {
-          event.target.src = `/item/noItem.png`;
+          event.target.src = `/sleepyporo.gif`;
+          event.target.style.background =
+            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          event.target.style.boxShadow =
+            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -152,9 +178,14 @@ export default function RightCham({
           disableline.indexOf(event.target.id) !== -1 &&
           event.target.id !== line
         ) {
-          event.target.src = `/images/none.png`;
+          event.target.src = `/transparent.png`;
+          console.log(event);
         } else {
-          event.target.src = `/item/noItem.png`;
+          event.target.src = `/sleepyporo.gif`;
+          event.target.style.background =
+            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          event.target.style.boxShadow =
+            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -162,41 +193,58 @@ export default function RightCham({
 
   return (
     <>
-      <div className={styles.container}>
-        {Array.from(lineCham).map((item) => {
-          return (
-            <div className={styles.users} key={item.id}>
-              <img
-                className={styles.btncham}
-                onClick={() => {
-                  reset(item.id, item.lines);
-                }}
-                onDragOver={(event) => dragOver(event)}
-                onDragEnter={(event) => dragEnter(event)}
-                onDragLeave={(event) => dragLeave(event, item.champ)}
-                onDrop={(event) => Drop(event, item.id)}
-                id={item.lines}
-                src={
-                  item.champ
-                    ? `/champion/tiles/${item.champ}_0.jpg`
-                    : disableline.indexOf(item.lines) !== -1 &&
-                      item.lines !== line
-                    ? "/images/none.png"
-                    : "/item/noItem.png"
-                }
-                draggable={false}
-              ></img>
-              <button
-                className={styles.btn}
-                onClick={() => {
-                  reset(item.id, item.lines);
-                }}
-              >
-                <img src={item.links} className={styles.lineImg} />
-              </button>
-            </div>
-          );
-        })}
+      <div className={styles.flexbox}>
+        <div className={styles.container}>
+          {Array.from(lineCham).map((item) => {
+            return (
+              <div className={styles.users} key={item.id}>
+                <div className={styles.bg}>
+                  <img
+                    className={styles.btncham}
+                    onClick={() => {
+                      reset(item.id, item.lines);
+                    }}
+                    onDragOver={(event) => dragOver(event)}
+                    onDragEnter={(event) => dragEnter(event)}
+                    onDragLeave={(event) => dragLeave(event, item.champ)}
+                    onDrop={(event) => Drop(event, item.id)}
+                    id={item.lines}
+                    src={
+                      item.champ
+                        ? `/champion/tiles/${item.champ}_0.jpg`
+                        : disableline.indexOf(item.lines) !== -1 &&
+                          item.lines !== line
+                        ? "/transparent.png"
+                        : "/sleepyporo.gif"
+                    }
+                    draggable={false}
+                    style={{
+                      boxShadow:
+                        "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+                      background:
+                        disableline.indexOf(item.lines) !== -1 &&
+                        item.lines !== line
+                          ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
+                          : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
+                    }}
+                  ></img>
+
+                  <img
+                    src={item.links}
+                    className={styles.lineImg}
+                    onClick={() => {
+                      reset(item.id, item.lines);
+                    }}
+                  />
+                </div>
+                {item.lines == selectline ? (
+                  <div className={styles.background}></div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );

@@ -4,8 +4,9 @@
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
-  background: var(--gray5);
+  background: var(--main);
   grid-area: m;
+  position: relative;
 }
 
 .resultcontainer {
@@ -18,6 +19,10 @@
   padding-right: 5vw;
   align-items: flex-start;
   justify-content: space-around;
+}
+
+.name{
+  color: black;
 }
 
 .top {

@@ -1,6 +1,6 @@
 import { SelectionLayout } from "../../components/layouts/index";
 import React, { useEffect } from "react";
-
+import SelectionPage from "../../components/selectionPage/SelectionPage";
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
 
@@ -28,8 +28,8 @@ export default function Plays() {
   }, [mode]);
 
   return (
-    <div>
-      <SelectionLayout setMode={setMode} mode={mode} />
-    </div>
+    <>
+      <SelectionPage setMode={setMode} mode={mode} />
+    </>
   );
 }

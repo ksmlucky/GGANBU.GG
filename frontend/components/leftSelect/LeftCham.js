@@ -1,5 +1,6 @@
 import styles from "./LeftCham.module.css";
 import { useEffect, useState } from "react";
+import { classNames } from "./../../utils/classNames";
 
 export default function LeftCham({
   pickchampionindex,
@@ -9,6 +10,8 @@ export default function LeftCham({
   pickchampionEng,
   Setselectline,
   SetLeftchampion,
+  makefive,
+  Setmakefive,
 }) {
   let [line, Setline] = useState("top"); //현재 라인 선택(영어)
   let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
@@ -18,7 +21,7 @@ export default function LeftCham({
       lines: "top",
       champ: "",
       kchamp: "",
-      links: "/line/top.png",
+      links: "/line/top.svg",
       idx: "",
     },
     {
@@ -26,7 +29,7 @@ export default function LeftCham({
       lines: "jungle",
       champ: "",
       kchamp: "",
-      links: "/line/jungle.png",
+      links: "/line/jungle.svg",
       idx: "",
     },
     {
@@ -34,15 +37,15 @@ export default function LeftCham({
       lines: "mid",
       champ: "",
       kchamp: "",
-      links: "/line/mid.png",
+      links: "/line/mid.svg",
       idx: "",
     },
-    { id: "4", lines: "bot", champ: "", links: "/line/bot.png", idx: "" },
+    { id: "4", lines: "bot", champ: "", links: "/line/bot.svg", idx: "" },
     {
       id: "5",
       lines: "support",
       champ: "",
-      links: "/line/support.png",
+      links: "/line/support.svg",
       idx: "",
     },
   ]);
@@ -51,17 +54,37 @@ export default function LeftCham({
 
   useEffect(() => {
     if (line === "top") {
-      Setdisableline(["top", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["top", "jungle"]);
+      }
     } else if (line === "jungle") {
-      Setdisableline(["jungle", "top", "mid"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["jungle", "top", "mid"]);
+      }
     } else if (line === "mid") {
-      Setdisableline(["mid", "jungle"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["mid", "jungle"]);
+      }
     } else if (line === "bot") {
-      Setdisableline(["bot", "support"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["bot", "support"]);
+      }
     } else if (line === "support") {
-      Setdisableline(["support", "bot"]);
+      if (makefive) {
+        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+      } else {
+        Setdisableline(["support", "bot"]);
+      }
     }
-  }, [line]);
+  }, [line, makefive]);
 
   function reset(id, line) {
     //선택된 챔피언 중에서 해당 챔피언을 제거
@@ -114,9 +137,13 @@ export default function LeftCham({
           disableline.indexOf(event.target.id) !== -1 &&
           event.target.id !== line
         ) {
-          event.target.src = `/images/none.png`;
+          event.target.src = `/transparent.png`;
         } else {
-          event.target.src = `/item/noItem.png`;
+          event.target.src = `/sleepyporo.gif`;
+          event.target.style.background =
+            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          event.target.style.boxShadow =
+            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -146,9 +173,14 @@ export default function LeftCham({
           disableline.indexOf(event.target.id) !== -1 &&
           event.target.id !== line
         ) {
-          event.target.src = `/images/none.png`;
+          event.target.src = `/transparent.png`;
+          console.log(event);
         } else {
-          event.target.src = `/item/noItem.png`;
+          event.target.src = `/sleepyporo.gif`;
+          event.target.style.background =
+            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          event.target.style.boxShadow =
+            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -165,51 +197,68 @@ export default function LeftCham({
 
   return (
     <>
-      <div className={styles.container}>
-        {Array.from(lineCham).map((item) => {
-          return (
-            <div className={styles.users} key={item.id}>
-              {item.lines == line ? (
-                <img
-                  src="/arrow/leftarrow.png"
-                  className={styles.arrow}
-                  id={item.lines}
-                />
-              ) : null}
-              <button
-                className={styles.btn}
-                onClick={() => {
-                  reset(item.id, item.lines);
-                  Setline(item.lines);
-                  Setselectline(item.lines);
-                  allreset(item.lines);
-                }}
-              >
-                <img src={item.links} className={styles.lineImg} />
-              </button>
-              <img
-                className={styles.btncham}
-                onClick={() => {
-                  reset(item.id, item.lines);
-                }}
-                onDragOver={(event) => dragOver(event)}
-                onDragEnter={(event) => dragEnter(event)}
-                onDragLeave={(event) => dragLeave(event, item.champ)}
-                onDrop={(event) => Drop(event, item.id)}
-                id={item.lines}
-                src={
-                  item.champ
-                    ? `/champion/tiles/${item.champ}_0.jpg`
-                    : disableline.indexOf(item.lines) !== -1 &&
-                      item.lines !== line
-                    ? "/images/none.png"
-                    : "/item/noItem.png"
-                }
-                draggable={false}
-              ></img>
-            </div>
-          );
-        })}
+      <div className={styles.flexbox}>
+        <div className={styles.container}>
+          {Array.from(lineCham).map((item) => {
+            return (
+              <div className={styles.users} key={item.id}>
+                <div className={styles.bg}>
+                  {item.lines == line ? (
+                    <img
+                      src="/transparent.png"
+                      className={styles.arrow}
+                      id={item.lines}
+                    />
+                  ) : null}
+                  <img
+                    src={item.links}
+                    className={styles.lineImg}
+                    onClick={() => {
+                      reset(item.id, item.lines);
+                      Setline(item.lines);
+                      Setselectline(item.lines);
+                      allreset(item.lines);
+                      Setmakefive(false);
+                    }}
+                  />
+                  <img
+                    className={styles.btncham}
+                    onClick={() => {
+                      reset(item.id, item.lines);
+                    }}
+                    onDragOver={(event) => dragOver(event)}
+                    onDragEnter={(event) => dragEnter(event)}
+                    onDragLeave={(event) => dragLeave(event, item.champ)}
+                    onDrop={(event) => Drop(event, item.id)}
+                    id={item.lines}
+                    src={
+                      item.champ
+                        ? `/champion/tiles/${item.champ}_0.jpg`
+                        : disableline.indexOf(item.lines) !== -1 &&
+                          item.lines !== line
+                        ? "/transparent.png"
+                        : "/sleepyporo.gif"
+                    }
+                    draggable={false}
+                    style={{
+                      boxShadow:
+                        "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+                      background:
+                        disableline.indexOf(item.lines) !== -1 &&
+                        item.lines !== line
+                          ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
+                          : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
+                    }}
+                  ></img>
+                </div>
+                {item.lines == line ? (
+                  <div className={styles.background}></div>
+                ) : null}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );

@@ -1,16 +1,24 @@
+.flexbox {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+}
+
 .main {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5em;
-  background: var(--gray5);
-  grid-area: m;
+  background: var(--main);
+
+  width: 100vw;
+  height: 100%;
 }
 
 .wordcloud {
   display: flex;
   align-items: center;
-  width: 99vw;
-  height: 80vh;
+  width: 100vw;
+  height: 100%;
 }

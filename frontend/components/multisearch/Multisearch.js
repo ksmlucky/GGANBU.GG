@@ -4,9 +4,18 @@ import styles from "./Multisearch.module.css";
 export default function Multisearch(props) {
   const search = useRef("");
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <div className={styles.container}>
-        <textarea className={styles.search} ref={search}></textarea>
+        <span className={styles.title}>소환사의 이름들을 작성해주세요</span>
+        <textarea
+          className={styles.search}
+          ref={search}
+          placeholder={`OOO 님이 방에 참가했습니다.
+OOO 님이 방에 참가했습니다.
+OOO 님이 방에 참가했습니다.
+OOO 님이 방에 참가했습니다.
+OOO 님이 방에 참가했습니다.`}
+        ></textarea>
         <div className={styles.buttons}>
           <button
             className={styles.button}
@@ -27,6 +36,6 @@ export default function Multisearch(props) {
           </button>
         </div>
       </div>
-    </main>
+    </div>
   );
 }

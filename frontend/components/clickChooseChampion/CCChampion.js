@@ -2,6 +2,7 @@ import styles from "./CCChampion.module.css";
 import championList from "../../utils/champion";
 import CCSInput from "../clickChampionSearchInput/CCSInput";
 import { useEffect, useRef, useState } from "react";
+import { div } from '@tensorflow/tfjs';
 
 export default function ClickChooseChampion(props) {
   const clist = championList(); //챔피언 목록
@@ -21,54 +22,53 @@ export default function ClickChooseChampion(props) {
 
   return (
     <>
-      <main className={styles.main}>
-        <div className={styles.choose}>
-          <ul className={styles.ul}>
-            {clist
-              .filter((value) => {
-                if (
-                  csinput == "" ||
-                  value.ko.toLowerCase().includes(csinput.toLocaleLowerCase())
-                ) {
-                  return value;
-                }
-              })
-              .map((item, idx) => {
-                return (
-                  <li key={idx} className={styles.li}>
-                    <button
-                      className={styles.btn}
-                      onClick={() => {
-                        click(item.en);
-                        if (props.clickChamp) {
-                          props.clickChamp(item.en);
-                        }
-                      }}
-                    >
-                      <img
-                        src={`/champion/tiles/${item.en}_0.jpg`}
-                        id={item.ko}
-                        alt={item.en}
-                        index={item.index}
-                        selected={item.selected}
-                        className={styles.img}
-                        style={{
-                          border:
-                            item.en === pickchampionEng
-                              ? "2px solid var(--border-on)"
-                              : "none",
-                        }}
-                        draggable={false}
-                      />
-                      <span className={styles.name}>{item.ko}</span>
-                    </button>
-                  </li>
-                );
-              })}
-          </ul>
-          <CCSInput csInput={csInput} pickchampionEng={pickchampionEng} />
+      <div className={styles.flexbox}>
+        <div className={styles.main}>
+          <div className={styles.titlecontainer}>
+            <div className={styles.h1}>Select Champion</div>
+            <div className={styles.titleout}> <div className={styles.title}></div></div>
+          </div>
+          <div className={styles.choose}>
+            <ul className={styles.ul}>
+              {clist
+                .filter((value) => {
+                  if (
+                    csinput == "" ||
+                    value.ko.toLowerCase().includes(csinput.toLocaleLowerCase())
+                  ) {
+                    return value;
+                  }
+                })
+                .map((item, idx) => {
+                  return (
+                    <li key={idx} className={styles.li}>
+                      <div className={styles.btn}>
+                        <img
+                          src={`/champion/tiles/${item.en}_0.jpg`}
+                          id={item.ko}
+                          alt={item.en}
+                          index={item.index}
+                          selected={item.selected}
+                          className={styles.img}
+                          draggable={false}
+                          onClick={() => {
+                            click(item.en);
+                            if (props.clickChamp) {
+                              props.clickChamp(item.en);
+                            }
+                          }}
+                        />
+                        {item.en === pickchampionEng ? <img src='/border/select_border.svg' className={styles.border}></img> : null}
+                        <span className={styles.name}>{item.ko}</span>
+                      </div>
+                    </li>
+                  );
+                })}
+            </ul>
+            <CCSInput csInput={csInput} pickchampionEng={pickchampionEng} />
+          </div>
         </div>
-      </main>
+      </div>
     </>
   );
 }

@@ -1,3 +1,9 @@
+.flexbox {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -5,12 +11,14 @@
   align-items: center;
   gap: 0.5em;
   background: var(--main);
-  grid-area: m;
+
+  width: 100vw;
+  height: 100%;
 }
 
 .wordcloud {
   display: flex;
   align-items: center;
-  width: 99vw;
-  height: 80vh;
+  width: 100vw;
+  height: 100%;
 }

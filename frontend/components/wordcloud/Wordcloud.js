@@ -2,6 +2,7 @@ import ReactWordcloud from "react-wordcloud";
 import styles from "./Wordcloud.module.css";
 import { useMemo, useState, useEffect } from "react";
 import words from "../../utils/words";
+import { div } from '@tensorflow/tfjs';
 
 export default function Wordcloud() {
   const champ = useMemo(() => words, []);
@@ -26,14 +27,16 @@ export default function Wordcloud() {
   };
 
   return (
-    <div className={styles.main}>
-      <div className={styles.wordcloud}>
-        <div style={{ width: "100%", height: "50%" }}>
-          {w !== null && (
-            <div>
-              <ReactWordcloud words={champ} options={options}></ReactWordcloud>
-            </div>
-          )}
+    <div className={styles.flexbox}>
+      <div className={styles.main}>
+        <div className={styles.wordcloud}>
+          <div style={{ width: "100%", height: "50%" }}>
+            {w !== null && (
+              <div>
+                <ReactWordcloud words={champ} options={options}></ReactWordcloud>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>

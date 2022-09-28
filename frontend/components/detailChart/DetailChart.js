@@ -59,19 +59,19 @@ Chart.register(
 export default function DetailChart({id, championName}) {
   const clist = championList();
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
-  const [compareChampion, setCompareChampion] = useState();
   const [bools, setBools] = useState("");
-  
+  const [customColor,setCustomColor] = useState(['rgb(255,132,132)', 'rgb(132,132,255)', 'rgb(132,255,132)','rgb(255, 255, 132)', 'rgb(255,132,255)','rgb(132,255,255)'])
+  const [customColorTranslucent,setCustomColorTranslucent] = useState(['rgba(255,132,132,0.2','rgba(132,132,255,0.2)', 'rgba(132,255,132,0.2)', 'rgba(255, 255, 132, 0.2)', 'rgba(255,132,255,0.2)','rgba(132,255,255,0.2)'])
   const [dataSet, setDataSet] = useState([{
     label: championName,
     data: [65, 59, 5, 81, 56, 55],
     fill: true,
-    backgroundColor: "rgba(255, 99, 132, 0.2)",
-    borderColor: "rgb(255, 99, 132)",
-    pointBackgroundColor: "rgb(255, 99, 132)",
+    backgroundColor: customColorTranslucent[0],
+    borderColor: customColor[0],
+    pointBackgroundColor: customColor[0],
     pointBorderColor: "#fff",
     pointHoverBackgroundColor: "#fff",
-    pointHoverBorderColor: "rgb(255, 99, 132)",
+    pointHoverBorderColor: customColor[0],
   }]);
 
   useEffect(() => {
@@ -128,7 +128,6 @@ export default function DetailChart({id, championName}) {
     if (bools) {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
-      console.log(ctxx);
       ctx.removeChild(ctxx);
 
       const canv = document.createElement("canvas");
@@ -178,7 +177,6 @@ export default function DetailChart({id, championName}) {
         },
       };
       
-
       const myChart = new Chart(newCtx, config);
     }
     setBools(true);
@@ -208,24 +206,7 @@ export default function DetailChart({id, championName}) {
                     alt={item.en}
                     index={item.index}
                     className={styles.img}
-                    onClick={() => {
-
-                      setDataSet((dataSet) => {
-                        const newDataSet = [...dataSet]
-                        newDataSet.push({
-                          label: item.ko,
-                          data: [1, 1, 2, 2, 3, 4],
-                          fill: true,
-                          backgroundColor: "rgba(255, 99, 132, 0.2)",
-                          borderColor: "rgb(255, 99, 132)",
-                          pointBackgroundColor: "rgb(255, 99, 132)",
-                          pointBorderColor: "#fff",
-                          pointHoverBackgroundColor: "#fff",
-                          pointHoverBorderColor: "rgb(255, 99, 132)",
-                        })
-                        return newDataSet
-                      })
-                    
+                    onClick={() => {                    
                       setSelectedchampion((selectedchampion)=>{
                         const newSelectedChampion = [...selectedchampion]
                         const champNum = newSelectedChampion.findIndex(i=>i === item.ko)
@@ -235,14 +216,14 @@ export default function DetailChart({id, championName}) {
                             const newDataSet = [...dataSet]
                             newDataSet.push({
                               label: item.ko,
-                              data: [1, 1, 2, 2, 3, 4],
+                              data: [23, 23, 43, 54, 65, 43],
                               fill: true,
-                              backgroundColor: "rgba(255, 99, 132, 0.2)",
-                              borderColor: "rgb(255, 99, 132)",
-                              pointBackgroundColor: "rgb(255, 99, 132)",
+                              backgroundColor: customColorTranslucent[newSelectedChampion.length],
+                              borderColor: customColor[newSelectedChampion.length],
+                              pointBackgroundColor: customColor[newSelectedChampion.length],
                               pointBorderColor: "#fff",
                               pointHoverBackgroundColor: "#fff",
-                              pointHoverBorderColor: "rgb(255, 99, 132)",
+                              pointHoverBorderColor: customColor[newSelectedChampion.length],
                             })
                             return newDataSet
                           })
@@ -252,7 +233,21 @@ export default function DetailChart({id, championName}) {
                           setDataSet((dataSet) => {
                             const newDataSet = [...dataSet]
                             const newChampName = newDataSet.findIndex(i=>i.label === item.ko)
-                            newDataSet.splice(champNum)
+                            newDataSet.splice(newChampName,1)
+                            setCustomColor((customColor)=>{
+                              const newCustomColor = [...customColor]
+                              const tempColor = newCustomColor[newChampName];
+                              newCustomColor.splice(newChampName,1);
+                              newCustomColor.push(tempColor);
+                              return newCustomColor;
+                            })
+                            setCustomColorTranslucent((customColorTranslucent)=>{
+                              const newCustomColorTranslucent = [...customColorTranslucent]
+                              const tempColor = newCustomColorTranslucent[newChampName];
+                              newCustomColorTranslucent.splice(newChampName,1);
+                              newCustomColorTranslucent.push(tempColor);
+                              return newCustomColorTranslucent;
+                            })
                             return newDataSet
                           })
                         }

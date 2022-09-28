@@ -1,6 +1,9 @@
-.component{
-    display :flex;
-    flex-direction : row;
+.component {
+    display: flex;
+    flex-direction: row;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .chart{
 
@@ -17,11 +20,13 @@
     max-height: 40vw;
     padding: 0.5vw;
 }
-.canvas{
-    background-color :black;
-    width : 80%;
-    height :80%;
+
+.canvas {
+    background-color: black;
+    width: 80%;
+    height: 80%;
 }
+
 .ul {
 
     list-style: none;
@@ -37,12 +42,12 @@
     max-height: 40vw;
     padding: 0.5vw;
     overflow-y: scroll;
-  }
+}
 
 .ul::-webkit-scrollbar {
     width: 10px;
 }
-  
+
 .li {
     text-decoration: none;
     padding-bottom: 1px;
@@ -55,6 +60,7 @@
     background: none;
     border: none;
 }
+
 .btn:hover {
     cursor: url(/cursor/cursorPointer.png), auto;
 }
@@ -63,10 +69,10 @@
     padding-top: 10px;
     font-size: 0.8vw;
     text-align: center;
-  }
+}
 
-  .img {
+.img {
     width: 5vw;
     height: auto;
     animation: showeffect 1s ease;
-  }
+}

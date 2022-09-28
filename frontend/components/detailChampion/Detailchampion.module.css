@@ -6,12 +6,13 @@
   justify-content: center;
   align-items: center;
   /* background: green; */
+  grid-area: m;
 }
 
 .container {
   position: absolute;
-  width: 99vw;
-  height: 98%;
+  width: 100vw;
+  height: 50%;
   bottom: 1%;
   /* background: var(--red1); */
   display: grid;
@@ -24,23 +25,33 @@
 
 .buttonContainer {
   grid-area: b;
-  background: yellow;
+  background: var(--select-line);
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   align-items: center;
   position: relative;
+  width: 100vw;
+  height: 200%;
 }
 
 .buttonContainer button {
-  color: black;
+  color: var(--text);
+  font-size: 1vw;
   background: none;
   border: none;
-  cursor: url(/cursor/cursorPointer.png), auto;
+  border-radius: 2px;
+  background: #C89B3C;
 }
 
 .buttonContainer button:hover {
-  background: red;
+  cursor: url(/cursor/cursorPointer.png), auto;
+}
+
+.champname {
+  position: absolute;
+  left: 1vw;
+  font-size: 1vw;
 }
 
 .contentContainer {
@@ -48,10 +59,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.profileImg{
-  position: absolute;
-  width: 4.5vw;
-  left: 3vw;
+  width: 100vw;
+  height: 100%;
+  position: relative;
 }

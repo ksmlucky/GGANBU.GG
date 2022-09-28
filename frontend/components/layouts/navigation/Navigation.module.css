@@ -37,7 +37,7 @@ box-shadow: 3px 3px 10px var(--btn-on-s),
 }
 
 .li:hover {
-    color: var(--text);
+    color: var(--select);
     cursor: url(/cursor/cursorPointer.png), auto;
     box-shadow: inset 3px 3px 10px var(--btn-off-s),
             inset -3px -3px 10px var(--btn-off-l);

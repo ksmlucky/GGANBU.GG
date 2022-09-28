@@ -1,0 +1,15 @@
+<svg width="15500" height="3500" viewBox="0 0 15500 3500" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="500" y1="3237.5" x2="15500" y2="3237.5" stroke="#BFA85A" stroke-width="25"/>
+<line x1="500" y1="237.5" x2="15500" y2="237.5" stroke="#BFA85A" stroke-width="25"/>
+<circle cx="250" cy="250" r="237.5" stroke="#BFA85A" stroke-width="25"/>
+<circle cx="250" cy="3250" r="237.5" stroke="#BFA85A" stroke-width="25"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M500 250C500 388.071 388.07 500 250 500V3000C388.07 3000 500 3111.93 500 3250H15250V250H500Z" fill="url(#paint0_linear_231_13215)"/>
+<defs>
+<linearGradient id="paint0_linear_231_13215" x1="250" y1="1750" x2="15250" y2="1750" gradientUnits="userSpaceOnUse">
+<stop stop-color="white"/>
+<stop offset="0.0001" stop-color="#CAB37D"/>
+<stop offset="1" stop-color="white" stop-opacity="0"/>
+<stop offset="1" stop-color="#BFA85A"/>
+</linearGradient>
+</defs>
+</svg>

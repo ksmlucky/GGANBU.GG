@@ -18,7 +18,8 @@ export default function Worldcup() {
   const [rightChamp, setRightChamp] = useState("");
   const [round, setRound] = useState(0);
   const [winner, setWinner] = useState("");
-
+  const [result, setResult] = useState({});
+  console.log(result);
   function shuffle(list) {
     for (let i = list.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -51,9 +52,10 @@ export default function Worldcup() {
     }
   }, [round]);
   function selected(current) {
+    console.log(nextChampList);
     if (currentList.length === 0) {
       setCurrentList(shuffle(current));
-      setNextChampList([]);
+
       setRound((round) => {
         if (round === 4) {
           return "결승";
@@ -72,18 +74,58 @@ export default function Worldcup() {
   function select(win) {
     if (round === "결승") {
       setWinner(win);
+      setResult((result) => {
+        const newResult = { ...result };
+        newResult[win.en].win++;
+        return newResult;
+      });
       selected(currentList);
     } else {
       setNextChampList((nextChampList) => {
         const newNextChampList = [...nextChampList];
         newNextChampList.push(win);
-        console.log(newNextChampList);
+        if (leftChamp === win) {
+          setResult((result) => {
+            const newResult = { ...result };
+            const w = leftChamp.en;
+            const l = rightChamp.en;
+            if (!newResult[w]) {
+              newResult[w] = { win: 1, lose: 0 };
+            } else {
+              newResult[w].win = newResult[w].win + 1;
+            }
+            if (!newResult[l]) {
+              newResult[l] = { win: 0, lose: 1 };
+            } else {
+              newResult[l].lose = 1;
+            }
+            return newResult;
+          });
+        } else {
+          setResult((result) => {
+            const newResult = { ...result };
+            const w = rightChamp.en;
+            const l = leftChamp.en;
+            if (!newResult[w]) {
+              newResult[w] = { win: 0, lose: 0 };
+            } else {
+              newResult[w].win = newResult[w].win + 1;
+            }
+            if (!newResult[l]) {
+              newResult[l] = { win: 0, lose: 0 };
+            } else {
+              newResult[l].lose = 1;
+            }
+            return newResult;
+          });
+        }
         if (currentList.length !== 0) {
           selected(currentList);
+          return newNextChampList;
         } else {
           selected(newNextChampList);
+          return [];
         }
-        return newNextChampList;
       });
     }
   }
@@ -123,6 +165,7 @@ export default function Worldcup() {
             <div className={styles.vs}>
               {round === "결과" && winner && (
                 <div>
+                  {console.log({ winner: winner.en, datas: result })}
                   <img
                     src={`/champion/splash/${winner.en}_0.jpg`}
                     className={styles.img}

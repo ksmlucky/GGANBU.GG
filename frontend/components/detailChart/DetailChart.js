@@ -90,6 +90,8 @@ export default function DetailChart({ id, championName }) {
     },
   ]);
 
+  const [temp, setTemp] = useState([[40, 43, 53, 43, 22, 11], [34, 54, 21, 33, 49, 12], [90, 17, 39, 80, 21, 33],[31, 60, 52, 13, 47,23],[31, 11, 23, 43, 54, 65]]);
+
   useEffect(() => {
     if (bools) {
       const ctx = document.getElementById("chart");
@@ -106,7 +108,7 @@ export default function DetailChart({ id, championName }) {
     let config = {
       type: "radar",
       data: {
-        labels: ["승률", "픽률", "밴률", "DPM", "솔로킬 횟수", "CC기 총 시간"],
+        labels: ["승률", "픽률", "밴률", "DPM/100", "솔로킬 횟수", "CC기 총 시간"],
         datasets: dataSet,
       },
       options: {
@@ -237,7 +239,7 @@ export default function DetailChart({ id, championName }) {
                                 const newDataSet = [...dataSet];
                                 newDataSet.push({
                                   label: item.ko,
-                                  data: [23, 23, 43, 54, 65, 43],
+                                  data: temp[newSelectedChampion.length-1],
                                   fill: true,
                                   backgroundColor:
                                     customColorTranslucent[
@@ -285,6 +287,14 @@ export default function DetailChart({ id, championName }) {
                                     return newCustomColorTranslucent;
                                   }
                                 );
+                                setTemp((temp)=>{
+                                  const newTemp = [...temp]
+                                  const tempdata = newTemp[newChampName-1];
+                                  newTemp.splice(newChampName-1,1);
+                                  newTemp.push(tempdata);
+                                  return newTemp;
+                                });
+
                                 return newDataSet;
                               });
                             } else {

@@ -1,5 +1,8 @@
 .footer {
-  position: relative;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,12 +16,14 @@
   word-spacing: 1px;
   color: var(--text);
 }
-.modecontainer{
+
+.modecontainer {
   position: absolute;
-    right: 0;
+  right: 0;
 }
+
 .mode {
   color: var(--text);
   background: var(--footer);
-  border:none;
+  border: none;
 }

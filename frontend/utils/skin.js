@@ -569,7 +569,7 @@ export default [
   "Karthus_5.jpg",
   "Karthus_9.jpg",
   "Karthus_10.jpg",
-  "Karthus_.17jpg",
+  "Karthus_17.jpg",
   "Kassadin_0.jpg",
   "Kassadin_1.jpg",
   "Kassadin_2.jpg",

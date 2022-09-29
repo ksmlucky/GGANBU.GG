@@ -1,8 +1,9 @@
 import "normalize.css/normalize.css";
 import "../styles/globals.css";
 import { BaseLayout } from "../components/layouts";
-
 import React, { useEffect } from "react";
+
+
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
 

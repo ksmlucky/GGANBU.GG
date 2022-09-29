@@ -10,6 +10,8 @@ import { EffectCards } from "swiper";
 import styles from "./Worldcup.module.css";
 import champion from "../../utils/champion";
 import skin from "../../utils/skin";
+import axios from "axios";
+import { worldcup } from "../../api/api";
 
 export default function Worldcup() {
   const [currentList, setCurrentList] = useState(champion());
@@ -17,7 +19,7 @@ export default function Worldcup() {
   const [leftChamp, setLeftChamp] = useState("");
   const [rightChamp, setRightChamp] = useState("");
   const [round, setRound] = useState(0);
-  const [winner, setWinner] = useState("");
+  const [winner, setWinner] = useState();
   const [result, setResult] = useState({});
   console.log(result);
   function shuffle(list) {
@@ -33,6 +35,15 @@ export default function Worldcup() {
     }
   }
   useEffect(() => {
+    console.log(axios({
+      method : "get",  
+      url : worldcup.getChampionByName()+"Ahri",
+      })
+        .then((res)=>{
+        console.log("성공 : "+res.data.englishname)
+      }).catch((e)=>{
+        console.log(e)
+      }))
     shuffle(currentList);
   }, []);
 
@@ -51,6 +62,25 @@ export default function Worldcup() {
       });
     }
   }, [round]);
+
+  useEffect(()=>{
+    if(winner !== undefined){
+    axios({
+      method : "post",  
+      url : worldcup.getGoldMedal(),
+      data : {
+        winner : winner.en,
+        datas : result,
+      }
+      })
+        .then((res)=>{
+        console.log("성공 : "+res.name)
+      }).catch((e)=>{
+        console.log(e)
+    });
+    }
+  },[winner])
+
   function selected(current) {
     console.log(nextChampList);
     if (currentList.length === 0) {
@@ -71,6 +101,7 @@ export default function Worldcup() {
       setCurrentList(current);
     }
   }
+
   function select(win) {
     if (round === "결승") {
       setWinner(win);
@@ -165,7 +196,8 @@ export default function Worldcup() {
             <div className={styles.vs}>
               {round === "결과" && winner && (
                 <div>
-                  {console.log({ winner: winner.en, datas: result })}
+                  {console.log({ winner: winner.en, datas: result })
+                  }
                   <img
                     src={`/champion/splash/${winner.en}_0.jpg`}
                     className={styles.img}

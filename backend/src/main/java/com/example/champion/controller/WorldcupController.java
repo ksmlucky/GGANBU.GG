@@ -12,6 +12,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin("*")
 @RestController
 public class WorldcupController {
 
@@ -21,6 +22,20 @@ public class WorldcupController {
     @GetMapping("/worldcup")
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
+
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/worldcup/winrate")
+    public ResponseEntity<List<Worldcup>> getSortedByWinRate() {
+        List<Worldcup> worldcups = worldcupService.getSortedByWinRateAllChampions();
+
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/worldcup/goldmedalcount")
+    public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
+        List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
 
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }

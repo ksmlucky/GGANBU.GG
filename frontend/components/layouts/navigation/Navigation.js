@@ -8,7 +8,7 @@ export default function Navigation() {
   const list = [
     { id: "1", text: "PLAYS", links: "/plays" },
     { id: "2", text: "CHAMPION RECOMMAND", links: "/recommand" },
-    { id: "3", text: "RANKING", links: "/ranking" },
+    { id: "3", text: "WORLDCUP", links: "/champ" },
     { id: "4", text: "CHAMPION DETAIL", links: "/detail" },
     { id: "5", text: "MUSIC", links: "/music" },
     { id: "6", text: "MULTI SEARCH", links: "/multi" },

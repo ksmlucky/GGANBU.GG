@@ -63,7 +63,7 @@ export default function Worldcup() {
     if(winner !== undefined){
     axios({
       method : "post",  
-      url : worldcup.getGoldMedal(),
+      url : worldcup.updateGoldMedal(),
       data : {
         winner : winner.en,
         datas : result,
@@ -196,22 +196,7 @@ export default function Worldcup() {
                   }
                   <button
                   onClick={()=>{
-                    axios({
-                      method : "get",  
-                      url : worldcup.getAllChampion(),
-                      })
-                        .then((res)=>{
-                          setInfo((info)=>{
-                            const newInfo = [...info];
-                            newInfo.splice(0);
-                            res.data.map((item,idx)=>{
-                              newInfo.push([idx+1, item.name, item.goldmedalCount]);
-                            })
-                            return newInfo;
-                          })
-                      }).catch((e)=>{
-                        console.log(e)
-                      })
+                   
                     setStatistics(true);
                   }}>전체 결과 보기</button>
 
@@ -310,11 +295,63 @@ export default function Worldcup() {
                       <th>순위</th>
                       <th>이미지</th>
                       <th>이름</th>
-                      <th>우승횟수</th>
-                      <th>승률(승리 횟수 / 전체 1:1대결수)</th>
+                      <th>우승횟수 <button onClick={()=>{
+                         axios({
+                          method : "get",  
+                          url : worldcup.getGoldMedalCount(),
+                          })
+                            .then((res)=>{
+                              setInfo((info)=>{
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item,idx)=>{
+                                  newInfo.push([idx+1, item.englishname, item.name, item.goldmedalcount, Number(item.winRate.toFixed(4))*100]);
+                                })
+                                // newInfo.map((item,idx)=>{
+                                //   console.log(item);
+                                // })
+                                return newInfo;
+                              })
+                          }).catch((e)=>{
+                            console.log(e)
+                          })
+                      }}></button></th>
+                      <th>승률(승리 횟수 / 전체 1:1대결수)<button onClick={()=>{
+                         axios({
+                          method : "get",  
+                          url : worldcup.getWinRate(),
+                          })
+                            .then((res)=>{
+                              setInfo((info)=>{
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item,idx)=>{
+                                  newInfo.push([idx+1, item.englishname, item.name, item.goldmedalcount, Number(item.winRate.toFixed(4))*100]);
+                                })
+                                // newInfo.map((item,idx)=>{
+                                //   console.log(item);
+                                // })
+                                return newInfo;
+                              })
+                          }).catch((e)=>{
+                            console.log(e)
+                          })                        
+
+                      }}></button></th>
                     </tr>
-                    {
-                    
+                    {info.map((item,idx)=>{
+                      <tr key={idx}>
+                        <td>{item[0]}</td>
+                        <td><img
+                        src={`/champion/tiles/${item[1]}_0.jpg`}
+                        id={item[2]}
+                        alt={item[1]}/>
+                        </td>
+                        <td>{item[2]}</td>
+                        <td>{item[3]}</td>
+                        <td>{item[4]}</td>
+                      </tr>
+                      })                 
                     }
                   </table>
                   <button onClick={()=>{

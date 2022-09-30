@@ -42,7 +42,6 @@ public class WorldcupController {
 
     @GetMapping("/worldcup/{englishname}")
     public ResponseEntity<?> getChampionByEnglishname(@PathVariable String englishname) {
-        System.out.println(englishname);
 
         try {
             return new ResponseEntity<>(worldcupService.getChampionByEnglishname(englishname), HttpStatus.OK);

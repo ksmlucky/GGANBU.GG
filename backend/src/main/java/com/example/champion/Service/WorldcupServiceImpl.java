@@ -25,17 +25,8 @@ public class WorldcupServiceImpl implements WorldcupService {
         }
     }
 
-    public String changeFiddlesticksname(String englishname) {
-        if (englishname.equals("Fiddlesticks")) {
-            englishname = "FiddleSticks";
-        }
-
-        return englishname;
-    }
-
     @Override
     public Worldcup getChampionByEnglishname(String englishname) throws WorldcupCollectionException {
-        englishname = changeFiddlesticksname(englishname);
 
         Optional<Worldcup> optionalChampion = worldcupRepository.findByEnglishname(englishname);
         if (!optionalChampion.isPresent()) {
@@ -47,7 +38,6 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateWincount(String englishname, int wincount) throws WorldcupCollectionException {
-        englishname = changeFiddlesticksname(englishname);
 
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
@@ -63,7 +53,6 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateLosecount(String englishname) throws WorldcupCollectionException {
-        englishname = changeFiddlesticksname(englishname);
 
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
@@ -79,7 +68,6 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateGoldMedalCount(String englishname) throws WorldcupCollectionException {
-        englishname = changeFiddlesticksname(englishname);
 
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 

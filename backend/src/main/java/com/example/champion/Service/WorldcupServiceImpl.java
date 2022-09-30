@@ -36,7 +36,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public Worldcup getChampionByEnglishname(String englishname) throws WorldcupCollectionException {
-        englishname = changeEnglishname(englishname);
+//        englishname = changeEnglishname(englishname);
 
         Optional<Worldcup> optionalChampion = worldcupRepository.findByEnglishname(englishname);
         if (!optionalChampion.isPresent()) {
@@ -48,7 +48,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateWincount(String englishname, int wincount) throws WorldcupCollectionException {
-        englishname = changeEnglishname(englishname);
+//        englishname = changeEnglishname(englishname);
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {
@@ -63,7 +63,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateLosecount(String englishname) throws WorldcupCollectionException {
-        englishname = changeEnglishname(englishname);
+//        englishname = changeEnglishname(englishname);
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {
@@ -78,7 +78,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateGoldMedalCount(String englishname) throws WorldcupCollectionException {
-        englishname = changeEnglishname(englishname);
+        //englishname = changeEnglishname(englishname);
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {

@@ -44,6 +44,15 @@
   background-repeat: no-repeat;
   background-size: 40vw 30vw;
 }
+.input{
+  display:flex;
+  margin : 10px;
+}
+
+.text{
+  color :black;
+}
+
 /* 
 .swiperslide:nth-child(1n) {
   background-color: rgb(206, 17, 17);

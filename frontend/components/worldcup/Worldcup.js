@@ -21,6 +21,10 @@ export default function Worldcup() {
   const [round, setRound] = useState(0);
   const [winner, setWinner] = useState();
   const [result, setResult] = useState({});
+  const [statistics, setStatistics] = useState(false);
+  const [value, setValue] = useState("");
+  const [info, setInfo] = useState([]);
+
   console.log(result);
   function shuffle(list) {
     for (let i = list.length - 1; i > 0; i--) {
@@ -35,15 +39,6 @@ export default function Worldcup() {
     }
   }
   useEffect(() => {
-    console.log(axios({
-      method : "get",  
-      url : worldcup.getChampionByName()+"Ahri",
-      })
-        .then((res)=>{
-        console.log("성공 : "+res.data.englishname)
-      }).catch((e)=>{
-        console.log(e)
-      }))
     shuffle(currentList);
   }, []);
 
@@ -64,6 +59,7 @@ export default function Worldcup() {
   }, [round]);
 
   useEffect(()=>{
+    console.log(winner);
     if(winner !== undefined){
     axios({
       method : "post",  
@@ -74,7 +70,7 @@ export default function Worldcup() {
       }
       })
         .then((res)=>{
-        console.log("성공 : "+res.name)
+          console.log("우승 : "+res.data.name);
       }).catch((e)=>{
         console.log(e)
     });
@@ -163,7 +159,7 @@ export default function Worldcup() {
   const skinList = skin;
   return (
     <main className={styles.main}>
-      {round === 0 && (
+      {round === 0 && !statistics &&(
         <div className={styles.round}>
           <button
             onClick={() => {
@@ -179,7 +175,7 @@ export default function Worldcup() {
           >
             64강
           </button>
-          <button
+          <button 
             onClick={() => {
               setRound(128);
             }}
@@ -189,7 +185,7 @@ export default function Worldcup() {
         </div>
       )}
 
-      {round !== 0 && (
+      {round !== 0 && !statistics && (
         <>
           {round}
           <div className={styles.round}>
@@ -198,13 +194,35 @@ export default function Worldcup() {
                 <div>
                   {console.log({ winner: winner.en, datas: result })
                   }
+                  <button
+                  onClick={()=>{
+                    axios({
+                      method : "get",  
+                      url : worldcup.getAllChampion(),
+                      })
+                        .then((res)=>{
+                          setInfo((info)=>{
+                            const newInfo = [...info];
+                            newInfo.splice(0);
+                            res.data.map((item,idx)=>{
+                              newInfo.push([idx+1, item.name, item.goldmedalCount]);
+                            })
+                            return newInfo;
+                          })
+                      }).catch((e)=>{
+                        console.log(e)
+                      })
+                    setStatistics(true);
+                  }}>전체 결과 보기</button>
+
                   <img
                     src={`/champion/splash/${winner.en}_0.jpg`}
                     className={styles.img}
                   ></img>
+
                 </div>
               )}
-              {round !== "결과" && leftChamp && (
+              {round !== "결과" && leftChamp && !statistics && (
                 <div className={styles.imgContainer}>
                   <Swiper
                     effect={"cards"}
@@ -229,6 +247,7 @@ export default function Worldcup() {
                     })}
                   </Swiper>
                   <button
+
                     onClick={() => {
                       select(leftChamp);
                     }}
@@ -237,7 +256,7 @@ export default function Worldcup() {
                   </button>
                 </div>
               )}
-              {round !== "결과" && rightChamp && (
+              {round !== "결과" && rightChamp && !statistics && (
                 <div className={styles.imgContainer}>
                   <Swiper
                     effect={"cards"}
@@ -274,6 +293,44 @@ export default function Worldcup() {
           </div>
         </>
       )}
+      {statistics && (
+                <div>
+                  <div className={styles.input}>
+                    <input className={styles.text}
+                    placeholder="챔피언 이름" 
+                    value={value} 
+                    onChange={(event)=>{
+                        setValue(event.target.value);
+                    }}
+                    ></input>
+                  </div>
+
+                  <table>
+                    <tr>
+                      <th>순위</th>
+                      <th>이미지</th>
+                      <th>이름</th>
+                      <th>우승횟수</th>
+                      <th>승률(승리 횟수 / 전체 1:1대결수)</th>
+                    </tr>
+                    {
+                    
+                    }
+                  </table>
+                  <button onClick={()=>{
+                    setStatistics(false);
+                    setRound(0);
+                    setNextChampList([]);
+                    setLeftChamp("");
+                    setRightChamp("");
+                    setWinner();
+                    setResult({});
+                    shuffle(currentList);
+                  }}>처음으로</button>
+                </div>
+              )
+              }
+
     </main>
   );
 }

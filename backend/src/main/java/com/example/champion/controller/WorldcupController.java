@@ -23,7 +23,7 @@ public class WorldcupController {
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
-        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(200).body(worldcups);
     }
 
     @GetMapping("/worldcup/{englishname}")

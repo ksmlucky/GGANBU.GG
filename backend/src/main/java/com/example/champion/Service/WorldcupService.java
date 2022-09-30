@@ -14,4 +14,8 @@ public interface WorldcupService {
     public void updateLosecount(String englishname) throws WorldcupCollectionException;
 
     public void updateGoldMedalCount(String englishname) throws WorldcupCollectionException;
+
+    public List<Worldcup> getSortedByWinRateAllChampions();
+
+    public List<Worldcup> getSortedByGoldmedalAllChampions();
 }

@@ -1,0 +1,21 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5em;
+  /* background: var(--main); */
+
+  width: 100vw;
+  height: 37vw;
+  top: 20px;
+}
+
+.btn {
+  color: var(--text);
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
+}

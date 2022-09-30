@@ -21,47 +21,58 @@
   justify-content: space-around;
 }
 
-.name{
-  color: black;
+.name {
+  color: var(--text);
 }
 
 .top {
   width: 13vw;
   height: 35vw;
-  background-color: white;
   margin-top: 0.5vw;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
 }
 .jug {
   width: 13vw;
   height: 35vw;
-  background-color: white;
   margin-top: 3vw;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
 }
 .mid {
   width: 13vw;
   height: 35vw;
-  background-color: white;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   margin-top: 5.5vw;
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
 }
 .bot {
   width: 13vw;
   height: 35vw;
-  background-color: white;
   text-align: center;
   margin-top: 3vw;
   text-align: center;
@@ -69,34 +80,43 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
 }
 .sup {
   width: 13vw;
   height: 35vw;
-  background-color: white;
   margin-top: 0.5vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
 }
 
 .img {
   width: 7vw;
   height: 7vw;
-  background-color: black;
+  /* background-color: black; */
 }
 
 .champ {
   width: 9vw;
   height: 10vw;
-  background-color: blue;
+  /* background-color: blue; */
 }
 
 .search {
   width: 9vw;
   height: 10vw;
-  background-color: red;
+  /* background-color: red; */
 }
 
 .button {
@@ -105,4 +125,12 @@
   position: absolute;
   top: 1.5vw;
   z-index: 100;
+  color: var(--text);
+  font-size: 1vw;
+  background: none;
+  border: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
+  /* margin-bottom: 20vw; */
 }

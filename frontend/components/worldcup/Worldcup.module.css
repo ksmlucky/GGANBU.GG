@@ -45,7 +45,9 @@
   background-size: 40vw 30vw;
 }
 .input{
+  color :black;
   display:flex;
+  justify-content: space-between;
   margin : 10px;
 }
 
@@ -53,6 +55,25 @@
   color :black;
 }
 
+.table{
+  border: 1px solid gray;
+  text-align : center;
+  width : 800px;
+  max-height: 500px;
+  padding: 0.5vw;
+
+}
+.scroll{
+  display:flex;
+  width:800px;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+.imgResult {
+  width: 5vw;
+  height: auto;
+  animation: showeffect 1s ease;
+}
 /* 
 .swiperslide:nth-child(1n) {
   background-color: rgb(206, 17, 17);

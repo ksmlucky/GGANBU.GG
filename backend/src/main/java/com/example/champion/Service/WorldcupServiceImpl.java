@@ -69,8 +69,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateGoldMedalCount(String englishname) throws WorldcupCollectionException {
-
-        englishname = changeFiddlesticksname(englishname);
+        
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {

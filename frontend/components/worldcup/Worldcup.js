@@ -196,8 +196,28 @@ export default function Worldcup() {
                   }
                   <button
                   onClick={()=>{
-                   
-                    setStatistics(true);
+                    axios({
+                      method : "get",  
+                      url : worldcup.getGoldMedalCount(),
+                      })
+                        .then((res)=>{
+                          setInfo((info)=>{
+                            const newInfo = [...info];
+
+                            res.data.map((item,idx)=>{
+                              newInfo.push({rank : idx+1, en : item.englishname, ko : item.name, goldmedal : item.goldmedalcount, winrate : Number((item.winRate*100).toFixed(2))});
+                            })
+                            // newInfo.map((item,idx)=>{
+                            //   console.log(item);
+                            // })
+                            setStatistics(true);
+                            console.log(newInfo);
+                            return newInfo;
+                          })
+                      }).catch((e)=>{
+                        console.log(e)
+                      })
+
                   }}>전체 결과 보기</button>
 
                   <img
@@ -280,7 +300,20 @@ export default function Worldcup() {
       )}
       {statistics && (
                 <div>
+                  {console.log(info)}
+
                   <div className={styles.input}>
+                  <button onClick={()=>{
+                    setStatistics(false);
+                    setRound(0);
+                    setNextChampList("");
+                    setLeftChamp("");
+                    setRightChamp("");
+                    setWinner();
+                    setResult({});
+                    setCurrentList(champion());
+                    shuffle(currentList);
+                  }}>다시하기</button>
                     <input className={styles.text}
                     placeholder="챔피언 이름" 
                     value={value} 
@@ -289,8 +322,9 @@ export default function Worldcup() {
                     }}
                     ></input>
                   </div>
-
-                  <table>
+                  <div className={styles.scroll}>
+                  <table className={styles.table}>
+                    <thead>
                     <tr>
                       <th>순위</th>
                       <th>이미지</th>
@@ -305,7 +339,7 @@ export default function Worldcup() {
                                 const newInfo = [...info];
                                 newInfo.splice(0);
                                 res.data.map((item,idx)=>{
-                                  newInfo.push([idx+1, item.englishname, item.name, item.goldmedalcount, Number(item.winRate.toFixed(4))*100]);
+                                  newInfo.push({rank : idx+1, en : item.englishname, ko : item.name, goldmedal : item.goldmedalcount, winrate : Number((item.winRate*100).toFixed(2))});
                                 })
                                 // newInfo.map((item,idx)=>{
                                 //   console.log(item);
@@ -326,7 +360,7 @@ export default function Worldcup() {
                                 const newInfo = [...info];
                                 newInfo.splice(0);
                                 res.data.map((item,idx)=>{
-                                  newInfo.push([idx+1, item.englishname, item.name, item.goldmedalcount, Number(item.winRate.toFixed(4))*100]);
+                                  newInfo.push({rank :idx+1, en : item.englishname, ko : item.name, goldmedal : item.goldmedalcount, winrate : Number((item.winRate*100).toFixed(2))});
                                 })
                                 // newInfo.map((item,idx)=>{
                                 //   console.log(item);
@@ -339,31 +373,35 @@ export default function Worldcup() {
 
                       }}></button></th>
                     </tr>
+                    </thead>
+                    <tbody>
+                    
                     {info.map((item,idx)=>{
+                      return(
                       <tr key={idx}>
-                        <td>{item[0]}</td>
+                        <td>{item.rank}</td>
                         <td><img
-                        src={`/champion/tiles/${item[1]}_0.jpg`}
-                        id={item[2]}
-                        alt={item[1]}/>
+                        src={`/champion/tiles/${item.en}_0.jpg`}
+                        id={item.ko}
+                        alt={item.en}
+                        className={styles.imgResult}
+                        />
                         </td>
-                        <td>{item[2]}</td>
-                        <td>{item[3]}</td>
-                        <td>{item[4]}</td>
+                        <td>{item.ko}</td>
+                        <td>{item.goldmedal}</td>
+                        <td>{item.winrate}%</td>
                       </tr>
-                      })                 
+                      )
+                    })   
+                                    
                     }
+
+                    </tbody>
+                    <tfoot>
+                    </tfoot>
                   </table>
-                  <button onClick={()=>{
-                    setStatistics(false);
-                    setRound(0);
-                    setNextChampList([]);
-                    setLeftChamp("");
-                    setRightChamp("");
-                    setWinner();
-                    setResult({});
-                    shuffle(currentList);
-                  }}>처음으로</button>
+                  </div>
+
                 </div>
               )
               }

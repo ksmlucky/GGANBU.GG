@@ -27,16 +27,12 @@ export default function Worldcup() {
   const [sortGoldmedal, setSortGoldmedal] = useState(false);
   const [sortWinrate, setSortWinrate] = useState(false);
 
-
-  console.log(result);
-
   function shuffle(list) {
     for (let i = list.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
       [list[i], list[j]] = [list[j], list[i]];
     }
     if (round !== 0) {
-      console.log("slice");
       return list.slice(0, round);
     } else {
       setCurrentList(list);
@@ -67,7 +63,6 @@ export default function Worldcup() {
   }, [round]);
 
   useEffect(() => {
-    console.log(winner);
     if (winner !== undefined) {
       axios({
         method: "post",
@@ -78,7 +73,6 @@ export default function Worldcup() {
         },
       })
         .then((res) => {
-          console.log("우승 : " + res.data.name);
         })
         .catch((e) => {
           console.log(e);
@@ -87,7 +81,6 @@ export default function Worldcup() {
   }, [winner]);
 
   function selected(current) {
-    console.log(nextChampList);
     if (currentList.length === 0) {
       setCurrentList(shuffle(current));
 
@@ -108,7 +101,6 @@ export default function Worldcup() {
   }
 
   function select(win) {
-    console.log(result);
     if (round === "결승") {
       setWinner(win);
       setResult((result) => {
@@ -332,7 +324,6 @@ export default function Worldcup() {
       )}
       {statistics && (
         <div>
-          {console.log(info)}
           <div className={styles.input}>
             <button
               className={styles.btn}
@@ -368,7 +359,7 @@ export default function Worldcup() {
                   <th>이미지</th>
                   <th>이름</th>
                   <th>
-                    우승횟수
+                    우승횟수 {" "}
                     <button
                       className={styles.btn}
                       onClick={() => {
@@ -392,9 +383,6 @@ export default function Worldcup() {
                                     ),
                                     });
                                   });
-                                // newInfo.map((item,idx)=>{
-                                //   console.log(item);
-                                // })
                                 return newInfo;
                               });
                               setSortGoldmedal(true);
@@ -424,9 +412,6 @@ export default function Worldcup() {
                                       ),
                                       });
                                     });
-                                  // newInfo.map((item,idx)=>{
-                                  //   console.log(item);
-                                  // })
                                   newInfo.sort(function(a, b) {
                                     return b.rank - a.rank;
                                   });
@@ -473,9 +458,6 @@ export default function Worldcup() {
                                     ),
                                   });
                                 });
-                                // newInfo.map((item,idx)=>{
-                                //   console.log(item);
-                                // })
                                 return newInfo;
                                 });
                                 setSortGoldmedal(false);

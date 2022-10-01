@@ -24,9 +24,9 @@ export default function Worldcup() {
   const [statistics, setStatistics] = useState(false);
   const [value, setValue] = useState("");
   const [info, setInfo] = useState([]);
-
   const [sortGoldmedal, setSortGoldmedal] = useState(false);
   const [sortWinrate, setSortWinrate] = useState(false);
+
 
   console.log(result);
 
@@ -208,8 +208,8 @@ export default function Worldcup() {
           <div className={styles.round}>
             <div className={styles.vs}>
               {round === "결과" && winner && (
-                <div>
-                  {console.log({ winner: winner.en, datas: result })}
+                <>
+                  <div>
                   <button
                     className={styles.btn}
                     onClick={() => {
@@ -232,11 +232,8 @@ export default function Worldcup() {
                                 ),
                               });
                             });
-                            // newInfo.map((item,idx)=>{
-                            //   console.log(item);
-                            // })
                             setStatistics(true);
-                            console.log(newInfo);
+                            setSortGoldmedal(true);
                             return newInfo;
                           });
                         })
@@ -248,11 +245,18 @@ export default function Worldcup() {
                     전체 결과 보기
                   </button>
 
+                  <div>
                   <img
                     src={`/champion/splash/${winner.en}_0.jpg`}
                     className={styles.img}
                   ></img>
-                </div>
+                  </div>
+
+                  <div>
+                    
+                  </div>
+                  </div>
+                  </>
               )}
               {round !== "결과" && leftChamp && !statistics && (
                 <div className={styles.imgContainer}>
@@ -342,6 +346,7 @@ export default function Worldcup() {
                 setRightChamp("");
                 setWinner();
                 setResult({});
+                setValue("");
               }}
             >
               다시하기
@@ -523,7 +528,7 @@ export default function Worldcup() {
                 </tr>
               </thead>
               <tbody>
-                {info.map((item, idx) => {
+                {info.filter((item)=> item.ko.includes(value)).map((item, idx) => {
                   return (
                     <tr key={idx}>
                       <td>{item.rank}</td>

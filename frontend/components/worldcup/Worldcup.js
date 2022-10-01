@@ -108,6 +108,7 @@ export default function Worldcup() {
   }
 
   function select(win) {
+    console.log(result);
     if (round === "결승") {
       setWinner(win);
       setResult((result) => {
@@ -170,39 +171,47 @@ export default function Worldcup() {
     <main className={styles.main}>
       {round === 0 && !statistics && (
         <div className={styles.round}>
-          <button
-            onClick={() => {
-              setRound(32);
-            }}
-          >
-            32강
-          </button>
-          <button
-            onClick={() => {
-              setRound(64);
-            }}
-          >
-            64강
-          </button>
-          <button
-            onClick={() => {
-              setRound(128);
-            }}
-          >
-            128강
-          </button>
+          <div className={styles.btns}>
+            <button
+              className={styles.btn}
+              onClick={() => {
+                setRound(32);
+              }}
+            >
+              32강
+            </button>
+            <button
+              className={styles.btn}
+              onClick={() => {
+                setRound(64);
+              }}
+            >
+              64강
+            </button>
+            <button
+              className={styles.btn}
+              onClick={() => {
+                setRound(128);
+              }}
+            >
+              128강
+            </button>
+          </div>
         </div>
       )}
 
       {round !== 0 && !statistics && (
         <>
-          {round}
+          {round !== "결승" && round !== "결과" && <h2>{round}강</h2>}
+          {round === "결승" && <h2>{round}</h2>}
+          {round === "결과" && <h2>{round}</h2>}
           <div className={styles.round}>
             <div className={styles.vs}>
               {round === "결과" && winner && (
                 <div>
                   {console.log({ winner: winner.en, datas: result })}
                   <button
+                    className={styles.btn}
                     onClick={() => {
                       axios({
                         method: "get",
@@ -270,11 +279,12 @@ export default function Worldcup() {
                     })}
                   </Swiper>
                   <button
+                    className={styles.btn}
                     onClick={() => {
                       select(leftChamp);
                     }}
                   >
-                    선택
+                    {leftChamp.ko}
                   </button>
                 </div>
               )}
@@ -303,11 +313,12 @@ export default function Worldcup() {
                     })}
                   </Swiper>
                   <button
+                    className={styles.btn}
                     onClick={() => {
                       select(rightChamp);
                     }}
                   >
-                    선택
+                    {rightChamp.ko}
                   </button>
                 </div>
               )}
@@ -320,6 +331,7 @@ export default function Worldcup() {
           {console.log(info)}
           <div className={styles.input}>
             <button
+              className={styles.btn}
               onClick={() => {
                 setStatistics(false);
                 setSortGoldmedal(false);
@@ -353,6 +365,7 @@ export default function Worldcup() {
                   <th>
                     우승횟수{" "}
                     <button
+                      className={styles.btn}
                       onClick={() => {
                         axios({
                           method: "get",
@@ -393,6 +406,7 @@ export default function Worldcup() {
                   <th>
                     승률(승리 횟수 / 전체 1:1대결수)
                     <button
+                      className={styles.btn}
                       onClick={() => {
                         axios({
                           method: "get",

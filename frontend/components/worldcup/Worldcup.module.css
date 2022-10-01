@@ -64,13 +64,20 @@
 
 }
 .scroll{
+  border : 1px solid black;
   display:flex;
   width:800px;
   max-height: 500px;
   overflow-y: scroll;
 }
+
 .imgResult {
   width: 5vw;
+  height: auto;
+  animation: showeffect 1s ease;
+}
+.imgSort{
+  width : 1vw;
   height: auto;
   animation: showeffect 1s ease;
 }

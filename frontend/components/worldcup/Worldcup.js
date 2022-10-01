@@ -25,7 +25,11 @@ export default function Worldcup() {
   const [value, setValue] = useState("");
   const [info, setInfo] = useState([]);
 
+  const [sortGoldmedal, setSortGoldmedal] = useState(false);
+  const [sortWinrate, setSortWinrate] = useState(false);
+
   console.log(result);
+  
   function shuffle(list) {
     for (let i = list.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -38,6 +42,7 @@ export default function Worldcup() {
       setCurrentList(list);
     }
   }
+
   useEffect(() => {
     shuffle(currentList);
   }, []);
@@ -203,9 +208,15 @@ export default function Worldcup() {
                         .then((res)=>{
                           setInfo((info)=>{
                             const newInfo = [...info];
-
+                            newInfo.splice(0);
                             res.data.map((item,idx)=>{
-                              newInfo.push({rank : idx+1, en : item.englishname, ko : item.name, goldmedal : item.goldmedalcount, winrate : Number((item.winRate*100).toFixed(2))});
+                              newInfo.push({
+                                rank : idx+1, 
+                                en : item.englishname, 
+                                ko : item.name, 
+                                goldmedal : item.goldmedalcount, 
+                                winrate : Number((item.winRate*100).toFixed(2)),
+                              });
                             })
                             // newInfo.map((item,idx)=>{
                             //   console.log(item);
@@ -301,10 +312,11 @@ export default function Worldcup() {
       {statistics && (
                 <div>
                   {console.log(info)}
-
                   <div className={styles.input}>
                   <button onClick={()=>{
                     setStatistics(false);
+                    setSortGoldmedal(false);
+                    setSortWinrate(false);
                     setRound(0);
                     setNextChampList("");
                     setLeftChamp("");
@@ -315,7 +327,7 @@ export default function Worldcup() {
                     shuffle(currentList);
                   }}>다시하기</button>
                     <input className={styles.text}
-                    placeholder="챔피언 이름" 
+                    placeholder="챔피언  이름" 
                     value={value} 
                     onChange={(event)=>{
                         setValue(event.target.value);
@@ -339,7 +351,13 @@ export default function Worldcup() {
                                 const newInfo = [...info];
                                 newInfo.splice(0);
                                 res.data.map((item,idx)=>{
-                                  newInfo.push({rank : idx+1, en : item.englishname, ko : item.name, goldmedal : item.goldmedalcount, winrate : Number((item.winRate*100).toFixed(2))});
+                                  newInfo.push({
+                                    rank : idx+1, 
+                                    en : item.englishname, 
+                                    ko : item.name, 
+                                    goldmedal : item.goldmedalcount, 
+                                    winrate : Number((item.winRate*100).toFixed(2)),
+                                  });
                                 })
                                 // newInfo.map((item,idx)=>{
                                 //   console.log(item);
@@ -349,8 +367,9 @@ export default function Worldcup() {
                           }).catch((e)=>{
                             console.log(e)
                           })
-                      }}></button></th>
-                      <th>승률(승리 횟수 / 전체 1:1대결수)<button onClick={()=>{
+                      }}><img src="/arrow/sort.png" className={styles.imgSort}></img></button></th>
+                      <th>승률(승리 횟수 / 전체 1:1대결수)
+                        <button onClick={()=>{
                          axios({
                           method : "get",  
                           url : worldcup.getWinRate(),
@@ -360,7 +379,13 @@ export default function Worldcup() {
                                 const newInfo = [...info];
                                 newInfo.splice(0);
                                 res.data.map((item,idx)=>{
-                                  newInfo.push({rank :idx+1, en : item.englishname, ko : item.name, goldmedal : item.goldmedalcount, winrate : Number((item.winRate*100).toFixed(2))});
+                                  newInfo.push({
+                                    rank :idx+1, 
+                                    en : item.englishname, 
+                                    ko : item.name, 
+                                    goldmedal : item.goldmedalcount, 
+                                    winrate : Number((item.winRate*100).toFixed(2))
+                                  });
                                 })
                                 // newInfo.map((item,idx)=>{
                                 //   console.log(item);
@@ -371,7 +396,7 @@ export default function Worldcup() {
                             console.log(e)
                           })                        
 
-                      }}></button></th>
+                      }}><img src="/arrow/sort.png" className={styles.imgSort}></img></button></th>
                     </tr>
                     </thead>
                     <tbody>

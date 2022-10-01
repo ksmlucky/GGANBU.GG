@@ -29,7 +29,7 @@ export default function Worldcup() {
   const [sortWinrate, setSortWinrate] = useState(false);
 
   console.log(result);
-  
+
   function shuffle(list) {
     for (let i = list.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -60,27 +60,31 @@ export default function Worldcup() {
           return newChampList.slice(0, round);
         }
       });
+    } else {
+      setCurrentList(champion());
+      shuffle(champion());
     }
   }, [round]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(winner);
-    if(winner !== undefined){
-    axios({
-      method : "post",  
-      url : worldcup.updateGoldMedal(),
-      data : {
-        winner : winner.en,
-        datas : result,
-      }
+    if (winner !== undefined) {
+      axios({
+        method: "post",
+        url: worldcup.updateGoldMedal(),
+        data: {
+          winner: winner.en,
+          datas: result,
+        },
       })
-        .then((res)=>{
-          console.log("우승 : "+res.data.name);
-      }).catch((e)=>{
-        console.log(e)
-    });
+        .then((res) => {
+          console.log("우승 : " + res.data.name);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
-  },[winner])
+  }, [winner]);
 
   function selected(current) {
     console.log(nextChampList);
@@ -164,7 +168,7 @@ export default function Worldcup() {
   const skinList = skin;
   return (
     <main className={styles.main}>
-      {round === 0 && !statistics &&(
+      {round === 0 && !statistics && (
         <div className={styles.round}>
           <button
             onClick={() => {
@@ -180,7 +184,7 @@ export default function Worldcup() {
           >
             64강
           </button>
-          <button 
+          <button
             onClick={() => {
               setRound(128);
             }}
@@ -197,45 +201,48 @@ export default function Worldcup() {
             <div className={styles.vs}>
               {round === "결과" && winner && (
                 <div>
-                  {console.log({ winner: winner.en, datas: result })
-                  }
+                  {console.log({ winner: winner.en, datas: result })}
                   <button
-                  onClick={()=>{
-                    axios({
-                      method : "get",  
-                      url : worldcup.getGoldMedalCount(),
+                    onClick={() => {
+                      axios({
+                        method: "get",
+                        url: worldcup.getGoldMedalCount(),
                       })
-                        .then((res)=>{
-                          setInfo((info)=>{
+                        .then((res) => {
+                          setInfo((info) => {
                             const newInfo = [...info];
                             newInfo.splice(0);
-                            res.data.map((item,idx)=>{
+                            res.data.map((item, idx) => {
                               newInfo.push({
-                                rank : idx+1, 
-                                en : item.englishname, 
-                                ko : item.name, 
-                                goldmedal : item.goldmedalcount, 
-                                winrate : Number((item.winRate*100).toFixed(2)),
+                                rank: idx + 1,
+                                en: item.englishname,
+                                ko: item.name,
+                                goldmedal: item.goldmedalcount,
+                                winrate: Number(
+                                  (item.winRate * 100).toFixed(2)
+                                ),
                               });
-                            })
+                            });
                             // newInfo.map((item,idx)=>{
                             //   console.log(item);
                             // })
                             setStatistics(true);
                             console.log(newInfo);
                             return newInfo;
-                          })
-                      }).catch((e)=>{
-                        console.log(e)
-                      })
-
-                  }}>전체 결과 보기</button>
+                          });
+                        })
+                        .catch((e) => {
+                          console.log(e);
+                        });
+                    }}
+                  >
+                    전체 결과 보기
+                  </button>
 
                   <img
                     src={`/champion/splash/${winner.en}_0.jpg`}
                     className={styles.img}
                   ></img>
-
                 </div>
               )}
               {round !== "결과" && leftChamp && !statistics && (
@@ -263,7 +270,6 @@ export default function Worldcup() {
                     })}
                   </Swiper>
                   <button
-
                     onClick={() => {
                       select(leftChamp);
                     }}
@@ -310,127 +316,147 @@ export default function Worldcup() {
         </>
       )}
       {statistics && (
-                <div>
-                  {console.log(info)}
-                  <div className={styles.input}>
-                  <button onClick={()=>{
-                    setStatistics(false);
-                    setSortGoldmedal(false);
-                    setSortWinrate(false);
-                    setRound(0);
-                    setNextChampList("");
-                    setLeftChamp("");
-                    setRightChamp("");
-                    setWinner();
-                    setResult({});
-                    setCurrentList(champion());
-                    shuffle(currentList);
-                  }}>다시하기</button>
-                    <input className={styles.text}
-                    placeholder="챔피언  이름" 
-                    value={value} 
-                    onChange={(event)=>{
-                        setValue(event.target.value);
-                    }}
-                    ></input>
-                  </div>
-                  <div className={styles.scroll}>
-                  <table className={styles.table}>
-                    <thead>
-                    <tr>
-                      <th>순위</th>
-                      <th>이미지</th>
-                      <th>이름</th>
-                      <th>우승횟수 <button onClick={()=>{
-                         axios({
-                          method : "get",  
-                          url : worldcup.getGoldMedalCount(),
+        <div>
+          {console.log(info)}
+          <div className={styles.input}>
+            <button
+              onClick={() => {
+                setStatistics(false);
+                setSortGoldmedal(false);
+                setSortWinrate(false);
+                setRound(0);
+                setNextChampList("");
+                setLeftChamp("");
+                setRightChamp("");
+                setWinner();
+                setResult({});
+              }}
+            >
+              다시하기
+            </button>
+            <input
+              className={styles.text}
+              placeholder="챔피언  이름"
+              value={value}
+              onChange={(event) => {
+                setValue(event.target.value);
+              }}
+            ></input>
+          </div>
+          <div className={styles.scroll}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>순위</th>
+                  <th>이미지</th>
+                  <th>이름</th>
+                  <th>
+                    우승횟수{" "}
+                    <button
+                      onClick={() => {
+                        axios({
+                          method: "get",
+                          url: worldcup.getGoldMedalCount(),
+                        })
+                          .then((res) => {
+                            setInfo((info) => {
+                              const newInfo = [...info];
+                              newInfo.splice(0);
+                              res.data.map((item, idx) => {
+                                newInfo.push({
+                                  rank: idx + 1,
+                                  en: item.englishname,
+                                  ko: item.name,
+                                  goldmedal: item.goldmedalcount,
+                                  winrate: Number(
+                                    (item.winRate * 100).toFixed(2)
+                                  ),
+                                });
+                              });
+                              // newInfo.map((item,idx)=>{
+                              //   console.log(item);
+                              // })
+                              return newInfo;
+                            });
                           })
-                            .then((res)=>{
-                              setInfo((info)=>{
-                                const newInfo = [...info];
-                                newInfo.splice(0);
-                                res.data.map((item,idx)=>{
-                                  newInfo.push({
-                                    rank : idx+1, 
-                                    en : item.englishname, 
-                                    ko : item.name, 
-                                    goldmedal : item.goldmedalcount, 
-                                    winrate : Number((item.winRate*100).toFixed(2)),
-                                  });
-                                })
-                                // newInfo.map((item,idx)=>{
-                                //   console.log(item);
-                                // })
-                                return newInfo;
-                              })
-                          }).catch((e)=>{
-                            console.log(e)
+                          .catch((e) => {
+                            console.log(e);
+                          });
+                      }}
+                    >
+                      <img
+                        src="/arrow/sort.png"
+                        className={styles.imgSort}
+                      ></img>
+                    </button>
+                  </th>
+                  <th>
+                    승률(승리 횟수 / 전체 1:1대결수)
+                    <button
+                      onClick={() => {
+                        axios({
+                          method: "get",
+                          url: worldcup.getWinRate(),
+                        })
+                          .then((res) => {
+                            setInfo((info) => {
+                              const newInfo = [...info];
+                              newInfo.splice(0);
+                              res.data.map((item, idx) => {
+                                newInfo.push({
+                                  rank: idx + 1,
+                                  en: item.englishname,
+                                  ko: item.name,
+                                  goldmedal: item.goldmedalcount,
+                                  winrate: Number(
+                                    (item.winRate * 100).toFixed(2)
+                                  ),
+                                });
+                              });
+                              // newInfo.map((item,idx)=>{
+                              //   console.log(item);
+                              // })
+                              return newInfo;
+                            });
                           })
-                      }}><img src="/arrow/sort.png" className={styles.imgSort}></img></button></th>
-                      <th>승률(승리 횟수 / 전체 1:1대결수)
-                        <button onClick={()=>{
-                         axios({
-                          method : "get",  
-                          url : worldcup.getWinRate(),
-                          })
-                            .then((res)=>{
-                              setInfo((info)=>{
-                                const newInfo = [...info];
-                                newInfo.splice(0);
-                                res.data.map((item,idx)=>{
-                                  newInfo.push({
-                                    rank :idx+1, 
-                                    en : item.englishname, 
-                                    ko : item.name, 
-                                    goldmedal : item.goldmedalcount, 
-                                    winrate : Number((item.winRate*100).toFixed(2))
-                                  });
-                                })
-                                // newInfo.map((item,idx)=>{
-                                //   console.log(item);
-                                // })
-                                return newInfo;
-                              })
-                          }).catch((e)=>{
-                            console.log(e)
-                          })                        
-
-                      }}><img src="/arrow/sort.png" className={styles.imgSort}></img></button></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    
-                    {info.map((item,idx)=>{
-                      return(
-                      <tr key={idx}>
-                        <td>{item.rank}</td>
-                        <td><img
-                        src={`/champion/tiles/${item.en}_0.jpg`}
-                        id={item.ko}
-                        alt={item.en}
-                        className={styles.imgResult}
+                          .catch((e) => {
+                            console.log(e);
+                          });
+                      }}
+                    >
+                      <img
+                        src="/arrow/sort.png"
+                        className={styles.imgSort}
+                      ></img>
+                    </button>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {info.map((item, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>{item.rank}</td>
+                      <td>
+                        <img
+                          src={`/champion/tiles/${item.en}_0.jpg`}
+                          id={item.ko}
+                          alt={item.en}
+                          className={styles.imgResult}
                         />
-                        </td>
-                        <td>{item.ko}</td>
-                        <td>{item.goldmedal}</td>
-                        <td>{item.winrate}%</td>
-                      </tr>
-                      )
-                    })   
-                                    
-                    }
-
-                    </tbody>
-                    <tfoot>
-                    </tfoot>
-                  </table>
-                  </div>
-
-                </div>
-              )
-              }
-
+                      </td>
+                      <td>{item.ko}</td>
+                      <td>{item.goldmedal}</td>
+                      <td>{item.winrate}%</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+              <tfoot></tfoot>
+            </table>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

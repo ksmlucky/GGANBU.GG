@@ -363,38 +363,78 @@ export default function Worldcup() {
                   <th>이미지</th>
                   <th>이름</th>
                   <th>
-                    우승횟수{" "}
+                    우승횟수
                     <button
                       className={styles.btn}
                       onClick={() => {
-                        axios({
-                          method: "get",
-                          url: worldcup.getGoldMedalCount(),
-                        })
-                          .then((res) => {
-                            setInfo((info) => {
-                              const newInfo = [...info];
-                              newInfo.splice(0);
-                              res.data.map((item, idx) => {
-                                newInfo.push({
-                                  rank: idx + 1,
-                                  en: item.englishname,
-                                  ko: item.name,
-                                  goldmedal: item.goldmedalcount,
-                                  winrate: Number(
-                                    (item.winRate * 100).toFixed(2)
-                                  ),
-                                });
-                              });
-                              // newInfo.map((item,idx)=>{
-                              //   console.log(item);
-                              // })
-                              return newInfo;
-                            });
+                        if(sortGoldmedal === false){
+                          axios({
+                            method: "get",
+                            url: worldcup.getGoldMedalCount(),
                           })
-                          .catch((e) => {
-                            console.log(e);
-                          });
+                            .then((res) => {
+                              setInfo((info) => {
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item, idx) => {
+                                  newInfo.push({
+                                    rank: idx + 1,
+                                    en: item.englishname,
+                                    ko: item.name,
+                                    goldmedal: item.goldmedalcount,
+                                    winrate: Number(
+                                      (item.winRate * 100).toFixed(2)
+                                    ),
+                                    });
+                                  });
+                                // newInfo.map((item,idx)=>{
+                                //   console.log(item);
+                                // })
+                                return newInfo;
+                              });
+                              setSortGoldmedal(true);
+                              setSortWinrate(false);
+                            })
+                            .catch((e) => {
+                              console.log(e);
+                            }); // axios 끝
+                          } //if문 끝
+                          else{
+                            axios({
+                              method: "get",
+                              url: worldcup.getGoldMedalCount(),
+                            })
+                              .then((res) => {
+                                setInfo((info) => {
+                                  const newInfo = [...info];
+                                  newInfo.splice(0);
+                                  res.data.map((item, idx) => {
+                                    newInfo.push({
+                                      rank: idx + 1,
+                                      en: item.englishname,
+                                      ko: item.name,
+                                      goldmedal: item.goldmedalcount,
+                                      winrate: Number(
+                                        (item.winRate * 100).toFixed(2)
+                                      ),
+                                      });
+                                    });
+                                  // newInfo.map((item,idx)=>{
+                                  //   console.log(item);
+                                  // })
+                                  newInfo.sort(function(a, b) {
+                                    return b.rank - a.rank;
+                                  });
+                                  return newInfo;
+                                });
+                                setSortGoldmedal(false);
+                                setSortWinrate(false);
+                              })
+                              .catch((e) => {
+                                console.log(e);
+                              }); // axios 끝
+                          } // else문 끝
+
                       }}
                     >
                       <img
@@ -408,35 +448,71 @@ export default function Worldcup() {
                     <button
                       className={styles.btn}
                       onClick={() => {
-                        axios({
-                          method: "get",
-                          url: worldcup.getWinRate(),
-                        })
-                          .then((res) => {
-                            setInfo((info) => {
-                              const newInfo = [...info];
-                              newInfo.splice(0);
-                              res.data.map((item, idx) => {
-                                newInfo.push({
-                                  rank: idx + 1,
-                                  en: item.englishname,
-                                  ko: item.name,
-                                  goldmedal: item.goldmedalcount,
-                                  winrate: Number(
-                                    (item.winRate * 100).toFixed(2)
-                                  ),
-                                });
-                              });
-                              // newInfo.map((item,idx)=>{
-                              //   console.log(item);
-                              // })
-                              return newInfo;
-                            });
+                        if(sortWinrate === false){
+                          axios({
+                            method: "get",
+                            url: worldcup.getWinRate(),
                           })
-                          .catch((e) => {
-                            console.log(e);
-                          });
-                      }}
+                            .then((res) => {
+                              setInfo((info) => {
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item, idx) => {
+                                  newInfo.push({
+                                    rank: idx + 1,
+                                    en: item.englishname,
+                                    ko: item.name,
+                                    goldmedal: item.goldmedalcount,
+                                    winrate: Number(
+                                      (item.winRate * 100).toFixed(2)
+                                    ),
+                                  });
+                                });
+                                // newInfo.map((item,idx)=>{
+                                //   console.log(item);
+                                // })
+                                return newInfo;
+                                });
+                                setSortGoldmedal(false);
+                                setSortWinrate(true);
+                              })
+                              .catch((e) => {
+                                console.log(e);
+                              }); //axios 끝
+                            }// if문 끝
+                            else{
+                              axios({
+                                method: "get",
+                                url: worldcup.getWinRate(),
+                              })
+                                .then((res) => {
+                                  setInfo((info) => {
+                                    const newInfo = [...info];
+                                    newInfo.splice(0);
+                                    res.data.map((item, idx) => {
+                                      newInfo.push({
+                                        rank: idx + 1,
+                                        en: item.englishname,
+                                        ko: item.name,
+                                        goldmedal: item.goldmedalcount,
+                                        winrate: Number(
+                                          (item.winRate * 100).toFixed(2)
+                                        ),
+                                      });
+                                    });
+                                    newInfo.sort(function(a,b){
+                                      return b.rank - a.rank;
+                                    })
+                                    return newInfo;
+                                    });
+                                    setSortGoldmedal(false);
+                                    setSortWinrate(false);
+                                  })
+                                  .catch((e) => {
+                                    console.log(e);
+                                  }); //axios 끝
+                            } // else문 끝
+                        }}
                     >
                       <img
                         src="/arrow/sort.png"

@@ -45,10 +45,8 @@ export default function Logo() {
   return (
     <>
       <div className={styles.container}>
-        <h1 className={styles.h1}>
-          <span className={styles.logo}>{showtext}</span>
-          <span> for everyone</span>
-        </h1>
+        <span className={styles.logo}>{showtext}</span>
+        <span className={styles.texts}> for everyone</span>
       </div>
     </>
   );

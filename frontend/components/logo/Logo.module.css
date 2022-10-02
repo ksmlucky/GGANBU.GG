@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+  padding: 10px;
+  margin: 20px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.logo {
+  font-size: 5rem;
+  color: var(--text);
+  border-right: 2px solid var(--border-on);
+  animation: blink 0.75s infinite;
+}
+
+.texts {
+  font-size: 5rem;
+  color: var(--text);
+}
+
+@keyframes blink {
+  from {
+    border: none;
+  }
+
+  to {
+    border-color: 2px solid var(--border-on);
+  }
+}

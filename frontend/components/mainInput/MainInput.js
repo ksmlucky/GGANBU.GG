@@ -1,10 +1,10 @@
-import styles from "./Input.module.css";
+import styles from "./MainInput.module.css";
 import Link from "next/link";
 
-export default function Input() {
+export default function MainInput() {
   return (
-    <form className={styles.container}>
-      <div className={styles.search}>
+    <div className={styles.container}>
+      <div className={styles.searchbar}>
         <input
           type="text"
           id="search"
@@ -16,6 +16,6 @@ export default function Input() {
       <Link href="/search">
         <button className={styles.btn}>Search</button>
       </Link>
-    </form>
+    </div>
   );
 }

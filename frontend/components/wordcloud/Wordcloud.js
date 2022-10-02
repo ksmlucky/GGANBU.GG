@@ -27,18 +27,14 @@ export default function Wordcloud() {
   };
 
   return (
-    <div className={styles.flexbox}>
-      <div className={styles.main}>
-        <div className={styles.wordcloud}>
-          <div style={{ width: "100%", height: "50%" }}>
-            {w !== null && (
-              <div>
-                <ReactWordcloud words={champ} options={options}></ReactWordcloud>
-              </div>
-            )}
-          </div>
+    <>
+      <div className={styles.wordcloud}>
+        <div style={{ width: "100%", height: "100%" }}>
+          {w !== null && (
+            <ReactWordcloud words={champ} options={options}></ReactWordcloud>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 }

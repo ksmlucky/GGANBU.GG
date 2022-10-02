@@ -39,28 +39,13 @@ export default function ChooseChampion() {
   };
 
   return (
-    <div>
-      <div className={styles.flexbox}>
-        <div className={styles.main}>
-                  <div className={styles.titlecontainer}>
-          <div className={styles.h1}>Select Champions</div>
-          <div  className={styles.titleout}> <div className={styles.title}></div></div>
+    <>
+      <div className={styles.main}>
+        <div className={styles.titlecontainer}>
+          <span className={styles.title}>Select Champions</span>
+          <img></img>
         </div>
-          <button
-            className={styles.givefive}
-            onClick={() => {
-              Setmakefive(true);
-            }}
-            style={{
-              boxShadow: makefive
-                ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
-                : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
-
-              color: makefive ? "var(--select)" : "var(--text)",
-            }}
-          >
-            five
-          </button>
+        <div className={styles.maincontainer}>
           <LeftCham
             pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
             selectedchampion={selectedchampion}
@@ -72,9 +57,23 @@ export default function ChooseChampion() {
             makefive={makefive}
             Setmakefive={Setmakefive}
           />
-          <div className={styles.choose}>
+          <div className={styles.uiandinput}>
+            <button
+              className={styles.givefive}
+              onClick={() => {
+                Setmakefive(true);
+              }}
+            // style={{
+            //   boxShadow: makefive
+            //     ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
+            //     : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+
+            //   color: makefive ? "var(--select)" : "var(--text)",
+            // }}
+            >
+              five
+            </button>
             <ul className={styles.ul}>
-            <div className={styles.round}></div>
               {clist
                 .filter((value) => {
                   if (
@@ -87,31 +86,29 @@ export default function ChooseChampion() {
                 .map((item, idx) => {
                   return (
                     <li key={idx} className={styles.li}>
-                      <div className={styles.btn}>
-                        <img
-                          src={`/champion/tiles/${item.en}_0.jpg`}
-                          id={item.ko}
-                          alt={item.en}
-                          index={item.index}
-                          selected={item.selected}
-                          className={styles.img}
-                          draggable={
+                      <img
+                        src={`/champion/tiles/${item.en}_0.jpg`}
+                        id={item.ko}
+                        alt={item.en}
+                        index={item.index}
+                        selected={item.selected}
+                        className={styles.img}
+                        draggable={
+                          selectedchampion.indexOf(item.ko) === -1
+                            ? true
+                            : false
+                        }
+                        style={{
+                          filter:
                             selectedchampion.indexOf(item.ko) === -1
-                              ? true
-                              : false
-                          }
-                          style={{
-                            filter:
-                              selectedchampion.indexOf(item.ko) === -1
-                                ? "saturate(1)"
-                                : "saturate(0)",
-                          }}
-                          onDragStart={onDragStart}
-                          onDragEnd={onDragEnd}
-                          // ref={(el) => (refer.current[idx] = el)}
-                        />
-                        <span className={styles.name}>{item.ko}</span>
-                      </div>
+                              ? "saturate(1)"
+                              : "saturate(0)",
+                        }}
+                        onDragStart={onDragStart}
+                        onDragEnd={onDragEnd}
+                      // ref={(el) => (refer.current[idx] = el)}
+                      />
+                      <span className={styles.name}>{item.ko}</span>
                     </li>
                   );
                 })}
@@ -136,6 +133,6 @@ export default function ChooseChampion() {
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }

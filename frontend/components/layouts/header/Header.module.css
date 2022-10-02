@@ -1,20 +1,18 @@
 .header {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  background: var(--header);
-  border-bottom: 1px solid var(--border-on);
   grid-area: h;
+  height: 100%;
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--header-border-bottom);
 }
 
 .logo {
   display: inline-block;
   text-align: center;
-  font-size: clamp(1vw, 1.5vw, 2vw);
-  flex-grow: 1;
-  color: var(--text-logo);
-}
-
-.logo:hover{
-  cursor: url(/cursor/cursorPointer.png), auto;
+  margin: 0 20px;
+  color: var(--logo);
 }

@@ -80,7 +80,7 @@ const Keyboard = () => {
     <main className={styles.main}>
       {stage === 0 && inGame === false && (
         <>
-          <h1>말파이트 궁피하기</h1>
+          <p>말파이트 궁피하기</p>
           <button
             className={styles.btn}
             onClick={() => {
@@ -91,13 +91,39 @@ const Keyboard = () => {
           </button>
         </>
       )}
+
+      {inGame === true && (
+        <video
+          controls={false}
+          autoPlay={true}
+          muted={true}
+          className={styles.video}
+        >
+          <source
+            src={`/gamevideo/stage_0${stage + 1}.mp4`}
+            type={"video/mp4"}
+          ></source>
+        </video>
+      )}
+      {stage === "GAMEOVER" && (
+        <video
+          controls={false}
+          autoPlay={true}
+          muted={true}
+          loop={true}
+          className={styles.videofail}
+        >
+          <source src={`/gamevideo/teemo.mp4`} type={"video/mp4"}></source>
+        </video>
+      )}
+
       {inGame === false && stage !== 0 && (
         <>
-          {stage === "FAST" && <div>너무 빨리 누르셨습니다.</div>}
-          {stage === "CLEAR" && <div>CLEAR</div>}
+          {stage === "FAST" && <p>너무 빨리 누르셨습니다.</p>}
+          {stage === "CLEAR" && <p>CLEAR</p>}
           {stage === "GAMEOVER" && (
             <>
-              <h1>GAMEOVER</h1>
+              <p>GAMEOVER</p>
               {score * 10}ms
             </>
           )}
@@ -109,7 +135,7 @@ const Keyboard = () => {
           )}
           {stage !== "GAMEOVER" && stage !== "CLEAR" && stage !== "FAST" && (
             <button
-              className={styles.btn}
+              className={styles.btns}
               onClick={() => {
                 startGame(stage);
               }}
@@ -119,7 +145,7 @@ const Keyboard = () => {
           )}
           {stage === "GAMEOVER" && (
             <button
-              className={styles.btn}
+              className={styles.btns}
               onClick={() => {
                 reset();
               }}
@@ -129,7 +155,7 @@ const Keyboard = () => {
           )}
           {stage === "CLEAR" && (
             <button
-              className={styles.btn}
+              className={styles.btns}
               onClick={() => {
                 reset();
               }}
@@ -139,7 +165,7 @@ const Keyboard = () => {
           )}
           {stage === "FAST" && (
             <button
-              className={styles.btn}
+              className={styles.btns}
               onClick={() => {
                 reset();
               }}
@@ -147,36 +173,6 @@ const Keyboard = () => {
               다시하기
             </button>
           )}
-        </>
-      )}
-      {inGame === true && (
-        <>
-          {/* <h1>헤헤</h1> */}
-          <video
-            controls={false}
-            autoPlay={true}
-            muted={true}
-            style={{ width: "60vw", marginTop: "20px" }}
-          >
-            <source
-              src={`/gamevideo/stage_0${stage + 1}.mp4`}
-              type={"video/mp4"}
-            ></source>
-          </video>
-        </>
-      )}
-      {stage === "GAMEOVER" && (
-        <>
-          {/* <h1>헤헤</h1> */}
-          <video
-            controls={false}
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            style={{ width: "45vw" }}
-          >
-            <source src={`/gamevideo/teemo.mp4`} type={"video/mp4"}></source>
-          </video>
         </>
       )}
     </main>

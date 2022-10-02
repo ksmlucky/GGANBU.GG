@@ -209,6 +209,7 @@ export default function Worldcup() {
           {round === "결승" && <h2>{round}</h2>}
           {round === "결과" && <h2>{round}</h2>}
           <div className={styles.round}>
+            <span className={styles.title}>{round}</span>
             <div className={styles.vs}>
               {round === "결과" && winner && (
                 <>
@@ -305,7 +306,6 @@ export default function Worldcup() {
                             className={styles.swiperslide}
                             style={{
                               backgroundImage: `url(/champion/splash/${el})`,
-                              objectFit: "contain",
                             }}
                           ></SwiperSlide>
                         );

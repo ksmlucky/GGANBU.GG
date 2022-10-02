@@ -1,7 +1,6 @@
+import { AiLayout } from "../../components/layouts/index";
 import React, { useEffect } from "react";
-// app
-//import
-import SkillQuiz from "../components/skillQuiz/skillQuiz";
+import Ai from "../../components/ai/Ai";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -21,7 +20,8 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function Game() {
+// app
+export default function ai() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
@@ -29,8 +29,8 @@ export default function Game() {
   }, [mode]);
 
   return (
-    <div>
-      <SkillQuiz setMode={setMode}/>
-    </div>
+    <>
+      <Ai setMode={setMode} mode={mode} />
+    </>
   );
 }

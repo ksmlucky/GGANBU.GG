@@ -1,6 +1,6 @@
-import { AiLayout } from "../components/layouts/index";
+import { AiLayout } from "../../components/layouts/index";
 import React, { useEffect } from "react";
-import Ai from "../components/ai/Ai";
+import Ai from "../../components/ai/Ai";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);

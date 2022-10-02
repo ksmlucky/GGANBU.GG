@@ -26,7 +26,7 @@ export default function Worldcup() {
   const [info, setInfo] = useState([]);
   const [sortGoldmedal, setSortGoldmedal] = useState(false);
   const [sortWinrate, setSortWinrate] = useState(false);
-
+  const [content, setContent] = useState({});
   function shuffle(list) {
     for (let i = list.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -74,6 +74,17 @@ export default function Worldcup() {
       })
         .then((res) => {
         })
+        .catch((e) => {
+          console.log(e);
+        });
+
+        axios({
+          method: "get",
+          url: worldcup.getChampionByName()+winner.en,
+        })
+        .then((res) => {
+          setContent(res.data);
+        })        
         .catch((e) => {
           console.log(e);
         });
@@ -201,53 +212,80 @@ export default function Worldcup() {
             <div className={styles.vs}>
               {round === "결과" && winner && (
                 <>
-                  <div>
-                  <button
-                    className={styles.btn}
-                    onClick={() => {
-                      axios({
-                        method: "get",
-                        url: worldcup.getGoldMedalCount(),
-                      })
-                        .then((res) => {
-                          setInfo((info) => {
-                            const newInfo = [...info];
-                            newInfo.splice(0);
-                            res.data.map((item, idx) => {
-                              newInfo.push({
-                                rank: idx + 1,
-                                en: item.englishname,
-                                ko: item.name,
-                                goldmedal: item.goldmedalcount,
-                                winrate: Number(
-                                  (item.winRate * 100).toFixed(2)
-                                ),
+                  <div className={styles.resultPage}>
+                    <div className={styles.resultBtn}>
+                      <button
+                        className={styles.btn}
+                        onClick={() => {
+                          axios({
+                            method: "get",
+                            url: worldcup.getGoldMedalCount(),
+                          })
+                            .then((res) => {
+                              setInfo((info) => {
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item, idx) => {
+                                  newInfo.push({
+                                    rank: idx + 1,
+                                    en: item.englishname,
+                                    ko: item.name,
+                                    goldmedal: item.goldmedalcount,
+                                    winrate: Number(
+                                      (item.winRate * 100).toFixed(2)
+                                    ),
+                                  });
+                                });
+                                setStatistics(true);
+                                setSortGoldmedal(true);
+                                return newInfo;
                               });
+                            })
+                            .catch((e) => {
+                              console.log(e);
                             });
-                            setStatistics(true);
-                            setSortGoldmedal(true);
-                            return newInfo;
-                          });
-                        })
-                        .catch((e) => {
-                          console.log(e);
-                        });
-                    }}
-                  >
-                    전체 결과 보기
-                  </button>
+                        }}
+                      >
+                        전체 결과 보기
+                      </button>
+                      <button
+                        className={styles.btn}
+                        onClick={() => {
+                          setStatistics(false);
+                          setSortGoldmedal(false);
+                          setSortWinrate(false);
+                          setRound(0);
+                          setNextChampList("");
+                          setLeftChamp("");
+                          setRightChamp("");
+                          setWinner();
+                          setResult({});
+                          setValue("");
+                        }}
+                      >
+                        다시하기
+                      </button>
+                  </div>
+                  <div className={styles.resultComponent}>
+                    <div className={styles.resultImg}>
+                      <img
+                        src={`/champion/splash/${winner.en}_0.jpg`}
+                        className={styles.img}
+                      ></img>
+                    </div>
+                    <div className={styles.resultContent}>
+                      <ul className={styles.ul}>
+                        <li><b>{content.name}</b>({content.englishname})</li>
+                        <li><b>난이도 : </b> {content.difficulty}</li>
+                        <li><b>챔피언 설명 : </b>{content.blurb}</li>
+                        <li><b>우승 횟수 : </b>{content.goldmedalcount}회</li>
+                        <li><b>승률(승리 횟수 / 전체 1:1대결수) : </b>{(content.winRate*100).toFixed(2)}%</li>
+                      </ul>
+                        
 
-                  <div>
-                  <img
-                    src={`/champion/splash/${winner.en}_0.jpg`}
-                    className={styles.img}
-                  ></img>
+                    </div>
                   </div>
-
-                  <div>
-                    
-                  </div>
-                  </div>
+                </div>
                   </>
               )}
               {round !== "결과" && leftChamp && !statistics && (

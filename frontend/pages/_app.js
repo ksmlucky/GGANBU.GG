@@ -28,10 +28,10 @@ export default function App({ Component, pageProps }) {
     document.body.dataset.theme = mode;
   }, [mode]);
   return (
-    <div>
+    <>
       <BaseLayout setMode={setMode}>
         <Component {...pageProps} />
       </BaseLayout>
-    </div>
+    </>
   );
 }

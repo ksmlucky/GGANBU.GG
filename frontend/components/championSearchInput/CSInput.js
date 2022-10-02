@@ -36,7 +36,7 @@ export default function CSInput({
 
   return (
     <div className={styles.container}>
-      <div className={styles.search}>
+      <div className={styles.searchbar}>
         <input
           type="text"
           id="search"

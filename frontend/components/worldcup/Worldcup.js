@@ -133,7 +133,7 @@ export default function Worldcup() {
   return (
     <main className={styles.main}>
       {round === 0 && (
-        <div className={styles.round}>
+        <div className={styles.roundbtn}>
           <button
             onClick={() => {
               setRound(32);
@@ -160,11 +160,11 @@ export default function Worldcup() {
 
       {round !== 0 && (
         <>
-          {round}
           <div className={styles.round}>
+            <span className={styles.title}>{round}</span>
             <div className={styles.vs}>
               {round === "결과" && winner && (
-                <div>
+                <div className={styles.wincontainer}>
                   {console.log({ winner: winner.en, datas: result })}
                   <img
                     src={`/champion/splash/${winner.en}_0.jpg`}
@@ -189,7 +189,6 @@ export default function Worldcup() {
                             className={styles.swiperslide}
                             style={{
                               backgroundImage: `url(/champion/splash/${el})`,
-                              objectFit: "contain",
                             }}
                           ></SwiperSlide>
                         );

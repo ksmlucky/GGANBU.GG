@@ -1,7 +1,5 @@
 import React, { useEffect } from "react";
-// app
-//import
-import SkillQuiz from "../components/skillQuiz/skillQuiz";
+import SkillQuiz from "../../components/skillQuiz/SkillQuiz";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
@@ -30,7 +28,7 @@ export default function Game() {
 
   return (
     <div>
-      <SkillQuiz setMode={setMode}/>
+      <SkillQuiz setMode={setMode} />
     </div>
   );
 }

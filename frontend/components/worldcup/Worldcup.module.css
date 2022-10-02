@@ -1,86 +1,84 @@
 .main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 0.5em;
-  background: var(--main);
   grid-area: m;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  color: var(--text);
+  font-size: 50px;
+}
+
+.roundbtn {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.roundbtn button {
+  width: 250px;
+  height: 150px;
+  background: none;
+  border: 1px solid var(--header-border-bottom);
+  color: var(--text);
+}
+
+.roundbtn button:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .round {
   display: flex;
-  flex-direction: row;
-  width: 100vw;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
+  gap: 100px;
 }
 
 .vs {
   display: flex;
-  width: 100vw;
-  /* padding: 4vw; */
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 300px;
 }
 
 .imgContainer {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainer button {
+  width: 700px;
+  height: 50px;
+  background: none;
+  border: 1px solid var(--header-border-bottom);
+  color: var(--text);
+  font-size: 30px;
 }
 
 .swiper {
-  width: 40vw;
-  height: 30vw;
+  width: 700px;
+  height: 500px;
 }
+
 
 .swiperslide {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 18px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #fff;
+  width: 500px;
+  height: 500px;
   background-repeat: no-repeat;
-  background-size: 40vw 30vw;
-}
-/* 
-.swiperslide:nth-child(1n) {
-  background-color: rgb(206, 17, 17);
+  background-size: contain;
 }
 
-.swiperslide:nth-child(2n) {
-  background-color: rgb(0, 140, 255);
+.wincontainer img {
+  width: 700px;
+  height: 400px;
 }
-
-.swiperslide:nth-child(3n) {
-  background-color: rgb(10, 184, 111);
-}
-
-.swiperslide:nth-child(4n) {
-  background-color: rgb(211, 122, 7);
-}
-
-.swiperslide:nth-child(5n) {
-  background-color: rgb(118, 163, 12);
-}
-
-.swiperslide:nth-child(6n) {
-  background-color: rgb(180, 10, 47);
-}
-
-.swiperslide:nth-child(7n) {
-  background-color: rgb(35, 99, 19);
-}
-
-.swiperslide:nth-child(8n) {
-  background-color: rgb(0, 68, 255);
-}
-
-.swiperslide:nth-child(9n) {
-  background-color: rgb(218, 12, 218);
-}
-
-.swiperslide:nth-child(10n) {
-  background-color: rgb(54, 94, 77);
-} */

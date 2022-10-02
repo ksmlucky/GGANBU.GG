@@ -145,10 +145,10 @@ export default function RightCham({
           event.target.src = `/transparent.png`;
         } else {
           event.target.src = `/sleepyporo.gif`;
-          event.target.style.background =
-            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
-          event.target.style.boxShadow =
-            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
+          // event.target.style.background =
+          //   "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          // event.target.style.boxShadow =
+          //   "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -182,10 +182,10 @@ export default function RightCham({
           console.log(event);
         } else {
           event.target.src = `/sleepyporo.gif`;
-          event.target.style.background =
-            "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
-          event.target.style.boxShadow =
-            "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
+          // event.target.style.background =
+          //   "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l));";
+          // event.target.style.boxShadow =
+          //   "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)";
         }
       }
     }
@@ -193,58 +193,57 @@ export default function RightCham({
 
   return (
     <>
-      <div className={styles.flexbox}>
-        <div className={styles.container}>
-          {Array.from(lineCham).map((item) => {
-            return (
-              <div className={styles.users} key={item.id}>
-                <div className={styles.bg}>
-                  <img
-                    className={styles.btncham}
-                    onClick={() => {
-                      reset(item.id, item.lines);
-                    }}
-                    onDragOver={(event) => dragOver(event)}
-                    onDragEnter={(event) => dragEnter(event)}
-                    onDragLeave={(event) => dragLeave(event, item.champ)}
-                    onDrop={(event) => Drop(event, item.id)}
-                    id={item.lines}
-                    src={
-                      item.champ
-                        ? `/champion/tiles/${item.champ}_0.jpg`
-                        : disableline.indexOf(item.lines) !== -1 &&
-                          item.lines !== line
-                        ? "/transparent.png"
-                        : "/sleepyporo.gif"
-                    }
-                    draggable={false}
-                    style={{
-                      boxShadow:
-                        "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+      <div className={styles.container}>
+        {Array.from(lineCham).map((item) => {
+          return (
+            <div className={styles.users} key={item.id}
+              style={{
+                background: item.lines == selectline ? "linear-gradient(90deg, rgba(200,155,60,0.2) 30%, rgba(120,90,40,0.7) 80%)" : disableline.includes(item.lines) ? "linear-gradient(90deg, rgba(3,151,171,0.2) 30%, rgba(0,90,130,0.7) 80%)" : "linear-gradient(90deg, rgba(91,90,86,0.2) 30%, rgba(60,60,65,0.7) 80%)",
+              }}>
+              <img
+                className={styles.btncham}
+                onClick={() => {
+                  reset(item.id, item.lines);
+                }}
+                onDragOver={(event) => dragOver(event)}
+                onDragEnter={(event) => dragEnter(event)}
+                onDragLeave={(event) => dragLeave(event, item.champ)}
+                onDrop={(event) => Drop(event, item.id)}
+                id={item.lines}
+                src={
+                  item.champ
+                    ? `/champion/tiles/${item.champ}_0.jpg`
+                    : disableline.indexOf(item.lines) !== -1 &&
+                      item.lines !== line
+                      ? "/transparent.png"
+                      : "/sleepyporo.gif"
+                }
+                draggable={false}
+              // style={{
+              //   boxShadow:
+              //     "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
 
-                      background:
-                        disableline.indexOf(item.lines) !== -1 &&
-                        item.lines !== line
-                          ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
-                          : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
-                    }}
-                  ></img>
+              //   background:
+              //     disableline.indexOf(item.lines) !== -1 &&
+              //       item.lines !== line
+              //       ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
+              //       : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
+              // }}
+              ></img>
 
-                  <img
-                    src={item.links}
-                    className={styles.lineImg}
-                    onClick={() => {
-                      reset(item.id, item.lines);
-                    }}
-                  />
-                </div>
-                {item.lines == selectline ? (
-                  <div className={styles.background}></div>
-                ) : null}
-              </div>
-            );
-          })}
-        </div>
+              <img
+                src={item.links}
+                className={styles.lineImg}
+                onClick={() => {
+                  reset(item.id, item.lines);
+                }}
+              />
+              {item.lines == selectline ? (
+                <div className={styles.background}></div>
+              ) : null}
+            </div>
+          );
+        })}
       </div>
     </>
   );

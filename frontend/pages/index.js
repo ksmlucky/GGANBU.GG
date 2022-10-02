@@ -1,8 +1,6 @@
 import { BaseLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
-//import
 import Main from "../components/layouts/main/Main";
-// app
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);

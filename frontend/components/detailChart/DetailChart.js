@@ -206,7 +206,7 @@ export default function DetailChart({ id, championName }) {
         <div
           className={styles.chart}
           id="chart"
-          style={{ position: "relative", height: "96%", width: "35%" }}
+          style={{ position: "relative", height: "93%", width: "35%" }}
         >
           <canvas className={styles.canvas} id="myChart"></canvas>
         </div>

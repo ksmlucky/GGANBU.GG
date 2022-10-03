@@ -32,8 +32,6 @@
 
 .btncham {
   width: 40%;
-  min-width: 50px;
-  max-width: 130px;
   height: 100%;
   border: 1px solid var(--header-border-bottom);
 }

@@ -3,17 +3,24 @@
   height: 100%;
   width: 100%;
   display: flex;
-  flex-direction: row;
-  width: 100vw;
-  height: 35vw;
-  justify-content: space-between;
-  align-items: flex-start;
+  flex-direction: column;
+  /* width: 100vw;
+  height: 35vw; */
+  justify-content: center;
+  align-items: center;
+}
+
+.main h2 {
+  color: var(--text);
+  width: 100%;
+  text-align: center;
+  margin: 1vw 0;
 }
 
 .vs {
   display: flex;
-  width: 100vw;
-  height: 32vw;
+  width: 100%;
+  height: 100%;
   /* padding: 4vw; */
   justify-content: space-around;
 }
@@ -21,7 +28,7 @@
 .swiper {
   width: 40vw;
   height: 30vw;
-  margin-bottom :2%;
+  margin-bottom: 2%;
 }
 
 .swiperslide {
@@ -35,6 +42,7 @@
   background-repeat: no-repeat;
   background-size: 40vw 30vw;
 }
+
 .input {
   color: black;
   display: flex;
@@ -53,6 +61,7 @@
   max-height: 100%;
   padding: 0.5vw;
 }
+
 .scroll {
   border: 1px solid black;
   display: flex;
@@ -61,8 +70,9 @@
   overflow-y: scroll;
   -ms-overflow-style: none;
 }
-.scroll::-webkit-scrollbar{
-  display:none;
+
+.scroll::-webkit-scrollbar {
+  display: none;
 }
 
 .imgResult {
@@ -70,6 +80,7 @@
   height: auto;
   animation: showeffect 1s ease;
 }
+
 .imgSort {
   width: 1vw;
   height: auto;
@@ -77,62 +88,98 @@
 }
 
 .btn {
+  width: 15%;
+  height: 25%;
   color: var(--text);
   background: none;
-  border: none;
   padding: 0.7vw 1vw;
   border-radius: 10px;
-  box-shadow: 3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l);
+  border: 1px solid var(--header-border-bottom);
 }
 
 .btns {
   display: flex;
   margin-top: 1vw;
   width: 100%;
+  height: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.selectbtn {
+  width: 100%;
+  height: 15%;
+  color: var(--text);
+  background: none;
+  padding: 0.5vw 1vw;
+  border-radius: 10px;
+  border: 1px solid var(--header-border-bottom);
+}
+
+.resultPage {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.resultBtn {
+  display: flex;
+  margin-bottom: 1vw;
   justify-content: space-evenly;
 }
 
-.resultPage{
-  display : flex;
-  flex-direction : column;
-  width:100%;
-  height:100%;
+.rbtn {
+  width: 15%;
+  height: 100%;
+  color: var(--text);
+  background: none;
+  padding: 0.7vw 1vw;
+  border-radius: 10px;
+  border: 1px solid var(--header-border-bottom);
 }
 
-
-
-.resultBtn{
-  display : flex;
-  margin-bottom :1vw;
-  justify-content :space-evenly;
+.resultComponent {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  align-content: center;
 }
 
-.resultComponent{
-  display:flex;
-  width:100%;
-  height:100%;
+.resultImg {
+  display: flex;
+  margin-left: 5%;
+  width: 60%;
+  height: 60%;
 }
 
-.resultImg{
-  display :flex;
-  margin-left : 5%;
-  width :60%;
-  height:100%;
+.resultImg img {
+  width: 100%;
+  height: 100%;
 }
-.resultContent{
-  display:flex;
-  width : 40%;
-  height:100%;
-  margin-right:5%;
-  padding : 1%;
+
+.resultContent {
+  display: flex;
+  width: 40%;
+  height: 60%;
+  margin-right: 5%;
+  padding: 1%;
+  color: var(--text);
 }
-.imgContainer{
-  display:flex;
+
+.imgContainer {
+  display: flex;
   flex-direction: column;
 }
 
 .ul {
-  list-style : none;
+  list-style: none;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -144,3 +191,15 @@
 .ul::-webkit-scrollbar {
   width: 10px;
 }
+
+@media screen and (max-height: 1200px) {}
+
+@media screen and (max-height: 1000px) {}
+
+@media screen and (max-height: 960px) {}
+
+@media screen and (max-height: 850px) {}
+
+@media screen and (max-height: 750px) {}
+
+@media screen and (max-height: 700px) {}

@@ -20,19 +20,19 @@
 }
 
 .title {
-  font-size: 3rem;
+  /* font-size: 3rem; */
   color: var(--text);
 }
 
 .maincontainer {
+  width: 100%;
+  height: 100%;
   grid-area: mc;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 5%;
-  width: 100%;
-  height: 100%;
+  /* gap: 5%; */
 }
 
 .uiandinput {
@@ -42,17 +42,17 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  position: relative;
+  /* gap: 20px; */
 }
 
 .givefive {
-  width: 50%;
+  width: 100%;
+  flex: 1 1 5%;
   background: none;
   border: none;
   color: var(--text);
   text-align: center;
-  padding: 5px 0;
+  /* padding: 5px 0; */
   border: 1px solid var(--header-border-bottom);
 }
 
@@ -63,8 +63,8 @@
 .ul {
   width: 100%;
   height: 100%;
-  min-height: 570px;
-  max-height: 770px;
+  max-height: 900px;
+  flex: 1 1 85%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -74,7 +74,7 @@
   overflow: hidden;
   overflow-y: scroll;
   list-style: none;
-  padding: 20px 0;
+  gap: 10px;
   background: var(--background-panel);
 }
 
@@ -92,13 +92,14 @@
 }
 
 .li {
-  width: 14%;
-  height: 14%;
+  /* width: 3%;
+  height: auto; */
+  /* flex: 1 1 15%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 5% 1%;
+  /* margin: 5% 1%; */
 }
 
 .li:hover {
@@ -107,13 +108,49 @@
 
 .img {
   width: 100%;
-  flex: 1 1 10%;
+  width: 100px;
 }
 
 .name {
   color: var(--text);
   font-size: 50%;
   letter-spacing: 1px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
   text-align: center;
+}
+
+@media screen and (max-height: 1200px) {
+  .ul {
+    max-height: 700px;
+  }
+}
+
+@media screen and (max-height: 1000px) {
+  .ul {
+    max-height: 700px;
+  }
+}
+
+@media screen and (max-height: 960px) {
+  .ul {
+    max-height: 600px;
+  }
+}
+
+@media screen and (max-height: 850px) {
+  .ul {
+    max-height: 550px;
+  }
+}
+
+@media screen and (max-height: 750px) {
+  .ul {
+    max-height: 400px;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .ul {
+    max-height: 300px;
+  }
 }

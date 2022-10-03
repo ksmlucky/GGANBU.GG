@@ -20,7 +20,7 @@
 }
 
 .title {
-  /* font-size: 3rem; */
+  font-size: 2rem;
   color: var(--text);
 }
 
@@ -32,7 +32,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  /* gap: 5%; */
+  gap: 20px;
 }
 
 .uiandinput {
@@ -42,7 +42,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* gap: 20px; */
 }
 
 .givefive {
@@ -92,14 +91,11 @@
 }
 
 .li {
-  /* width: 3%;
-  height: auto; */
-  /* flex: 1 1 15%; */
+  flex: 1 1 16%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* margin: 5% 1%; */
 }
 
 .li:hover {
@@ -107,21 +103,27 @@
 }
 
 .img {
-  width: 100%;
-  width: 100px;
+  width: 110px;
 }
 
 .name {
   color: var(--text);
   font-size: 50%;
   letter-spacing: 1px;
-  /* margin-top: 10px; */
   text-align: center;
 }
 
 @media screen and (max-height: 1200px) {
+  .givefive {
+    flex: 0 1 40px;
+  }
+
   .ul {
     max-height: 700px;
+  }
+
+  .img {
+    width: 90px;
   }
 }
 
@@ -129,11 +131,23 @@
   .ul {
     max-height: 700px;
   }
+
+  .img {
+    width: 85px;
+  }
 }
 
 @media screen and (max-height: 960px) {
+  .givefive {
+    flex: 0 1 40px;
+  }
+
   .ul {
     max-height: 600px;
+  }
+
+  .img {
+    width: 70px;
   }
 }
 
@@ -141,16 +155,28 @@
   .ul {
     max-height: 550px;
   }
+
+  .img {
+    width: 55px;
+  }
 }
 
 @media screen and (max-height: 750px) {
   .ul {
     max-height: 400px;
   }
+
+  .img {
+    width: 45px;
+  }
 }
 
 @media screen and (max-height: 650px) {
   .ul {
     max-height: 300px;
+  }
+
+  .img {
+    width: 40px;
   }
 }

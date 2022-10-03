@@ -46,7 +46,7 @@ export default function ChooseChampion() {
           <img></img>
         </div>
         <div className={styles.maincontainer}>
-          {/* <LeftCham
+          <LeftCham
             pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
             selectedchampion={selectedchampion}
             SetSelectedchampion={SetSelectedchampion}
@@ -56,7 +56,7 @@ export default function ChooseChampion() {
             SetLeftchampion={SetLeftchampion}
             makefive={makefive}
             Setmakefive={Setmakefive}
-          /> */}
+          />
 
           <div className={styles.uiandinput}>
             <button
@@ -121,7 +121,7 @@ export default function ChooseChampion() {
               rightchampion={rightchampion}
             />
           </div>
-          {/* <RightCham
+          <RightCham
             pickchampionindex={pickchampionindex} //마우스로 잡은 챔피언
             selectedchampion={selectedchampion}
             SetSelectedchampion={SetSelectedchampion}
@@ -131,7 +131,7 @@ export default function ChooseChampion() {
             SetRightchampion={SetRightchampion}
             makefive={makefive}
             Setmakefive={Setmakefive}
-          /> */}
+          />
         </div>
       </div>
     </>

@@ -14,7 +14,7 @@ export default function Ai() {
 
   const [start, setStart] = useState(false);
   const getregion = region();
-  const [bestregions, setBestregions] = useState(0);
+  const [bestregions, setBestregions] = useState();
 
 
   async function init() {
@@ -48,13 +48,14 @@ export default function Ai() {
       data = resultPrediction;
       console.log(data, best, bestregion);
       setBestregions(bestregion);
-      console.log(getregion[bestregion]);
+      console.log(getregion[bestregion].video);
       cheesebtn = false;
     }
 
   }
 
   function cheese() {
+    console.log("cheese")
     cheesebtn = true;
     best = 0;
     bestregion = 0;
@@ -68,9 +69,10 @@ export default function Ai() {
         muted={true}
         loop={true}
         className={styles.video}
+        key={getregion[bestregions].video}
       >
         <source
-          src={`${getregion[bestregions].video}`}
+          src={getregion[bestregions].video}
           type={"video/webm"}
         ></source>
       </video> : null}
@@ -98,7 +100,7 @@ export default function Ai() {
                 </>)
             })}
           </ul> : null}
-        {bestregions ? <span className={styles.story}>{getregion[bestregions].story}</span> : null}
+        {bestregions ? <p className={styles.story}>{getregion[bestregions].story}</p> : null}
       </div>
     </div>
   );

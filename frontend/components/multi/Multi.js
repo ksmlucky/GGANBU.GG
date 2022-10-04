@@ -32,115 +32,85 @@ export default function Multi() {
         ></Multisearch>
       )}
       <div className={styles.resultcontainer}>
-        <button
-          className={styles.button}
-          onClick={() => {
-            clickButton();
-          }}
-        >
-          검색
-        </button>
         <div className={styles.top}>
           <span className={styles.name}>{players[0]}</span>
-          <div className={styles.img}>
-            <img src="/tier/master.png" alt="" style={{ width: "80%" }} />
-          </div>
-          <div className={styles.champ}>
-            <img
-              src="/champion/tiles/Aatrox_0.jpg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
-          <div className={styles.search}>
-            <img
-              src="/line/jungle.svg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
+          <img src="/tier/master.png" alt="" className={styles.img} />
+          <img
+            src="/champion/tiles/Aatrox_0.jpg"
+            alt=""
+            className={styles.champ}
+          />
+          <img
+            src="/line/jungle.svg"
+            alt=""
+            className={styles.search}
+          />
         </div>
         <div className={styles.jug}>
           <span className={styles.name}>{players[1]}</span>
-          <div className={styles.img}>
-            <img src="/tier/platinum.png" alt="" style={{ width: "80%" }} />
-          </div>
-          <div className={styles.champ}>
-            <img
-              src="/champion/tiles/Ekko_0.jpg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
-          <div className={styles.search}>
-            <img
-              src="/line/top.svg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
+          <img src="/tier/platinum.png" alt="" className={styles.img} />
+          <img
+            src="/champion/tiles/Ekko_0.jpg"
+            alt=""
+            className={styles.champ}
+          />
+          <img
+            src="/line/top.svg"
+            alt=""
+            className={styles.search}
+          />
         </div>
         <div className={styles.mid}>
           <span className={styles.name}>{players[2]}</span>
-          <div className={styles.img}>
-            <img src="/tier/bronze.png" alt="" style={{ width: "80%" }} />
-          </div>
-          <div className={styles.champ}>
-            <img
-              src="/champion/tiles/Gwen_0.jpg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
-          <div className={styles.search}>
-            <img
-              src="/line/mid.svg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
+          <img src="/tier/bronze.png" alt="" className={styles.img} />
+          <img
+            src="/champion/tiles/Gwen_0.jpg"
+            alt=""
+            className={styles.champ}
+          />
+          <img
+            src="/line/mid.svg"
+            alt=""
+            className={styles.search}
+          />
         </div>
         <div className={styles.bot}>
           <span className={styles.name}>{players[3]}</span>
-          <div className={styles.img}>
-            <img src="/tier/gold.png" alt="" style={{ width: "80%" }} />
-          </div>
-          <div className={styles.champ}>
-            <img
-              src="/champion/tiles/MissFortune_0.jpg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
-          <div className={styles.search}>
-            <img
-              src="/line/support.svg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
+          <img src="/tier/gold.png" alt="" className={styles.img} />
+          <img
+            src="/champion/tiles/MissFortune_0.jpg"
+            alt=""
+            className={styles.champ}
+          />
+          <img
+            src="/line/support.svg"
+            alt=""
+            className={styles.search}
+          />
         </div>
         <div className={styles.sup}>
           <span className={styles.name}>{players[4]}</span>
-          <div className={styles.img}>
-            <img src="/tier/platinum.png" alt="" style={{ width: "80%" }} />
-          </div>
-          <div className={styles.champ}>
-            <img
-              src="/champion/tiles/Pyke_0.jpg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
-          <div className={styles.search}>
-            <img
-              src="/line/bot.svg"
-              alt=""
-              style={{ width: "80%", marginTop: "20px" }}
-            />
-          </div>
+          <img src="/tier/platinum.png" alt="" className={styles.img} />
+          <img
+            src="/champion/tiles/Pyke_0.jpg"
+            alt=""
+            className={styles.champ}
+          />
+          <img
+            src="/line/bot.svg"
+            alt=""
+            className={styles.search}
+          />
         </div>
       </div>
+      <button
+        className={styles.button}
+        onClick={() => {
+          clickButton();
+        }}
+      >
+        검색
+      </button>
     </div>
   );
 }

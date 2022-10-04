@@ -23,7 +23,7 @@ public class WorldcupController {
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
-        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+        return ResponseEntity.status(200).body(worldcups);
     }
 
     @GetMapping("/worldcup/winrate")
@@ -42,7 +42,6 @@ public class WorldcupController {
 
     @GetMapping("/worldcup/{englishname}")
     public ResponseEntity<?> getChampionByEnglishname(@PathVariable String englishname) {
-        System.out.println(englishname);
 
         try {
             return new ResponseEntity<>(worldcupService.getChampionByEnglishname(englishname), HttpStatus.OK);

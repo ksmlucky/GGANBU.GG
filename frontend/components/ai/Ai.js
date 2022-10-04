@@ -25,7 +25,7 @@ export default function Ai() {
     maxPredictions = model.getTotalClasses();
 
     const flip = true;
-    webcam = new tmImage.Webcam(200, 200, flip);
+    webcam = new tmImage.Webcam(100, 100, flip);
     await webcam.setup();
 
     document.getElementById("webcam-container").appendChild(webcam.canvas);

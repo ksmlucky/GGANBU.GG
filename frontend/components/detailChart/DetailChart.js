@@ -56,7 +56,7 @@ Chart.register(
   SubTitle
 );
 
-export default function DetailChart({ id, championName }) {
+export default function DetailChart({id, championName }) {
   const clist = championList();
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
   const [bools, setBools] = useState("");
@@ -93,6 +93,7 @@ export default function DetailChart({ id, championName }) {
   const [temp, setTemp] = useState([[40, 43, 53, 43, 22, 11], [34, 54, 21, 33, 49, 12], [90, 17, 39, 80, 21, 33], [31, 60, 52, 13, 47, 23], [31, 11, 23, 43, 54, 65]]);
 
   useEffect(() => {
+
     if (bools) {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
@@ -103,8 +104,11 @@ export default function DetailChart({ id, championName }) {
       canv.className = styles.canvas;
       ctx.appendChild(canv);
     }
-
-    const ctx = document.getElementById("myChart").getContext("2d");
+    
+    const theme = sessionStorage.getItem('theme');
+    console.log(theme+"1");
+    if(theme ==='"dark"'){
+      const ctx = document.getElementById("myChart").getContext("2d");
     let config = {
       type: "radar",
       data: {
@@ -139,11 +143,52 @@ export default function DetailChart({ id, championName }) {
       },
     };
     const myChart = new Chart(ctx, config);
+    }
+    else if(theme==='"light"'){
+      const ctx = document.getElementById("myChart").getContext("2d");
+      let config = {
+        type: "radar",
+        data: {
+          labels: ["승률", "픽률", "밴률", "DPM/100", "솔로킬 횟수", "CC기 총 시간"],
+          datasets: dataSet,
+        },
+        options: {
+          responsive: true,
+          scales: {
+            radar: {
+              angleLines: {
+                color: "black",
+              },
+              grid: {
+                color: "black",
+              },
+              pointLabels: {
+                color: "black",
+              },
+              ticks: {
+                color: "black",
+                backdropColor: "white",
+              },
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "챔피언 비교",
+            },
+          },
+        },
+      };
+      const myChart = new Chart(ctx, config);
+    }
+   
     setBools(true);
   }, []);
 
   useEffect(() => {
-    if (bools) {
+    const theme = sessionStorage.getItem('theme');
+    console.log(theme+"2");
+    if (bools && theme==='"dark"') {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
       ctx.removeChild(ctxx);
@@ -197,8 +242,177 @@ export default function DetailChart({ id, championName }) {
 
       const myChart = new Chart(newCtx, config);
     }
+    else if(bools && theme==='"light"'){
+      const ctx = document.getElementById("chart");
+      const ctxx = document.getElementById("myChart");
+      ctx.removeChild(ctxx);
+
+      const canv = document.createElement("canvas");
+      canv.id = "myChart";
+      canv.className = styles.canvas;
+      ctx.appendChild(canv);
+
+      const newCtx = document.getElementById("myChart").getContext("2d");
+      const config = {
+        type: "radar",
+        data: {
+          labels: [
+            "승률",
+            "픽률",
+            "밴률",
+            "DPM",
+            "솔로킬 횟수",
+            "CC기 총 시간",
+          ],
+          datasets: dataSet,
+        },
+        options: {
+          responsive: true,
+          scales: {
+            radar: {
+              angleLines: {
+                color: "black",
+              },
+              grid: {
+                color: "black",
+              },
+              pointLabels: {
+                color: "black",
+              },
+              ticks: {
+                color: "black",
+                backdropColor: "white",
+              },
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "챔피언 비교",
+            },
+          },
+        },
+      };
+
+      const myChart = new Chart(newCtx, config);
+    }
     setBools(true);
   }, [selectedchampion]);
+
+  useEffect(() => {
+    console.log(theme+"3");
+    const theme = sessionStorage.getItem('theme');
+    console.log(theme);
+    if (bools && theme==='"dark"') {
+      const ctx = document.getElementById("chart");
+      const ctxx = document.getElementById("myChart");
+      ctx.removeChild(ctxx);
+
+      const canv = document.createElement("canvas");
+      canv.id = "myChart";
+      canv.className = styles.canvas;
+      ctx.appendChild(canv);
+
+      const newCtx = document.getElementById("myChart").getContext("2d");
+      const config = {
+        type: "radar",
+        data: {
+          labels: [
+            "승률",
+            "픽률",
+            "밴률",
+            "DPM",
+            "솔로킬 횟수",
+            "CC기 총 시간",
+          ],
+          datasets: dataSet,
+        },
+        options: {
+          responsive: true,
+          scales: {
+            radar: {
+              angleLines: {
+                color: "white",
+              },
+              grid: {
+                color: "white",
+              },
+              pointLabels: {
+                color: "white",
+              },
+              ticks: {
+                color: "white",
+                backdropColor: "black",
+              },
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "챔피언 비교",
+            },
+          },
+        },
+      };
+
+      const myChart = new Chart(newCtx, config);
+    }
+    else if(bools && theme==='"light"'){
+      const ctx = document.getElementById("chart");
+      const ctxx = document.getElementById("myChart");
+      ctx.removeChild(ctxx);
+
+      const canv = document.createElement("canvas");
+      canv.id = "myChart";
+      canv.className = styles.canvas;
+      ctx.appendChild(canv);
+
+      const newCtx = document.getElementById("myChart").getContext("2d");
+      const config = {
+        type: "radar",
+        data: {
+          labels: [
+            "승률",
+            "픽률",
+            "밴률",
+            "DPM",
+            "솔로킬 횟수",
+            "CC기 총 시간",
+          ],
+          datasets: dataSet,
+        },
+        options: {
+          responsive: true,
+          scales: {
+            radar: {
+              angleLines: {
+                color: "black",
+              },
+              grid: {
+                color: "black",
+              },
+              pointLabels: {
+                color: "black",
+              },
+              ticks: {
+                color: "black",
+                backdropColor: "white",
+              },
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "챔피언 비교",
+            },
+          },
+        },
+      };
+
+      const myChart = new Chart(newCtx, config);
+    }
+    setBools(true);
+  }, [sessionStorage.getItem('theme')]);
 
   return (
     <>

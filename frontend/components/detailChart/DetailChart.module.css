@@ -8,11 +8,9 @@
   align-items: flex-start;
 }
 
-.chart {
-}
+.chart {}
 
-.canvas {
-}
+.canvas {}
 
 .ul {
   width: 100%;
@@ -29,7 +27,6 @@
   overflow-y: scroll;
   list-style: none;
   gap: 10px;
-  background: var(--background-panel);
 }
 
 .ul::-webkit-scrollbar {
@@ -59,9 +56,11 @@
 
 .img {
   width: 100px;
+  border: 2px solid var(--header-border-bottom);
 }
 
 .name {
+  margin-top: 10px;
   color: var(--text);
   font-size: 50%;
   letter-spacing: 1px;

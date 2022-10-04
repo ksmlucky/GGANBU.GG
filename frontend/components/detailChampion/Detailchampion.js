@@ -32,9 +32,9 @@ export default function DetailChampion({ mode }) {
             </div>
           ) : null}
           <div className={styles.btns}>
-            <button onClick={() => Setselectdata("map")}>Lines</button>
-            <button onClick={() => Setselectdata("chart")}>compare</button>
-            <button onClick={() => Setselectdata("cloud")}>wordcloud</button>
+            <button onClick={() => Setselectdata("map")}>라인별</button>
+            <button onClick={() => Setselectdata("chart")}>비교그래프</button>
+            <button onClick={() => Setselectdata("cloud")}>단어구름</button>
           </div>
         </div>
         <div className={styles.contentContainer}>

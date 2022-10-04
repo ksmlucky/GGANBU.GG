@@ -3,9 +3,9 @@ import styles from "./SelectionPage.module.css";
 
 export default function SelectionPage() {
   const list = [
-    { id: "1", text: "FACE", links: "/plays/ai" },
-    { id: "2", text: "SKILL", links: "/plays/skill" },
-    { id: "3", text: "KEYBOARD", links: "/plays/keyboard" },
+    { id: "1", text: "지역 찾기", links: "/plays/ai" },
+    { id: "2", text: "스킬 맞추기", links: "/plays/skill" },
+    { id: "3", text: "궁 피하기", links: "/plays/keyboard" },
   ];
 
   return (

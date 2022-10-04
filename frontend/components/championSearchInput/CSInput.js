@@ -16,7 +16,7 @@ export default function CSInput({
       if (rightchampion[myline].champ) {
         router.push(result);
       } else {
-        alert("no counter line enemy select");
+        alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
       }
     }
   }

@@ -34,7 +34,6 @@ export default function Music() {
         animationRef.current = requestAnimationFrame(whilePlaying);
       }
     }
-
   };
 
   // const preview = () => {
@@ -94,22 +93,22 @@ export default function Music() {
     }
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
-
   setInterval(() => {
     if (audioPlayer.current) {
       if (audioPlayer.current.currentTime === audioPlayer.current.duration) {
         next();
       }
     }
-  }, 1000)
+  }, 1000);
 
   // 시간 출력
   const calculateTime = (secs) => {
     if (!isNaN(secs)) {
       const minutes = Math.floor(secs / 60);
       const seconds = Math.floor(secs % 60);
-      return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${seconds < 10 ? `0${seconds}` : `${seconds}`
-        }`;
+      return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${
+        seconds < 10 ? `0${seconds}` : `${seconds}`
+      }`;
     }
   };
 
@@ -149,7 +148,7 @@ export default function Music() {
     {
       name: "Awaken",
       artist: "league of legends",
-      album: "/album/Awaken.jpg",
+      album: "/album/awaken.jpg",
       source: "/mp3/Awaken.mp3",
     },
     {
@@ -203,25 +202,25 @@ export default function Music() {
     {
       name: "Lightbringer",
       artist: "league of legends",
-      album: "/album/Lightbringer.jpg",
+      album: "/album/lightbringer.jpg",
       source: "/mp3/Lightbringer.mp3",
     },
     {
       name: "Lost_Chapter",
       artist: "league of legends",
-      album: "/album/Lost_Chapter.jpg",
+      album: "/album/lost_Chapter.jpg",
       source: "/mp3/Lost_Chapter.mp3",
     },
     {
       name: "Phoenix",
       artist: "league of legends",
-      album: "/album/Phoenix.jpg",
+      album: "/album/phoenix.jpg",
       source: "/mp3/Phoenix.mp3",
     },
     {
       name: "RISE",
       artist: "league of legends",
-      album: "/album/RISE.jpg",
+      album: "/album/rise.jpg",
       source: "/mp3/RISE.mp3",
     },
     {
@@ -245,7 +244,9 @@ export default function Music() {
           {tracks.map((list, idxx) => {
             return (
               <div className={styles.listcheck}>
-                {idxx == idx ? <span className={styles.arrow}>listening</span> : null}
+                {idxx == idx ? (
+                  <span className={styles.arrow}>listening</span>
+                ) : null}
                 <button
                   key={idx}
                   onClick={() => {
@@ -267,10 +268,18 @@ export default function Music() {
         ></audio>
         <span className={styles.topBar}>Now Playing</span>
         <img src={tracks[idx].album} alt="" className={styles.imgArea}></img>
-        <p className={styles.name}>{audioPlayer.current ? tracks[idx].name : null}</p>
-        <p className={styles.artist}>{audioPlayer.current ? tracks[idx].artist : null}</p>
+        <p className={styles.name}>
+          {audioPlayer.current ? tracks[idx].name : null}
+        </p>
+        <p className={styles.artist}>
+          {audioPlayer.current ? tracks[idx].artist : null}
+        </p>
         <div className={styles.audioPlayer}>
-          <span>{audioPlayer.current ? calculateTime(audioPlayer.current.currentTime) ?? "00:00" : "00:00"}</span>
+          <span>
+            {audioPlayer.current
+              ? calculateTime(audioPlayer.current.currentTime) ?? "00:00"
+              : "00:00"}
+          </span>
           <input
             type="range"
             className={styles.progressBar}
@@ -278,7 +287,11 @@ export default function Music() {
             ref={progressBar}
             onChange={changeRange}
           />
-          <span>{audioPlayer.current ? calculateTime(audioPlayer.current.duration) ?? "00:00" : "00:00"}</span>
+          <span>
+            {audioPlayer.current
+              ? calculateTime(audioPlayer.current.duration) ?? "00:00"
+              : "00:00"}
+          </span>
         </div>
         <div className={styles.controls}>
           <i id="repeatPlist" className={styles.materialIcon} onClick={openURL}>

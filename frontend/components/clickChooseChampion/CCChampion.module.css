@@ -20,35 +20,35 @@
 }
 
 .title {
-  font-size: 50px;
+  font-size: 3rem;
   color: var(--text);
 }
 
 .maincontainer {
+  width: 100%;
+  height: 100%;
   grid-area: mc;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  gap: 100px;
+  gap: 20px;
 }
 
 .uiandinput {
+  width: 30%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
-  position: relative;
 }
 
 .ul {
-  width: 50%;
-  min-width: 800px;
-  max-width: 800px;
-  height: 50%;
-  min-height: 870px;
-  max-height: 870px;
+  width: 100%;
+  height: 100%;
+  max-height: 900px;
+  flex: 1 1 90%;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -58,8 +58,7 @@
   overflow: hidden;
   overflow-y: scroll;
   list-style: none;
-  gap: 20px;
-  padding: 20px 0;
+  gap: 10px;
   background: var(--background-panel);
 }
 
@@ -77,6 +76,7 @@
 }
 
 .li {
+  flex: 1 1 16%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,14 +89,71 @@
 
 .img {
   width: 100px;
-  min-width: 10px;
-  height: 100px;
-  min-height: 10px;
 }
 
 .name {
   color: var(--text);
-  font-size: 12px;
+  font-size: 50%;
   letter-spacing: 1px;
-  margin-top: 10px;
+  text-align: center;
+}
+
+@media screen and (max-height: 1200px) {
+  .ul {
+    max-height: 800px;
+  }
+
+  /* .img {
+    width: 90px;
+  } */
+}
+
+@media screen and (max-height: 1000px) {
+  .ul {
+    max-height: 700px;
+  }
+
+  /* .img {
+    width: 85px;
+  } */
+}
+
+@media screen and (max-height: 960px) {
+  .ul {
+    max-height: 600px;
+  }
+
+  /* .img {
+    width: 70px;
+  } */
+}
+
+@media screen and (max-height: 850px) {
+  .ul {
+    max-height: 550px;
+  }
+
+  /* .img {
+    width: 55px;
+  } */
+}
+
+@media screen and (max-height: 750px) {
+  .ul {
+    max-height: 450px;
+  }
+
+  /* .img {
+    width: 45px;
+  } */
+}
+
+@media screen and (max-height: 700px) {
+  .ul {
+    max-height: 400px;
+  }
+
+  /* .img {
+    width: 40px;
+  } */
 }

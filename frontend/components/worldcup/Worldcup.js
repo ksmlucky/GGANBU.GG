@@ -75,18 +75,16 @@ export default function Worldcup() {
         .then((res) => {
         })
         .catch((e) => {
-          console.log(e);
         });
 
-        axios({
-          method: "get",
-          url: worldcup.getChampionByName()+winner.en,
-        })
+      axios({
+        method: "get",
+        url: worldcup.getChampionByName() + winner.en,
+      })
         .then((res) => {
           setContent(res.data);
-        })        
+        })
         .catch((e) => {
-          console.log(e);
         });
     }
   }, [winner]);
@@ -173,33 +171,31 @@ export default function Worldcup() {
   return (
     <main className={styles.main}>
       {round === 0 && !statistics && (
-        <div className={styles.round}>
-          <div className={styles.btns}>
-            <button
-              className={styles.btn}
-              onClick={() => {
-                setRound(32);
-              }}
-            >
-              32강
-            </button>
-            <button
-              className={styles.btn}
-              onClick={() => {
-                setRound(64);
-              }}
-            >
-              64강
-            </button>
-            <button
-              className={styles.btn}
-              onClick={() => {
-                setRound(128);
-              }}
-            >
-              128강
-            </button>
-          </div>
+        <div className={styles.btns}>
+          <button
+            className={styles.btn}
+            onClick={() => {
+              setRound(32);
+            }}
+          >
+            32강
+          </button>
+          <button
+            className={styles.btn}
+            onClick={() => {
+              setRound(64);
+            }}
+          >
+            64강
+          </button>
+          <button
+            className={styles.btn}
+            onClick={() => {
+              setRound(128);
+            }}
+          >
+            128강
+          </button>
         </div>
       )}
 
@@ -208,64 +204,61 @@ export default function Worldcup() {
           {round !== "결승" && round !== "결과" && <h2>{round}강</h2>}
           {round === "결승" && <h2>{round}</h2>}
           {round === "결과" && <h2>{round}</h2>}
-          <div className={styles.round}>
-            <span className={styles.title}>{round}</span>
-            <div className={styles.vs}>
-              {round === "결과" && winner && (
-                <>
-                  <div className={styles.resultPage}>
-                    <div className={styles.resultBtn}>
-                      <button
-                        className={styles.btn}
-                        onClick={() => {
-                          axios({
-                            method: "get",
-                            url: worldcup.getGoldMedalCount(),
-                          })
-                            .then((res) => {
-                              setInfo((info) => {
-                                const newInfo = [...info];
-                                newInfo.splice(0);
-                                res.data.map((item, idx) => {
-                                  newInfo.push({
-                                    rank: idx + 1,
-                                    en: item.englishname,
-                                    ko: item.name,
-                                    goldmedal: item.goldmedalcount,
-                                    winrate: Number(
-                                      (item.winRate * 100).toFixed(2)
-                                    ),
-                                  });
+          <div className={styles.vs}>
+            {round === "결과" && winner && (
+              <>
+                <div className={styles.resultPage}>
+                  <div className={styles.resultBtn}>
+                    <button
+                      className={styles.rbtn}
+                      onClick={() => {
+                        axios({
+                          method: "get",
+                          url: worldcup.getGoldMedalCount(),
+                        })
+                          .then((res) => {
+                            setInfo((info) => {
+                              const newInfo = [...info];
+                              newInfo.splice(0);
+                              res.data.map((item, idx) => {
+                                newInfo.push({
+                                  rank: idx + 1,
+                                  en: item.englishname,
+                                  ko: item.name,
+                                  goldmedal: item.goldmedalcount,
+                                  winrate: Number(
+                                    (item.winRate * 100).toFixed(2)
+                                  ),
                                 });
-                                setStatistics(true);
-                                setSortGoldmedal(true);
-                                return newInfo;
                               });
-                            })
-                            .catch((e) => {
-                              console.log(e);
+                              setStatistics(true);
+                              setSortGoldmedal(true);
+                              return newInfo;
                             });
-                        }}
-                      >
-                        전체 결과 보기
-                      </button>
-                      <button
-                        className={styles.btn}
-                        onClick={() => {
-                          setStatistics(false);
-                          setSortGoldmedal(false);
-                          setSortWinrate(false);
-                          setRound(0);
-                          setNextChampList("");
-                          setLeftChamp("");
-                          setRightChamp("");
-                          setWinner();
-                          setResult({});
-                          setValue("");
-                        }}
-                      >
-                        다시하기
-                      </button>
+                          })
+                          .catch((e) => {
+                          });
+                      }}
+                    >
+                      전체 결과 보기
+                    </button>
+                    <button
+                      className={styles.rbtn}
+                      onClick={() => {
+                        setStatistics(false);
+                        setSortGoldmedal(false);
+                        setSortWinrate(false);
+                        setRound(0);
+                        setNextChampList("");
+                        setLeftChamp("");
+                        setRightChamp("");
+                        setWinner();
+                        setResult({});
+                        setValue("");
+                      }}
+                    >
+                      다시하기
+                    </button>
                   </div>
                   <div className={styles.resultComponent}>
                     <div className={styles.resultImg}>
@@ -280,83 +273,82 @@ export default function Worldcup() {
                         <li><b>난이도 : </b> {content.difficulty}</li>
                         <li><b>챔피언 설명 : </b>{content.blurb}</li>
                         <li><b>우승 횟수 : </b>{content.goldmedalcount}회</li>
-                        <li><b>승률(승리 횟수 / 전체 1:1대결수) : </b>{(content.winRate*100).toFixed(2)}%</li>
+                        <li><b>승률(승리 횟수 / 전체 1:1대결수) : </b>{(content.winRate * 100).toFixed(2)}%</li>
                       </ul>
-                        
+
 
                     </div>
                   </div>
                 </div>
-                  </>
-              )}
-              {round !== "결과" && leftChamp && !statistics && (
-                <div className={styles.imgContainer}>
-                  <Swiper
-                    effect={"cards"}
-                    grabCursor={true}
-                    modules={[EffectCards]}
-                    className={styles.swiper}
-                    loop={true}
-                  >
-                    {skin.map((el, idx) => {
-                      if (el.includes(leftChamp.en)) {
-                        return (
-                          <SwiperSlide
-                            key={idx}
-                            className={styles.swiperslide}
-                            style={{
-                              backgroundImage: `url(/champion/splash/${el})`,
-                            }}
-                          ></SwiperSlide>
-                        );
-                      }
-                    })}
-                  </Swiper>
-                  <button
-                    className={styles.btn}
-                    onClick={() => {
-                      select(leftChamp);
-                    }}
-                  >
-                    {leftChamp.ko}
-                  </button>
-                </div>
-              )}
-              {round !== "결과" && rightChamp && !statistics && (
-                <div className={styles.imgContainer}>
-                  <Swiper
-                    effect={"cards"}
-                    grabCursor={true}
-                    modules={[EffectCards]}
-                    className={styles.swiper}
-                    loop={true}
-                  >
-                    {skin.map((el, idx) => {
-                      if (el.includes(rightChamp.en)) {
-                        return (
-                          <SwiperSlide
-                            key={idx}
-                            className={styles.swiperslide}
-                            style={{
-                              backgroundImage: `url(/champion/splash/${el})`,
-                              objectFit: "contain",
-                            }}
-                          ></SwiperSlide>
-                        );
-                      }
-                    })}
-                  </Swiper>
-                  <button
-                    className={styles.btn}
-                    onClick={() => {
-                      select(rightChamp);
-                    }}
-                  >
-                    {rightChamp.ko}
-                  </button>
-                </div>
-              )}
-            </div>
+              </>
+            )}
+            {round !== "결과" && leftChamp && !statistics && (
+              <div className={styles.imgContainer}>
+                <Swiper
+                  effect={"cards"}
+                  grabCursor={true}
+                  modules={[EffectCards]}
+                  className={styles.swiper}
+                  loop={true}
+                >
+                  {skin.map((el, idx) => {
+                    if (el.includes(leftChamp.en)) {
+                      return (
+                        <SwiperSlide
+                          key={idx}
+                          className={styles.swiperslide}
+                          style={{
+                            backgroundImage: `url(/champion/splash/${el})`,
+                          }}
+                        ></SwiperSlide>
+                      );
+                    }
+                  })}
+                </Swiper>
+                <button
+                  className={styles.selectbtn}
+                  onClick={() => {
+                    select(leftChamp);
+                  }}
+                >
+                  {leftChamp.ko}
+                </button>
+              </div>
+            )}
+            {round !== "결과" && rightChamp && !statistics && (
+              <div className={styles.imgContainer}>
+                <Swiper
+                  effect={"cards"}
+                  grabCursor={true}
+                  modules={[EffectCards]}
+                  className={styles.swiper}
+                  loop={true}
+                >
+                  {skin.map((el, idx) => {
+                    if (el.includes(rightChamp.en)) {
+                      return (
+                        <SwiperSlide
+                          key={idx}
+                          className={styles.swiperslide}
+                          style={{
+                            backgroundImage: `url(/champion/splash/${el})`,
+                            objectFit: "contain",
+                          }}
+                        ></SwiperSlide>
+                      );
+                    }
+                  })}
+                </Swiper>
+                <button
+                  className={styles.selectbtn}
+                  onClick={() => {
+                    select(rightChamp);
+                  }}
+                >
+                  {rightChamp.ko}
+                </button>
+              </div>
+            )}
           </div>
         </>
       )}
@@ -401,7 +393,7 @@ export default function Worldcup() {
                     <button
                       className={styles.btn}
                       onClick={() => {
-                        if(sortGoldmedal === false){
+                        if (sortGoldmedal === false) {
                           axios({
                             method: "get",
                             url: worldcup.getGoldMedalCount(),
@@ -419,49 +411,47 @@ export default function Worldcup() {
                                     winrate: Number(
                                       (item.winRate * 100).toFixed(2)
                                     ),
-                                    });
                                   });
+                                });
                                 return newInfo;
                               });
                               setSortGoldmedal(true);
                               setSortWinrate(false);
                             })
                             .catch((e) => {
-                              console.log(e);
                             }); // axios 끝
-                          } //if문 끝
-                          else{
-                            axios({
-                              method: "get",
-                              url: worldcup.getGoldMedalCount(),
-                            })
-                              .then((res) => {
-                                setInfo((info) => {
-                                  const newInfo = [...info];
-                                  newInfo.splice(0);
-                                  res.data.map((item, idx) => {
-                                    newInfo.push({
-                                      rank: idx + 1,
-                                      en: item.englishname,
-                                      ko: item.name,
-                                      goldmedal: item.goldmedalcount,
-                                      winrate: Number(
-                                        (item.winRate * 100).toFixed(2)
-                                      ),
-                                      });
-                                    });
-                                  newInfo.sort(function(a, b) {
-                                    return b.rank - a.rank;
+                        } //if문 끝
+                        else {
+                          axios({
+                            method: "get",
+                            url: worldcup.getGoldMedalCount(),
+                          })
+                            .then((res) => {
+                              setInfo((info) => {
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item, idx) => {
+                                  newInfo.push({
+                                    rank: idx + 1,
+                                    en: item.englishname,
+                                    ko: item.name,
+                                    goldmedal: item.goldmedalcount,
+                                    winrate: Number(
+                                      (item.winRate * 100).toFixed(2)
+                                    ),
                                   });
-                                  return newInfo;
                                 });
-                                setSortGoldmedal(false);
-                                setSortWinrate(false);
-                              })
-                              .catch((e) => {
-                                console.log(e);
-                              }); // axios 끝
-                          } // else문 끝
+                                newInfo.sort(function (a, b) {
+                                  return b.rank - a.rank;
+                                });
+                                return newInfo;
+                              });
+                              setSortGoldmedal(false);
+                              setSortWinrate(false);
+                            })
+                            .catch((e) => {
+                            }); // axios 끝
+                        } // else문 끝
 
                       }}
                     >
@@ -476,7 +466,7 @@ export default function Worldcup() {
                     <button
                       className={styles.btn}
                       onClick={() => {
-                        if(sortWinrate === false){
+                        if (sortWinrate === false) {
                           axios({
                             method: "get",
                             url: worldcup.getWinRate(),
@@ -497,47 +487,45 @@ export default function Worldcup() {
                                   });
                                 });
                                 return newInfo;
+                              });
+                              setSortGoldmedal(false);
+                              setSortWinrate(true);
+                            })
+                            .catch((e) => {
+                            }); //axios 끝
+                        }// if문 끝
+                        else {
+                          axios({
+                            method: "get",
+                            url: worldcup.getWinRate(),
+                          })
+                            .then((res) => {
+                              setInfo((info) => {
+                                const newInfo = [...info];
+                                newInfo.splice(0);
+                                res.data.map((item, idx) => {
+                                  newInfo.push({
+                                    rank: idx + 1,
+                                    en: item.englishname,
+                                    ko: item.name,
+                                    goldmedal: item.goldmedalcount,
+                                    winrate: Number(
+                                      (item.winRate * 100).toFixed(2)
+                                    ),
+                                  });
                                 });
-                                setSortGoldmedal(false);
-                                setSortWinrate(true);
-                              })
-                              .catch((e) => {
-                                console.log(e);
-                              }); //axios 끝
-                            }// if문 끝
-                            else{
-                              axios({
-                                method: "get",
-                                url: worldcup.getWinRate(),
-                              })
-                                .then((res) => {
-                                  setInfo((info) => {
-                                    const newInfo = [...info];
-                                    newInfo.splice(0);
-                                    res.data.map((item, idx) => {
-                                      newInfo.push({
-                                        rank: idx + 1,
-                                        en: item.englishname,
-                                        ko: item.name,
-                                        goldmedal: item.goldmedalcount,
-                                        winrate: Number(
-                                          (item.winRate * 100).toFixed(2)
-                                        ),
-                                      });
-                                    });
-                                    newInfo.sort(function(a,b){
-                                      return b.rank - a.rank;
-                                    })
-                                    return newInfo;
-                                    });
-                                    setSortGoldmedal(false);
-                                    setSortWinrate(false);
-                                  })
-                                  .catch((e) => {
-                                    console.log(e);
-                                  }); //axios 끝
-                            } // else문 끝
-                        }}
+                                newInfo.sort(function (a, b) {
+                                  return b.rank - a.rank;
+                                })
+                                return newInfo;
+                              });
+                              setSortGoldmedal(false);
+                              setSortWinrate(false);
+                            })
+                            .catch((e) => {
+                            }); //axios 끝
+                        } // else문 끝
+                      }}
                     >
                       <img
                         src="/arrow/sort.png"
@@ -548,7 +536,7 @@ export default function Worldcup() {
                 </tr>
               </thead>
               <tbody>
-                {info.filter((item)=> item.ko.includes(value)).map((item, idx) => {
+                {info.filter((item) => item.ko.includes(value)).map((item, idx) => {
                   return (
                     <tr key={idx}>
                       <td>{item.rank}</td>

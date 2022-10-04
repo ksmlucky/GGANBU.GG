@@ -3,9 +3,9 @@ import styles from "./SelectionPage.module.css";
 
 export default function SelectionPage() {
   const list = [
-    { id: "1", text: "FACE", links: "/ai" },
-    { id: "2", text: "SKILL", links: "/game" },
-    { id: "3", text: "KEYBOARD", links: "/keyboardgame" },
+    { id: "1", text: "FACE", links: "/plays/ai" },
+    { id: "2", text: "SKILL", links: "/plays/skill" },
+    { id: "3", text: "KEYBOARD", links: "/plays/keyboard" },
   ];
 
   return (
@@ -14,11 +14,9 @@ export default function SelectionPage() {
         <ul className={styles.ul}>
           {list.map((item) => {
             return (
-              <div key={item.id}>
-                <Link href={`${item.links}`}>
-                  <li className={styles.li}>{item.text}</li>
-                </Link>
-              </div>
+              <Link href={`${item.links}`} key={item.id}>
+                <li className={styles.li}>{item.text}</li>
+              </Link>
             );
           })}
         </ul>

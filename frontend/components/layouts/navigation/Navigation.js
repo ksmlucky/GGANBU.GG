@@ -6,50 +6,39 @@ import { useEffect } from "react";
 
 export default function Navigation() {
   const list = [
-    { id: "1", text: "PLAYS", links: "/plays" },
-    { id: "2", text: "CHAMPION RECOMMAND", links: "/recommand" },
-    { id: "3", text: "WORLDCUP", links: "/champ" },
-    { id: "4", text: "CHAMPION DETAIL", links: "/detail" },
-    { id: "5", text: "MUSIC", links: "/music" },
-    { id: "6", text: "MULTI SEARCH", links: "/multi" },
+    { id: "1", text: "게임", links: "/plays" },
+    { id: "2", text: "챔피언 추천", links: "/recommand" },
+    { id: "3", text: "이상형 월드컵", links: "/worldcup" },
+    { id: "4", text: "챔피언 보기", links: "/detail" },
+    { id: "5", text: "음악", links: "/music" },
+    { id: "6", text: "멀티서치", links: "/multi" },
   ];
 
   const router = useRouter();
 
-  useEffect(() => {
-    console.log(router.pathname);
-  }, [router]);
-
   return (
     <>
-      <nav className={styles.nav}>
+      <div className={styles.nav}>
         <ul className={styles.ul}>
           {list.map((item) => {
             return (
-              <div key={item.id}>
-                <Link href={item.links}>
-                  <li
-                    className={styles.li}
-                    style={{
-                      boxShadow:
-                        item.links === router.pathname || (router.pathname !== "/" && router.pathname.includes(item.links))
-                          ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
-                          : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
-
-                      color:
-                        item.links === router.pathname
-                          ? "var(--select)"
-                          : "var(--text)",
-                    }}
-                  >
-                    {item.text}
-                  </li>
-                </Link>
-              </div>
+              <Link href={item.links} key={item.id}>
+                <li
+                  className={styles.li}
+                  style={{
+                    color:
+                      item.links === router.pathname || router.pathname.includes(item.links)
+                        ? "var(--logo)"
+                        : "var(--text)",
+                  }}
+                >
+                  {item.text}
+                </li>
+              </Link>
             );
           })}
         </ul>
-      </nav>
+      </div>
     </>
   );
 }

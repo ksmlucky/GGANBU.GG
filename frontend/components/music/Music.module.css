@@ -1,96 +1,73 @@
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
+  grid-area: m;
+  width: 100%;
   height: 100%;
-  background: var(--main);
-  gap: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
 }
 
 .listcontainer {
-
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.listcheck {
+  width: 100%;
+  min-width: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-  gap: 1.5vw;
-  border-radius: 20px;
-  background: #3C3C41;
-  box-shadow: 20px 29px 59px #2f2f33,
-    -20px -29px 59px #49494f;
-  padding: 2vw;
+  gap: 20px;
 }
 
 .listcontainer button {
-  background: none;
-  border: none;
+  display: block;
+  width: 100%;
   color: var(--text);
+  border: 1px solid var(--header-border-bottom);
+  background: none;
+  padding: 5px;
 }
 
 .listcontainer button:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
+.arrow {
+  color: var(--text);
+}
+
 .wrapper {
-  width: 50%;
-  height: 70%;
-  padding: 25px 30px;
+  color: var(--text);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  border-radius: 20px;
-  background: #3C3C41;
-  box-shadow: 20px 29px 59px #2f2f33,
-    -20px -29px 59px #49494f;
-}
-
-.wrapper i {
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.wrapper p {
-  text-align: center;
 }
 
 .topBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 30px;
 }
 
-.topBar i {
-  font-size: 1vw;
-  color: var(--text);
+.name {
+  text-align: center;
 }
 
-.topBar span {
-  font-size: 2vw;
-  color: var(--text);
+.artist {
+  text-align: center;
 }
 
 .imgArea {
-  display: block;
-  height: 40%;
   width: 80%;
-  border-radius: 20px;
-  background: #3C3C41;
-  box-shadow: 20px 29px 59px #2f2f33,
-    -20px -29px 59px #49494f;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.imgArea img {
-  width: 100%;
-  height: 100%;
 }
 
 .controls {
@@ -101,16 +78,15 @@
   gap: 20px;
 }
 
+.controls i {}
+
 .audioPlayer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 100%;
-  gap: 20px;
+  width: 80%;
 }
 
 .audioPlayer input {
-  width: 100%;
+  width: 70%;
+  margin: 0 10px;
 }
 
 .audioPlayer input:hover {

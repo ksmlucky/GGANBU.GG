@@ -1,125 +1,121 @@
+.container {
+  flex: 1 1 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.searchbar {
+  width: 100%;
+  position: relative;
+}
+
+.searchbar input {
+  background: none;
+  border: 1px solid var(--header-border-bottom);
+  outline: none;
+  width: 100%;
+  color: var(--text);
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 10px;
+}
+
+.searchbar input::placeholder {
+  color: var(--text);
+}
+
+.searchbar input:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+}
+
+.btn {
+  background: none;
+  border: none;
+  color: var(--text);
+}
+
+.btn:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+  color: var(--header-border-bottom);
+}
+
+.searchbar i {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 10%;
+  overflow: hidden;
+}
+
+.searchbar i::before {
+  content: '';
+  position: absolute;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      rgba(120, 90, 40, 1) 0%,
+      rgba(200, 155, 60, 1) 100%);
+  animation: animatebar 2s linear infinite;
+}
+
+.searchbar input:valid~i::before,
+.searchbar input:focus~i::before {
+  left: 0;
+}
+
+.searchbar input:valid,
+.searchbar input:focus {
+  border: none;
+}
+
+@keyframes animatebar {
+  0% {
+    background-position-x: 0;
+  }
+
+  100% {
+    background-position-x: 40vw;
+  }
+}
+
+@media screen and (max-height: 1200px) {
   .container {
-    display: flex;
-    gap: 10px;
-    z-index: 1;
-    background: var(--main);
+    flex: 0 1 100px;
   }
+}
 
-  .search {
-    position: relative;
-    width: 30vw;
+@media screen and (max-height: 1000px) {
+  .container {
+    flex: 0 1 100px;
   }
+}
 
-  .search input {
-    background: transparent;
-    color: var(--text);
-    border: none;
-    outline: none;
-    letter-spacing: 0.1vw;
-    font-size: 1vw;
-    padding: 10px 0 5px;
-    text-align: center;
-    width: 90%;
-    height: 5vh;
-    border-radius: 10px;
-    box-shadow: inset 3px 3px 7px var(--btn-off-s),
-      inset -3px -3px 7px var(--btn-off-l);
+@media screen and (max-height: 960px) {
+  .container {
+    flex: 0 1 100px;
   }
+}
 
-  .search i {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 0.3vh;
-    background: var(--input-bg);
-    overflow: hidden;
+@media screen and (max-height: 850px) {
+  .container {
+    flex: 0 1 100px;
   }
+}
 
-  .search i::before {
-    content: '';
-    position: absolute;
-    left: -100%;
-    width: 90%;
-    height: 100%;
-    background: linear-gradient(90deg,
-        rgba(120, 90, 40, 1) 0%,
-        rgba(200, 155, 60, 1) 100%);
-    animation: animatebar 2s linear infinite;
-    transition: 0.5s;
+@media screen and (max-height: 750px) {
+  .container {
+    flex: 0 1 100px;
   }
+}
 
-  .search input:valid~i::before,
-  .search input:focus~i::before {
-    left: 0;
+@media screen and (max-height: 650px) {
+  .container {
+    flex: 0 1 100px;
   }
-
-  @keyframes animatebar {
-    0% {
-      background-position-x: 0;
-    }
-
-    100% {
-      background-position-x: 40vw;
-    }
-  }
-
-  .btn {
-    position: relative;
-    width: 10vw;
-    height: 5vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: var(--btn);
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    border: none;
-    padding: 0.5vw;
-    border-radius: 10px;
-    box-shadow: 3px 3px 7px var(--btn-on-s),
-      -3px -3px 7px var(--btn-on-l);
-    color: var(--text);
-  }
-
-  /* .btn:before {
-    content: '';
-    position: absolute;
-    width: 150%;
-    height: 5vw;
-    background: none;
-    animation: none;
-
-  }
-
-  @keyframes animate {
-    0% {
-      transform: rotate(0deg);
-    }
-
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-
-  .btn:after {
-    content: 'Result';
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    inset: 4px;
-    background: var(--btn);
-  }
-
-  .btn:hover:before {
-    animation: animate 4s linear infinite;
-    background: radial-gradient(circle, rgba(120, 90, 40, 1) 0%, rgba(200, 155, 60, 1) 100%);
-  } */
-
-  .btn:hover {
-    cursor: url(/cursor/cursorPointer.png), auto;
-    box-shadow: inset 3px 3px 7px var(--btn-off-s),
-      inset -3px -3px 7px var(--btn-off-l);
-  }
+}

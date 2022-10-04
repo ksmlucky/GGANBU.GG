@@ -12,7 +12,6 @@ export default function Footer({ setMode }) {
             className={styles.mode}
             onClick={() => {
               setMode("light");
-              console.log("light");
             }}
           >
             LIGHT
@@ -21,7 +20,6 @@ export default function Footer({ setMode }) {
             className={styles.mode}
             onClick={() => {
               setMode("dark");
-              console.log("dark");
             }}
           >
             DARK

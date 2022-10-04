@@ -57,19 +57,16 @@ export default function ChooseChampion() {
             makefive={makefive}
             Setmakefive={Setmakefive}
           />
+
           <div className={styles.uiandinput}>
             <button
               className={styles.givefive}
               onClick={() => {
                 Setmakefive(true);
               }}
-            // style={{
-            //   boxShadow: makefive
-            //     ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
-            //     : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
-
-            //   color: makefive ? "var(--select)" : "var(--text)",
-            // }}
+              style={{
+                color: makefive ? "var(--logo)" : "var(--text)",
+              }}
             >
               five
             </button>

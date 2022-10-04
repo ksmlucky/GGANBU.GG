@@ -14,7 +14,7 @@ export default function MainInput() {
         <i></i>
       </div>
       <Link href="/search">
-        <button className={styles.btn}>Search</button>
+        <button className={styles.btn}>검색하기</button>
       </Link>
     </div>
   );

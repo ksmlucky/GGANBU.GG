@@ -1,4 +1,5 @@
 .container {
+  flex: 1 1 10%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -8,14 +9,13 @@
 }
 
 .searchbar {
-  width: 20%;
-  min-width: 250px;
+  width: 100%;
   position: relative;
 }
 
 .searchbar input {
   background: none;
-  border: none;
+  border: 1px solid var(--header-border-bottom);
   outline: none;
   width: 100%;
   color: var(--text);
@@ -40,6 +40,7 @@
 
 .btn:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
+  color: var(--header-border-bottom);
 }
 
 .searchbar i {
@@ -61,12 +62,16 @@
       rgba(120, 90, 40, 1) 0%,
       rgba(200, 155, 60, 1) 100%);
   animation: animatebar 2s linear infinite;
-  transition: 0.5s;
 }
 
 .searchbar input:valid~i::before,
 .searchbar input:focus~i::before {
   left: 0;
+}
+
+.searchbar input:valid,
+.searchbar input:focus {
+  border: none;
 }
 
 @keyframes animatebar {
@@ -76,5 +81,41 @@
 
   100% {
     background-position-x: 40vw;
+  }
+}
+
+@media screen and (max-height: 1200px) {
+  .container {
+    flex: 0 1 100px;
+  }
+}
+
+@media screen and (max-height: 1000px) {
+  .container {
+    flex: 0 1 100px;
+  }
+}
+
+@media screen and (max-height: 960px) {
+  .container {
+    flex: 0 1 100px;
+  }
+}
+
+@media screen and (max-height: 850px) {
+  .container {
+    flex: 0 1 100px;
+  }
+}
+
+@media screen and (max-height: 750px) {
+  .container {
+    flex: 0 1 100px;
+  }
+}
+
+@media screen and (max-height: 650px) {
+  .container {
+    flex: 0 1 100px;
   }
 }

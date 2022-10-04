@@ -24,7 +24,7 @@ export default function Ai() {
     maxPredictions = model.getTotalClasses();
 
     const flip = true;
-    webcam = new tmImage.Webcam(200, 200, flip);
+    webcam = new tmImage.Webcam(100, 100, flip);
     await webcam.setup();
 
     document.getElementById("webcam-container").appendChild(webcam.canvas);
@@ -116,7 +116,9 @@ export default function Ai() {
                       src={`/champion/tiles/${item}_0.jpg`}
                       className={styles.champ}
                     ></img>
-                    <span className={styles.champname}>{item}</span>
+                    <span className={styles.champname}>
+                      {getregion[bestregions].ko[idx]}
+                    </span>
                   </li>
                 </>
               );

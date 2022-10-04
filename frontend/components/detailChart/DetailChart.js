@@ -90,6 +90,8 @@ export default function DetailChart({ id, championName }) {
     },
   ]);
 
+  const [temp, setTemp] = useState([[40, 43, 53, 43, 22, 11], [34, 54, 21, 33, 49, 12], [90, 17, 39, 80, 21, 33], [31, 60, 52, 13, 47, 23], [31, 11, 23, 43, 54, 65]]);
+
   useEffect(() => {
     if (bools) {
       const ctx = document.getElementById("chart");
@@ -106,7 +108,7 @@ export default function DetailChart({ id, championName }) {
     let config = {
       type: "radar",
       data: {
-        labels: ["승률", "픽률", "밴률", "DPM", "솔로킬 횟수", "CC기 총 시간"],
+        labels: ["승률", "픽률", "밴률", "DPM/100", "솔로킬 횟수", "CC기 총 시간"],
         datasets: dataSet,
       },
       options: {
@@ -204,7 +206,7 @@ export default function DetailChart({ id, championName }) {
         <div
           className={styles.chart}
           id="chart"
-          style={{ position: "relative", height: "30vw", width: "35vw" }}
+          style={{ position: "relative", height: "93%", width: "35%" }}
         >
           <canvas className={styles.canvas} id="myChart"></canvas>
         </div>
@@ -215,92 +217,98 @@ export default function DetailChart({ id, championName }) {
               <>
                 {id !== item.en && (
                   <li className={styles.li} key={idx}>
-                    <button className={styles.btn}>
-                      <img
-                        src={`/champion/tiles/${item.en}_0.jpg`}
-                        id={item.ko}
-                        alt={item.en}
-                        index={item.index}
-                        className={styles.img}
-                        onClick={() => {
-                          setSelectedchampion((selectedchampion) => {
-                            const newSelectedChampion = [...selectedchampion];
-                            const champNum = newSelectedChampion.findIndex(
-                              (i) => i === item.ko
-                            );
-                            if (
-                              champNum === -1 &&
-                              newSelectedChampion.length < 5
-                            ) {
-                              newSelectedChampion.push(item.ko);
-                              setDataSet((dataSet) => {
-                                const newDataSet = [...dataSet];
-                                newDataSet.push({
-                                  label: item.ko,
-                                  data: [23, 23, 43, 54, 65, 43],
-                                  fill: true,
-                                  backgroundColor:
-                                    customColorTranslucent[
-                                      newSelectedChampion.length
-                                    ],
-                                  borderColor:
-                                    customColor[newSelectedChampion.length],
-                                  pointBackgroundColor:
-                                    customColor[newSelectedChampion.length],
-                                  pointBorderColor: "#fff",
-                                  pointHoverBackgroundColor: "#fff",
-                                  pointHoverBorderColor:
-                                    customColor[newSelectedChampion.length],
-                                });
-                                return newDataSet;
+                    <img
+                      src={`/champion/tiles/${item.en}_0.jpg`}
+                      id={item.ko}
+                      alt={item.en}
+                      index={item.index}
+                      className={styles.img}
+                      onClick={() => {
+                        setSelectedchampion((selectedchampion) => {
+                          const newSelectedChampion = [...selectedchampion];
+                          const champNum = newSelectedChampion.findIndex(
+                            (i) => i === item.ko
+                          );
+                          if (
+                            champNum === -1 &&
+                            newSelectedChampion.length < 5
+                          ) {
+                            newSelectedChampion.push(item.ko);
+                            setDataSet((dataSet) => {
+                              const newDataSet = [...dataSet];
+                              newDataSet.push({
+                                label: item.ko,
+                                data: temp[newSelectedChampion.length - 1],
+                                fill: true,
+                                backgroundColor:
+                                  customColorTranslucent[
+                                  newSelectedChampion.length
+                                  ],
+                                borderColor:
+                                  customColor[newSelectedChampion.length],
+                                pointBackgroundColor:
+                                  customColor[newSelectedChampion.length],
+                                pointBorderColor: "#fff",
+                                pointHoverBackgroundColor: "#fff",
+                                pointHoverBorderColor:
+                                  customColor[newSelectedChampion.length],
                               });
-                            } else if (champNum !== -1) {
-                              newSelectedChampion.splice(champNum, 1);
-                              setDataSet((dataSet) => {
-                                const newDataSet = [...dataSet];
-                                const newChampName = newDataSet.findIndex(
-                                  (i) => i.label === item.ko
-                                );
-                                newDataSet.splice(newChampName, 1);
-                                setCustomColor((customColor) => {
-                                  const newCustomColor = [...customColor];
+                              return newDataSet;
+                            });
+                          } else if (champNum !== -1) {
+                            newSelectedChampion.splice(champNum, 1);
+                            setDataSet((dataSet) => {
+                              const newDataSet = [...dataSet];
+                              const newChampName = newDataSet.findIndex(
+                                (i) => i.label === item.ko
+                              );
+                              newDataSet.splice(newChampName, 1);
+                              setCustomColor((customColor) => {
+                                const newCustomColor = [...customColor];
+                                const tempColor =
+                                  newCustomColor[newChampName];
+                                newCustomColor.splice(newChampName, 1);
+                                newCustomColor.push(tempColor);
+                                return newCustomColor;
+                              });
+                              setCustomColorTranslucent(
+                                (customColorTranslucent) => {
+                                  const newCustomColorTranslucent = [
+                                    ...customColorTranslucent,
+                                  ];
                                   const tempColor =
-                                    newCustomColor[newChampName];
-                                  newCustomColor.splice(newChampName, 1);
-                                  newCustomColor.push(tempColor);
-                                  return newCustomColor;
-                                });
-                                setCustomColorTranslucent(
-                                  (customColorTranslucent) => {
-                                    const newCustomColorTranslucent = [
-                                      ...customColorTranslucent,
-                                    ];
-                                    const tempColor =
-                                      newCustomColorTranslucent[newChampName];
-                                    newCustomColorTranslucent.splice(
-                                      newChampName,
-                                      1
-                                    );
-                                    newCustomColorTranslucent.push(tempColor);
-                                    return newCustomColorTranslucent;
-                                  }
-                                );
-                                return newDataSet;
+                                    newCustomColorTranslucent[newChampName];
+                                  newCustomColorTranslucent.splice(
+                                    newChampName,
+                                    1
+                                  );
+                                  newCustomColorTranslucent.push(tempColor);
+                                  return newCustomColorTranslucent;
+                                }
+                              );
+                              setTemp((temp) => {
+                                const newTemp = [...temp]
+                                const tempdata = newTemp[newChampName - 1];
+                                newTemp.splice(newChampName - 1, 1);
+                                newTemp.push(tempdata);
+                                return newTemp;
                               });
-                            } else {
-                              alert("최대 5개까지 비교 가능합니다.");
-                            }
-                            return newSelectedChampion;
-                          });
-                        }}
-                        style={{
-                          filter:
-                            selectedchampion.indexOf(item.ko) === -1
-                              ? "saturate(1)"
-                              : "saturate(0)",
-                        }}
-                      ></img>
-                    </button>
+
+                              return newDataSet;
+                            });
+                          } else {
+                            alert("최대 5개까지 비교 가능합니다.");
+                          }
+                          return newSelectedChampion;
+                        });
+                      }}
+                      style={{
+                        filter:
+                          selectedchampion.indexOf(item.ko) === -1
+                            ? "saturate(1)"
+                            : "saturate(0)",
+                      }}
+                    ></img>
                     <span className={styles.name}>{item.ko}</span>
                   </li>
                 )}

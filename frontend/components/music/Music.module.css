@@ -1,45 +1,94 @@
 .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
+  grid-area: m;
+  width: 100%;
   height: 100%;
-  background: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+}
+
+.listcontainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.listcheck {
+  width: 100%;
+  min-width: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.listcontainer button {
+  display: block;
+  width: 100%;
+  color: var(--text);
+  border: 1px solid var(--header-border-bottom);
+  background: none;
+  padding: 5px;
+}
+
+.listcontainer button:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+}
+
+.arrow {
+  color: var(--text);
 }
 
 .wrapper {
-  width: 50%;
-  height: 70%;
-  border-radius: 15px;
-  padding: 25px 30px;
-  background-color: var(--main);
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
-}
-
-.wrapper i {
-  cursor: pointer;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
 .topBar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  font-size: 30px;
 }
 
-.topBar i {
-  font-size: 1vw;
-  color: var(--text);
+.name {
+  text-align: center;
 }
 
-.topBar span {
-  font-size: 2vw;
-  color: var(--text);
+.artist {
+  text-align: center;
 }
 
 .imgArea {
-  height: 40%;
-  width: 100%;
-  border-radius: 15px;
-  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+  width: 80%;
 }
 
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.controls i {}
+
+.audioPlayer {
+  width: 80%;
+}
+
+.audioPlayer input {
+  width: 70%;
+  margin: 0 10px;
+}
+
+.audioPlayer input:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+}

@@ -1,87 +1,120 @@
 .container {
-  position: absolute;
+  grid-area: t;
   width: 100%;
-  height: 37vw;
+  height: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
-  top: 2vw;
+}
+
+.mapandpin {
+  width: 70%;
+  height: 100%;
+  position: relative;
 }
 
 .tdmap {
-  display: inline-block;
-  width: 70%;
-  height: 70%;
+  width: 100%;
+  height: 100%;
 }
 
 .toppointcontainer {
+  width: 10%;
+  height: 10%;
   position: absolute;
-  top: 5%;
-  left: 37%;
-  width: 10vw;
-  height: 10vh;
-}
-
-.junglepointcontainer {
-  position: absolute;
-  top: 25%;
-  left: 39%;
-  width: 10vw;
-  height: 10vh;
-}
-
-.midpointcontainer {
-  position: absolute;
-  top: 23%;
-  left: 47%;
-  width: 10vw;
-  height: 10vh;
-}
-
-.botpointcontainer {
-  position: absolute;
-  top: 43%;
-  left: 60%;
-  width: 10vw;
-  height: 10vh;
-}
-
-.supportpointcontainer {
-  position: absolute;
-  top: 48%;
-  left: 56%;
-  width: 10vw;
-  height: 10vh;
+  top: 9%;
+  left: 33%;
 }
 
 .toppoint {
   width: 100%;
-  height: 6vw;
+  height: 100%;
+}
+
+.tnumtexts {
+  color: var(--text);
+  position: absolute;
+  top: 20%;
+  left: 41%;
+}
+
+.junglepointcontainer {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  top: 28%;
+  left: 37%;
 }
 
 .junglepoint {
   width: 100%;
-  height: 6vw;
+  height: 100%;
+}
+
+.jnumtexts {
+  color: var(--text);
+  position: absolute;
+  top: 20%;
+  left: 41%;
+}
+
+.midpointcontainer {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  top: 26%;
+  left: 48%;
 }
 
 .midpoint {
   width: 100%;
-  height: 6vw;
+  height: 100%;
+}
+
+.mnumtexts {
+  color: var(--text);
+  position: absolute;
+  top: 20%;
+  left: 41%;
+}
+
+.botpointcontainer {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  top: 46%;
+  left: 67%;
 }
 
 .botpoint {
   width: 100%;
-  height: 6vw;
+  height: 100%;
+}
+
+.bnumtexts {
+  color: var(--text);
+  position: absolute;
+  top: 20%;
+  left: 41%;
+}
+
+.supportpointcontainer {
+  width: 10%;
+  height: 10%;
+  position: absolute;
+  top: 52%;
+  left: 61%;
 }
 
 .supportpoint {
   width: 100%;
-  height: 6vw;
+  height: 100%;
 }
 
-.numtexts {
+.snumtexts {
+  color: var(--text);
   position: absolute;
-  top: 1vw;
-  left: 3.5vw;
-  font-size: 1.5vw;
+  top: 20%;
+  left: 41%;
 }

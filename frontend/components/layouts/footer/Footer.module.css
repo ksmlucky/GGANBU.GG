@@ -1,24 +1,29 @@
 .footer {
-  position: relative;
+  grid-area: f;
+  height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: var(--footer);
-  border-top: 1px solid var(--border-on);
-  grid-area: f;
+  padding: 20px 0;
+  border-top: 1px solid var(--header-border-bottom);
 }
 
 .copyright {
-  letter-spacing: 0.8px;
-  word-spacing: 1px;
   color: var(--text);
 }
-.modecontainer{
-  position: absolute;
-    right: 0;
+
+.modecontainer {
+  margin: 0 20px;
 }
-.mode {
+
+.modecontainer button {
+  background: none;
+  border: none;
   color: var(--text);
-  background: var(--footer);
-  border:none;
+  margin: 0 10px;
+}
+
+.modecontainer button:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
 }

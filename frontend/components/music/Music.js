@@ -1,6 +1,7 @@
 import styles from "./Music.module.css";
 import { Image } from "next/image";
 import PlayArrow from "/public/musicicon/PlayArrow.svg";
+import Pause from "/public/musicicon/Pause.svg";
 import QueueMusic from "/public/musicicon/QueueMusic.svg";
 import ScreenShare from "/public/musicicon/ScreenShare.svg";
 import SkipNext from "/public/musicicon/SkipNext.svg";
@@ -25,36 +26,38 @@ export default function Music() {
     if (audioPlayer.current) {
       if (playing) {
         audioPlayer.current.pause();
+        setPlaying(false);
         cancelAnimationFrame(animationRef.current);
       } else {
         audioPlayer.current.play();
+        setPlaying(true);
         animationRef.current = requestAnimationFrame(whilePlaying);
       }
     }
-    setPlaying(!playing);
+
   };
 
-  const preview = () => {
-    if (audioPlayer) {
-      audioPlayer.current.pause();
-      cancelAnimationFrame(animationRef.current);
-      const newidx = idx - 1 < 0 ? tracks.length - 1 : idx - 1;
-      setPlaying(false);
-      audioPlayer.current.src = tracks[newidx].source;
-      audioPlayer.current.load();
-      setIdx(newidx);
-      progressBar.current.value = 0;
-      setDuration(audioPlayer.current.duration);
-      animationRef.current = requestAnimationFrame(whilePlaying);
-    }
-  };
+  // const preview = () => {
+  //   if (audioPlayer) {
+  //     audioPlayer.current.pause();
+  //     cancelAnimationFrame(animationRef.current);
+  //     const newidx = idx - 1 < 0 ? tracks.length - 1 : idx - 1;
+  //     setPlaying(false);
+  //     audioPlayer.current.src = tracks[newidx].source;
+  //     audioPlayer.current.load();
+  //     setIdx(newidx);
+  //     progressBar.current.value = 0;
+  //     setDuration(audioPlayer.current.duration);
+  //     animationRef.current = requestAnimationFrame(whilePlaying);
+  //   }
+  // };
 
   const next = () => {
     if (audioPlayer) {
       audioPlayer.current.pause();
       cancelAnimationFrame(animationRef.current);
       const newidx = idx + 1 > tracks.length - 1 ? 0 : idx + 1;
-      setPlaying(false);
+      // setPlaying(false);
       audioPlayer.current.src = tracks[newidx].source;
       audioPlayer.current.load();
       setIdx(newidx);
@@ -88,28 +91,26 @@ export default function Music() {
     if (audioPlayer) {
       setDuration(Math.floor(audioPlayer.current.duration));
       progressBar.current.max = duration;
-      setPlaying(true);
     }
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
 
 
-  setInterval(()=>{
-    if(audioPlayer.current){
-    if(audioPlayer.current.currentTime === audioPlayer.current.duration){
-      next();   
-     }
+  setInterval(() => {
+    if (audioPlayer.current) {
+      if (audioPlayer.current.currentTime === audioPlayer.current.duration) {
+        next();
+      }
     }
-  },1000)
+  }, 1000)
 
   // 시간 출력
   const calculateTime = (secs) => {
-    if(!isNaN(secs)){
-    const minutes = Math.floor(secs / 60);
-    const seconds = Math.floor(secs % 60);
-    return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${
-      seconds < 10 ? `0${seconds}` : `${seconds}`
-    }`;
-  }
+    if (!isNaN(secs)) {
+      const minutes = Math.floor(secs / 60);
+      const seconds = Math.floor(secs % 60);
+      return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${seconds < 10 ? `0${seconds}` : `${seconds}`
+        }`;
+    }
   };
 
   const whilePlaying = () => {
@@ -148,16 +149,92 @@ export default function Music() {
     {
       name: "Awaken",
       artist: "league of legends",
-      album: "/champion/tiles/Aatrox_0.jpg",
-      source: "/mp3/RISE.mp3",
-      time: "197",
+      album: "/album/Awaken.jpg",
+      source: "/mp3/Awaken.mp3",
     },
     {
-      name: "K_DA-THE-BADDEST",
+      name: "Burn-It-All-Down",
       artist: "league of legends",
-      album: "/champion/tiles/Zyra_0.jpg",
+      album: "/album/Burn-It-All-Down.jpg",
+      source: "/mp3/Burn-It-All-Down.mp3",
+    },
+    {
+      name: "Passengers",
+      artist: "league of legends",
+      album: "/album/Chromonicci-Passengers.jpg",
+      source: "/mp3/Chromonicci-Passengers.mp3",
+    },
+    {
+      name: "DJ-Sona-Ethereal",
+      artist: "league of legends",
+      album: "/album/DJ-Sona-Ethereal.jpg",
+      source: "/mp3/DJ-Sona-Ethereal.mp3",
+    },
+    {
+      name: "I_ll-See-You-Again",
+      artist: "league of legends",
+      album: "/album/I_ll-See-You-Again.jpg",
+      source: "/mp3/I_ll-See-You-Again.mp3",
+    },
+    {
+      name: "K_DA-MORE",
+      artist: "league of legends",
+      album: "/album/K_DA-MORE.jpg",
+      source: "/mp3/K_DA-MORE.mp3",
+    },
+    {
+      name: "THE-BADDEST",
+      artist: "league of legends",
+      album: "/album/K_DA-THE-BADDEST.jpg",
       source: "/mp3/K_DA-THE-BADDEST.mp3",
-      time: "162",
+    },
+    {
+      name: "VILLAIN",
+      artist: "league of legends",
+      album: "/album/K_DA-VILLAIN.jpg",
+      source: "/mp3/K_DA-VILLAIN.mp3",
+    },
+    {
+      name: "Legends-Never-Die",
+      artist: "league of legends",
+      album: "/album/Legends-Never-Die.jpg",
+      source: "/mp3/Legends-Never-Die.mp3",
+    },
+    {
+      name: "Lightbringer",
+      artist: "league of legends",
+      album: "/album/Lightbringer.jpg",
+      source: "/mp3/Lightbringer.mp3",
+    },
+    {
+      name: "Lost_Chapter",
+      artist: "league of legends",
+      album: "/album/Lost_Chapter.jpg",
+      source: "/mp3/Lost_Chapter.mp3",
+    },
+    {
+      name: "Phoenix",
+      artist: "league of legends",
+      album: "/album/Phoenix.jpg",
+      source: "/mp3/Phoenix.mp3",
+    },
+    {
+      name: "RISE",
+      artist: "league of legends",
+      album: "/album/RISE.jpg",
+      source: "/mp3/RISE.mp3",
+    },
+    {
+      name: "GIANTS",
+      artist: "league of legends",
+      album: "/album/True-Damage-GIANTS.jpg",
+      source: "/mp3/True-Damage-GIANTS.mp3",
+    },
+    {
+      name: "Warriors",
+      artist: "league of legends",
+      album: "/album/Warriors.jpg",
+      source: "/mp3/Warriors.mp3",
     },
   ];
 
@@ -165,12 +242,14 @@ export default function Music() {
     <div className={styles.container}>
       {openlist ? (
         <div className={styles.listcontainer}>
-          {tracks.map((list, idx) => {
+          {tracks.map((list, idxx) => {
             return (
-              <div key={idx}>
+              <div className={styles.listcheck}>
+                {idxx == idx ? <span className={styles.arrow}>listening</span> : null}
                 <button
+                  key={idx}
                   onClick={() => {
-                    change(idx);
+                    change(idxx);
                   }}
                 >
                   {list.name}
@@ -186,75 +265,31 @@ export default function Music() {
           src={tracks[idx].source}
           preload="metadata"
         ></audio>
-        <div className={styles.topBar}>
-          <i className={styles.materialIcon}>
-            <ExpandMore />
-          </i>
-          <span>Now Playing</span>
-          <i className={styles.materialIcon}>
-            <MoreHoriz />
-          </i>
-        </div>
-        <div className={styles.imgArea}>
-          <img src="#" alt=""></img>
-        </div>
-        <div className={styles.songDetails}>
-          <p className={styles.name}>Beauz & Jana - Crazy</p>
-          <p className={styles.artist}>Beauz & Jana</p>
-        </div>
-        {/* progress 시작 */}
+        <span className={styles.topBar}>Now Playing</span>
+        <img src={tracks[idx].album} alt="" className={styles.imgArea}></img>
+        <p className={styles.name}>{audioPlayer.current ? tracks[idx].name : null}</p>
+        <p className={styles.artist}>{audioPlayer.current ? tracks[idx].artist : null}</p>
         <div className={styles.audioPlayer}>
-          {/* progress bar */}
-          <div>
-          <span>{audioPlayer.current?calculateTime(audioPlayer.current.currentTime)??"00:00": "00:00"}</span>
-            <input
-              type="range"
-              className={styles.progressBar}
-              defaultValue="0"
-              ref={progressBar}
-              onChange={changeRange}
-            />
-            <span>{audioPlayer.current?calculateTime(audioPlayer.current.duration)??"00:00": "00:00"}</span>
-          </div>
+          <span>{audioPlayer.current ? calculateTime(audioPlayer.current.currentTime) ?? "00:00" : "00:00"}</span>
+          <input
+            type="range"
+            className={styles.progressBar}
+            defaultValue="0"
+            ref={progressBar}
+            onChange={changeRange}
+          />
+          <span>{audioPlayer.current ? calculateTime(audioPlayer.current.duration) ?? "00:00" : "00:00"}</span>
         </div>
-        {/* progress 끝 */}
         <div className={styles.controls}>
-          <div className={styles.screenshare} onClick={openURL}>
-            <i id="repeatPlist" className={styles.materialIcon}>
-              <ScreenShare />
-            </i>
-          </div>
-          <div
-            className={styles.previous}
-            onClick={() => {
-              preview();
-            }}
-          >
-            <i id="repeatPlist" className={styles.materialIcon}>
-              <SkipPrevious />
-            </i>
-          </div>
-          <div className={styles.playPause} onClick={toggle}>
-            <i className={styles.materialIcon}>
-              <PlayArrow />
-              {idx}
-            </i>
-          </div>
-          <div
-            className={styles.previous}
-            onClick={() => {
-              next();
-            }}
-          >
-            <i id="next" className={styles.materialIcon}>
-              <SkipNext />
-            </i>
-          </div>
-          <div className={styles.shuffle} onClick={open}>
-            <i id="more-music" className={styles.materialIcon}>
-              <QueueMusic />
-            </i>
-          </div>
+          <i id="repeatPlist" className={styles.materialIcon} onClick={openURL}>
+            <ScreenShare />
+          </i>
+          <i className={styles.materialIcon} onClick={toggle}>
+            {playing ? <Pause /> : <PlayArrow />}
+          </i>
+          <i id="more-music" className={styles.materialIcon} onClick={open}>
+            <QueueMusic />
+          </i>
         </div>
       </div>
     </div>

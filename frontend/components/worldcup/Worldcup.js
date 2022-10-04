@@ -49,11 +49,13 @@ export default function Worldcup() {
       setCurrentList((newChampList) => {
         if (round === "결승") {
           selected(newChampList);
+          alert("결승입니다!");
           return [];
         } else if (round === "결과") {
           return [];
         } else {
           selected(newChampList.slice(0, round));
+          alert(`${round}강 입니다!`);
           return newChampList.slice(0, round);
         }
       });
@@ -73,10 +75,8 @@ export default function Worldcup() {
           datas: result,
         },
       })
-        .then((res) => {
-        })
-        .catch((e) => {
-        });
+        .then((res) => {})
+        .catch((e) => {});
 
       axios({
         method: "get",
@@ -85,8 +85,7 @@ export default function Worldcup() {
         .then((res) => {
           setContent(res.data);
         })
-        .catch((e) => {
-        });
+        .catch((e) => {});
     }
   }, [winner]);
 
@@ -237,8 +236,7 @@ export default function Worldcup() {
                               return newInfo;
                             });
                           })
-                          .catch((e) => {
-                          });
+                          .catch((e) => {});
                       }}
                     >
                       전체 결과 보기
@@ -270,14 +268,25 @@ export default function Worldcup() {
                     </div>
                     <div className={styles.resultContent}>
                       <ul className={styles.ul}>
-                        <li><b>{content.name}</b>({content.englishname})</li>
-                        <li><b>난이도 : </b> {content.difficulty}</li>
-                        <li><b>챔피언 설명 : </b>{content.blurb}</li>
-                        <li><b>우승 횟수 : </b>{content.goldmedalcount}회</li>
-                        <li><b>승률(승리 횟수 / 전체 1:1대결수) : </b>{(content.winRate * 100).toFixed(2)}%</li>
+                        <li>
+                          <b>{content.name}</b>({content.englishname})
+                        </li>
+                        <li>
+                          <b>난이도 : </b> {content.difficulty}
+                        </li>
+                        <li>
+                          <b>챔피언 설명 : </b>
+                          {content.blurb}
+                        </li>
+                        <li>
+                          <b>우승 횟수 : </b>
+                          {content.goldmedalcount}회
+                        </li>
+                        <li>
+                          <b>승률(승리 횟수 / 전체 1:1대결수) : </b>
+                          {(content.winRate * 100).toFixed(2)}%
+                        </li>
                       </ul>
-
-
                     </div>
                   </div>
                 </div>
@@ -385,12 +394,12 @@ export default function Worldcup() {
           <div className={styles.scroll}>
             <table className={styles.table}>
               <thead>
-                <tr >
+                <tr>
                   <th width="10%">순위</th>
                   <th width="15%">이미지</th>
                   <th width="15%">이름</th>
-                  <th width= "30%">
-                    우승횟수 {" "}
+                  <th width="30%">
+                    우승횟수{" "}
                     <button
                       className={styles.sortBtn}
                       onClick={() => {
@@ -419,8 +428,7 @@ export default function Worldcup() {
                               setSortGoldmedal(true);
                               setSortWinrate(false);
                             })
-                            .catch((e) => {
-                            }); // axios 끝
+                            .catch((e) => {}); // axios 끝
                         } //if문 끝
                         else {
                           axios({
@@ -450,17 +458,15 @@ export default function Worldcup() {
                               setSortGoldmedal(false);
                               setSortWinrate(false);
                             })
-                            .catch((e) => {
-                            }); // axios 끝
+                            .catch((e) => {}); // axios 끝
                         } // else문 끝
-
                       }}
                     >
                       <Sort />
                     </button>
                   </th>
                   <th width="30%">
-                    승률 {" "}
+                    승률{" "}
                     <button
                       className={styles.sortBtn}
                       onClick={() => {
@@ -489,9 +495,8 @@ export default function Worldcup() {
                               setSortGoldmedal(false);
                               setSortWinrate(true);
                             })
-                            .catch((e) => {
-                            }); //axios 끝
-                        }// if문 끝
+                            .catch((e) => {}); //axios 끝
+                        } // if문 끝
                         else {
                           axios({
                             method: "get",
@@ -514,41 +519,42 @@ export default function Worldcup() {
                                 });
                                 newInfo.sort(function (a, b) {
                                   return b.rank - a.rank;
-                                })
+                                });
                                 return newInfo;
                               });
                               setSortGoldmedal(false);
                               setSortWinrate(false);
                             })
-                            .catch((e) => {
-                            }); //axios 끝
+                            .catch((e) => {}); //axios 끝
                         } // else문 끝
                       }}
                     >
-                    <Sort/>
+                      <Sort />
                     </button>
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {info.filter((item) => item.ko.includes(value)).map((item, idx) => {
-                  return (
-                    <tr key={idx}>
-                      <td>{item.rank}</td>
-                      <td>
-                        <img
-                          src={`/champion/tiles/${item.en}_0.jpg`}
-                          id={item.ko}
-                          alt={item.en}
-                          className={styles.imgResult}
-                        />
-                      </td>
-                      <td>{item.ko}</td>
-                      <td>{item.goldmedal}</td>
-                      <td>{item.winrate}%</td>
-                    </tr>
-                  );
-                })}
+                {info
+                  .filter((item) => item.ko.includes(value))
+                  .map((item, idx) => {
+                    return (
+                      <tr key={idx}>
+                        <td>{item.rank}</td>
+                        <td>
+                          <img
+                            src={`/champion/tiles/${item.en}_0.jpg`}
+                            id={item.ko}
+                            alt={item.en}
+                            className={styles.imgResult}
+                          />
+                        </td>
+                        <td>{item.ko}</td>
+                        <td>{item.goldmedal}</td>
+                        <td>{item.winrate}%</td>
+                      </tr>
+                    );
+                  })}
               </tbody>
               <tfoot></tfoot>
             </table>

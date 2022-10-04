@@ -12,7 +12,6 @@ export default function ClickChooseChampion(props) {
   let [csinput, setCsinput] = useState(""); //챔피언 검색을 위한 입력 결과(한국어)
 
   const click = (en) => {
-    console.log(en);
     SetPickchampionEng(en);
   };
 

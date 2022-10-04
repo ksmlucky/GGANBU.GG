@@ -32,7 +32,6 @@ const Keyboard = () => {
     pressstop = false;
     const st = setInterval(function () {
       setStart((start) => {
-        console.log(start);
         if (start === 4) {
           setDef(false);
           load = false;
@@ -47,7 +46,6 @@ const Keyboard = () => {
 
   function startTime(stage) {
     const time = setInterval(function () {
-      console.log(playerTime);
       playerTime++;
       if (pressstop === true) {
         setScore(playerTime);

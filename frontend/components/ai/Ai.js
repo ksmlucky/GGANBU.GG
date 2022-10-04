@@ -92,7 +92,7 @@ export default function Ai() {
                 <>
                   <li className={styles.liname} key={idx}>
                     <img src={`/champion/tiles/${item}_0.jpg`} className={styles.champ}></img>
-                    <span className={styles.champname}>{item}</span>
+                    <span className={styles.champname}>{getregion[bestregions].ko[idx]}</span>
                   </li>
                 </>)
             })}

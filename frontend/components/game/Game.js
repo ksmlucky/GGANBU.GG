@@ -55,12 +55,12 @@ const Keyboard = () => {
         } else if (playerTime <= difficulty[stage]) {
           setStage((stage) => {
             if (stage >= 2) {
-              return "클리어!";
+              return "CLEAR";
             }
             return stage + 1;
           });
         } else {
-          setStage("당신은 죽었습니다");
+          setStage("GAMEOVER");
         }
         pressstop = false;
         playerTime = 0;

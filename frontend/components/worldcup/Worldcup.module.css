@@ -6,7 +6,7 @@
   flex-direction: column;
   /* width: 100vw;
   height: 35vw; */
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -55,6 +55,7 @@
 }
 
 .table {
+  color: var(--text);
   border: 1px solid gray;
   text-align: center;
   width: 100%;
@@ -63,7 +64,7 @@
 }
 
 .scroll {
-  border: 1px solid black;
+  border: 1px solid var(--header-border-bottom);
   display: flex;
   width: 1000px;
   max-height: 500px;
@@ -76,15 +77,21 @@
 }
 
 .imgResult {
-  width: 5vw;
+  width: 40%;
+  padding :1%;
   height: auto;
   animation: showeffect 1s ease;
 }
 
-.imgSort {
-  width: 1vw;
-  height: auto;
-  animation: showeffect 1s ease;
+.sortBtn{
+  width: 6%;
+  height: 6%;
+  color: var(--text);
+  background: none;
+  border-radius: 10px;
+  border : none;
+  outline: none;
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .btn {
@@ -95,6 +102,7 @@
   padding: 0.7vw 1vw;
   border-radius: 10px;
   border: 1px solid var(--header-border-bottom);
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .btns {
@@ -104,6 +112,7 @@
   height: 100%;
   justify-content: space-evenly;
   align-items: center;
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .selectbtn {
@@ -114,6 +123,7 @@
   padding: 0.5vw 1vw;
   border-radius: 10px;
   border: 1px solid var(--header-border-bottom);
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .resultPage {
@@ -123,12 +133,11 @@
   height: 100%;
 }
 
-
-
 .resultBtn {
   display: flex;
   margin-bottom: 1vw;
   justify-content: space-evenly;
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .rbtn {
@@ -139,6 +148,7 @@
   padding: 0.7vw 1vw;
   border-radius: 10px;
   border: 1px solid var(--header-border-bottom);
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .resultComponent {
@@ -167,7 +177,7 @@
 .resultContent {
   display: flex;
   width: 40%;
-  height: 60%;
+  height: 80%;
   margin-right: 5%;
   padding: 1%;
   color: var(--text);
@@ -178,11 +188,12 @@
   flex-direction: column;
 }
 
+
 .ul {
+  font-size : 20px;
   list-style: none;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  display : flex;
+  flex-direction :column;
   align-content: flex-start;
   gap: 10px;
   overflow-y: scroll;

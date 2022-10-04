@@ -23,7 +23,7 @@ export default function ClickChooseChampion(props) {
     <>
       <div className={styles.main}>
         <div className={styles.titlecontainer}>
-          <span className={styles.title}>Select Champion</span>
+          <span className={styles.title}>챔피언 선택</span>
           <img></img>
         </div>
         <div className={styles.maincontainer}>
@@ -41,22 +41,24 @@ export default function ClickChooseChampion(props) {
                 .map((item, idx) => {
                   return (
                     <li key={idx} className={styles.li}>
-                      <img
-                        src={`/champion/tiles/${item.en}_0.jpg`}
-                        id={item.ko}
-                        alt={item.en}
-                        index={item.index}
-                        selected={item.selected}
-                        className={styles.img}
-                        draggable={false}
-                        onClick={() => {
-                          click(item.en);
-                          if (props.clickChamp) {
-                            props.clickChamp(item.en);
-                          }
-                        }}
-                      />
-                      {/* {item.en === pickchampionEng ? <img src='/border/select_border.svg' className={styles.border}></img> : null} */}
+                      <div className={styles.imgborder}>
+                        <img
+                          src={`/champion/tiles/${item.en}_0.jpg`}
+                          id={item.ko}
+                          alt={item.en}
+                          index={item.index}
+                          selected={item.selected}
+                          className={styles.img}
+                          draggable={false}
+                          onClick={() => {
+                            click(item.en);
+                            if (props.clickChamp) {
+                              props.clickChamp(item.en);
+                            }
+                          }}
+                        />
+                        {item.en === pickchampionEng ? <img src='/border/select_border.svg' className={styles.border}></img> : null}
+                      </div>
                       <span className={styles.name}>{item.ko}</span>
                     </li>
                   );

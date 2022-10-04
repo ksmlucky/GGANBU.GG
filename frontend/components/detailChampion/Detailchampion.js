@@ -26,7 +26,10 @@ export default function DetailChampion({ mode }) {
       <div className={styles.container}>
         <div className={styles.buttonContainer}>
           {id ? (
-            <span className={styles.champname}>{id}</span>
+            <div className={styles.titleimg}>
+              <span className={styles.champname}>{championName}</span>
+              <img src={`/champion/tiles/${id}_0.jpg`}></img>
+            </div>
           ) : null}
           <div className={styles.btns}>
             <button onClick={() => Setselectdata("map")}>Lines</button>

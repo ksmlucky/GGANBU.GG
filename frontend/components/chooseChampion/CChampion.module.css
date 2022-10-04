@@ -73,7 +73,7 @@
   overflow-y: scroll;
   list-style: none;
   gap: 10px;
-  background: var(--background-panel);
+  /* background: var(--background-panel); */
 }
 
 .ul::-webkit-scrollbar {
@@ -103,6 +103,7 @@
 
 .img {
   width: 100px;
+  border: 2px solid var(--header-border-bottom);
 }
 
 .name {

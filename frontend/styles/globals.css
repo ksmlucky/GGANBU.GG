@@ -25,6 +25,7 @@ body[data-theme="dark"] {
   --background-panel: #2F2F2F;
   --answer: #0397AB;
   --wrong: #8A202E;
+  --gray: #F0E6D2;
   background: #121212;
 }
 
@@ -36,6 +37,7 @@ body[data-theme="light"] {
   --background-panel: #eeeeee;
   --answer: #0397AB;
   --wrong: #8A202E;
+  --gray: #F0E6D2;
   background: #ffffff;
 }
 

@@ -48,6 +48,14 @@ export default function CSInput({
         />
         <i></i>
       </div>
+      <button
+        className={styles.btn}
+        onClick={() => {
+          resultfunc();
+        }}
+      >
+        결과
+      </button>
     </div>
   );
 }

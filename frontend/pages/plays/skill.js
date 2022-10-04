@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import SkillQuiz from "../../components/skillQuiz/SkillQuiz";
+import SkillQuiz from "../../components/skillQuiz/skillQuiz";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);

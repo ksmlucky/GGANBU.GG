@@ -2,7 +2,7 @@ import { SkinLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
 // app
 //import
-import Skin3d from "../components/skin3d/Skin3d";
+import Skin3d from "../components/skin3d/skin3d";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);

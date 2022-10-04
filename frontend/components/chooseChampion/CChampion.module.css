@@ -106,6 +106,7 @@
 }
 
 .name {
+  margin-top: 10px;
   color: var(--text);
   font-size: 50%;
   letter-spacing: 1px;

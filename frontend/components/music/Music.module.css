@@ -43,6 +43,15 @@
 
 .arrow {
   color: var(--text);
+
+}
+
+.materialIcon {
+  color: var(--text);
+}
+
+.materialIcon:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
 }
 
 .wrapper {

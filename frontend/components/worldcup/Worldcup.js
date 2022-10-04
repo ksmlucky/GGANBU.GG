@@ -12,6 +12,7 @@ import champion from "../../utils/champion";
 import skin from "../../utils/skin";
 import axios from "axios";
 import { worldcup } from "../../api/api";
+import Sort from "/public/arrow/sort.svg";
 
 export default function Worldcup() {
   const [currentList, setCurrentList] = useState(champion());
@@ -384,14 +385,14 @@ export default function Worldcup() {
           <div className={styles.scroll}>
             <table className={styles.table}>
               <thead>
-                <tr>
-                  <th>순위</th>
-                  <th>이미지</th>
-                  <th>이름</th>
-                  <th>
+                <tr >
+                  <th width="10%">순위</th>
+                  <th width="15%">이미지</th>
+                  <th width="15%">이름</th>
+                  <th width= "30%">
                     우승횟수 {" "}
                     <button
-                      className={styles.btn}
+                      className={styles.sortBtn}
                       onClick={() => {
                         if (sortGoldmedal === false) {
                           axios({
@@ -455,16 +456,13 @@ export default function Worldcup() {
 
                       }}
                     >
-                      <img
-                        src="/arrow/sort.png"
-                        className={styles.imgSort}
-                      ></img>
+                      <Sort />
                     </button>
                   </th>
-                  <th>
-                    승률(승리 횟수 / 전체 1:1대결수)
+                  <th width="30%">
+                    승률 {" "}
                     <button
-                      className={styles.btn}
+                      className={styles.sortBtn}
                       onClick={() => {
                         if (sortWinrate === false) {
                           axios({
@@ -527,10 +525,7 @@ export default function Worldcup() {
                         } // else문 끝
                       }}
                     >
-                      <img
-                        src="/arrow/sort.png"
-                        className={styles.imgSort}
-                      ></img>
+                    <Sort/>
                     </button>
                   </th>
                 </tr>

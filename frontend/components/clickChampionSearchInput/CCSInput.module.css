@@ -6,7 +6,6 @@
   align-items: center;
   gap: 20px;
   width: 100%;
-  border: 1px solid var(--header-border-bottom);
 }
 
 .searchbar {
@@ -17,6 +16,7 @@
 .searchbar input {
   background: none;
   border: none;
+  border-bottom: 1px solid var(--header-border-bottom);
   outline: none;
   width: 100%;
   color: var(--text);
@@ -34,9 +34,14 @@
 }
 
 .btn {
+  display: block;
+  width: 20%;
+  height: 50%;
   background: none;
   border: none;
   color: var(--text);
+  font-size: 1vw;
+  border: 1px solid var(--header-border-bottom);
 }
 
 .btn:hover {

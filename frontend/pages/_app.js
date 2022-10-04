@@ -3,7 +3,6 @@ import "../styles/globals.css";
 import { BaseLayout } from "../components/layouts";
 import React, { useEffect } from "react";
 
-
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
 
@@ -31,7 +30,7 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <BaseLayout setMode={setMode}>
-        <Component {...pageProps} />
+        <Component {...pageProps} mode={mode} />
       </BaseLayout>
     </>
   );

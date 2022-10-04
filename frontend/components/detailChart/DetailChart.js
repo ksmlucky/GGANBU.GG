@@ -56,7 +56,7 @@ Chart.register(
   SubTitle
 );
 
-export default function DetailChart({id, championName }) {
+export default function DetailChart({ id, championName, mode }) {
   const clist = championList();
   const [selectedchampion, setSelectedchampion] = useState([]); //선택한 챔피언(한국어)
   const [bools, setBools] = useState("");
@@ -90,10 +90,14 @@ export default function DetailChart({id, championName }) {
     },
   ]);
 
-  const [temp, setTemp] = useState([[40, 43, 53, 43, 22, 11], [34, 54, 21, 33, 49, 12], [90, 17, 39, 80, 21, 33], [31, 60, 52, 13, 47, 23], [31, 11, 23, 43, 54, 65]]);
-
+  const [temp, setTemp] = useState([
+    [40, 43, 53, 43, 22, 11],
+    [34, 54, 21, 33, 49, 12],
+    [90, 17, 39, 80, 21, 33],
+    [31, 60, 52, 13, 47, 23],
+    [31, 11, 23, 43, 54, 65],
+  ]);
   useEffect(() => {
-
     if (bools) {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
@@ -104,52 +108,63 @@ export default function DetailChart({id, championName }) {
       canv.className = styles.canvas;
       ctx.appendChild(canv);
     }
-    
-    const theme = sessionStorage.getItem('theme');
-    console.log(theme+"1");
-    if(theme ==='"dark"'){
-      const ctx = document.getElementById("myChart").getContext("2d");
-    let config = {
-      type: "radar",
-      data: {
-        labels: ["승률", "픽률", "밴률", "DPM/100", "솔로킬 횟수", "CC기 총 시간"],
-        datasets: dataSet,
-      },
-      options: {
-        responsive: true,
-        scales: {
-          radar: {
-            angleLines: {
-              color: "white",
-            },
-            grid: {
-              color: "white",
-            },
-            pointLabels: {
-              color: "white",
-            },
-            ticks: {
-              color: "white",
-              backdropColor: "black",
-            },
-          },
-        },
-        plugins: {
-          title: {
-            display: true,
-            text: "챔피언 비교",
-          },
-        },
-      },
-    };
-    const myChart = new Chart(ctx, config);
-    }
-    else if(theme==='"light"'){
+
+    if (mode === "dark") {
       const ctx = document.getElementById("myChart").getContext("2d");
       let config = {
         type: "radar",
         data: {
-          labels: ["승률", "픽률", "밴률", "DPM/100", "솔로킬 횟수", "CC기 총 시간"],
+          labels: [
+            "승률",
+            "픽률",
+            "밴률",
+            "DPM/100",
+            "솔로킬 횟수",
+            "CC기 총 시간",
+          ],
+          datasets: dataSet,
+        },
+        options: {
+          responsive: true,
+          scales: {
+            radar: {
+              angleLines: {
+                color: "white",
+              },
+              grid: {
+                color: "white",
+              },
+              pointLabels: {
+                color: "white",
+              },
+              ticks: {
+                color: "white",
+                backdropColor: "black",
+              },
+            },
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: "챔피언 비교",
+            },
+          },
+        },
+      };
+      const myChart = new Chart(ctx, config);
+    } else if (mode === "light") {
+      const ctx = document.getElementById("myChart").getContext("2d");
+      let config = {
+        type: "radar",
+        data: {
+          labels: [
+            "승률",
+            "픽률",
+            "밴률",
+            "DPM/100",
+            "솔로킬 횟수",
+            "CC기 총 시간",
+          ],
           datasets: dataSet,
         },
         options: {
@@ -181,14 +196,12 @@ export default function DetailChart({id, championName }) {
       };
       const myChart = new Chart(ctx, config);
     }
-   
+
     setBools(true);
   }, []);
 
   useEffect(() => {
-    const theme = sessionStorage.getItem('theme');
-    console.log(theme+"2");
-    if (bools && theme==='"dark"') {
+    if (bools && mode === "dark") {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
       ctx.removeChild(ctxx);
@@ -241,8 +254,7 @@ export default function DetailChart({id, championName }) {
       };
 
       const myChart = new Chart(newCtx, config);
-    }
-    else if(bools && theme==='"light"'){
+    } else if (bools && mode === "light") {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
       ctx.removeChild(ctxx);
@@ -300,10 +312,7 @@ export default function DetailChart({id, championName }) {
   }, [selectedchampion]);
 
   useEffect(() => {
-    console.log(theme+"3");
-    const theme = sessionStorage.getItem('theme');
-    console.log(theme);
-    if (bools && theme==='"dark"') {
+    if (bools && mode === "dark") {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
       ctx.removeChild(ctxx);
@@ -356,8 +365,7 @@ export default function DetailChart({id, championName }) {
       };
 
       const myChart = new Chart(newCtx, config);
-    }
-    else if(bools && theme==='"light"'){
+    } else if (bools && mode === "light") {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
       ctx.removeChild(ctxx);
@@ -412,7 +420,7 @@ export default function DetailChart({id, championName }) {
       const myChart = new Chart(newCtx, config);
     }
     setBools(true);
-  }, [sessionStorage.getItem('theme')]);
+  }, [mode]);
 
   return (
     <>
@@ -427,10 +435,10 @@ export default function DetailChart({id, championName }) {
 
         <ul className={styles.ul}>
           {clist.map((item, idx) => {
-            return (
-              <>
-                {id !== item.en && (
-                  <li className={styles.li} key={idx}>
+            if (id !== item.en) {
+              return (
+                <div key={idx}>
+                  <li className={styles.li}>
                     <img
                       src={`/champion/tiles/${item.en}_0.jpg`}
                       id={item.ko}
@@ -456,7 +464,7 @@ export default function DetailChart({id, championName }) {
                                 fill: true,
                                 backgroundColor:
                                   customColorTranslucent[
-                                  newSelectedChampion.length
+                                    newSelectedChampion.length
                                   ],
                                 borderColor:
                                   customColor[newSelectedChampion.length],
@@ -479,8 +487,7 @@ export default function DetailChart({id, championName }) {
                               newDataSet.splice(newChampName, 1);
                               setCustomColor((customColor) => {
                                 const newCustomColor = [...customColor];
-                                const tempColor =
-                                  newCustomColor[newChampName];
+                                const tempColor = newCustomColor[newChampName];
                                 newCustomColor.splice(newChampName, 1);
                                 newCustomColor.push(tempColor);
                                 return newCustomColor;
@@ -501,7 +508,7 @@ export default function DetailChart({id, championName }) {
                                 }
                               );
                               setTemp((temp) => {
-                                const newTemp = [...temp]
+                                const newTemp = [...temp];
                                 const tempdata = newTemp[newChampName - 1];
                                 newTemp.splice(newChampName - 1, 1);
                                 newTemp.push(tempdata);
@@ -525,9 +532,9 @@ export default function DetailChart({id, championName }) {
                     ></img>
                     <span className={styles.name}>{item.ko}</span>
                   </li>
-                )}
-              </>
-            );
+                </div>
+              );
+            }
           })}
         </ul>
       </div>

@@ -10,7 +10,6 @@ import Wordcloud from "../wordcloud/Wordcloud";
 export default function DetailChampion({ mode }) {
   const router = useRouter();
   const { id } = router.query;
-
   const clist = championList();
 
   const [selectdata, Setselectdata] = useState("");
@@ -42,7 +41,7 @@ export default function DetailChampion({ mode }) {
             <DetailMap mode={mode} />
           ) : null}
           {selectdata && selectdata === "chart" ? (
-            <DetailChart id={id} championName={championName} />
+            <DetailChart id={id} championName={championName} mode={mode} />
           ) : null}
           {selectdata && selectdata === "cloud" ? <Wordcloud /> : null}
         </div>

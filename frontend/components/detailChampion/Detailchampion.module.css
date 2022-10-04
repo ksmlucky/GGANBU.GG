@@ -4,7 +4,7 @@
   display: grid;
   height: 100%;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 5fr;
+  grid-template-rows: 1fr 6fr;
   grid-template-areas:
     "t"
     "mc";
@@ -13,7 +13,7 @@
 .buttonContainer {
   grid-area: t;
   width: 99%;
-  height: 90%;
+  height: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -30,14 +30,16 @@
 }
 
 .titleimg img {
-  width: 100%;
-  height: 100%;
+  padding-top: 20px;
+  width: 80%;
+  height: 90%;
 }
 
 .champname {
   color: var(--text);
-  margin: 0 20px;
-  width: 50%;
+  /* padding: 0 20px; */
+  width: 100%;
+  font-size: 1rem;
 }
 
 .btns {
@@ -61,7 +63,7 @@
 
 .contentContainer {
   width: 99%;
-  height: 90%;
+  height: 100%;
   grid-area: mc;
   display: flex;
   justify-content: center;

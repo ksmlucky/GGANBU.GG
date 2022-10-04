@@ -14,20 +14,20 @@ export default function DetailChampion({ mode }) {
   const clist = championList();
 
   const [selectdata, Setselectdata] = useState("");
-  const [championName, setChampionName] = useState("")
+  const [championName, setChampionName] = useState("");
   useEffect(() => {
-    const championKo = clist.findIndex(i => i.en === id);
+    const championKo = clist.findIndex((i) => i.en === id);
     if (clist[championKo]) {
-      setChampionName(clist[championKo].ko)
+      setChampionName(clist[championKo].ko);
     }
-  })
+  });
   return (
     <>
       <div className={styles.container}>
         <div className={styles.buttonContainer}>
           {id ? (
             <div className={styles.titleimg}>
-              <span className={styles.champname}>{championName}</span>
+              <p className={styles.champname}>{championName}</p>
               <img src={`/champion/tiles/${id}_0.jpg`}></img>
             </div>
           ) : null}
@@ -38,8 +38,12 @@ export default function DetailChampion({ mode }) {
           </div>
         </div>
         <div className={styles.contentContainer}>
-          {selectdata && selectdata === "map" ? <DetailMap mode={mode} /> : null}
-          {selectdata && selectdata === "chart" ? <DetailChart id={id} championName={championName} /> : null}
+          {selectdata && selectdata === "map" ? (
+            <DetailMap mode={mode} />
+          ) : null}
+          {selectdata && selectdata === "chart" ? (
+            <DetailChart id={id} championName={championName} />
+          ) : null}
           {selectdata && selectdata === "cloud" ? <Wordcloud /> : null}
         </div>
       </div>

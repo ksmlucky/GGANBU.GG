@@ -9,7 +9,7 @@
 .logo {
   font-size: 5rem;
   color: var(--text);
-  border-right: 2px solid var(--border-on);
+  border-right: 2px solid var(--text);
   animation: blink 0.75s infinite;
 }
 
@@ -24,6 +24,6 @@
   }
 
   to {
-    border-color: 2px solid var(--border-on);
+    border-color: 2px solid var(--text);
   }
 }

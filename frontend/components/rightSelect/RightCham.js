@@ -156,7 +156,6 @@ export default function RightCham({
 
   function dragOver(event) {
     event.preventDefault();
-    // console.log(event);
   }
   function dragEnter(event) {
     event.preventDefault();
@@ -179,7 +178,6 @@ export default function RightCham({
           event.target.id !== line
         ) {
           event.target.src = `/transparent.png`;
-          console.log(event);
         } else {
           event.target.src = `/sleepyporo.gif`;
           // event.target.style.background =

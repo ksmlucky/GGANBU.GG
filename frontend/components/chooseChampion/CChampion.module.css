@@ -52,7 +52,6 @@
   color: var(--text);
   text-align: center;
   /* padding: 5px 0; */
-  border: 1px solid var(--header-border-bottom);
 }
 
 .givefive:hover {

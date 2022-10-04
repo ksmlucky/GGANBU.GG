@@ -46,16 +46,13 @@ export default function Ai() {
     if (cheesebtn) {
       let resultPrediction = prediction.map((item, idx) => { if (item.probability.toFixed(2) > best) { best = item.probability.toFixed(2); bestregion = idx } return { "city": item.className, "count": item.probability.toFixed(2) } });
       data = resultPrediction;
-      console.log(data, best, bestregion);
       setBestregions(bestregion);
-      console.log(getregion[bestregion].video);
       cheesebtn = false;
     }
 
   }
 
   function cheese() {
-    console.log("cheese")
     cheesebtn = true;
     best = 0;
     bestregion = 0;

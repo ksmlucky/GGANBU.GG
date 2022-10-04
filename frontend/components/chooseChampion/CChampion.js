@@ -64,13 +64,9 @@ export default function ChooseChampion() {
               onClick={() => {
                 Setmakefive(true);
               }}
-            // style={{
-            //   boxShadow: makefive
-            //     ? "inset 3px 3px 10px var(--btn-off-s), inset -3px -3px 10px var(--btn-off-l)"
-            //     : "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
-
-            //   color: makefive ? "var(--select)" : "var(--text)",
-            // }}
+              style={{
+                color: makefive ? "var(--logo)" : "var(--text)",
+              }}
             >
               five
             </button>

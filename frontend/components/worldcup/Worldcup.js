@@ -75,7 +75,6 @@ export default function Worldcup() {
         .then((res) => {
         })
         .catch((e) => {
-          console.log(e);
         });
 
       axios({
@@ -86,7 +85,6 @@ export default function Worldcup() {
           setContent(res.data);
         })
         .catch((e) => {
-          console.log(e);
         });
     }
   }, [winner]);
@@ -239,7 +237,6 @@ export default function Worldcup() {
                             });
                           })
                           .catch((e) => {
-                            console.log(e);
                           });
                       }}
                     >
@@ -422,7 +419,6 @@ export default function Worldcup() {
                               setSortWinrate(false);
                             })
                             .catch((e) => {
-                              console.log(e);
                             }); // axios 끝
                         } //if문 끝
                         else {
@@ -454,7 +450,6 @@ export default function Worldcup() {
                               setSortWinrate(false);
                             })
                             .catch((e) => {
-                              console.log(e);
                             }); // axios 끝
                         } // else문 끝
 
@@ -497,7 +492,6 @@ export default function Worldcup() {
                               setSortWinrate(true);
                             })
                             .catch((e) => {
-                              console.log(e);
                             }); //axios 끝
                         }// if문 끝
                         else {
@@ -529,7 +523,6 @@ export default function Worldcup() {
                               setSortWinrate(false);
                             })
                             .catch((e) => {
-                              console.log(e);
                             }); //axios 끝
                         } // else문 끝
                       }}

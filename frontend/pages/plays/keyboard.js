@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 // app
 //import
-import Game from "../components/game/Game";
+import Game from "../../components/game/Game";
 
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);

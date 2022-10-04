@@ -12,7 +12,6 @@ export default function CSInput({
   function resultfunc() {
     const line = ["top", "jungle", "mid", "bot", "support"];
     let myline = line.indexOf(selectline);
-    console.log(myline);
     if (selectline) {
       if (rightchampion[myline].champ) {
         router.push(result);
@@ -36,7 +35,7 @@ export default function CSInput({
 
   return (
     <div className={styles.container}>
-      <div className={styles.search}>
+      <div className={styles.searchbar}>
         <input
           type="text"
           id="search"
@@ -49,14 +48,6 @@ export default function CSInput({
         />
         <i></i>
       </div>
-      <button
-        className={styles.btn}
-        onClick={() => {
-          resultfunc();
-        }}
-      >
-        Result
-      </button>
     </div>
   );
 }

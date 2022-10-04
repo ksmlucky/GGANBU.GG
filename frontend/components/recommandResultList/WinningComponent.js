@@ -1,7 +1,6 @@
 import styles from "./RecommandResultList.module.css";
 
 export default function WinningComponent(props) {
-  console.log(props.winning);
   return (
     <div className={styles.recommandresultcontainer}>
       <div className={styles.recommands}>

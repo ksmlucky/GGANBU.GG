@@ -208,7 +208,7 @@ export default function Music() {
     {
       name: "Lost_Chapter",
       artist: "league of legends",
-      album: "/album/lost_Chapter.jpg",
+      album: "/album/lost_chapter.jpg",
       source: "/mp3/Lost_Chapter.mp3",
     },
     {

@@ -14,7 +14,7 @@ export default function Footer({ setMode }) {
               setMode("light");
             }}
           >
-            LIGHT
+            낮모드
           </button>
           <button
             className={styles.mode}
@@ -22,7 +22,7 @@ export default function Footer({ setMode }) {
               setMode("dark");
             }}
           >
-            DARK
+            밤모드
           </button>
         </div>
       </footer>

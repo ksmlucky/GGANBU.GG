@@ -30,7 +30,7 @@ body[data-theme="dark"] {
 }
 
 body[data-theme="light"] {
-  --background: #ffffff;
+  --background: #F7F7F7;
   --logo: #C89B3C;
   --header-border-bottom: #C89B3C;
   --text: #010A13;
@@ -38,7 +38,7 @@ body[data-theme="light"] {
   --answer: #0397AB;
   --wrong: #8A202E;
   --gray: #F0E6D2;
-  background: #ffffff;
+  background: #F7F7F7;
 }
 
 @font-face {

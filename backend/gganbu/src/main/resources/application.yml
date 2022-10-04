@@ -1,0 +1,41 @@
+spring:
+  #mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/gganbu_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: gganbu
+    password: gganbu
+
+  data:
+    mongodb:
+      host: localhost
+      #      host: j7c204.p.ssafy.io
+      port: 27017
+      #      authentication-database: admin
+      #      username: j7c204
+      #      password: seveneleven
+      database: test
+    web:
+      pageable:
+        one-indexed-parameters: true
+
+
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      #배포할땐 꺼야됨
+      ddl-auto: update
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        format_sql: true
+#    show-sql: true
+
+
+
+#for Riot-API
+riot-api:
+  api-keys: RGAPI-b9e6d72d-77d2-4c93-931b-a035ffcfe496

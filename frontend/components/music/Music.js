@@ -8,6 +8,7 @@ import SkipNext from "/public/musicicon/SkipNext.svg";
 import SkipPrevious from "/public/musicicon/SkipPrevious.svg";
 import ExpandMore from "/public/musicicon/ExpandMore.svg";
 import MoreHoriz from "/public/musicicon/MoreHoriz.svg";
+import Playing from "/public/musicicon/Playing.svg";
 import { createContext, useState, useEffect, useContext, useRef } from "react";
 
 export default function Music() {
@@ -106,9 +107,8 @@ export default function Music() {
     if (!isNaN(secs)) {
       const minutes = Math.floor(secs / 60);
       const seconds = Math.floor(secs % 60);
-      return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${
-        seconds < 10 ? `0${seconds}` : `${seconds}`
-      }`;
+      return `${minutes < 10 ? `0${minutes}` : `${minutes}`}:${seconds < 10 ? `0${seconds}` : `${seconds}`
+        }`;
     }
   };
 
@@ -245,7 +245,9 @@ export default function Music() {
             return (
               <div className={styles.listcheck}>
                 {idxx == idx ? (
-                  <span className={styles.arrow}>listening</span>
+                  <i id="play-music" className={styles.materialIcon}>
+                    <Playing />
+                  </i>
                 ) : null}
                 <button
                   key={idx}
@@ -256,6 +258,7 @@ export default function Music() {
                   {list.name}
                 </button>
               </div>
+
             );
           })}
         </div>
@@ -266,7 +269,7 @@ export default function Music() {
           src={tracks[idx].source}
           preload="metadata"
         ></audio>
-        <span className={styles.topBar}>Now Playing</span>
+        <span className={styles.topBar}>현재 듣고있는 노래</span>
         <img src={tracks[idx].album} alt="" className={styles.imgArea}></img>
         <p className={styles.name}>
           {audioPlayer.current ? tracks[idx].name : null}

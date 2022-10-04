@@ -42,7 +42,7 @@ export default function ChooseChampion() {
     <>
       <div className={styles.main}>
         <div className={styles.titlecontainer}>
-          <span className={styles.title}>Select Champions</span>
+          <span className={styles.title}>챔피언 선택</span>
           <img></img>
         </div>
         <div className={styles.maincontainer}>
@@ -62,13 +62,13 @@ export default function ChooseChampion() {
             <button
               className={styles.givefive}
               onClick={() => {
-                Setmakefive(true);
+                Setmakefive(!makefive);
               }}
               style={{
                 color: makefive ? "var(--logo)" : "var(--text)",
               }}
             >
-              five
+              {makefive ? "전체모드" : "깐부모드"}
             </button>
             <ul className={styles.ul}>
               {clist

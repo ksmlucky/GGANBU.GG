@@ -7,3 +7,12 @@
   justify-content: center;
   align-items: center;
 }
+
+.atag {
+  color: var(--text);
+}
+
+.atag:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+  color: var(--header-border-bottom);
+}

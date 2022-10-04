@@ -29,7 +29,7 @@ export default function CCSInput({ csInput, pickchampionEng }) {
         <i></i>
       </div>
       <Link href={`/detail/${pickchampionEng}`}>
-        <button className={styles.btn}>Show</button>
+        <button className={styles.btn}>선택</button>
       </Link>
     </div>
   );

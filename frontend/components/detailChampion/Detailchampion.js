@@ -14,29 +14,36 @@ export default function DetailChampion({ mode }) {
   const clist = championList();
 
   const [selectdata, Setselectdata] = useState("");
-  const [championName, setChampionName] = useState("")
+  const [championName, setChampionName] = useState("");
   useEffect(() => {
-    const championKo = clist.findIndex(i => i.en === id);
+    const championKo = clist.findIndex((i) => i.en === id);
     if (clist[championKo]) {
-      setChampionName(clist[championKo].ko)
+      setChampionName(clist[championKo].ko);
     }
-  })
+  });
   return (
     <>
       <div className={styles.container}>
         <div className={styles.buttonContainer}>
           {id ? (
-            <span className={styles.champname}>{id}</span>
+            <div className={styles.titleimg}>
+              <p className={styles.champname}>{championName}</p>
+              <img src={`/champion/tiles/${id}_0.jpg`}></img>
+            </div>
           ) : null}
           <div className={styles.btns}>
-            <button onClick={() => Setselectdata("map")}>Lines</button>
-            <button onClick={() => Setselectdata("chart")}>compare</button>
-            <button onClick={() => Setselectdata("cloud")}>wordcloud</button>
+            <button onClick={() => Setselectdata("map")}>라인별</button>
+            <button onClick={() => Setselectdata("chart")}>비교그래프</button>
+            <button onClick={() => Setselectdata("cloud")}>단어구름</button>
           </div>
         </div>
         <div className={styles.contentContainer}>
-          {selectdata && selectdata === "map" ? <DetailMap mode={mode} /> : null}
-          {selectdata && selectdata === "chart" ? <DetailChart id={id} championName={championName} /> : null}
+          {selectdata && selectdata === "map" ? (
+            <DetailMap mode={mode} />
+          ) : null}
+          {selectdata && selectdata === "chart" ? (
+            <DetailChart id={id} championName={championName} />
+          ) : null}
           {selectdata && selectdata === "cloud" ? <Wordcloud /> : null}
         </div>
       </div>

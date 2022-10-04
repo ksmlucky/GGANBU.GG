@@ -9,7 +9,7 @@ const Keyboard = () => {
   const [keyboardinput, Setkeyboardinput] = useState("");
   const [score, setScore] = useState(0);
   const [start, setStart] = useState(0);
-  const difficulty = [50, 40, 40];
+  const difficulty = [50, 50, 40];
   const ready = [33, 30, 30];
   const [stage, setStage] = useState(0);
   const [inGame, setInGame] = useState(false);
@@ -19,7 +19,7 @@ const Keyboard = () => {
   }, []);
 
   const detectKey = (e) => {
-    if (e.key === "a" && load === false) {
+    if (e.key === "e" && load === false) {
       pressstop = true;
     }
   };
@@ -79,6 +79,7 @@ const Keyboard = () => {
       {stage === 0 && inGame === false && (
         <>
           <p>말파이트 궁피하기</p>
+          <p>E키를 눌러서 말파의 궁을 피해보세요</p>
           <button
             className={styles.btn}
             onClick={() => {
@@ -118,10 +119,10 @@ const Keyboard = () => {
       {inGame === false && stage !== 0 && (
         <>
           {stage === "FAST" && <p>너무 빨리 누르셨습니다.</p>}
-          {stage === "CLEAR" && <p>CLEAR</p>}
+          {stage === "CLEAR" && <p>클리어!</p>}
           {stage === "GAMEOVER" && (
             <>
-              <p>GAMEOVER</p>
+              <p>당신은 죽었습니다</p>
               {score * 10}ms
             </>
           )}

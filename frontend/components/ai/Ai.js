@@ -85,7 +85,7 @@ export default function Ai() {
           onClick={() => init()}
           className={styles.startbtn}
         >
-          Start
+          시작
         </button>
       ) : null}
       <div id="webcam-container" className={styles.webcamContainer}>
@@ -95,7 +95,7 @@ export default function Ai() {
             onClick={() => cheese()}
             className={styles.cheesebtn}
           >
-            Cheese
+            찰칵!
           </button>
         ) : null}
       </div>

@@ -28,5 +28,6 @@ const wordcloud ={
 }
 
 const recommand = {
+    
 }
-export {worldcup, map, chart, wordcloud};
+export {worldcup, map, chart, wordcloud, recommand};

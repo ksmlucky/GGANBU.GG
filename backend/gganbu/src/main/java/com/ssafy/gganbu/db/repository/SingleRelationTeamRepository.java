@@ -17,4 +17,6 @@ public interface SingleRelationTeamRepository extends MongoRepository <SingleRel
 
     List<SingleRelationTeam> findSingleRelationTeamsByRoughTierAndPosition1AndChampion2AndPosition2
             (String roughTier, String position1, String champion2, String position2);
+    List<SingleRelationTeam> findSingleRelationTeamsByRoughTierAndChampion1AndPosition1
+            (String roughTier, String champion1, String position1);
 }

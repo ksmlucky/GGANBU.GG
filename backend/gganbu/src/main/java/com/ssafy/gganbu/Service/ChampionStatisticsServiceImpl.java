@@ -6,6 +6,7 @@ import com.ssafy.gganbu.db.document.SingleRelationTeam;
 import com.ssafy.gganbu.model.request.ChampionPickReq;
 import com.ssafy.gganbu.model.request.RecommendReq;
 import com.ssafy.gganbu.model.response.ChampionScore;
+import com.ssafy.gganbu.model.response.LaneNumRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -91,6 +92,40 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         }
         Collections.sort(scoreList);
         return scoreList;
+
+    }
+
+    @Override
+    public LaneNumRes getMatchNumPerLane(String roughTier, String championId) {
+        LaneNumRes laneNumRes = new LaneNumRes();
+        List<NoRelationCommon> noRelationCommons = noRelationCommonService.getNoRelationCommonAllLane(roughTier, championId);
+        try{
+            laneNumRes.setChampionId(championId);
+            for(NoRelationCommon nrc : noRelationCommons){
+                switch(nrc.getPosition1()){
+                    case "TOP":
+                        laneNumRes.setMatchNumTOP(nrc.getData().getMatchNum());
+                        break;
+                    case "JUNGLE":
+                        laneNumRes.setMatchNumJUNGLE(nrc.getData().getMatchNum());
+                        break;
+                    case "MIDDLE":
+                        laneNumRes.setMatchNumMIDDLE(nrc.getData().getMatchNum());
+                        break;
+                    case "BOTTOM":
+                        laneNumRes.setMatchNumBOTTOM(nrc.getData().getMatchNum());
+                        break;
+                    case "UTILITY":
+                        laneNumRes.setMatchNumUTILITY(nrc.getData().getMatchNum());
+                        break;
+                }
+            }
+        } catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return laneNumRes;
+
 
     }
 

@@ -55,4 +55,16 @@ public class SingleRelationEnemyServiceImpl implements  SingleRelationEnemyServi
         }
         return singleRelationEnemies;
     }
+
+    @Override
+    public List<SingleRelationEnemy> getAllEnemy(String roughTier, String champion1, String position1) {
+        List<SingleRelationEnemy> singleRelationEnemies = null;
+        try{
+            singleRelationEnemies = singleRelationEnemyRepository.
+                    findSingleRelationEnemiesByRoughTierAndChampion1AndPosition1(roughTier, champion1, position1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return singleRelationEnemies;
+    }
 }

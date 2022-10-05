@@ -1,5 +1,6 @@
 package com.ssafy.gganbu.Service;
 
+import com.ssafy.gganbu.db.document.SingleRelationEnemy;
 import com.ssafy.gganbu.db.document.SingleRelationTeam;
 import com.ssafy.gganbu.db.repository.SingleRelationEnemyRepository;
 import com.ssafy.gganbu.db.repository.SingleRelationTeamRepository;
@@ -51,5 +52,17 @@ public class SingleRelationTeamServiceImpl implements  SingleRelationTeamService
             e.printStackTrace();
         }
         return singleRelationTeams;
+    }
+
+    @Override
+    public List<SingleRelationTeam> getAllTeam(String roughTier, String champion1, String position1) {
+        List<SingleRelationTeam> singleRelationEnemies = null;
+        try{
+            singleRelationEnemies = singleRelationTeamRepository.
+                    findSingleRelationTeamsByRoughTierAndChampion1AndPosition1(roughTier, champion1, position1);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return singleRelationEnemies;
     }
 }

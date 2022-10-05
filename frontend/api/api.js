@@ -1,4 +1,5 @@
-const HOST = "http://localhost:8080/"
+//const HOST = "http://localhost:8080/"
+const HOST = "https://j7c204.p.ssafy.io/"
 const WORLDCUP = "worldcup/"
 
 const worldcup ={

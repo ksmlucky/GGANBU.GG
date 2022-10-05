@@ -24,10 +24,6 @@ public class MatchBansController {
     public ResponseEntity<MatchBans> getMatchBansByRoughTier(@PathVariable String roughTier){
         MatchBans matchBans = matchBansService.getMatchBansByRoughTier(roughTier);
 
-        //
-        System.out.println("피카츄 :" + matchBans);
-
-        //
         if(matchBans == null){
             return ResponseEntity.status(400).body(null);
         }

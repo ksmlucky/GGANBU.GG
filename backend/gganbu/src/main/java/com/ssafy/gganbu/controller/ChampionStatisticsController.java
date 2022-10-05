@@ -1,0 +1,39 @@
+package com.ssafy.gganbu.controller;
+
+import com.ssafy.gganbu.Service.ChampionStatisticsService;
+import com.ssafy.gganbu.model.request.RecommendReq;
+import com.ssafy.gganbu.model.response.ChampionScore;
+import io.swagger.annotations.Api;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@Api(value ="챔피언 분석 API", tags = {"Champion Statistics"})
+@RestController
+@RequestMapping("/api/v1/statistics")
+public class ChampionStatisticsController {
+
+    @Autowired
+    ChampionStatisticsService championStatisticsService;
+
+    @PostMapping("/recommend")
+    public ResponseEntity<List<ChampionScore>> recommendMeChampions(@ModelAttribute RecommendReq recommendReq){
+        List<ChampionScore> rList = championStatisticsService.recommendList1(recommendReq);
+        if( rList == null){
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.status(200).body(rList);
+    }
+
+    @GetMapping("/allNum/{roughTier}")
+    public ResponseEntity<Long> getAllMatchNum(@PathVariable String roughTier){
+        Long allMatchNum = championStatisticsService.getWholeMatchNum(roughTier);
+        if(allMatchNum == null){
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.status(200).body(allMatchNum);
+    }
+
+}

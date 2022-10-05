@@ -14,7 +14,7 @@ spring:
       #      authentication-database: admin
       #      username: j7c204
       #      password: seveneleven
-      database: test
+      database: gganbu_mongo_db
     web:
       pageable:
         one-indexed-parameters: true
@@ -25,7 +25,7 @@ spring:
       naming:
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-      #배포할땐 꺼야됨
+      #배포할땐 꺼야되..나?
       ddl-auto: update
     properties:
       hibernate:
@@ -38,4 +38,4 @@ spring:
 
 #for Riot-API
 riot-api:
-  api-keys: RGAPI-b9e6d72d-77d2-4c93-931b-a035ffcfe496
+  api-keys: RGAPI-4039232e-0d66-4563-886e-76cb29506139

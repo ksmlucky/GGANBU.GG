@@ -1,5 +1,11 @@
 const HOST = "http://localhost:8080/"
+//const HOST ="http://j7cp204.p.ssafy.io/api/"
+
 const WORLDCUP = "worldcup/"
+const MAP = "map/"
+const CHART = "chart/"
+const WORDCLOUD ="wordcloud/"
+const RECOMMAND ="recommand/"
 
 const worldcup ={
     getAllChampion : () => HOST + WORLDCUP +"/",
@@ -9,4 +15,18 @@ const worldcup ={
     getWinRate : () => HOST + WORLDCUP + "winrate/"
 }
 
-export {worldcup};
+const map ={
+    getChampionByName : () => HOST + MAP + "/"
+}
+
+const chart = {
+    getChampionByName : () =>HOST + CHART + "/"
+}
+
+const wordcloud ={
+    getChampionByName : () => HOST + WORDCLOUD + "/"
+}
+
+const recommand = {
+}
+export {worldcup, map, chart, wordcloud};

@@ -4,9 +4,9 @@ spring:
       # host: localhost
       host: j7c204.p.ssafy.io
       port: 27017
-      #      authentication-database: admin
-      #      username: j7c204
-      #      password: seveneleven
+      authentication-database: admin
+      username: j7c204
+      password: seveneleven
       database: test
 
 #spring:

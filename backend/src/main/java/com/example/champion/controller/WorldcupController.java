@@ -19,28 +19,28 @@ public class WorldcupController {
     @Autowired
     private WorldcupService worldcupService;
 
-    @GetMapping("/worldcup")
+    @GetMapping("/api/worldcup")
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
         return ResponseEntity.status(200).body(worldcups);
     }
 
-    @GetMapping("/worldcup/winrate")
+    @GetMapping("/api/worldcup/winrate")
     public ResponseEntity<List<Worldcup>> getSortedByWinRate() {
         List<Worldcup> worldcups = worldcupService.getSortedByWinRateAllChampions();
 
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/worldcup/goldmedalcount")
+    @GetMapping("/api/worldcup/goldmedalcount")
     public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
         List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
 
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/worldcup/{englishname}")
+    @GetMapping("/api/worldcup/{englishname}")
     public ResponseEntity<?> getChampionByEnglishname(@PathVariable String englishname) {
 
         try {
@@ -50,7 +50,7 @@ public class WorldcupController {
         }
     }
 
-    @PostMapping("/worldcup/goldmedal")
+    @PostMapping("/api/worldcup/goldmedal")
     public ResponseEntity<?> updateWorldcupInfo(@RequestBody Map<String, Object> requestData) throws WorldcupCollectionException {
         String englishname = "";
         for (String key : requestData.keySet()) {

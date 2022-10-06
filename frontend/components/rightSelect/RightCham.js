@@ -11,13 +11,14 @@ export default function RightCham({
   SetRightchampion,
   makefive,
   Setmakefive,
+  pickid,
 }) {
   let [line, Setline] = useState(""); //현재 라인 선택(영어)
   let [enterline, SetEnterline] = useState(""); // 현재 드래그한 챔피언이 dragEnter한 라인(영어)
   let [lineCham, SetLineCham] = useState([
     {
       id: "1",
-      lines: "top",
+      lines: "TOP",
       champ: "",
       kchamp: "",
       links: "/line/top.svg",
@@ -25,7 +26,7 @@ export default function RightCham({
     },
     {
       id: "2",
-      lines: "jungle",
+      lines: "JUNGLE",
       champ: "",
       kchamp: "",
       links: "/line/jungle.svg",
@@ -33,16 +34,16 @@ export default function RightCham({
     },
     {
       id: "3",
-      lines: "mid",
+      lines: "MIDDLE",
       champ: "",
       kchamp: "",
       links: "/line/mid.svg",
       idx: "",
     },
-    { id: "4", lines: "bot", champ: "", links: "/line/bot.svg", idx: "" },
+    { id: "4", lines: "BOTTOM", champ: "", links: "/line/bot.svg", idx: "" },
     {
       id: "5",
-      lines: "support",
+      lines: "UTILITY",
       champ: "",
       links: "/line/support.svg",
       idx: "",
@@ -52,35 +53,35 @@ export default function RightCham({
   const [disableline, Setdisableline] = useState([]);
 
   useEffect(() => {
-    if (selectline === "top") {
+    if (selectline === "TOP") {
       if (makefive) {
-        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+        Setdisableline(["JUNGLE", "TOP", "MIDDLE", "BOTTOM", "UTILITY"]);
       } else {
-        Setdisableline(["top", "jungle"]);
+        Setdisableline(["TOP", "JUNGLE"]);
       }
-    } else if (selectline === "jungle") {
+    } else if (selectline === "JUNGLE") {
       if (makefive) {
-        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+        Setdisableline(["JUNGLE", "TOP", "MIDDLE", "BOTTOM", "UTILITY"]);
       } else {
-        Setdisableline(["jungle", "top", "mid"]);
+        Setdisableline(["JUNGLE", "TOP", "MIDDLE"]);
       }
-    } else if (selectline === "mid") {
+    } else if (selectline === "MIDDLE") {
       if (makefive) {
-        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+        Setdisableline(["JUNGLE", "TOP", "MIDDLE", "BOTTOM", "UTILITY"]);
       } else {
-        Setdisableline(["mid", "jungle"]);
+        Setdisableline(["MIDDLE", "JUNGLE"]);
       }
-    } else if (selectline === "bot") {
+    } else if (selectline === "BOTTOM") {
       if (makefive) {
-        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+        Setdisableline(["JUNGLE", "TOP", "MIDDLE", "BOTTOM", "UTILITY"]);
       } else {
-        Setdisableline(["bot", "support"]);
+        Setdisableline(["BOTTOM", "UTILITY"]);
       }
-    } else if (selectline === "support") {
+    } else if (selectline === "UTILITY") {
       if (makefive) {
-        Setdisableline(["jungle", "top", "mid", "bot", "support"]);
+        Setdisableline(["JUNGLE", "TOP", "MIDDLE", "BOTTOM", "UTILITY"]);
       } else {
-        Setdisableline(["support", "bot"]);
+        Setdisableline(["UTILITY", "BOTTOM"]);
       }
     }
   }, [selectline, makefive]);
@@ -88,7 +89,7 @@ export default function RightCham({
   useEffect(() => {
     let newlinecham = lineCham.map((check) => {
       //라인별 챔피언 상황에 추가
-      return { ...check, champ: "", kchamp: "" };
+      return { ...check, champ: "", kchamp: "", idx: "" };
     });
     SetLineCham(newlinecham);
     SetRightchampion(newlinecham);
@@ -130,7 +131,12 @@ export default function RightCham({
             //라인별 챔피언 상황에 추가
             let newlinecham = lineCham.map((check) => {
               return check.lines === event.target.id
-                ? { ...check, champ: pickchampionEng, kchamp: pickchampion }
+                ? {
+                    ...check,
+                    champ: pickchampionEng,
+                    kchamp: pickchampion,
+                    idx: pickid,
+                  }
                 : check;
             });
             SetLineCham(newlinecham);
@@ -194,10 +200,18 @@ export default function RightCham({
       <div className={styles.container}>
         {Array.from(lineCham).map((item) => {
           return (
-            <div className={styles.users} key={item.id}
+            <div
+              className={styles.users}
+              key={item.id}
               style={{
-                background: item.lines == selectline ? "linear-gradient(90deg, rgba(200,155,60,0.2) 30%, rgba(120,90,40,0.7) 80%)" : disableline.includes(item.lines) ? "linear-gradient(90deg, rgba(3,151,171,0.2) 30%, rgba(0,90,130,0.7) 80%)" : "linear-gradient(90deg, rgba(91,90,86,0.2) 30%, rgba(60,60,65,0.7) 80%)",
-              }}>
+                background:
+                  item.lines == selectline
+                    ? "linear-gradient(90deg, rgba(200,155,60,0.2) 30%, rgba(120,90,40,0.7) 80%)"
+                    : disableline.includes(item.lines)
+                    ? "linear-gradient(90deg, rgba(3,151,171,0.2) 30%, rgba(0,90,130,0.7) 80%)"
+                    : "linear-gradient(90deg, rgba(91,90,86,0.2) 30%, rgba(60,60,65,0.7) 80%)",
+              }}
+            >
               <img
                 className={styles.btncham}
                 onClick={() => {
@@ -213,20 +227,20 @@ export default function RightCham({
                     ? `/champion/tiles/${item.champ}_0.jpg`
                     : disableline.indexOf(item.lines) !== -1 &&
                       item.lines !== line
-                      ? "/transparent.png"
-                      : "/sleepyporo.gif"
+                    ? "/transparent.png"
+                    : "/sleepyporo.gif"
                 }
                 draggable={false}
-              // style={{
-              //   boxShadow:
-              //     "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
+                // style={{
+                //   boxShadow:
+                //     "3px 3px 10px var(--btn-on-s), -3px -3px 10px var(--btn-on-l)",
 
-              //   background:
-              //     disableline.indexOf(item.lines) !== -1 &&
-              //       item.lines !== line
-              //       ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
-              //       : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
-              // }}
+                //   background:
+                //     disableline.indexOf(item.lines) !== -1 &&
+                //       item.lines !== line
+                //       ? "linear-gradient(145deg, var(--btn-linear-down-s), var(--btn-linear-down-l))"
+                //       : "linear-gradient(145deg, var(--btn-linear-up-s), var(--btn-linear-up-l))",
+                // }}
               ></img>
 
               <img

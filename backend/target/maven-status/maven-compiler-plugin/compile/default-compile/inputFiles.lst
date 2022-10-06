@@ -1,0 +1,10 @@
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\ChampionApplication.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\Service\WorldcupServiceImpl.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\resource\WorldcupRequest.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\config\SwaggerConfig.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\model\Worldcup.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\exception\WorldcupCollectionException.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\controller\WorldcupController.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\config\ValidationConfig.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\repository\WorldcupRepository.java
+C:\Users\multicampus\Desktop\S07P22C204\backend\src\main\java\com\example\champion\Service\WorldcupService.java

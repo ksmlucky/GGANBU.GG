@@ -13,7 +13,7 @@ spring:
       #host: localhost
       host: j7c204.p.ssafy.io
       port: 27017
-      #      authentication-database: admin
+      authentication-database: admin
       username: j7c204
       password: seveneleven
       database: gganbu_mongo_db

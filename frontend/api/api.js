@@ -2,8 +2,7 @@ const HOST = "http://localhost:8080/api/v1/"
 //const HOST ="http://j7cp204.p.ssafy.io/api/v1/"
 
 const WORLDCUP = "worldcup/"
-const CHART = "noRelationCommon/"
-const WORDCLOUD ="wordcloud/"
+const CHART = "noRelationnCommo/"
 const STATISTICS = "statistics/"
 
 const worldcup ={
@@ -16,7 +15,8 @@ const worldcup ={
 
 const statistics = {
     getAllMatchNum : () => HOST + STATISTICS +"allNum/",
-    getMatchNumPerLane : () => HOST + STATISTICS + "numPerLane/"
+    getMatchNumPerLane : () => HOST + STATISTICS + "numPerLane/",
+    recommend : () => HOST +STATISTICS + "recommend/"
 }
 
 const chart = {
@@ -24,7 +24,8 @@ const chart = {
 }
 
 const wordcloud ={
-    getChampionByName : () => HOST + WORDCLOUD + "/"
+    getAllTeam : () => HOST + "team/allTeam/",
+    getAllEnemy : () =>HOST + "match/allEnemy"
 }
 
 

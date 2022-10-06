@@ -1,13 +1,30 @@
 import ReactWordcloud from "react-wordcloud";
 import styles from "./Wordcloud.module.css";
 import { useMemo, useState, useEffect } from "react";
-import words from "../../utils/words";
-import { div } from '@tensorflow/tfjs';
+import axios from "axios";
+import { wordcloud } from "../../api/api";
 
 export default function Wordcloud() {
-  const champ = useMemo(() => words, []);
+  
+
   const [w, setW] = useState(null);
   useEffect(() => {
+    axios({
+      method : "post",
+      url : wordcloud.getAllTeam(),
+      params :{
+        championId : "3",
+        position : "MIDDLE",
+        roughTier : "high",
+      }
+
+    }).then((res)=>{
+      console.log(res.data);
+      res.data.champion2
+    }).catch((e)=>{
+
+    });
+
     setW("w");
   }, []);
   const options = {

@@ -106,7 +106,7 @@ export default function DetailChart({ id, championName, mode }) {
     const champKey = clist[champPoint].key;
     axios({
       method: "get",
-      url: chart.getChampionByName()+champKey,
+      url: chart.getChampionCommon()+champKey,
     })
     .then((res) => {
       setData([res.data.winrate, res.data.pickrate, res.data.banrate, res.data.dpm, res.data.solokill, res.data.cctime])

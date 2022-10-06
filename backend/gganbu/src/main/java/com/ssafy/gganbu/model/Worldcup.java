@@ -43,5 +43,5 @@ public class Worldcup {
 
         return ((double) getWincount() / (double)(getLosecount() + getWincount()));
     }
-}
 
+}

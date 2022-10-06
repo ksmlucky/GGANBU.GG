@@ -10,5 +10,4 @@ public class RecommendReq {
     List<ChampionPickReq> teamMates;
     String roughTier;
     String myPosition;
-    String algorithm;
 }

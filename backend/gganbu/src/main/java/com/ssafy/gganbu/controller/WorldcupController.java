@@ -4,6 +4,7 @@ package com.ssafy.gganbu.controller;
 import com.ssafy.gganbu.Service.WorldcupService;
 import com.ssafy.gganbu.exception.WorldcupCollectionException;
 import com.ssafy.gganbu.model.Worldcup;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,8 @@ import java.util.List;
 import java.util.Map;
 
 
+@Api(value ="이상형 월드컵 API", tags = {"Champion Worldcup"})
+
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/v1/worldcup")
@@ -22,7 +25,7 @@ public class WorldcupController {
     @Autowired
     private WorldcupService worldcupService;
 
-    @GetMapping("/getall")
+    @GetMapping("/")
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
@@ -37,6 +40,20 @@ public class WorldcupController {
     }
 
     @GetMapping("/worldcup/goldmedalcount")
+    public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
+        List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
+
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/winrate")
+    public ResponseEntity<List<Worldcup>> getSortedByWinRate() {
+        List<Worldcup> worldcups = worldcupService.getSortedByWinRateAllChampions();
+
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/goldmedalcount")
     public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
         List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
 

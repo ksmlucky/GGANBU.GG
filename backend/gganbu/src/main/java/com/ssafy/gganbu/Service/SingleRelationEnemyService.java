@@ -14,7 +14,7 @@ public interface SingleRelationEnemyService {
     public List<SingleRelationEnemy> getSingleRelationEnemyAllLaneEnemy(String roughTier, String champion1,
                                                                         String position1, String champion2);
     //특정 라인을 하려고 할때 상대 챔피언과의 상성
-    public List<SingleRelationEnemy> getSingleRelationEnemyForRecommend(String roughTier, String position1, String champion2);
+    public List<SingleRelationEnemy> getSingleRelationEnemyForRecommend(String roughTier, String position1, String champion2, String position2);
     List<SingleRelationEnemy> getAllEnemy(String roughTier, String champion1);
 
     List<ChampionScore> getAllEnemyMatchNumScore(String roughTier, String champion1);

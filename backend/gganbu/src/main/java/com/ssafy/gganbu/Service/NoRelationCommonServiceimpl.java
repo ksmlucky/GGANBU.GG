@@ -54,4 +54,15 @@ public class NoRelationCommonServiceimpl implements NoRelationCommonService
             }
         return allData;
     }
+
+    @Override
+    public List<NoRelationCommon> getAllNoRelationCommonByLane(String roughTier, String position) {
+        List<NoRelationCommon> laneData = null;
+        try {
+            laneData = noRelationCommonRepository.findNoRelationCommonsByRoughTierAndPosition1(roughTier, position);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return laneData;
+    }
 }

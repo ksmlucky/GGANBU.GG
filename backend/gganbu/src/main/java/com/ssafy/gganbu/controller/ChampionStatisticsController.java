@@ -8,6 +8,7 @@ import com.ssafy.gganbu.model.request.RecommendReq;
 import com.ssafy.gganbu.model.response.ChampionScore;
 import com.ssafy.gganbu.model.response.ChartRes;
 import com.ssafy.gganbu.model.response.LaneNumRes;
+import com.ssafy.gganbu.model.response.RecommendRes;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ public class ChampionStatisticsController {
     NoRelationCommonService noRelationCommonService;
 
     @PostMapping("/recommend")
+
     public ResponseEntity<List<ChampionScore>> recommendMeChampions(@RequestBody RecommendReq recommendReq){
         List<ChampionScore> rList = championStatisticsService.recommendList1(recommendReq);
         if( rList == null){

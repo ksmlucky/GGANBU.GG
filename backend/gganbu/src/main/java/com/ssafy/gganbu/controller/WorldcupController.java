@@ -15,6 +15,7 @@ import java.util.Map;
 
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/worldcup")
 public class WorldcupController {
 

@@ -3,6 +3,8 @@ package com.ssafy.gganbu.controller;
 import com.ssafy.gganbu.Service.SingleRelationEnemyService;
 import com.ssafy.gganbu.db.document.SingleRelationEnemy;
 import com.ssafy.gganbu.model.request.TierChampPosReq;
+import com.ssafy.gganbu.model.request.TierChampReq;
+import com.ssafy.gganbu.model.response.ChampionScore;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,15 +20,14 @@ public class SingleRelationEnemyController {
     SingleRelationEnemyService singleRelationEnemyService;
 
 
-    @PostMapping("/allEnemy")
-    public ResponseEntity<List<SingleRelationEnemy>> getAllEnemy(@ModelAttribute TierChampPosReq tierChampPosReq){
-        List<SingleRelationEnemy> singleRelationEnemies = singleRelationEnemyService.
-                getAllEnemy(tierChampPosReq.getRoughTier(), tierChampPosReq.getChampionId(),tierChampPosReq.getPosition());
-        if(singleRelationEnemies == null){
+    @PostMapping("/allEnemyMatchNum")
+    public ResponseEntity<List<ChampionScore>> getAllEnemy(@ModelAttribute TierChampReq tierChampReq){
+        List<ChampionScore> championScores = singleRelationEnemyService.
+                getAllEnemyMatchNumScore(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
+        if(championScores == null){
             return ResponseEntity.status(400).body(null);
         }
-        return ResponseEntity.status(200).body(singleRelationEnemies);
-
+        return ResponseEntity.status(200).body(championScores);
     }
 
 }

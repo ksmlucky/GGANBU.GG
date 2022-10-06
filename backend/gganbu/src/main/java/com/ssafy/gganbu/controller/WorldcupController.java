@@ -4,6 +4,7 @@ package com.ssafy.gganbu.controller;
 import com.ssafy.gganbu.Service.WorldcupService;
 import com.ssafy.gganbu.exception.WorldcupCollectionException;
 import com.ssafy.gganbu.model.Worldcup;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+@Api(value ="이상형 월드컵 API", tags = {"Champion Worldcup"})
 
 @RestController
 @CrossOrigin("*")

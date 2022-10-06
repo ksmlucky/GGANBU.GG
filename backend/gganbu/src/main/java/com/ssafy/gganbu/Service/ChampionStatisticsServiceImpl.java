@@ -8,6 +8,7 @@ import com.ssafy.gganbu.model.request.RecommendReq;
 import com.ssafy.gganbu.model.response.ChampionScore;
 import com.ssafy.gganbu.model.response.ChartRes;
 import com.ssafy.gganbu.model.response.LaneNumRes;
+import com.ssafy.gganbu.model.response.RecommendRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,7 +52,7 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
     }
 
     @Override
-    public List<ChampionScore> recommendList1(RecommendReq recommendReq){
+    public RecommendRes recommendList1(RecommendReq recommendReq){
         List<ChampionPickReq> teamMates = recommendReq.getTeamMates();
         List<ChampionPickReq> enemies = recommendReq.getEnemies();
         String myPosition = recommendReq.getMyPosition();
@@ -109,8 +110,21 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
             scoreList.add(scores.get(key));
         }
         Collections.sort(scoreList);
-        return scoreList;
 
+        RecommendRes recommendRes = new RecommendRes();
+        recommendRes.setRecommnedType("WINRATE_RECOMMEND");
+
+        List<NoRelationCommon> commonDatas = new ArrayList<>();
+        int idx = 0;
+        for(ChampionScore cs : scoreList){
+            commonDatas.add(noRelationCommonService.
+                    getNoRelationCommonByLane(roughTier, cs.getChampionId(), myPosition));
+            if(idx++ >= 5){
+                break;
+            }
+        }
+        recommendRes.setCommonDatas(commonDatas);
+        return recommendRes;
     }
 
     @Override
@@ -259,7 +273,7 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
 
     //
     @Override
-    public List<ChampionScore> recommendList2(RecommendReq recommendReq) {
+    public RecommendRes recommendList2(RecommendReq recommendReq) {
         List<ChampionScore> scores = new ArrayList<>();
 
         String rivalId = "";
@@ -292,12 +306,27 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         }
 
         Collections.sort(scores);
-        return scores;
+
+        RecommendRes recommendRes = new RecommendRes();
+        recommendRes.setRecommnedType("LANING_RECOMMEND");
+
+        List<SingleRelationRival> rivals = new ArrayList<>();
+        int idx = 0;
+        for(ChampionScore cs : scores){
+            rivals.add(singleRelationRivalService.
+                    getSingleRelationRival(roughTier, cs.getChampionId(), myPosition, rivalId));
+
+            if(idx++ >= 5){
+                break;
+            }
+        }
+        recommendRes.setRivalDatas(rivals);
+        return recommendRes;
     }
 
     @Override
-    public List<List<ChampionScore>> dispatchAlgorithm(RecommendReq recommendReq) {
-        List<List<ChampionScore>> recommendLists = new ArrayList<>();
+    public List<RecommendRes> dispatchAlgorithm(RecommendReq recommendReq) {
+        List<RecommendRes> recommendLists = new ArrayList<>();
         try{
             recommendLists.add(recommendList1(recommendReq));
             recommendLists.add(recommendList2(recommendReq));

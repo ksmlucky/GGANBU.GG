@@ -24,8 +24,8 @@ const chart = {
 }
 
 const wordcloud ={
-    getAllTeam : () => HOST + "team/allTeam/",
-    getAllEnemy : () =>HOST + "match/allEnemy"
+    getAllTeam : () => HOST + "team/allTeamMatchNum/",
+    getAllEnemy : () =>HOST + "match/allEnemyMatchNum/"
 }
 
 

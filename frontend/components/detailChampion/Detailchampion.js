@@ -43,7 +43,7 @@ export default function DetailChampion({ mode }) {
           {selectdata && selectdata === "chart" ? (
             <DetailChart id={id} championName={championName} mode={mode} />
           ) : null}
-          {selectdata && selectdata === "cloud" ? <Wordcloud /> : null}
+          {selectdata && selectdata === "cloud" ? <Wordcloud id={id}/> : null}
         </div>
       </div>
     </>

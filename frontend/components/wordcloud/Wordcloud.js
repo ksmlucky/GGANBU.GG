@@ -3,30 +3,46 @@ import styles from "./Wordcloud.module.css";
 import { useMemo, useState, useEffect } from "react";
 import axios from "axios";
 import { wordcloud } from "../../api/api";
+import championList from "../../utils/champion";
 
-export default function Wordcloud() {
-  
-
+export default function Wordcloud({id}) {
+  const clist = championList();
+  const [data,setData] = useState([]);
+  const [words, setWords] = useState([]);
+  const champ = useMemo(() => words, []);
   const [w, setW] = useState(null);
   useEffect(() => {
+    const champPoint = clist.findIndex((i)=>i.en === id);
+    const champKey = clist[champPoint].key;
     axios({
       method : "post",
       url : wordcloud.getAllTeam(),
       params :{
-        championId : "3",
-        position : "MIDDLE",
+        championId : champKey,
         roughTier : "high",
       }
 
     }).then((res)=>{
-      console.log(res.data);
-      res.data.champion2
+      setData(res.data);
     }).catch((e)=>{
 
     });
-
     setW("w");
   }, []);
+
+  useEffect(()=>{
+    words.splice(0);
+    data.map((item)=>{
+      const champPoint = clist.findIndex((i)=>i.key === item.championId);
+      const champName = clist[champPoint].ko;
+      setWords((words)=>{
+        const newWords = [...words];
+        newWords.push({text: champName, value : item.score});
+        return newWords;
+      })
+    });
+  },[data]);
+
   const options = {
     colors: ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"],
     enableTooltip: false,
@@ -46,9 +62,9 @@ export default function Wordcloud() {
   return (
     <>
       <div className={styles.wordcloud}>
-        <div style={{ width: "100%", height: "100%" }}>
+        <div className={styles.cursor} style={{ width: "100%", height: "100%" }}>
           {w !== null && (
-            <ReactWordcloud words={champ} options={options}></ReactWordcloud>
+            <ReactWordcloud words={words} options={options}></ReactWordcloud>
           )}
         </div>
       </div>

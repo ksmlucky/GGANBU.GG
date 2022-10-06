@@ -28,7 +28,7 @@ public class ChampionStatisticsController {
     NoRelationCommonService noRelationCommonService;
 
     @PostMapping("/recommend")
-    public ResponseEntity<List<ChampionScore>> recommendMeChampions(@ModelAttribute RecommendReq recommendReq){
+    public ResponseEntity<List<ChampionScore>> recommendMeChampions(@RequestBody RecommendReq recommendReq){
         List<ChampionScore> rList = championStatisticsService.recommendList1(recommendReq);
         if( rList == null){
             return ResponseEntity.status(400).body(null);

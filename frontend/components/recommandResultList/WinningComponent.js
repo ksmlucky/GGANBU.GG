@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./RecommandResultList.module.css";
+import { newRecommend } from "../championSearchInput/CSInput";
+import ProgressBar from "progressbar.js";
 
 export default function WinningComponent(props) {
   const imgRef = useRef([]);
@@ -16,6 +18,7 @@ export default function WinningComponent(props) {
       }
     }
   }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.recommands}>
@@ -114,10 +117,10 @@ export default function WinningComponent(props) {
             })}
           </div>
         </div>
-        {/* result 결과 출력 */}
       </div>
       <div className={styles.resultdetailcontainer}>
-        <div>{rival}</div>
+        {rival && <img src={`/champion/tiles/${rival}_0.jpg`}></img>}
+        <div id="progress"></div>
       </div>
     </div>
   );

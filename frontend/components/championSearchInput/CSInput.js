@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { statistics } from "../../api/api";
 import axios from "axios";
+import championList from "../../utils/champion";
 
+export let newRecommend;
 export default function CSInput({
   csInput,
   selectline,
@@ -12,6 +14,8 @@ export default function CSInput({
   rightchampion,
 }) {
   const router = useRouter();
+  const [recommend, setRecommend] = useState([]);
+  const clist = championList();
   function resultfunc() {
     const line = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"];
     let myline = line.indexOf(selectline);
@@ -32,13 +36,13 @@ export default function CSInput({
     });
     console.log(teamMates);
     console.log(enemies);
-    if (selectline) {
-      if (rightchampion[myline].champ) {
-        router.push(result);
-      } else {
-        alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
-      }
-    }
+    // if (selectline) {
+    //   if (rightchampion[myline].champ) {
+    //     router.push(result);
+    //   } else {
+    //     alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
+    //   }
+    // }
     axios({
       method: "post",
       url: statistics.recommend(),
@@ -51,6 +55,12 @@ export default function CSInput({
     })
       .then((res) => {
         console.log(res.data);
+        newRecommend = res.data.map((el, idx) => {
+          const num = clist.findIndex((e) => e.key === el.championId);
+          return { ...el, ko: clist[num].ko, en: clist[num].en };
+        });
+        console.log(newRecommend);
+        router.push(result);
       })
       .catch((e) => {
         console.log(e);

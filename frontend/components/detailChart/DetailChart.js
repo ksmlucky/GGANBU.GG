@@ -1,5 +1,5 @@
 import axios from "axios";
-import { chart } from "../../api/api";
+import { statistics } from "../../api/api";
 import { useEffect, useState } from "react";
 import styles from "./DetailChart.module.css";
 import championList from "../../utils/champion";
@@ -106,7 +106,10 @@ export default function DetailChart({ id, championName, mode }) {
     const champKey = clist[champPoint].key;
     axios({
       method: "get",
-      url: chart.getChampionCommon()+champKey,
+      url: statistics.chart(),
+      params : {
+  
+      }
     })
     .then((res) => {
       setData([res.data.winrate, res.data.pickrate, res.data.banrate, res.data.dpm, res.data.solokill, res.data.cctime])

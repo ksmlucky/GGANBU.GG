@@ -1,33 +1,31 @@
-const HOST = "http://localhost:8080/"
-//const HOST ="http://j7cp204.p.ssafy.io/api/"
+const HOST = "http://localhost:8080/api/v1/"
+//const HOST ="http://j7cp204.p.ssafy.io/api/v1/"
 
 const WORLDCUP = "worldcup/"
-const MAP = "map/"
-const CHART = "chart/"
+const CHART = "noRelationCommon/"
 const WORDCLOUD ="wordcloud/"
-const RECOMMAND ="recommand/"
+const STATISTICS = "statistics/"
 
 const worldcup ={
-    getAllChampion : () => HOST + WORLDCUP +"/",
+    getAllChampion : () => HOST + WORLDCUP +"getall/",
     getChampionByName : () => HOST + WORLDCUP +"/",
-    updateGoldMedal : () => HOST + WORLDCUP + "goldmedal/",
-    getGoldMedalCount : () => HOST +WORLDCUP +"goldmedalcount/",
-    getWinRate : () => HOST + WORLDCUP + "winrate/"
+    updateGoldMedal : () => HOST + WORLDCUP +"goldmedal/",
+    getGoldMedalCount : () => HOST +WORLDCUP + WORLDCUP +"goldmedalcount/",
+    getWinRate : () => HOST + WORLDCUP +WORLDCUP +"winrate/"
 }
 
-const map ={
-    getChampionByName : () => HOST + MAP + "/"
+const statistics = {
+    getAllMatchNum : () => HOST + STATISTICS +"allNum/",
+    getMatchNumPerLane : () => HOST + STATISTICS + "numPerLane/"
 }
 
 const chart = {
-    getChampionByName : () =>HOST + CHART + "/"
+    getChampionCommon : () =>HOST + CHART + "championCommon/"
 }
 
 const wordcloud ={
     getChampionByName : () => HOST + WORDCLOUD + "/"
 }
 
-const recommand = {
-    
-}
-export {worldcup, map, chart, wordcloud, recommand};
+
+export {worldcup, statistics, chart, wordcloud};

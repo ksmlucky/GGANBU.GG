@@ -17,6 +17,7 @@ import java.util.List;
 @Api(value ="챔피언 분석 API", tags = {"Champion Statistics"})
 @RestController
 @RequestMapping("/api/v1/statistics")
+
 public class ChampionStatisticsController {
 
     @Autowired

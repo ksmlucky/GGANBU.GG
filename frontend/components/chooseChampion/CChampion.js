@@ -14,6 +14,7 @@ export default function ChooseChampion() {
   const [selectedchampion, SetSelectedchampion] = useState([]); //선택한 챔피언(전체)(한국어)
   const [leftchampion, SetLeftchampion] = useState([]); //선택한 챔피언(우리팀)
   const [rightchampion, SetRightchampion] = useState([]); //선택한 챔피언(상대팀)
+  const [summoner, setSummoner] = useState("");
 
   const [selectline, Setselectline] = useState("top");
 
@@ -38,6 +39,16 @@ export default function ChooseChampion() {
     setCsinput(input);
   };
 
+  function dragover(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "none";
+  }
+
+  function changes(e) {
+    let champion_name = e.target.value;
+    setSummoner(champion_name);
+  }
+
   return (
     <>
       <div className={styles.main}>
@@ -59,6 +70,7 @@ export default function ChooseChampion() {
           />
 
           <div className={styles.uiandinput}>
+            <div className={styles.sumonercontainer}>
             <button
               className={styles.givefive}
               onClick={() => {
@@ -70,6 +82,17 @@ export default function ChooseChampion() {
             >
               {makefive ? "전체모드" : "깐부모드"}
             </button>
+            <input
+          type="text"
+          id="search"
+          placeholder="챔피언을 검색하세요"
+          onChange={changes}
+          onDragOver={(event) => {
+            dragover(event);
+          }}
+          required={true}
+        />
+        </div>
             <ul className={styles.ul}>
               {clist
                 .filter((value) => {

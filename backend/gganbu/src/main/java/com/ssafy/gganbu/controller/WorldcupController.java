@@ -22,7 +22,7 @@ public class WorldcupController {
     @Autowired
     private WorldcupService worldcupService;
 
-    @GetMapping("/getall")
+    @GetMapping("/")
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
@@ -37,6 +37,20 @@ public class WorldcupController {
     }
 
     @GetMapping("/worldcup/goldmedalcount")
+    public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
+        List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
+
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/winrate")
+    public ResponseEntity<List<Worldcup>> getSortedByWinRate() {
+        List<Worldcup> worldcups = worldcupService.getSortedByWinRateAllChampions();
+
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/goldmedalcount")
     public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
         List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
 

@@ -46,11 +46,11 @@ public class SingleRelationEnemyServiceImpl implements  SingleRelationEnemyServi
     }
 
     @Override
-    public List<SingleRelationEnemy> getSingleRelationEnemyForRecommend(String roughTier, String position1, String champion2) {
+    public List<SingleRelationEnemy> getSingleRelationEnemyForRecommend(String roughTier, String position1, String champion2, String position2) {
         List<SingleRelationEnemy> singleRelationEnemies = null;
         try{
             singleRelationEnemies = singleRelationEnemyRepository
-                    .findSingleRelationEnemiesByRoughTierAndPosition1AndChampion2(roughTier, position1, champion2);
+                    .findSingleRelationEnemiesByRoughTierAndPosition1AndChampion2AndPosition2(roughTier, position1, champion2, position2);
         }catch (Exception e){
             e.printStackTrace();
         }

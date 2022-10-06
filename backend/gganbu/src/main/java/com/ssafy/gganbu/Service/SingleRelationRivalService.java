@@ -9,4 +9,6 @@ public interface SingleRelationRivalService {
     public SingleRelationRival getSingleRelationRival(String roughTier, String champion1,
                                                       String position1, String champion2);
 
+    public List<SingleRelationRival> getSingleRelationRivalForRecommend(String roughTier, String position1, String champion2);
+
 }

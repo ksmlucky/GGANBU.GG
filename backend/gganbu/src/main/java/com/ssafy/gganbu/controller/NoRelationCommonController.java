@@ -2,6 +2,7 @@ package com.ssafy.gganbu.controller;
 
 import com.ssafy.gganbu.Service.NoRelationCommonService;
 import com.ssafy.gganbu.db.document.NoRelationCommon;
+import com.ssafy.gganbu.model.request.TierChampPosReq;
 import com.ssafy.gganbu.model.request.TierChampReq;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,14 @@ public class NoRelationCommonController {
             return ResponseEntity.status(400).body(null);
         }
         return ResponseEntity.status(200).body(noRelationCommons);
+    }
+
+    @PostMapping("/championCommonLane")
+    public ResponseEntity<NoRelationCommon> getChampionCommonByLane(@ModelAttribute TierChampPosReq tierChampPosReq){
+        NoRelationCommon noRelationCommon = noRelationCommonService.getNoRelationCommonByLane(tierChampPosReq.getRoughTier(), tierChampPosReq.getChampionId(), tierChampPosReq.getPosition());
+        if(noRelationCommon == null){
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.status(200).body(noRelationCommon);
     }
 }

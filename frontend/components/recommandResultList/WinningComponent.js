@@ -147,6 +147,7 @@ export default function WinningComponent(props) {
               })}
           </div>
         </div>
+        {/* result 결과 출력 */}
       </div>
       <div className={styles.resultdetailcontainer}>
         {rival && <img src={`/champion/loading/${rival}_0.jpg`}></img>}

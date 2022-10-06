@@ -20,8 +20,6 @@ export default function DetailMap({ id, mode }) {
   useEffect(()=>{
     const champPoint = clist.findIndex((i)=>i.en === id);
     const champKey = clist[champPoint].key;
-    console.log(typeof(champKey))
-    console.log(champKey);
     axios({
       method : "post",
       url : statistics.getMatchNumPerLane(),

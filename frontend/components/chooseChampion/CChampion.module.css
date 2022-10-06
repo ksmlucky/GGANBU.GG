@@ -46,24 +46,25 @@
 
 .givefive {
   width: 100%;
+  min-width: 100px;
   flex: 1 1 5%;
   background: none;
   border: none;
   color: var(--text);
   text-align: center;
-  /* padding: 5px 0; */
 }
 
 .givefive:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
-.sumonercontainer{
+.sumonercontainer {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 }
 
 .sumonercontainer input {
@@ -101,7 +102,6 @@
   overflow-y: scroll;
   list-style: none;
   gap: 10px;
-  /* background: var(--background-panel); */
 }
 
 .ul::-webkit-scrollbar {
@@ -150,20 +150,12 @@
   .ul {
     max-height: 700px;
   }
-
-  /* .img {
-    width: 90px;
-  } */
 }
 
 @media screen and (max-height: 1000px) {
   .ul {
     max-height: 700px;
   }
-
-  /* .img {
-    width: 85px;
-  } */
 }
 
 @media screen and (max-height: 960px) {
@@ -174,38 +166,22 @@
   .ul {
     max-height: 600px;
   }
-
-  /* .img {
-    width: 70px;
-  } */
 }
 
 @media screen and (max-height: 850px) {
   .ul {
     max-height: 550px;
   }
-
-  /* .img {
-    width: 55px;
-  } */
 }
 
 @media screen and (max-height: 750px) {
   .ul {
     max-height: 400px;
   }
-
-  /* .img {
-    width: 45px;
-  } */
 }
 
 @media screen and (max-height: 650px) {
   .ul {
     max-height: 300px;
   }
-
-  /* .img {
-    width: 40px;
-  } */
 }

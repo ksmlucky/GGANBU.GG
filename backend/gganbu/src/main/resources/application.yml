@@ -3,19 +3,20 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/gganbu_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-    username: root
-    password: gganbu
+    username: j7c204
+    password: seveneleven
+    #username: root
+    #password: gganbu
 
   data:
     mongodb:
       host: localhost
-      #      host: j7c204.p.ssafy.io
+      #host: j7c204.p.ssafy.io
       port: 27017
       #      authentication-database: admin
-      #      username: j7c204
-      #      password: seveneleven
-      database: test
+      username: j7c204
+      password: seveneleven
+      database: gganbu_mongo_db
     web:
       pageable:
         one-indexed-parameters: true
@@ -36,4 +37,4 @@ spring:
 
 #for Riot-API
 riot-api:
-  api-keys: RGAPI-4039232e-0d66-4563-886e-76cb29506139
+  api-keys: RGAPI-f9970773-433b-42ae-8255-77fd3f6fec93

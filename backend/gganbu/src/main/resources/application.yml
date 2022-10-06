@@ -16,7 +16,7 @@ spring:
       #      authentication-database: admin
       #      username: j7c204
       #      password: seveneleven
-      database: gganbu_mongo_db
+      database: test
     web:
       pageable:
         one-indexed-parameters: true

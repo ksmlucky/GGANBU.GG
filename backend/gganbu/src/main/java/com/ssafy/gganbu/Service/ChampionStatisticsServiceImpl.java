@@ -1,11 +1,14 @@
 package com.ssafy.gganbu.Service;
 
+import com.ssafy.gganbu.db.document.MatchBans;
 import com.ssafy.gganbu.db.document.NoRelationCommon;
 import com.ssafy.gganbu.db.document.SingleRelationEnemy;
 import com.ssafy.gganbu.db.document.SingleRelationTeam;
+import com.ssafy.gganbu.model.dbDto.NoRelationData;
 import com.ssafy.gganbu.model.request.ChampionPickReq;
 import com.ssafy.gganbu.model.request.RecommendReq;
 import com.ssafy.gganbu.model.response.ChampionScore;
+import com.ssafy.gganbu.model.response.ChartRes;
 import com.ssafy.gganbu.model.response.LaneNumRes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +25,9 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
     SingleRelationEnemyService singleRelationEnemyService;
     @Autowired
     SingleRelationTeamService singleRelationTeamService;
+
+    @Autowired
+    MatchBansService matchBansService;
 
     @Override
     public Long getWholeMatchNum(String roughTier){
@@ -126,7 +132,114 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         }
         return laneNumRes;
 
+    }
 
+    @Override
+    public ChartRes getChampionChart(String roughTier, String championId) {
+        ChartRes chartRes = new ChartRes();
+        try {
+
+            List<NoRelationCommon> noRelationCommons = noRelationCommonService.getNoRelationCommonAllLane(roughTier, championId);
+            long totalDmg = 0;
+            long totalGameDuration = 0;
+            long totalKills = 0;
+            long totalAssists = 0;
+            long totalDeaths = 0;
+            long totalCCingTime = 0;
+            double winRate = getChampionWinRateALlLane(roughTier, championId);
+            double pickRate = getChampionPickRateAllLane(roughTier, championId);
+            double banRate = getChampionBanRateAllLane(roughTier, championId);
+
+            if(winRate < 0 || pickRate < 0 || banRate < 0){
+                throw new Exception("something wrong with rate");
+            }
+
+            for (NoRelationCommon nrc : noRelationCommons) {
+                NoRelationData data = nrc.getData();
+                totalDmg += data.getPhysicalDamageDealtToChampions() + data.getMagicDamageDealtToChampions()
+                        + data.getTrueDamageDealtToChampions();
+                totalGameDuration += data.getGameDuration();
+                totalKills += data.getKills();
+                totalAssists += data.getAssists();
+                totalDeaths += data.getDeaths();
+                totalCCingTime += data.getTimeCCingOthers();
+            }
+
+            chartRes.setChampionId(championId);
+            chartRes.setDpm((totalDmg * 60) / totalGameDuration);
+
+            if(totalDeaths == 0 ){
+                totalDeaths = 1;
+            }
+            chartRes.setKda((totalKills + totalAssists) / totalDeaths);
+            chartRes.setTimeCCingOthers(totalCCingTime);
+            chartRes.setWinRate(winRate);
+            chartRes.setPickRate(pickRate);
+            chartRes.setBanRate(banRate);
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+        return chartRes;
+    }
+
+    @Override
+    public double getChampionWinRateALlLane(String roughTier, String championId) {
+        try{
+            long winNum = 0;
+            long totalNum = 0;
+            List<NoRelationCommon> noRelationCommons = noRelationCommonService.getNoRelationCommonAllLane(roughTier, championId);
+
+            for(NoRelationCommon nrc : noRelationCommons){
+                totalNum += nrc.getData().getMatchNum();
+                winNum += nrc.getData().getWin();
+            }
+            return (double) winNum / (double) totalNum;
+        } catch(Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    public double getChampionPickRateAllLane(String roughTier, String championId) {
+        try{
+            long totalNum = getWholeMatchNum(roughTier);
+            List<NoRelationCommon> noRelationCommons = noRelationCommonService.getNoRelationCommonAllLane(roughTier, championId);
+            long championMatchNum = 0;
+            for(NoRelationCommon nrc : noRelationCommons){
+                championMatchNum += nrc.getData().getMatchNum();
+            }
+
+            return  (double) championMatchNum /  (double) totalNum;
+        } catch(Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    @Override
+    public double getChampionBanRateAllLane(String roughTier, String championId) {
+        try{
+            long totalNum = getWholeMatchNum(roughTier);
+            MatchBans matchBans = matchBansService.getMatchBansByRoughTier(roughTier);
+            long banNum = -1;
+
+            if(!matchBans.getData().containsKey(Integer.parseInt(championId))){
+                banNum = 0;
+            }
+            else {
+                banNum = matchBans.getData().get(Integer.parseInt(championId));
+            }
+
+
+            return  (double) banNum /  (double) totalNum;
+        } catch(Exception e){
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 }

@@ -21,4 +21,3 @@ public interface WorldcupService {
 
     public List<Worldcup> getSortedByGoldmedalAllChampions();
 }
-

@@ -4,7 +4,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { statistics } from "../../api/api";
 import axios from "axios";
+import championList from "../../utils/champion";
 
+export let newRecommend;
+export let rivalRecommend;
 export default function CSInput({
   csInput,
   selectline,
@@ -12,6 +15,8 @@ export default function CSInput({
   rightchampion,
 }) {
   const router = useRouter();
+  const [recommend, setRecommend] = useState([]);
+  const clist = championList();
   function resultfunc() {
     const line = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"];
     let myline = line.indexOf(selectline);
@@ -30,15 +35,13 @@ export default function CSInput({
         enemies.push({ championId: el.idx, position: el.lines });
       }
     });
-    console.log(teamMates);
-    console.log(enemies);
-    if (selectline) {
-      if (rightchampion[myline].champ) {
-        router.push(result);
-      } else {
-        alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
-      }
-    }
+    // if (selectline) {
+    //   if (rightchampion[myline].champ) {
+    //     router.push(result);
+    //   } else {
+    //     alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
+    //   }
+    // }
     axios({
       method: "post",
       url: statistics.recommend(),
@@ -51,6 +54,41 @@ export default function CSInput({
     })
       .then((res) => {
         console.log(res.data);
+        console.log(res.data[1].rivalDatas);
+        if (res.data[0].evaluators) {
+          newRecommend = res.data[0].evaluators.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.championId);
+            const withE = el.withEnemies.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const withT = el.withTeammates.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const newEl = { ...el };
+            newEl.ko = clist[num].ko;
+            newEl.en = clist[num].en;
+            newEl.withEnemies = withE;
+            newEl.withTeammates = withT;
+            console.log(newEl);
+            return newEl;
+          });
+        }
+        if (res.data[1].rivalDatas) {
+          rivalRecommend = res.data[1].rivalDatas.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.champion1);
+            const rivalNum = clist.findIndex((e) => e.key === el.champion2);
+            const newEl = { ...el };
+            newEl.ko = clist[num].ko;
+            newEl.en = clist[num].en;
+            newEl.rival = clist[rivalNum].en;
+            return newEl;
+          });
+        }
+        console.log(newRecommend);
+        console.log(rivalRecommend);
+        router.push(result);
       })
       .catch((e) => {
         console.log(e);

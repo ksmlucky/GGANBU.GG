@@ -1,6 +1,7 @@
 package com.ssafy.gganbu.Service;
 
 import com.ssafy.gganbu.db.document.*;
+import com.ssafy.gganbu.model.dbDto.MasteryData;
 import com.ssafy.gganbu.model.dbDto.NoRelationData;
 import com.ssafy.gganbu.model.dbDto.RivalData;
 import com.ssafy.gganbu.model.request.ChampionPickReq;
@@ -21,12 +22,12 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
     SingleRelationEnemyService singleRelationEnemyService;
     @Autowired
     SingleRelationTeamService singleRelationTeamService;
-
     @Autowired
     MatchBansService matchBansService;
-
     @Autowired
     SingleRelationRivalService singleRelationRivalService;
+    @Autowired
+    SummonerService summonerService;
 
     int minPercent = 2;
 
@@ -426,12 +427,197 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
                 }
             }
 
+            if(recommendReq.getSummonerName() != null && recommendReq.getSummonerName() != ""){
+                recommendLists.add(recommendList3(recommendReq));
+            }
+
 
         } catch(Exception e){
             e.printStackTrace();
             return null;
         }
         return recommendLists;
+    }
+
+    public double normalizeMastery(long maxPoint, long minPoint, long point){
+        return ((double)(point - minPoint) / (double)(maxPoint - minPoint))/2 + 0.5;
+    }
+
+    @Override
+    public RecommendRes recommendList3(RecommendReq recommendReq){
+        String encryptedSummonerId = summonerService.getRSummonerByName(recommendReq.getSummonerName()).getId();
+        List<MasteryData> masteryDataList = summonerService.championMastery(encryptedSummonerId);
+        //챔피언 아이디와 마스터리 레벨의 맵
+        Map<String, Long> championIdMasteryMap = new HashMap<>();
+
+        if(masteryDataList == null || masteryDataList.size() == 0){
+            return null;
+        }
+
+        long maxPoint = -1;
+        long minPoint = 1;
+
+        Map<String, Long> idPointMap = new HashMap<>();
+        for(MasteryData md : masteryDataList){
+            maxPoint = Math.max(md.getChampionPoints(), maxPoint);
+            minPoint = Math.min(md.getChampionPoints(), minPoint);
+            idPointMap.put("" + md.getChampionId(), md.getChampionPoints());
+            championIdMasteryMap.put("" + md.getChampionId(), md.getChampionLevel());
+        }
+
+        List<ChampionPickReq> teammates = recommendReq.getTeamMates();
+        List<ChampionPickReq> enemies = recommendReq.getEnemies();
+        String myPosition = recommendReq.getMyPosition();
+        String roughTier = recommendReq.getRoughTier();
+
+        Map<String,ChampionScore> scores = new HashMap<>();
+
+        for(ChampionPickReq pick :teammates){
+            List<SingleRelationTeam> teamDatas = singleRelationTeamService.getSingleRelationTeamForRecommend
+                    (roughTier,myPosition, pick.getChampionId(), pick.getPosition());
+
+            for(SingleRelationTeam srt : teamDatas){
+                if(!idPointMap.containsKey(srt.getChampion1())){
+                    continue;
+                }
+
+                ChampionScore championScore = new ChampionScore();
+                if(scores.containsKey(srt.getChampion1())){
+                    championScore = scores.get(srt.getChampion1());
+                }
+                double scoreRate = normalizeMastery(maxPoint, minPoint, idPointMap.get(srt.getChampion1()));
+                double s = ((srt.getData().getWin() * 100 * scoreRate) / srt.getData().getMatchNum()) + championScore.getScore();
+                championScore.setScore(s);
+                championScore.setChampionId(srt.getChampion1());
+                scores.put(srt.getChampion1(), championScore);
+            }
+
+
+        }
+        for(ChampionPickReq pick : enemies){
+            List<SingleRelationEnemy> enemyDatas = singleRelationEnemyService.
+                    getSingleRelationEnemyForRecommend(roughTier, myPosition, pick.getChampionId(), pick.getPosition());
+
+            for(SingleRelationEnemy sre : enemyDatas){
+                if(!idPointMap.containsKey(sre.getChampion1())){
+                    continue;
+                }
+                ChampionScore championScore = new ChampionScore();
+                if(scores.containsKey(sre.getChampion1())){
+                    championScore = scores.get(sre.getChampion1());
+                }
+                double scoreRate = normalizeMastery(maxPoint, minPoint, idPointMap.get(sre.getChampion1()));
+                double s = ((sre.getData().getWin() * 100 * scoreRate) / sre.getData().getMatchNum()) + championScore.getScore();
+                championScore.setScore(s);
+                championScore.setChampionId(sre.getChampion1());
+                scores.put(sre.getChampion1(), championScore);
+            }
+        }
+
+        List<ChampionScore> scoreList = new ArrayList<>();
+
+        //팀원, 적팀 챔피언은 제외
+        for(ChampionPickReq pick : teammates){
+            if(scores.containsKey(pick.getChampionId())){
+                scores.remove(pick.getChampionId());
+            }
+        }
+        for(ChampionPickReq pick : enemies){
+            if(scores.containsKey(pick.getChampionId())){
+                scores.remove(pick.getChampionId());
+            }
+        }
+        for(String key : scores.keySet()){
+            scoreList.add(scores.get(key));
+        }
+        Collections.sort(scoreList);
+
+        RecommendRes recommendRes = new RecommendRes();
+        recommendRes.setRecommnedType("MASTERY_RECOMMEND");
+        List<ChampEvaluator> evaluators = new ArrayList<>();
+        int idx = 0;
+
+        for(ChampionScore cs : scoreList){
+            //라인 픽률이 너무 낮을 경우 패스
+            if(getPickRateLane(roughTier, cs.getChampionId(), myPosition) * 100< minPercent){
+                continue;
+            }
+
+            ChampEvaluator champEvaluator = new ChampEvaluator();
+            List<ChampEvaluation> withEnimies = new ArrayList<>();
+            List<ChampEvaluation> withTeammates = new ArrayList<>();
+
+            //팀 평가
+            for(ChampionPickReq cpr : teammates){
+                SingleRelationTeam srt = singleRelationTeamService.getSingleRelationTeam
+                        (roughTier, cs.getChampionId(), myPosition, cpr.getChampionId(), cpr.getPosition() );
+                if(srt == null){
+                    continue;
+                }
+                double winRate = (double) srt.getData().getWin() * 100 / (double) srt.getData().getMatchNum();
+                String evalWord = "";
+                if(winRate >= 60 ){
+                    evalWord = "Excellent";
+                } else if (winRate >= 55 ){
+                    evalWord = "Good";
+                }else if (winRate >= 50 ){
+                    evalWord = "Fair";
+                }else if (winRate >= 45 ){
+                    evalWord = "Poor";
+                }else {
+                    evalWord = "Bad";
+                }
+
+                ChampEvaluation champEvaluation = new ChampEvaluation();
+                champEvaluation.setEvalWord(evalWord);
+                champEvaluation.setPostion(cpr.getPosition());
+                champEvaluation.setChampionId(cpr.getChampionId());
+
+                withTeammates.add(champEvaluation);
+            }
+
+            for(ChampionPickReq cpr : enemies){
+                SingleRelationEnemy srt = singleRelationEnemyService.getSingleRelationEnemy
+                        (roughTier, cs.getChampionId(), myPosition, cpr.getChampionId(), cpr.getPosition() );
+                if(srt == null){
+                    continue;
+                }
+                double winRate = (double) srt.getData().getWin() * 100 / (double) srt.getData().getMatchNum();
+                String evalWord = "";
+                if(winRate >= 60 ){
+                    evalWord = "Excellent";
+                } else if (winRate >= 55 ){
+                    evalWord = "Good";
+                }else if (winRate >= 50 ){
+                    evalWord = "Fair";
+                }else if (winRate >= 45 ){
+                    evalWord = "Poor";
+                }else {
+                    evalWord = "Bad";
+                }
+
+                ChampEvaluation champEvaluation = new ChampEvaluation();
+                champEvaluation.setEvalWord(evalWord);
+                champEvaluation.setPostion(cpr.getPosition());
+                champEvaluation.setChampionId(cpr.getChampionId());
+
+                withEnimies.add(champEvaluation);
+            }
+
+            champEvaluator.setChampionId(cs.getChampionId());
+            champEvaluator.setMasteryLevel(championIdMasteryMap.get(cs.getChampionId()));
+            champEvaluator.setWithTeammates(withTeammates);
+            champEvaluator.setWithEnemies(withEnimies);
+
+            evaluators.add(champEvaluator);
+
+            if(++idx >= 5){
+                break;
+            }
+        }
+
+        recommendRes.setEvaluators(evaluators);
+        return recommendRes;
     }
 
 }

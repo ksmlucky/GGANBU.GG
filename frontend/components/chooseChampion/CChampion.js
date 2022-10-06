@@ -96,7 +96,7 @@ export default function ChooseChampion() {
               <input
                 type="text"
                 id="search"
-                placeholder="챔피언을 검색하세요"
+                placeholder="소환사 이름을 적어보세요"
                 onChange={changes}
                 onDragOver={(event) => {
                   dragover(event);

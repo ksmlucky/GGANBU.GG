@@ -17,7 +17,7 @@ const worldcup = {
 const statistics = {
   getAllMatchNum: () => HOST + STATISTICS + "allNum/",
   getMatchNumPerLane: () => HOST + STATISTICS + "numPerLane/",
-  recommend: () => HOST + STATICS + "recommend/",
+  recommend: () => HOST + STATISTICS + "recommend/",
 };
 
 const chart = {

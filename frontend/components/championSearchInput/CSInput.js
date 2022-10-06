@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./CSInput.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { statics } from "../../api/api";
+import { statistics } from "../../api/api";
 import axios from "axios";
 
 export default function CSInput({
@@ -30,6 +30,8 @@ export default function CSInput({
         enemies.push({ championId: el.idx, position: el.lines });
       }
     });
+    console.log(teamMates);
+    console.log(enemies);
     if (selectline) {
       if (rightchampion[myline].champ) {
         router.push(result);
@@ -39,12 +41,12 @@ export default function CSInput({
     }
     axios({
       method: "post",
-      url: statics.recommend(),
-      params: {
+      url: statistics.recommend(),
+      data: {
         enemies: enemies,
         teamMates: teamMates,
         roughTier: "high",
-        myPosition: myline,
+        myPosition: line[myline],
       },
     })
       .then((res) => {

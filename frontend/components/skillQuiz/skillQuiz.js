@@ -13,7 +13,7 @@ export default function SkillQuiz({ setMode }) {
   const [randomSkill, setRandomSkill] = useState(Math.floor(Math.random() * 5));
   const [value, setValue] = useState("");
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(5);
+  const [timer, setTimer] = useState(60);
   const [gameStart, setGameStart] = useState(false);
   const [info, setInfo] = useState("");
   const intervalId = useRef(null);
@@ -255,7 +255,7 @@ export default function SkillQuiz({ setMode }) {
             onClick={() => {
               setGameStart(false);
               setScore(0);
-              setTimer(5);
+              setTimer(60);
               setInfo("");
               setRandomChampion(() => {
                 return Math.floor(Math.random() * 161);

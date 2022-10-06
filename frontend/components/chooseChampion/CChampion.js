@@ -71,28 +71,28 @@ export default function ChooseChampion() {
 
           <div className={styles.uiandinput}>
             <div className={styles.sumonercontainer}>
-            <button
-              className={styles.givefive}
-              onClick={() => {
-                Setmakefive(!makefive);
-              }}
-              style={{
-                color: makefive ? "var(--logo)" : "var(--text)",
-              }}
-            >
-              {makefive ? "전체모드" : "깐부모드"}
-            </button>
-            <input
-          type="text"
-          id="search"
-          placeholder="챔피언을 검색하세요"
-          onChange={changes}
-          onDragOver={(event) => {
-            dragover(event);
-          }}
-          required={true}
-        />
-        </div>
+              <button
+                className={styles.givefive}
+                onClick={() => {
+                  Setmakefive(!makefive);
+                }}
+                style={{
+                  color: makefive ? "var(--logo)" : "var(--text)",
+                }}
+              >
+                {makefive ? "전체모드" : "깐부모드"}
+              </button>
+              <input
+                type="text"
+                id="search"
+                placeholder="소환사 이름을 적어보세요"
+                onChange={changes}
+                onDragOver={(event) => {
+                  dragover(event);
+                }}
+                required={true}
+              />
+            </div>
             <ul className={styles.ul}>
               {clist
                 .filter((value) => {

@@ -1,17 +1,21 @@
 import styles from "./Ai.module.css";
 import * as tf from "@tensorflow/tfjs";
 import * as tmImage from "@teachablemachine/image";
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import region from "./../../utils/region";
+import { useRouter } from 'next/router';
+
 
 let best = -1;
 let bestregion;
 let data;
 let cheesebtn = false;
 
-export default function Ai() {
-  let model, webcam, labelContainer, maxPredictions;
 
+export default function Ai() {
+
+  let model, webcam, labelContainer, maxPredictions;
+  const router = useRouter();
   const [start, setStart] = useState(false);
   const getregion = region();
   const [bestregions, setBestregions] = useState();
@@ -26,9 +30,13 @@ export default function Ai() {
     const flip = true;
     webcam = new tmImage.Webcam(100, 100, flip);
     await webcam.setup();
-
     document.getElementById("webcam-container").appendChild(webcam.canvas);
-    await webcam.play();
+    webcam.play();
+
+    router.events.on('routeChangeStart', (url) => {
+      console.log(webcam);
+      if ((webcam.webcam.srcObject != null) && (webcam.webcam.srcObject.active === true)) { webcam.stop(); }
+    })
     setStart(true);
     window.requestAnimationFrame(loop);
   }
@@ -63,7 +71,7 @@ export default function Ai() {
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="outlineContainer">
       {bestregions ? (
         <video
           controls={false}

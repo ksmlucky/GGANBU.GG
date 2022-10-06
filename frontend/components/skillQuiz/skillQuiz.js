@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import styles from "./skillQuiz.module.css";
 import championList from "../../utils/champion";
+import axios from "axios";
+import { skillquiz } from "../../api/api";
+import { mapLinear } from "three/src/math/MathUtils";
 
 export default function SkillQuiz({ setMode }) {
   const clist = championList();
@@ -10,15 +13,49 @@ export default function SkillQuiz({ setMode }) {
   const [randomSkill, setRandomSkill] = useState(Math.floor(Math.random() * 5));
   const [value, setValue] = useState("");
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(60);
+  const [timer, setTimer] = useState(5);
   const [gameStart, setGameStart] = useState(false);
   const [info, setInfo] = useState("");
   const intervalId = useRef(null);
+  const [ranking, setRanking] = useState();
+  const [minScore, setMinScore] = useState(0);
+  const [name, setName] =useState("")
+  const [bools, setBools] = useState(false);
+
+  useEffect(()=>{
+    axios({
+      method : "get",
+      url : skillquiz.getAll(),
+    }).then((res)=>{
+      console.log(res.data);
+      setRanking(res.data);
+      setMinScore(res.data[res.data.length-1].score);
+    }).catch((e)=>{
+      console.log(e);
+    });
+  },[])
+
+  useEffect(()=>{
+    if(timer < 0){
+      clearInterval(intervalId.current);
+      axios({
+        method : "get",
+        url : skillquiz.getAll(),
+      }).then((res)=>{
+        console.log(res.data);
+        setRanking(res.data);
+        setMinScore(res.data[res.data.length-1].score);
+
+      }).catch((e)=>{
+        console.log(e);
+      });
+    }
+  },[timer])
 
   useEffect(() => {
     setValue("");
   }, [randomChampion, randomSkill]);
-
+  
   return (
     <>
       {gameStart === false && (
@@ -132,35 +169,92 @@ export default function SkillQuiz({ setMode }) {
             >
               {info}
             </div>
-            <div className={styles.score}>맞힌 갯수 : {score}</div>
           </div>
         </>
       )}
       {gameStart === true && timer < 0 && (
         <div className={styles.container}>
-          <span className={styles.showcount}>{score}개를 맞추셨어요!</span>
-          <span className={styles.msg}>{score < 5 && " 좀더 분발하세요!"}</span>
-          <span className={styles.msg}>
+          <div className={styles.showcount}>{score}개를 맞추셨어요!</div>
+          <div className={styles.msg}>{score < 5 && " 좀더 분발하세요!"}</div>
+          <div className={styles.msg}>
             {score < 10 && score >= 5 && " 롤을 해보긴 하셨군요."}
-          </span>
-          <span className={styles.msg}>
+          </div>
+          <div className={styles.msg}>
             {score < 15 && score >= 10 && " 상당한 실력의 소유자시군요!"}
-          </span>
-          <span className={styles.msg}>
+          </div>
+          <div className={styles.msg}>
             {score >= 15 && " 롤을 그만하셔야 될 것 같습니다!"}
-          </span>
+          </div>
+          <h1 className={styles.msg}>랭킹</h1>
+          <div className={styles.table}>
+            <table>
+              <thead>
+              <tr>
+                <th>순위</th>
+                <th>이름</th>
+                <th>점수</th>
+              </tr>
+              </thead>
+            {ranking.map((item, idx)=>{
+              return(
+                <tbody key={idx}>
+                <tr>
+                  <td>{idx+1}</td>
+                  <td>{item.name}</td>
+                  <td>{item.score}</td>
+                </tr>
+                </tbody>
+              )
+            })}
+            </table>
+          </div>
+          {(score > minScore || ranking.length<10) && !bools &&
+            <>
+            <input
+              className={styles.name}
+              placeholder="랭킹에 등록할 이름을 입력하세요!"
+              value={name}
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+            <button className={styles.btn} onClick={()=>{
+              axios({
+                method : "post",
+                url : skillquiz.register(),
+                data: {
+                  name : name,
+                  score : score
+                },
+              }).then((res)=>{
+                 console.log(res.data);
+              }).catch((e)=>{
+                console.log(e);
+              });
+              setBools(true);
+            }}></button>
+            </>
+          }
           <button
             className={styles.btn}
             onClick={() => {
               setGameStart(false);
               setScore(0);
-              setTimer(60);
-              clearInterval(intervalId.current);
+              setTimer(5);
               setInfo("");
+              setRandomChampion(() => {
+                return Math.floor(Math.random() * 161);
+              });
+              setRandomSkill(() => {
+                return Math.floor(Math.random() * 5);
+              });
+              setBools(false);
             }}
           >
             메인화면으로
           </button>
+
+
         </div>
       )}
     </>

@@ -17,5 +17,10 @@ public interface ChampionStatisticsService {
     double getChampionWinRateALlLane(String roughTier, String championId);
     double getChampionPickRateAllLane(String roughTier, String championId);
     double getChampionBanRateAllLane(String roughTier, String championId);
+
+    //
+    List<ChampionScore> recommendList2(RecommendReq recommendReq);
+
+    List<List<ChampionScore>> dispatchAlgorithm(RecommendReq recommendReq);
 //    List<ChampionScore>
 }

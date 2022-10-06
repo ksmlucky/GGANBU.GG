@@ -1,10 +1,8 @@
 package com.ssafy.gganbu.Service;
 
-import com.ssafy.gganbu.db.document.MatchBans;
-import com.ssafy.gganbu.db.document.NoRelationCommon;
-import com.ssafy.gganbu.db.document.SingleRelationEnemy;
-import com.ssafy.gganbu.db.document.SingleRelationTeam;
+import com.ssafy.gganbu.db.document.*;
 import com.ssafy.gganbu.model.dbDto.NoRelationData;
+import com.ssafy.gganbu.model.dbDto.RivalData;
 import com.ssafy.gganbu.model.request.ChampionPickReq;
 import com.ssafy.gganbu.model.request.RecommendReq;
 import com.ssafy.gganbu.model.response.ChampionScore;
@@ -28,6 +26,9 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
 
     @Autowired
     MatchBansService matchBansService;
+
+    @Autowired
+    SingleRelationRivalService singleRelationRivalService;
 
     @Override
     public Long getWholeMatchNum(String roughTier){
@@ -66,7 +67,8 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
 
         }
         for(ChampionPickReq pick : enemies){
-            List<SingleRelationEnemy> enemyDatas = singleRelationEnemyService.getSingleRelationEnemyForRecommend(roughTier, myPosition, pick.getChampionId());
+            List<SingleRelationEnemy> enemyDatas = singleRelationEnemyService.
+                    getSingleRelationEnemyForRecommend(roughTier, myPosition, pick.getChampionId(), pick.getPosition());
 
             for(SingleRelationEnemy sre : enemyDatas){
                 ChampionScore championScore = new ChampionScore();
@@ -150,6 +152,8 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
             double pickRate = getChampionPickRateAllLane(roughTier, championId);
             double banRate = getChampionBanRateAllLane(roughTier, championId);
 
+            long totalMatchNum = 0;
+
             if(winRate < 0 || pickRate < 0 || banRate < 0){
                 throw new Exception("something wrong with rate");
             }
@@ -163,6 +167,7 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
                 totalAssists += data.getAssists();
                 totalDeaths += data.getDeaths();
                 totalCCingTime += data.getTimeCCingOthers();
+                totalMatchNum += data.getMatchNum();
             }
 
             chartRes.setChampionId(championId);
@@ -171,8 +176,8 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
             if(totalDeaths == 0 ){
                 totalDeaths = 1;
             }
-            chartRes.setKda((totalKills + totalAssists) / totalDeaths);
-            chartRes.setTimeCCingOthers(totalCCingTime);
+            chartRes.setKda((double)(totalKills + totalAssists) / (double)totalDeaths);
+            chartRes.setTimeCCingOthers((double)totalCCingTime / (double) totalMatchNum);
             chartRes.setWinRate(winRate);
             chartRes.setPickRate(pickRate);
             chartRes.setBanRate(banRate);
@@ -240,6 +245,57 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
             e.printStackTrace();
             return -1;
         }
+    }
+
+    //
+    @Override
+    public List<ChampionScore> recommendList2(RecommendReq recommendReq) {
+        List<ChampionScore> scores = new ArrayList<>();
+
+        String rivalId = "";
+        List<ChampionPickReq> enemies = recommendReq.getEnemies();
+        String myPosition = recommendReq.getMyPosition();
+        String roughTier = recommendReq.getRoughTier();
+
+        for(ChampionPickReq pick : enemies){
+            if(myPosition.equals(pick.getPosition())){
+                rivalId = pick.getChampionId();
+                break;
+            }
+        }
+        List<SingleRelationRival> rivalDatas = singleRelationRivalService.
+                getSingleRelationRivalForRecommend(roughTier, myPosition, rivalId );
+        
+        for(SingleRelationRival srr : rivalDatas){
+            ChampionScore score = new ChampionScore();
+            score.setChampionId(srr.getChampion1());
+            RivalData data = srr.getData();
+            long goldDiff = (data.getMe().getGoldEarned() - data.getRival().getGoldEarned());
+
+            if(goldDiff > 0){
+                double winRate =  (double) data.getMe().getWin() / (double) data.getMe().getMatchNum();
+                goldDiff *= winRate * 100;
+            }
+
+            score.setScore(goldDiff);
+            scores.add(score);
+        }
+
+        Collections.sort(scores);
+        return scores;
+    }
+
+    @Override
+    public List<List<ChampionScore>> dispatchAlgorithm(RecommendReq recommendReq) {
+        List<List<ChampionScore>> recommendLists = new ArrayList<>();
+        try{
+            recommendLists.add(recommendList1(recommendReq));
+            recommendLists.add(recommendList2(recommendReq));
+        } catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return recommendLists;
     }
 
 }

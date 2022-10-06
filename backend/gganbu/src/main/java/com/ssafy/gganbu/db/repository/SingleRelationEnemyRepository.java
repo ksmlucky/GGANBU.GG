@@ -11,7 +11,7 @@ public interface SingleRelationEnemyRepository extends MongoRepository<SingleRel
             (String roughTier, String champion1, String position1, String champion2, String position2);
     List<SingleRelationEnemy> findSingleRelationEnemiesByRoughTierAndChampion1AndPosition1AndChampion2
             (String roughTier, String champion1, String position1, String champion2);
-    List<SingleRelationEnemy> findSingleRelationEnemiesByRoughTierAndPosition1AndChampion2(String roughTier, String position1, String champion2);
+    List<SingleRelationEnemy> findSingleRelationEnemiesByRoughTierAndPosition1AndChampion2AndPosition2(String roughTier, String position1, String champion2, String position2);
     List<SingleRelationEnemy> findSingleRelationEnemiesByRoughTierAndChampion1
             (String roughTier, String champion1);
 

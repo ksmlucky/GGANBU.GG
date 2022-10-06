@@ -10,5 +10,5 @@ public class ChartRes {
     private double banRate;
     private long dpm;
     private double kda;
-    private long timeCCingOthers;
+    private double timeCCingOthers;
 }

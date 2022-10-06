@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Transactional
@@ -91,6 +89,54 @@ public class WorldcupServiceImpl implements WorldcupService {
             worldcupRepository.save(worldcupToUpdate);
         } else {
             throw new WorldcupCollectionException(WorldcupCollectionException.NotFoundException(englishname));
+        }
+    }
+
+    @Override
+    public List<Worldcup> getSortedByWinRateAllChampions() {
+        List<Worldcup> worldcups = worldcupRepository.findAll();
+
+        if (worldcups.size() > 0) {
+            Collections.sort(worldcups, new ChampionWinRateComparator());
+            return worldcups;
+        } else {
+            return new ArrayList<Worldcup>();
+        }
+    }
+
+    class ChampionWinRateComparator implements Comparator<Worldcup> {
+        @Override
+        public int compare(Worldcup o1, Worldcup o2) {
+            double winRate1 = o1.getWinRate();
+            double winRate2 = o2.getWinRate();
+
+            int temp = Double.compare(winRate2, winRate1);
+
+            return temp;
+        }
+    }
+
+    @Override
+    public List<Worldcup> getSortedByGoldmedalAllChampions() {
+        List<Worldcup> worldcups = worldcupRepository.findAll();
+
+        if (worldcups.size() > 0) {
+            Collections.sort(worldcups, new ChampionGoldmedalComparator());
+            return worldcups;
+        } else {
+            return new ArrayList<Worldcup>();
+        }
+    }
+
+    class ChampionGoldmedalComparator implements Comparator<Worldcup> {
+        @Override
+        public int compare(Worldcup o1, Worldcup o2) {
+            int goldmedal1 = o1.getGoldmedalcount();
+            int goldmedal2 = o2.getGoldmedalcount();
+
+            int temp = goldmedal2 - goldmedal1;
+
+            return temp;
         }
     }
 }

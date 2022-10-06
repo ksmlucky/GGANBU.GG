@@ -23,13 +23,12 @@ export default function DetailMap({ id, mode }) {
     axios({
       method : "post",
       url : statistics.getMatchNumPerLane(),
-      params : {
+      data : {
         championId : champKey,
         roughTier : "high",
       },
     })
     .then((res)=>{
-      console.log(res);
       const top = res.data.matchNumTOP;
       const jungle = res.data.matchNumJUNGLE;
       const mid = res.data.matchNumMIDDLE;

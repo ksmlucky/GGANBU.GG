@@ -21,13 +21,12 @@ export default function SkillQuiz({ setMode }) {
   const [minScore, setMinScore] = useState(0);
   const [name, setName] =useState("")
   const [bools, setBools] = useState(false);
-
+  const [relocation, setRelocation] = useState(false);
   useEffect(()=>{
     axios({
       method : "get",
       url : skillquiz.getAll(),
     }).then((res)=>{
-      console.log(res.data);
       setRanking(res.data);
       setMinScore(res.data[res.data.length-1].score);
     }).catch((e)=>{
@@ -42,7 +41,6 @@ export default function SkillQuiz({ setMode }) {
         method : "get",
         url : skillquiz.getAll(),
       }).then((res)=>{
-        console.log(res.data);
         setRanking(res.data);
         setMinScore(res.data[res.data.length-1].score);
 
@@ -56,6 +54,18 @@ export default function SkillQuiz({ setMode }) {
     setValue("");
   }, [randomChampion, randomSkill]);
   
+  useEffect(()=>{
+    axios({
+      method : "get",
+      url : skillquiz.getAll(),
+    }).then((res)=>{
+      setRanking(res.data);
+      setMinScore(res.data[res.data.length-1].score);
+      setRelocation(false);
+    }).catch((e)=>{
+      console.log(e);
+    });
+  }, [relocation])
   return (
     <>
       {gameStart === false && (
@@ -227,12 +237,17 @@ export default function SkillQuiz({ setMode }) {
                   score : score
                 },
               }).then((res)=>{
-                 console.log(res.data);
+                setRanking((ranking)=>{
+                  const newRanking = [...ranking];
+                  newRanking.splice(0);
+                  return newRanking;
+                })
+                setRelocation(true);
               }).catch((e)=>{
                 console.log(e);
               });
               setBools(true);
-            }}></button>
+            }}>랭킹 등록</button>
             </>
           }
           <button

@@ -88,7 +88,7 @@ export default function DetailChart({ id, championName, mode }) {
     axios({
       method: "post",
       url: statistics.chart(),
-      params : {
+      data : {
         championId : champKey,
         roughTier : "high",
       }
@@ -277,7 +277,9 @@ export default function DetailChart({ id, championName, mode }) {
         const myChart = new Chart(ctx, config);
       }
     })
-    .catch((e) => {}); //axios 끝
+    .catch((e) => {
+      console.log(e)
+    }); //axios 끝
     setBools(true);
   }, []);
 
@@ -599,12 +601,12 @@ export default function DetailChart({ id, championName, mode }) {
                               axios({
                                 method : "post",
                                 url: statistics.chart(),
-                                params : {
+                                data : {
                                   championId : item.key,
                                   roughTier : "high",
                                 }
                               }).then((res)=>{ 
-                                console.log(dataSet);
+
                                 const kda = (res.data.kda*10).toFixed(1);
                                 const winRate = (res.data.winRate*100).toFixed(2);
                                 const cc = (res.data.timeCCingOthers).toFixed(2);

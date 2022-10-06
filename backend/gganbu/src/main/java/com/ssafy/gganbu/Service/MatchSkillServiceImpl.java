@@ -22,12 +22,11 @@ public class MatchSkillServiceImpl implements MatchSkillService {
         try {
             matchSkillList = matchSkillRepository.findAll();
             Collections.sort(matchSkillList, new MatchSkillScoreComparator());
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return matchSkillList.subList(0, 10);
+        return matchSkillList.size() <= 10 ? matchSkillList : matchSkillList.subList(0, 10);
     }
 
     @Override

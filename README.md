@@ -1,5 +1,5 @@
-# ![favicon-32x32](/uploads/0065b79aaeec8b89d0386770bf08fcb7/favicon-32x32.png) EDDU SSAFY(에뜌 싸피)
-비대면 수업을 위한 화상회의 사이트
+# ![favicon-32x32](/uploads/0065b79aaeec8b89d0386770bf08fcb7/favicon-32x32.png) GGANBU.GG (깐부.GG)
+(임시) 롤 챔피언 궁합 추천
 
 <br/>
 

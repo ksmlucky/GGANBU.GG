@@ -1,9 +1,18 @@
-.main{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2vw;
-    background: var(--main);
-    grid-area: m;
+.main {
+  grid-area: m;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.atag {
+  color: var(--text);
+}
+
+.atag:hover {
+  cursor: url(/cursor/cursorPointer.png), auto;
+  color: var(--header-border-bottom);
 }

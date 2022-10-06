@@ -1,7 +1,7 @@
 import SearchTop from "./SearchTop";
 import SearchBody from "./SearchBody";
 import styles from "./Search.module.css";
-import Input from "../inputs/Input";
+import Input from "../mainInput/MainInput";
 
 export default function Search() {
   return (
@@ -16,7 +16,7 @@ export default function Search() {
           </div>
         </div>
         <div className={styles.searchBody}>
-            <SearchBody></SearchBody>
+          <SearchBody></SearchBody>
         </div>
       </main>
     </>

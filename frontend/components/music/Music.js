@@ -8,6 +8,7 @@ import SkipNext from "/public/musicicon/SkipNext.svg";
 import SkipPrevious from "/public/musicicon/SkipPrevious.svg";
 import ExpandMore from "/public/musicicon/ExpandMore.svg";
 import MoreHoriz from "/public/musicicon/MoreHoriz.svg";
+import Playing from "/public/musicicon/Playing.svg";
 import { createContext, useState, useEffect, useContext, useRef } from "react";
 
 export default function Music() {
@@ -34,7 +35,6 @@ export default function Music() {
         animationRef.current = requestAnimationFrame(whilePlaying);
       }
     }
-
   };
 
   // const preview = () => {
@@ -57,7 +57,7 @@ export default function Music() {
       audioPlayer.current.pause();
       cancelAnimationFrame(animationRef.current);
       const newidx = idx + 1 > tracks.length - 1 ? 0 : idx + 1;
-      setPlaying(false);
+      // setPlaying(false);
       audioPlayer.current.src = tracks[newidx].source;
       audioPlayer.current.load();
       setIdx(newidx);
@@ -91,10 +91,8 @@ export default function Music() {
     if (audioPlayer) {
       setDuration(Math.floor(audioPlayer.current.duration));
       progressBar.current.max = duration;
-      // setPlaying(true);
     }
   }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState]);
-
 
   setInterval(() => {
     if (audioPlayer.current) {
@@ -102,7 +100,7 @@ export default function Music() {
         next();
       }
     }
-  }, 1000)
+  }, 1000);
 
   // 시간 출력
   const calculateTime = (secs) => {
@@ -150,7 +148,7 @@ export default function Music() {
     {
       name: "Awaken",
       artist: "league of legends",
-      album: "/album/Awaken.jpg",
+      album: "/album/awaken.jpg",
       source: "/mp3/Awaken.mp3",
     },
     {
@@ -160,7 +158,7 @@ export default function Music() {
       source: "/mp3/Burn-It-All-Down.mp3",
     },
     {
-      name: "Chromonicci-Passengers",
+      name: "Passengers",
       artist: "league of legends",
       album: "/album/Chromonicci-Passengers.jpg",
       source: "/mp3/Chromonicci-Passengers.mp3",
@@ -184,13 +182,13 @@ export default function Music() {
       source: "/mp3/K_DA-MORE.mp3",
     },
     {
-      name: "K_DA-THE-BADDEST",
+      name: "THE-BADDEST",
       artist: "league of legends",
       album: "/album/K_DA-THE-BADDEST.jpg",
       source: "/mp3/K_DA-THE-BADDEST.mp3",
     },
     {
-      name: "K_DA-VILLAIN",
+      name: "VILLAIN",
       artist: "league of legends",
       album: "/album/K_DA-VILLAIN.jpg",
       source: "/mp3/K_DA-VILLAIN.mp3",
@@ -204,29 +202,29 @@ export default function Music() {
     {
       name: "Lightbringer",
       artist: "league of legends",
-      album: "/album/Lightbringer.jpg",
+      album: "/album/lightbringer.jpg",
       source: "/mp3/Lightbringer.mp3",
     },
     {
       name: "Lost_Chapter",
       artist: "league of legends",
-      album: "/album/Lost_Chapter.jpg",
+      album: "/album/lost_chapter.jpg",
       source: "/mp3/Lost_Chapter.mp3",
     },
     {
       name: "Phoenix",
       artist: "league of legends",
-      album: "/album/Phoenix.jpg",
+      album: "/album/phoenix.jpg",
       source: "/mp3/Phoenix.mp3",
     },
     {
       name: "RISE",
       artist: "league of legends",
-      album: "/album/RISE.jpg",
+      album: "/album/rise.jpg",
       source: "/mp3/RISE.mp3",
     },
     {
-      name: "True-Damage-GIANTS",
+      name: "GIANTS",
       artist: "league of legends",
       album: "/album/True-Damage-GIANTS.jpg",
       source: "/mp3/True-Damage-GIANTS.mp3",
@@ -243,16 +241,24 @@ export default function Music() {
     <div className={styles.container}>
       {openlist ? (
         <div className={styles.listcontainer}>
-          {tracks.map((list, idx) => {
+          {tracks.map((list, idxx) => {
             return (
-              <button
-                key={idx}
-                onClick={() => {
-                  change(idx);
-                }}
-              >
-                {list.name}
-              </button>
+              <div className={styles.listcheck}>
+                {idxx == idx ? (
+                  <i id="play-music" className={styles.materialIcon}>
+                    <Playing />
+                  </i>
+                ) : null}
+                <button
+                  key={idx}
+                  onClick={() => {
+                    change(idxx);
+                  }}
+                >
+                  {list.name}
+                </button>
+              </div>
+
             );
           })}
         </div>
@@ -263,20 +269,20 @@ export default function Music() {
           src={tracks[idx].source}
           preload="metadata"
         ></audio>
-        <div className={styles.topBar}>
-          <span>Now Playing</span>
-        </div>
-        <div className={styles.imgArea}>
-          <img src={tracks[idx].album} alt=""></img>
-        </div>
-        <div className={styles.songDetails}>
-          <p className={styles.name}>{audioPlayer.current ? tracks[idx].name : null}</p>
-          <p className={styles.artist}>{audioPlayer.current ? tracks[idx].artist : null}</p>
-        </div>
-        {/* progress 시작 */}
+        <span className={styles.topBar}>현재 듣고있는 노래</span>
+        <img src={tracks[idx].album} alt="" className={styles.imgArea}></img>
+        <p className={styles.name}>
+          {audioPlayer.current ? tracks[idx].name : null}
+        </p>
+        <p className={styles.artist}>
+          {audioPlayer.current ? tracks[idx].artist : null}
+        </p>
         <div className={styles.audioPlayer}>
-          {/* progress bar */}
-          <span>{audioPlayer.current ? calculateTime(audioPlayer.current.currentTime) ?? "00:00" : "00:00"}</span>
+          <span>
+            {audioPlayer.current
+              ? calculateTime(audioPlayer.current.currentTime) ?? "00:00"
+              : "00:00"}
+          </span>
           <input
             type="range"
             className={styles.progressBar}
@@ -284,45 +290,22 @@ export default function Music() {
             ref={progressBar}
             onChange={changeRange}
           />
-          <span>{audioPlayer.current ? calculateTime(audioPlayer.current.duration) ?? "00:00" : "00:00"}</span>
+          <span>
+            {audioPlayer.current
+              ? calculateTime(audioPlayer.current.duration) ?? "00:00"
+              : "00:00"}
+          </span>
         </div>
-        {/* progress 끝 */}
         <div className={styles.controls}>
-          <div className={styles.screenshare} onClick={openURL}>
-            <i id="repeatPlist" className={styles.materialIcon}>
-              <ScreenShare />
-            </i>
-          </div>
-          {/* <div
-            className={styles.previous}
-            onClick={() => {
-              preview();
-            }}
-          >
-            <i id="repeatPlist" className={styles.materialIcon}>
-              <SkipPrevious />
-            </i>
-          </div> */}
-          <div className={styles.playPause} onClick={toggle}>
-            <i className={styles.materialIcon}>
-              {playing ? <Pause /> : <PlayArrow />}
-            </i>
-          </div>
-          {/* <div
-            className={styles.previous}
-            onClick={() => {
-              next();
-            }}
-          >
-            <i id="next" className={styles.materialIcon}>
-              <SkipNext />
-            </i>
-          </div> */}
-          <div className={styles.shuffle} onClick={open}>
-            <i id="more-music" className={styles.materialIcon}>
-              <QueueMusic />
-            </i>
-          </div>
+          <i id="repeatPlist" className={styles.materialIcon} onClick={openURL}>
+            <ScreenShare />
+          </i>
+          <i className={styles.materialIcon} onClick={toggle}>
+            {playing ? <Pause /> : <PlayArrow />}
+          </i>
+          <i id="more-music" className={styles.materialIcon} onClick={open}>
+            <QueueMusic />
+          </i>
         </div>
       </div>
     </div>

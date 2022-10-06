@@ -23,8 +23,8 @@ function useStickyState(defaultValue, key) {
   return [value, setValue];
 }
 
-export default function DetailResult() {
-  const [mode, setMode] = useStickyState("dark", "theme");
+export default function DetailResult({ mode }) {
+  const [modes, setMode] = useStickyState("dark", "theme");
 
   useEffect(() => {
     document.body.dataset.theme = mode;
@@ -32,7 +32,7 @@ export default function DetailResult() {
 
   return (
     <div>
-      <DetailChampion setMode={setMode} mode={mode}/>
+      <DetailChampion setMode={setMode} mode={mode} />
     </div>
   );
 }

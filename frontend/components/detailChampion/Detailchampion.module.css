@@ -1,58 +1,71 @@
-.boxflexs {
-  position: relative;
-  width: 100vw;
-  height: 40vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  /* background: green; */
-  grid-area: m;
-}
-
 .container {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  width: 100vw;
-  height: 40vw;
-  /* background: var(--red1); */
+  grid-area: m;
+  width: 100%;
+  display: grid;
+  height: 100%;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 6fr;
+  grid-template-areas:
+    "t"
+    "mc";
 }
 
 .buttonContainer {
-  background: var(--select-line);
+  grid-area: t;
+  width: 99%;
+  height: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
-  position: relative;
-  width: 100vw;
-  height: 2.5vw;
+}
+
+.titleimg {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.titleimg img {
+  padding-top: 20px;
+  width: 80%;
+  height: 90%;
+}
+
+.champname {
+  color: var(--text);
+  /* padding: 0 20px; */
+  width: 100%;
+  font-size: 1rem;
+}
+
+.btns {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .buttonContainer button {
   color: var(--text);
-  font-size: 1vw;
   background: none;
-  border: none;
-  border-radius: 2px;
-  background: #c89b3c;
+  border: 1px solid var(--header-border-bottom);
+  padding: 10px 10px;
 }
 
 .buttonContainer button:hover {
   cursor: url(/cursor/cursorPointer.png), auto;
 }
 
-.champname {
-  position: absolute;
-  left: 1vw;
-  font-size: 1vw;
-}
-
 .contentContainer {
+  width: 99%;
+  height: 100%;
+  grid-area: mc;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height: 38vw;
-  position: relative;
 }

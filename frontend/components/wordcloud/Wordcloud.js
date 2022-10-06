@@ -12,7 +12,7 @@ export default function Wordcloud() {
   }, []);
   const options = {
     colors: ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b"],
-    enableTooltip: true,
+    enableTooltip: false,
     deterministic: false,
     fontFamily: "impact",
     fontSizes: [5, 60],
@@ -27,18 +27,14 @@ export default function Wordcloud() {
   };
 
   return (
-    <div className={styles.flexbox}>
-      <div className={styles.main}>
-        <div className={styles.wordcloud}>
-          <div style={{ width: "100%", height: "50%" }}>
-            {w !== null && (
-              <div>
-                <ReactWordcloud words={champ} options={options}></ReactWordcloud>
-              </div>
-            )}
-          </div>
+    <>
+      <div className={styles.wordcloud}>
+        <div style={{ width: "100%", height: "100%" }}>
+          {w !== null && (
+            <ReactWordcloud words={champ} options={options}></ReactWordcloud>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 }

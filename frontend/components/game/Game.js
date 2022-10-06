@@ -123,13 +123,11 @@ const Keyboard = () => {
           {stage === "GAMEOVER" && (
             <>
               <p>당신은 죽었습니다</p>
-              {score * 10}ms
             </>
           )}
           {stage !== "GAMEOVER" && stage !== "CLEAR" && stage !== "FAST" && (
             <div>
               <div>Stage{stage}</div>
-              {score * 10}ms
             </div>
           )}
           {stage !== "GAMEOVER" && stage !== "CLEAR" && stage !== "FAST" && (

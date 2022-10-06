@@ -119,6 +119,29 @@
 .msg {
   color: var(--text);
   font-size: 1.5rem;
-  margin: 10px 0;
+  margin: 5px 0;
+}
+.table{
+  color: var(--text);
+  border: 2px solid var(--header-border-bottom);
+  text-align: center;
+  width: 30%;
+  padding: 0.5vw;
+}
+.table td{
+  width:7%;
+}
+
+.input {
+  color: black;
+}
+
+.name {
+  margin : 10px;
+  width:30%;
+  border: 2px solid var(--header-border-bottom);
+  text-align: center;
+  color: black;
+  letter-spacing: 1px;
 }
 

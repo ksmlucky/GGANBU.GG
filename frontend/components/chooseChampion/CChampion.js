@@ -14,8 +14,9 @@ export default function ChooseChampion() {
   const [selectedchampion, SetSelectedchampion] = useState([]); //선택한 챔피언(전체)(한국어)
   const [leftchampion, SetLeftchampion] = useState([]); //선택한 챔피언(우리팀)
   const [rightchampion, SetRightchampion] = useState([]); //선택한 챔피언(상대팀)
-
-  const [selectline, Setselectline] = useState("top");
+  const [pickId, setPickId] = useState("");
+  const [summoner, setSummoner] = useState("");
+  const [selectline, Setselectline] = useState("TOP");
 
   const [makefive, Setmakefive] = useState(false);
 
@@ -25,8 +26,18 @@ export default function ChooseChampion() {
 
   // 사용자가 객체(object)를 드래그하려고 시작할 때 발생함.
   const onDragStart = (event) => {
+    console.log(event.target);
     SetPickchampion(event.target.id);
     SetPickchampionEng(event.target.alt);
+    setPickId(() => {
+      let key = 0;
+      for (let i = 0; i < clist.length; i++) {
+        if (clist[i].ko === event.target.id) {
+          key = clist[i].key;
+        }
+      }
+      return key;
+    });
   };
 
   // 잡은 Item을 놓았을 때 발생
@@ -37,6 +48,16 @@ export default function ChooseChampion() {
   const csInput = (input) => {
     setCsinput(input);
   };
+
+  function dragover(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "none";
+  }
+
+  function changes(e) {
+    let champion_name = e.target.value;
+    setSummoner(champion_name);
+  }
 
   return (
     <>
@@ -56,20 +77,33 @@ export default function ChooseChampion() {
             SetLeftchampion={SetLeftchampion}
             makefive={makefive}
             Setmakefive={Setmakefive}
+            pickid={pickId}
           />
 
           <div className={styles.uiandinput}>
-            <button
-              className={styles.givefive}
-              onClick={() => {
-                Setmakefive(!makefive);
-              }}
-              style={{
-                color: makefive ? "var(--logo)" : "var(--text)",
-              }}
-            >
-              {makefive ? "전체모드" : "깐부모드"}
-            </button>
+            <div className={styles.sumonercontainer}>
+              <button
+                className={styles.givefive}
+                onClick={() => {
+                  Setmakefive(!makefive);
+                }}
+                style={{
+                  color: makefive ? "var(--logo)" : "var(--text)",
+                }}
+              >
+                {makefive ? "전체모드" : "깐부모드"}
+              </button>
+              <input
+                type="text"
+                id="search"
+                placeholder="소환사 이름을 적어보세요"
+                onChange={changes}
+                onDragOver={(event) => {
+                  dragover(event);
+                }}
+                required={true}
+              />
+            </div>
             <ul className={styles.ul}>
               {clist
                 .filter((value) => {
@@ -103,7 +137,7 @@ export default function ChooseChampion() {
                         }}
                         onDragStart={onDragStart}
                         onDragEnd={onDragEnd}
-                      // ref={(el) => (refer.current[idx] = el)}
+                        // ref={(el) => (refer.current[idx] = el)}
                       />
                       <span className={styles.name}>{item.ko}</span>
                     </li>
@@ -127,6 +161,7 @@ export default function ChooseChampion() {
             SetRightchampion={SetRightchampion}
             makefive={makefive}
             Setmakefive={Setmakefive}
+            pickid={pickId}
           />
         </div>
       </div>

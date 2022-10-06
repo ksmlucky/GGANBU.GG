@@ -26,6 +26,7 @@ body[data-theme="dark"] {
   --answer: #0397AB;
   --wrong: #8A202E;
   --gray: #F0E6D2;
+  --ai-text: #EEEEEE;
   background: #121212;
 }
 
@@ -38,6 +39,7 @@ body[data-theme="light"] {
   --answer: #0397AB;
   --wrong: #8A202E;
   --gray: #F0E6D2;
+  --ai-text: #EEEEEE;
   background: #F7F7F7;
 }
 

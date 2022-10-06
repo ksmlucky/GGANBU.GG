@@ -10,7 +10,6 @@ import Wordcloud from "../wordcloud/Wordcloud";
 export default function DetailChampion({ mode }) {
   const router = useRouter();
   const { id } = router.query;
-
   const clist = championList();
 
   const [selectdata, Setselectdata] = useState("");
@@ -32,19 +31,20 @@ export default function DetailChampion({ mode }) {
             </div>
           ) : null}
           <div className={styles.btns}>
-            <button onClick={() => Setselectdata("map")}>라인별</button>
-            <button onClick={() => Setselectdata("chart")}>비교그래프</button>
-            <button onClick={() => Setselectdata("cloud")}>단어구름</button>
+            <button onClick={() => Setselectdata("map")} style={{ color: selectdata && selectdata == "map" ? "var(--logo)" : "var(--text)" }}>라인별</button>
+            <button onClick={() => Setselectdata("chart")} style={{ color: selectdata && selectdata == "chart" ? "var(--logo)" : "var(--text)" }}>비교그래프</button>
+            <button onClick={() => Setselectdata("cloud")} style={{ color: selectdata && selectdata == "cloud" ? "var(--logo)" : "var(--text)" }}>단어구름</button>
           </div>
         </div>
         <div className={styles.contentContainer}>
           {selectdata && selectdata === "map" ? (
-            <DetailMap mode={mode} />
+            <DetailMap id={id} mode={mode} />
           ) : null}
           {selectdata && selectdata === "chart" ? (
-            <DetailChart id={id} championName={championName} />
+            <DetailChart id={id} championName={championName} mode={mode} />
           ) : null}
-          {selectdata && selectdata === "cloud" ? <Wordcloud /> : null}
+          {selectdata && selectdata === "cloud" ? <Wordcloud id={id} /> : null}
+          {!selectdata && <h2>세개 중 하나를 선택하세요</h2>}
         </div>
       </div>
     </>

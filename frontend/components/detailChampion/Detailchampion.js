@@ -44,6 +44,7 @@ export default function DetailChampion({ mode }) {
             <DetailChart id={id} championName={championName} mode={mode} />
           ) : null}
           {selectdata && selectdata === "cloud" ? <Wordcloud id={id}/> : null}
+          {!selectdata && <h2>세개 중 하나를 선택하세요</h2>}
         </div>
       </div>
     </>

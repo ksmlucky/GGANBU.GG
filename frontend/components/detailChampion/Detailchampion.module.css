@@ -8,6 +8,7 @@
   grid-template-areas:
     "t"
     "mc";
+  color : var(--text);
 }
 
 .buttonContainer {
@@ -68,4 +69,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.select{
+  font-size : 100px;
 }

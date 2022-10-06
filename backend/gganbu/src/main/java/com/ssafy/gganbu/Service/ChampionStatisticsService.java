@@ -19,6 +19,9 @@ public interface ChampionStatisticsService {
 
     double getChampionWinRateALlLane(String roughTier, String championId);
     double getChampionPickRateAllLane(String roughTier, String championId);
+
+    double getPickRateLane(String roughTier, String champion, String position);
+
     double getChampionBanRateAllLane(String roughTier, String championId);
 
     //

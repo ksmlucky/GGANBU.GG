@@ -28,7 +28,7 @@ public class ChampionStatisticsController {
     NoRelationCommonService noRelationCommonService;
 
     @PostMapping("/recommend")
-    public ResponseEntity<List<RecommendRes>> recommendMeChampions(@ModelAttribute RecommendReq recommendReq){
+    public ResponseEntity<List<RecommendRes>> recommendMeChampions(@RequestBody RecommendReq recommendReq){
         List<RecommendRes> rList = championStatisticsService.dispatchAlgorithm(recommendReq);
         if( rList == null){
             return ResponseEntity.status(400).body(null);
@@ -46,7 +46,7 @@ public class ChampionStatisticsController {
     }
 
     @PostMapping("/numPerLane")
-    public ResponseEntity<LaneNumRes> getMatchNumPerLane(@ModelAttribute TierChampReq tierChampReq){
+    public ResponseEntity<LaneNumRes> getMatchNumPerLane(@RequestBody TierChampReq tierChampReq){
         LaneNumRes laneNumRes = championStatisticsService.getMatchNumPerLane(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
         if(laneNumRes == null){
             return ResponseEntity.status(400).body(null);
@@ -55,7 +55,7 @@ public class ChampionStatisticsController {
     }
 
     @PostMapping("/chart")
-    public ResponseEntity<ChartRes> getChampionChart(@ModelAttribute TierChampReq tierChampReq){
+    public ResponseEntity<ChartRes> getChampionChart(@RequestBody TierChampReq tierChampReq){
         ChartRes chartRes = championStatisticsService.getChampionChart(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
         if(chartRes == null){
             return ResponseEntity.status(400).body(null);

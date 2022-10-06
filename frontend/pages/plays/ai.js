@@ -24,6 +24,7 @@ function useStickyState(defaultValue, key) {
 export default function ai() {
   const [mode, setMode] = useStickyState("dark", "theme");
 
+
   useEffect(() => {
     document.body.dataset.theme = mode;
   }, [mode]);

@@ -31,6 +31,18 @@ public class SingleRelationRivalServiceImpl implements SingleRelationRivalServic
         return singleRelationRival;
     }
 
+    @Override
+    public List<SingleRelationRival> getSingleRelationRivalForRecommend(String roughTier, String position1, String champion2) {
+        List<SingleRelationRival> singleRelationRivals = null;
+        try{
+            singleRelationRivals = singleRelationRivalRepository.
+                    findSingleRelationRivalsByRoughTierAndPosition1AndChampion2(roughTier, position1, champion2);
+        } catch (Exception e){
+
+        }
+        return singleRelationRivals;
+    }
+
 //    @Override
 //    public List<SingleRelationEnemy> getSingleRelationEnemyAllLaneEnemy(String roughTier, long champion1, String position1, long champion2) {
 //        return null;

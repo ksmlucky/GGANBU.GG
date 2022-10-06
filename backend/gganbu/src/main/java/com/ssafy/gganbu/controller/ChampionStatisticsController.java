@@ -6,7 +6,9 @@ import com.ssafy.gganbu.db.document.NoRelationCommon;
 import com.ssafy.gganbu.model.request.TierChampReq;
 import com.ssafy.gganbu.model.request.RecommendReq;
 import com.ssafy.gganbu.model.response.ChampionScore;
+import com.ssafy.gganbu.model.response.ChartRes;
 import com.ssafy.gganbu.model.response.LaneNumRes;
+import com.ssafy.gganbu.model.response.RecommendRes;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +29,8 @@ public class ChampionStatisticsController {
     NoRelationCommonService noRelationCommonService;
 
     @PostMapping("/recommend")
-    public ResponseEntity<List<ChampionScore>> recommendMeChampions(@ModelAttribute RecommendReq recommendReq){
-        List<ChampionScore> rList = championStatisticsService.recommendList1(recommendReq);
+    public ResponseEntity<List<RecommendRes>> recommendMeChampions(@ModelAttribute RecommendReq recommendReq){
+        List<RecommendRes> rList = championStatisticsService.dispatchAlgorithm(recommendReq);
         if( rList == null){
             return ResponseEntity.status(400).body(null);
         }
@@ -53,5 +55,12 @@ public class ChampionStatisticsController {
         return ResponseEntity.status(200).body(laneNumRes);
     }
 
-
+    @PostMapping("/chart")
+    public ResponseEntity<ChartRes> getChampionChart(@ModelAttribute TierChampReq tierChampReq){
+        ChartRes chartRes = championStatisticsService.getChampionChart(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
+        if(chartRes == null){
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.status(200).body(chartRes);
+    }
 }

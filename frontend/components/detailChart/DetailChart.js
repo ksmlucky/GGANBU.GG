@@ -174,17 +174,31 @@ export default function DetailChart({ id, championName, mode }) {
                 },
                 pointLabels: {
                   color: "white",
+                  font : {
+                    size :15,
+                  }
                 },
                 ticks: {
                   color: "white",
                   backdropColor: "black",
+                  fontSize : 20,
                 },
               },
             },
             plugins: {
+              legend :{
+                labels :{
+                  font : {
+                    size :20
+                  }
+                }
+              },
               title: {
                 display: true,
                 text: "챔피언 비교",
+                font :{
+                  size :20,
+                }
               },
             },
           },
@@ -233,17 +247,31 @@ export default function DetailChart({ id, championName, mode }) {
                 },
                 pointLabels: {
                   color: "black",
+                  font : {
+                    size :15,
+                  }
                 },
                 ticks: {
                   color: "black",
                   backdropColor: "white",
+                  fontSize : 20,
                 },
               },
             },
             plugins: {
+              legend :{
+                labels :{
+                  font : {
+                    size :20
+                  }
+                }
+              },
               title: {
                 display: true,
                 text: "챔피언 비교",
+                font :{
+                  size :20,
+                }
               },
             },
           },
@@ -293,17 +321,31 @@ export default function DetailChart({ id, championName, mode }) {
               },
               pointLabels: {
                 color: "white",
+                font : {
+                  size :15,
+                }
               },
               ticks: {
                 color: "white",
                 backdropColor: "black",
+                fontSize : 20,
               },
             },
           },
           plugins: {
+            legend :{
+              labels :{
+                font : {
+                  size :20
+                }
+              }
+            },
             title: {
               display: true,
               text: "챔피언 비교",
+              font :{
+                size :20,
+              }
             },
           },
         },
@@ -346,17 +388,31 @@ export default function DetailChart({ id, championName, mode }) {
               },
               pointLabels: {
                 color: "black",
+                font : {
+                  size :15,
+                }
               },
               ticks: {
                 color: "black",
                 backdropColor: "white",
+                fontSize : 20,
               },
             },
           },
           plugins: {
+            legend :{
+              labels :{
+                font : {
+                  size :20
+                }
+              }
+            },
             title: {
               display: true,
               text: "챔피언 비교",
+              font :{
+                size :20,
+              }
             },
           },
         },
@@ -404,17 +460,31 @@ export default function DetailChart({ id, championName, mode }) {
               },
               pointLabels: {
                 color: "white",
+                font : {
+                  size :15,
+                }
               },
               ticks: {
                 color: "white",
                 backdropColor: "black",
+                fontSize : 20,
               },
             },
           },
           plugins: {
+            legend :{
+              labels :{
+                font : {
+                  size :20
+                }
+              }
+            },
             title: {
               display: true,
               text: "챔피언 비교",
+              font :{
+                size :20,
+              }
             },
           },
         },
@@ -457,17 +527,31 @@ export default function DetailChart({ id, championName, mode }) {
               },
               pointLabels: {
                 color: "black",
+                font : {
+                  size :15,
+                }
               },
               ticks: {
                 color: "black",
                 backdropColor: "white",
+                fontSize : 20,
               },
             },
           },
           plugins: {
+            legend :{
+              labels :{
+                font : {
+                  size :20
+                }
+              }
+            },
             title: {
               display: true,
               text: "챔피언 비교",
+              font :{
+                size :20,
+              }
             },
           },
         },
@@ -484,7 +568,7 @@ export default function DetailChart({ id, championName, mode }) {
         <div
           className={styles.chart}
           id="chart"
-          style={{ position: "relative", height: "93%", width: "35%" }}
+          style={{ position: "relative", height: "93%", width: "100%" }}
         >
           <canvas className={styles.canvas} id="myChart"></canvas>
         </div>

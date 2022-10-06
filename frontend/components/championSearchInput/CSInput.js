@@ -1,6 +1,9 @@
+import { useState, useEffect } from "react";
 import styles from "./CSInput.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { statistics } from "../../api/api";
+import axios from "axios";
 
 export default function CSInput({
   csInput,
@@ -10,8 +13,25 @@ export default function CSInput({
 }) {
   const router = useRouter();
   function resultfunc() {
-    const line = ["top", "jungle", "mid", "bot", "support"];
+    const line = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"];
     let myline = line.indexOf(selectline);
+    console.log(myline);
+    console.log(leftchampion);
+    console.log(rightchampion);
+    const enemies = [];
+    const teamMates = [];
+    leftchampion.map((el) => {
+      if (el.idx !== "") {
+        teamMates.push({ championId: el.idx, position: el.lines });
+      }
+    });
+    rightchampion.map((el) => {
+      if (el.idx !== "") {
+        enemies.push({ championId: el.idx, position: el.lines });
+      }
+    });
+    console.log(teamMates);
+    console.log(enemies);
     if (selectline) {
       if (rightchampion[myline].champ) {
         router.push(result);
@@ -19,6 +39,22 @@ export default function CSInput({
         alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
       }
     }
+    axios({
+      method: "post",
+      url: statistics.recommend(),
+      data: {
+        enemies: enemies,
+        teamMates: teamMates,
+        roughTier: "high",
+        myPosition: line[myline],
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
   function dragover(event) {

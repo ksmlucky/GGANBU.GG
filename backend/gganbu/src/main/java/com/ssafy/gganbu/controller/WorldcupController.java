@@ -23,12 +23,14 @@ public class WorldcupController {
     @Autowired
     private WorldcupService worldcupService;
 
+
     @GetMapping("/")
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
+
 
     @GetMapping("/winrate")
     public ResponseEntity<List<Worldcup>> getSortedByWinRate() {
@@ -37,12 +39,14 @@ public class WorldcupController {
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
+
     @GetMapping("/goldmedalcount")
     public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
         List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
 
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
+
 
     @GetMapping("/{englishname}")
     public ResponseEntity<?> getChampionByEnglishname(@PathVariable String englishname) {
@@ -53,6 +57,7 @@ public class WorldcupController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         }
     }
+
 
     @PostMapping("/goldmedal")
     public ResponseEntity<?> updateWorldcupInfo(@RequestBody Map<String, Object> requestData) throws WorldcupCollectionException {

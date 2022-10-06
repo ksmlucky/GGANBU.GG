@@ -9,10 +9,45 @@ import JungleW from "/public/pin/jungleW.svg";
 import MidW from "/public/pin/midW.svg";
 import BotW from "/public/pin/botW.svg";
 import SupportW from "/public/pin/supportW.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import championList from "../../utils/champion";
+import axios from "axios";
+import { statistics } from "../../api/api";
 
-export default function DetailMap({ mode }) {
-  const [data, Setdata] = useState(["10", "20", "30", "40", "50"]);
+export default function DetailMap({ id, mode }) {
+  const clist = championList();
+  const [data, setData] = useState([]);
+  useEffect(()=>{
+    const champPoint = clist.findIndex((i)=>i.en === id);
+    const champKey = clist[champPoint].key;
+    console.log(typeof(champKey))
+    console.log(champKey);
+    axios({
+      method : "post",
+      url : statistics.getMatchNumPerLane(),
+      params : {
+        championId : champKey,
+        roughTier : "high",
+      },
+    })
+    .then((res)=>{
+      console.log(res);
+      const top = res.data.matchNumTOP;
+      const jungle = res.data.matchNumJUNGLE;
+      const mid = res.data.matchNumMIDDLE;
+      const bottom = res.data.matchNumBOTTOM;
+      const utility = res.data.matchNumUTILITY;
+      const total = top+jungle+mid+bottom+utility;
+      setData([((top/total)*100).toFixed(), 
+      ((jungle/total)*100).toFixed(), 
+      ((mid/total)*100).toFixed(), 
+      ((bottom/total)*100).toFixed(),
+      ((utility/total)*100).toFixed()]);
+    }).catch((e)=>{
+      console.log(e);
+    })
+  },[])
+
   return (
     <>
       <div className={styles.container}>

@@ -55,12 +55,23 @@ export default function CSInput({
       .then((res) => {
         console.log(res.data);
         console.log(res.data[1].rivalDatas);
-        if (res.data[0].commonDatas) {
-          newRecommend = res.data[0].commonDatas.map((el, idx) => {
-            const num = clist.findIndex((e) => e.key === el.champion1);
+        if (res.data[0].evaluators) {
+          newRecommend = res.data[0].evaluators.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.championId);
+            const withE = el.withEnemies.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const withT = el.withTeammates.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
             const newEl = { ...el };
             newEl.ko = clist[num].ko;
             newEl.en = clist[num].en;
+            newEl.withEnemies = withE;
+            newEl.withTeammates = withT;
+            console.log(newEl);
             return newEl;
           });
         }

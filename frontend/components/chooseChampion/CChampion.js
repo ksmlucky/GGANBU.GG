@@ -15,7 +15,7 @@ export default function ChooseChampion() {
   const [leftchampion, SetLeftchampion] = useState([]); //선택한 챔피언(우리팀)
   const [rightchampion, SetRightchampion] = useState([]); //선택한 챔피언(상대팀)
   const [pickId, setPickId] = useState("");
-
+  const [summoner, setSummoner] = useState("");
   const [selectline, Setselectline] = useState("TOP");
 
   const [makefive, Setmakefive] = useState(false);
@@ -49,6 +49,16 @@ export default function ChooseChampion() {
     setCsinput(input);
   };
 
+  function dragover(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "none";
+  }
+
+  function changes(e) {
+    let champion_name = e.target.value;
+    setSummoner(champion_name);
+  }
+
   return (
     <>
       <div className={styles.main}>
@@ -71,17 +81,29 @@ export default function ChooseChampion() {
           />
 
           <div className={styles.uiandinput}>
-            <button
-              className={styles.givefive}
-              onClick={() => {
-                Setmakefive(!makefive);
-              }}
-              style={{
-                color: makefive ? "var(--logo)" : "var(--text)",
-              }}
-            >
-              {makefive ? "전체모드" : "깐부모드"}
-            </button>
+            <div className={styles.sumonercontainer}>
+              <button
+                className={styles.givefive}
+                onClick={() => {
+                  Setmakefive(!makefive);
+                }}
+                style={{
+                  color: makefive ? "var(--logo)" : "var(--text)",
+                }}
+              >
+                {makefive ? "전체모드" : "깐부모드"}
+              </button>
+              <input
+                type="text"
+                id="search"
+                placeholder="챔피언을 검색하세요"
+                onChange={changes}
+                onDragOver={(event) => {
+                  dragover(event);
+                }}
+                required={true}
+              />
+            </div>
             <ul className={styles.ul}>
               {clist
                 .filter((value) => {

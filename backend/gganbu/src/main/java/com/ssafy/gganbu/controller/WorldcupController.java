@@ -13,8 +13,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@CrossOrigin("*")
+
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/api/v1/worldcup")
 public class WorldcupController {
 

@@ -363,7 +363,7 @@ export default function Worldcup() {
         </>
       )}
       {statistics && (
-        <div>
+        <div className={styles.resultTablePage}>
           <div className={styles.input}>
             <button
               className={styles.btn}

@@ -21,7 +21,7 @@ public class SingleRelationTeamController {
 
 
     @PostMapping("/allTeamMatchNum")
-    public ResponseEntity<List<ChampionScore>> getAllTeam(@ModelAttribute TierChampReq tierChampReq){
+    public ResponseEntity<List<ChampionScore>> getAllTeam(@RequestBody TierChampReq tierChampReq){
         List<ChampionScore> championScores = singleRelationTeamService.
                 getAllTeamMatchNumScore(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
         if(championScores == null){

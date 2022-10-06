@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 @Api(value ="이상형 월드컵 API", tags = {"Champion Worldcup"})
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/v1/worldcup")
@@ -28,9 +27,8 @@ public class WorldcupController {
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
 
-        return ResponseEntity.status(200).body(worldcups);
+        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
-
 
     @GetMapping("/winrate")
     public ResponseEntity<List<Worldcup>> getSortedByWinRate() {

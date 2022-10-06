@@ -6,10 +6,7 @@ import com.ssafy.gganbu.model.request.ChampionBansReq;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,7 +18,7 @@ public class ChampionBansContoroller {
     ChampionBansService championBansService;
 
     @PostMapping("/allLane")
-    public ResponseEntity<List<ChampionBans>> getChampionBansAllLane(@ModelAttribute ChampionBansReq req){
+    public ResponseEntity<List<ChampionBans>> getChampionBansAllLane(@RequestBody ChampionBansReq req){
         List<ChampionBans> championBansList = championBansService.getChampionBansAllLane(req.getRoughTier(), req.getChampionId());
 
         if(championBansList == null){
@@ -31,7 +28,7 @@ public class ChampionBansContoroller {
     }
 
     @PostMapping("/oneLane")
-    public ResponseEntity<ChampionBans> getChampionBansByLane(@ModelAttribute ChampionBansReq req){
+    public ResponseEntity<ChampionBans> getChampionBansByLane(@RequestBody ChampionBansReq req){
         ChampionBans championBans = championBansService.getChampionBansByLane(req.getRoughTier(),
                 req.getChampionId(), req.getPosition());
 

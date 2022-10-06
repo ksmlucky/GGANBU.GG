@@ -19,7 +19,7 @@ public class SummonerController {
     //닉네임에 공백이 포함될 경우는 어떻게 될지 나중에 처리.
     //추후 에러코드 세분화.
     @PostMapping("/summonerName")
-    public ResponseEntity<Summoner> getSummonerByNickname(@ModelAttribute SummonerByNameReq summonerReq){
+    public ResponseEntity<Summoner> getSummonerByNickname(@RequestBody SummonerByNameReq summonerReq){
         Summoner summoner = summonerService.getSummonerByName(summonerReq.getSummonerName(), summonerReq.isRefresh());
 
         if(summoner == null){

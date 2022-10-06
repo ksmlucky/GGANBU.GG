@@ -833,7 +833,7 @@ export default function championList() {
       E: "XinZhaoE",
       R: "XinZhaoR",
       index: 75,
-      ko: "신 짜오",
+      ko: "신짜오",
       en: "XinZhao",
     },
     {
@@ -1625,7 +1625,7 @@ export default function championList() {
       E: "TahmKenchE",
       R: "TahmKenchRWrapper",
       index: 147,
-      ko: "탐 켄치",
+      ko: "탐켄치",
       en: "TahmKench",
     },
     {

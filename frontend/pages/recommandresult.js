@@ -1,5 +1,6 @@
 import { RecommandResultLayout } from "../components/layouts/index";
 import React, { useEffect } from "react";
+import { useRouter } from "next/router";
 //import
 
 import RecommandResultList from "../components/recommandResultList/RecommandResultList";
@@ -25,6 +26,13 @@ function useStickyState(defaultValue, key) {
 
 export default function Recommandresult() {
   const [mode, setMode] = useStickyState("dark", "theme");
+  const router = useRouter();
+  const queries = router.query; // 전달받은 쿼리 내용
+
+  useEffect(() => {
+    if (!router.isReady) return;
+    console.log(queries);
+  }, [router.isReady]);
 
   useEffect(() => {
     document.body.dataset.theme = mode;

@@ -3,6 +3,7 @@ const HOST = "http://localhost:8080/api/v1/"
 
 const WORLDCUP = "worldcup/"
 const STATISTICS = "statistics/"
+const SKILLQUIZ = "matchSkill/"
 
 const worldcup ={
     getAllChampion : () => HOST + WORLDCUP +"getall/",
@@ -24,5 +25,9 @@ const wordcloud ={
     getAllEnemy : () =>HOST + "match/allEnemyMatchNum/",
 }
 
+const skillquiz = {
+    getAll : () => HOST + SKILLQUIZ +"getall/",
+    register : () =>HOST + SKILLQUIZ +"register/",
+}
 
-export {worldcup, statistics, wordcloud};
+export {worldcup, statistics, wordcloud, skillquiz};

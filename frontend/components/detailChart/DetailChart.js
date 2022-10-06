@@ -94,17 +94,17 @@ export default function DetailChart({ id, championName, mode }) {
       }
     })
     .then((res) => {
-      const winRate = (res.data.winRate*100).toFixed(2);
-      const pickRate = (res.data.pickRate*100).toFixed(2);
-      const banRate = (res.data.banRate*100).toFixed(2);
-      const dpm = (res.data.dpm/10).toFixed(1);
       const kda = (res.data.kda*10).toFixed(1);
-      const cc = (res.data.timeCCingOthers/10000).toFixed(2);
+      const winRate = (res.data.winRate*100).toFixed(2);
+      const cc = (res.data.timeCCingOthers).toFixed(2);
+      const dpm = (res.data.dpm/10).toFixed(1);
+      const banRate = (res.data.banRate*100).toFixed(2);
+      const pickRate = (res.data.pickRate*100).toFixed(2);
       setDataSet((dataSet) => {
         const newDataSet = [...dataSet];
         newDataSet.push({
           label: championName,
-          data: [winRate, pickRate, banRate, dpm, kda, cc],
+          data: [kda, winRate, cc, dpm, banRate, pickRate],
           fill: true,
           backgroundColor:
             customColorTranslucent[0],
@@ -132,22 +132,21 @@ export default function DetailChart({ id, championName, mode }) {
       }
   
       if (mode === "dark") {
-        console.log(winRate);
         const ctx = document.getElementById("myChart").getContext("2d");
         let config = {
           type: "radar",
           data: {
             labels: [
+              "KDA((Kill+Assist)/Death) x 10",
               "승률",
-              "픽률",
+              "CC기 총 시간(초)",
+              "DPM(Damage Per Second) / 10",
               "밴률",
-              "DPM",
-              "KDA((Kill+Assist)/Death)",
-              "CC기 총 시간",
+              "픽률"
             ],
             datasets: [{
               label: championName,
-              data: [winRate, pickRate, banRate, dpm, kda, cc],
+              data: [kda, winRate, cc, dpm, banRate, pickRate],
               fill: true,
               backgroundColor:
                 customColorTranslucent[0],
@@ -203,7 +202,6 @@ export default function DetailChart({ id, championName, mode }) {
             },
           },
         };
-        console.log(config)
         const myChart = new Chart(ctx, config);
   
       } else if (mode === "light") {
@@ -212,16 +210,16 @@ export default function DetailChart({ id, championName, mode }) {
           type: "radar",
           data: {
             labels: [
+              "KDA((Kill+Assist)/Death) x 10",
               "승률",
-              "픽률",
+              "CC기 총 시간(초)",
+              "DPM(Damage Per Second) / 10",
               "밴률",
-              "DPM",
-              "KDA((Kill+Assist)/Death)",
-              "CC기 총 시간",
+              "픽률"
             ],
             datasets: [{
               label: championName,
-              data: [winRate, pickRate, banRate, dpm, kda, cc],
+              data: [kda, winRate, cc, dpm, banRate, pickRate],
               fill: true,
               backgroundColor:
                 customColorTranslucent[0],
@@ -284,7 +282,6 @@ export default function DetailChart({ id, championName, mode }) {
   }, []);
 
   useEffect(() => {
-    console.log("2");
     if (bools && mode === "dark") {
       const ctx = document.getElementById("chart");
       const ctxx = document.getElementById("myChart");
@@ -300,12 +297,13 @@ export default function DetailChart({ id, championName, mode }) {
         type: "radar",
         data: {
           labels: [
+            "KDA((Kill+Assist)/Death) x 10",
             "승률",
-            "픽률",
+            "CC기 총 시간(초)",
+            "DPM(Damage Per Second) / 10",
             "밴률",
-            "DPM",
-            "KDA((Kill+Assist)/Death)",
-            "CC기 총 시간",
+            "픽률"
+            ,
           ],
           datasets: dataSet,
         },
@@ -367,12 +365,12 @@ export default function DetailChart({ id, championName, mode }) {
         type: "radar",
         data: {
           labels: [
+            "KDA((Kill+Assist)/Death) x 10",
             "승률",
-            "픽률",
+            "CC기 총 시간(초)",
+            "DPM(Damage Per Second) / 10",
             "밴률",
-            "DPM",
-            "KDA((Kill+Assist)/Death)",
-            "CC기 총 시간",
+            "픽률"
           ],
           datasets: dataSet,
         },
@@ -439,12 +437,12 @@ export default function DetailChart({ id, championName, mode }) {
         type: "radar",
         data: {
           labels: [
+            "KDA((Kill+Assist)/Death) x 10",
             "승률",
-            "픽률",
+            "CC기 총 시간(초)",
+            "DPM(Damage Per Second) / 10",
             "밴률",
-            "DPM",
-            "KDA((Kill+Assist)/Death)",
-            "CC기 총 시간",
+            "픽률"
           ],
           datasets: dataSet,
         },
@@ -506,12 +504,12 @@ export default function DetailChart({ id, championName, mode }) {
         type: "radar",
         data: {
           labels: [
+            "KDA((Kill+Assist)/Death) x 10",
             "승률",
-            "픽률",
+            "CC기 총 시간(초)",
+            "DPM(Damage Per Second) / 10",
             "밴률",
-            "DPM",
-            "KDA((Kill+Assist)/Death)",
-            "CC기 총 시간",
+            "픽률"
           ],
           datasets: dataSet,
         },
@@ -607,17 +605,17 @@ export default function DetailChart({ id, championName, mode }) {
                                 }
                               }).then((res)=>{ 
                                 console.log(dataSet);
-                                const winRate = (res.data.winRate*100).toFixed(2);
-                                const pickRate = (res.data.pickRate*100).toFixed(2);
-                                const banRate = (res.data.banRate*100).toFixed(2);
-                                const dpm = (res.data.dpm/10).toFixed(1);
                                 const kda = (res.data.kda*10).toFixed(1);
-                                const cc = (res.data.timeCCingOthers/10000).toFixed(2);
+                                const winRate = (res.data.winRate*100).toFixed(2);
+                                const cc = (res.data.timeCCingOthers).toFixed(2);
+                                const dpm = (res.data.dpm/10).toFixed(1);
+                                const banRate = (res.data.banRate*100).toFixed(2);
+                                const pickRate = (res.data.pickRate*100).toFixed(2);
                                 setDataSet((dataSet) => {
                                 const newDataSet = [...dataSet];
                                 newDataSet.push({
                                   label: item.ko,
-                                  data: [winRate, pickRate, banRate, dpm, kda, cc],
+                                  data: [kda, winRate, cc, dpm, banRate, pickRate],
                                   fill: true,
                                   backgroundColor:
                                     customColorTranslucent[

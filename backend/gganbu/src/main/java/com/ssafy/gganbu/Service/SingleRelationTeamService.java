@@ -2,6 +2,7 @@ package com.ssafy.gganbu.Service;
 
 import com.ssafy.gganbu.db.document.SingleRelationTeam;
 import com.ssafy.gganbu.db.document.SingleRelationTeam;
+import com.ssafy.gganbu.model.response.ChampionScore;
 
 import java.util.List;
 
@@ -15,5 +16,8 @@ public interface SingleRelationTeamService {
     //추천용
     public List<SingleRelationTeam> getSingleRelationTeamForRecommend(String roughTier, String position1, String champion2, String position2);
 
-    public List<SingleRelationTeam> getAllTeam(String roughTier, String champion1, String position1);
+
+    List<SingleRelationTeam> getAllTeam(String roughTier, String champion1);
+
+    List<ChampionScore> getAllTeamMatchNumScore(String roughTier, String champion1);
 }

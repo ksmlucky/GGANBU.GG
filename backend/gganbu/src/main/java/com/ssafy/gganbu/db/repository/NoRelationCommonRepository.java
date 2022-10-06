@@ -10,4 +10,5 @@ public interface NoRelationCommonRepository extends MongoRepository<NoRelationCo
             String roughTier, String champion1, String position1);
     List<NoRelationCommon> findNoRelationCommonByRoughTierAndChampion1(String roughTier, String champion1);
     List<NoRelationCommon> findNoRelationCommonsByRoughTier(String roughTier);
+    List<NoRelationCommon> findNoRelationCommonsByRoughTierAndPosition1(String roughTier, String position);
 }

@@ -8,5 +8,5 @@ public interface NoRelationCommonService {
     public NoRelationCommon getNoRelationCommonByLane(String roughTier, String championId, String position);
     public List<NoRelationCommon> getNoRelationCommonAllLane(String roughTier, String championId );
     public List<NoRelationCommon> getAllNoRelationCommon(String roughTier);
-
+    public List<NoRelationCommon> getAllNoRelationCommonByLane(String roughTier, String position);
 }

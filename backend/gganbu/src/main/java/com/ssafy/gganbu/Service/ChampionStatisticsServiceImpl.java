@@ -41,6 +41,16 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
     }
 
     @Override
+    public Long getWholeMatchNumLane(String roughTier, String position){
+        List<NoRelationCommon> laneNrc = noRelationCommonService.getAllNoRelationCommonByLane(roughTier, position);
+        long num = 0;
+        for(NoRelationCommon nrc : laneNrc){
+            num += nrc.getData().getMatchNum();
+        }
+        return num;
+    }
+
+    @Override
     public List<ChampionScore> recommendList1(RecommendReq recommendReq){
         List<ChampionPickReq> teamMates = recommendReq.getTeamMates();
         List<ChampionPickReq> enemies = recommendReq.getEnemies();
@@ -265,7 +275,7 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         }
         List<SingleRelationRival> rivalDatas = singleRelationRivalService.
                 getSingleRelationRivalForRecommend(roughTier, myPosition, rivalId );
-        
+
         for(SingleRelationRival srr : rivalDatas){
             ChampionScore score = new ChampionScore();
             score.setChampionId(srr.getChampion1());

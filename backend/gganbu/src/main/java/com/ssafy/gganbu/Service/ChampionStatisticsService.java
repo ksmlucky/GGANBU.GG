@@ -10,6 +10,8 @@ import java.util.List;
 public interface ChampionStatisticsService {
     Long getWholeMatchNum(String roughTier);
 
+    Long getWholeMatchNumLane(String roughTier, String position);
+
     List<ChampionScore> recommendList1(RecommendReq recommendReq);
     LaneNumRes getMatchNumPerLane(String roughTier, String championId);
     ChartRes getChampionChart(String roughTier, String championId);

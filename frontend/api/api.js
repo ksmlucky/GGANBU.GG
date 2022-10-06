@@ -8,8 +8,8 @@ const worldcup ={
     getAllChampion : () => HOST + WORLDCUP +"getall/",
     getChampionByName : () => HOST + WORLDCUP +"/",
     updateGoldMedal : () => HOST + WORLDCUP +"goldmedal/",
-    getGoldMedalCount : () => HOST +WORLDCUP + WORLDCUP +"goldmedalcount/",
-    getWinRate : () => HOST + WORLDCUP +WORLDCUP +"winrate/",
+    getGoldMedalCount : () => HOST +WORLDCUP+"goldmedalcount/",
+    getWinRate : () => HOST + WORLDCUP +"winrate/",
 }
 
 const statistics = {

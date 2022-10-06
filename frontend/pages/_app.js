@@ -1,8 +1,8 @@
 import "normalize.css/normalize.css";
 import "../styles/globals.css";
 import { BaseLayout } from "../components/layouts";
+import React, { useState, useEffect } from "react";
 
-import React, { useEffect } from "react";
 function useStickyState(defaultValue, key) {
   const [value, setValue] = React.useState(defaultValue);
 
@@ -27,11 +27,13 @@ export default function App({ Component, pageProps }) {
   useEffect(() => {
     document.body.dataset.theme = mode;
   }, [mode]);
+
+
   return (
-    <div>
+    <>
       <BaseLayout setMode={setMode}>
-        <Component {...pageProps} />
+        <Component {...pageProps} mode={mode} />
       </BaseLayout>
-    </div>
+    </>
   );
 }

@@ -12,7 +12,6 @@ export default function ClickChooseChampion(props) {
   let [csinput, setCsinput] = useState(""); //챔피언 검색을 위한 입력 결과(한국어)
 
   const click = (en) => {
-    console.log(en);
     SetPickchampionEng(en);
   };
 
@@ -22,13 +21,13 @@ export default function ClickChooseChampion(props) {
 
   return (
     <>
-      <div className={styles.flexbox}>
-        <div className={styles.main}>
-          <div className={styles.titlecontainer}>
-            <div className={styles.h1}>Select Champion</div>
-            <div className={styles.titleout}> <div className={styles.title}></div></div>
-          </div>
-          <div className={styles.choose}>
+      <div className={styles.main}>
+        <div className={styles.titlecontainer}>
+          <span className={styles.title}>챔피언 선택</span>
+          <img></img>
+        </div>
+        <div className={styles.maincontainer}>
+          <div className={styles.uiandinput}>
             <ul className={styles.ul}>
               {clist
                 .filter((value) => {
@@ -42,7 +41,7 @@ export default function ClickChooseChampion(props) {
                 .map((item, idx) => {
                   return (
                     <li key={idx} className={styles.li}>
-                      <div className={styles.btn}>
+                      <div className={styles.imgborder}>
                         <img
                           src={`/champion/tiles/${item.en}_0.jpg`}
                           id={item.ko}
@@ -59,8 +58,8 @@ export default function ClickChooseChampion(props) {
                           }}
                         />
                         {item.en === pickchampionEng ? <img src='/border/select_border.svg' className={styles.border}></img> : null}
-                        <span className={styles.name}>{item.ko}</span>
                       </div>
+                      <span className={styles.name}>{item.ko}</span>
                     </li>
                   );
                 })}

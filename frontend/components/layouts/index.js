@@ -10,7 +10,7 @@ import { classNames } from "./../../utils/classNames";
 
 export function BaseLayout({ children, setMode }) {
   return (
-    <div className={styles.container}>
+    <div className={styles.layout}>
       <Header>
         <Navigation />
       </Header>

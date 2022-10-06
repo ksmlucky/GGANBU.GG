@@ -5,10 +5,7 @@ import com.ssafy.gganbu.model.dbDto.NoRelationData;
 import com.ssafy.gganbu.model.dbDto.RivalData;
 import com.ssafy.gganbu.model.request.ChampionPickReq;
 import com.ssafy.gganbu.model.request.RecommendReq;
-import com.ssafy.gganbu.model.response.ChampionScore;
-import com.ssafy.gganbu.model.response.ChartRes;
-import com.ssafy.gganbu.model.response.LaneNumRes;
-import com.ssafy.gganbu.model.response.RecommendRes;
+import com.ssafy.gganbu.model.response.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +28,8 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
     @Autowired
     SingleRelationRivalService singleRelationRivalService;
 
+    int minPercent = 2;
+
     @Override
     public Long getWholeMatchNum(String roughTier){
         List<NoRelationCommon> allNRC = noRelationCommonService.getAllNoRelationCommon(roughTier);
@@ -51,16 +50,17 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         return num;
     }
 
+
     @Override
     public RecommendRes recommendList1(RecommendReq recommendReq){
-        List<ChampionPickReq> teamMates = recommendReq.getTeamMates();
+        List<ChampionPickReq> teammates = recommendReq.getTeamMates();
         List<ChampionPickReq> enemies = recommendReq.getEnemies();
         String myPosition = recommendReq.getMyPosition();
         String roughTier = recommendReq.getRoughTier();
 
         Map<String,ChampionScore> scores = new HashMap<>();
 
-        for(ChampionPickReq pick :teamMates){
+        for(ChampionPickReq pick :teammates){
             List<SingleRelationTeam> teamDatas = singleRelationTeamService.getSingleRelationTeamForRecommend
                     (roughTier,myPosition, pick.getChampionId(), pick.getPosition());
 
@@ -94,7 +94,7 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         }
 
         List<ChampionScore> scoreList = new ArrayList<>();
-        for(ChampionPickReq pick : teamMates){
+        for(ChampionPickReq pick : teammates){
             if(scores.containsKey(pick.getChampionId())){
                 scores.remove(pick.getChampionId());
             }
@@ -113,17 +113,88 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
 
         RecommendRes recommendRes = new RecommendRes();
         recommendRes.setRecommnedType("WINRATE_RECOMMEND");
-
-        List<NoRelationCommon> commonDatas = new ArrayList<>();
+        List<ChampEvaluator> evaluators = new ArrayList<>();
         int idx = 0;
+
         for(ChampionScore cs : scoreList){
-            commonDatas.add(noRelationCommonService.
-                    getNoRelationCommonByLane(roughTier, cs.getChampionId(), myPosition));
-            if(idx++ >= 5){
+            //라인 픽률이 너무 낮을 경우 패스
+            if(getPickRateLane(roughTier, cs.getChampionId(), myPosition) * 100< minPercent){
+                continue;
+            }
+
+            ChampEvaluator champEvaluator = new ChampEvaluator();
+            List<ChampEvaluation> withEnimies = new ArrayList<>();
+            List<ChampEvaluation> withTeammates = new ArrayList<>();
+
+            //팀 평가
+            for(ChampionPickReq cpr : teammates){
+                SingleRelationTeam srt = singleRelationTeamService.getSingleRelationTeam
+                        (roughTier, cs.getChampionId(), myPosition, cpr.getChampionId(), cpr.getPosition() );
+                if(srt == null){
+                    continue;
+                }
+                double winRate = (double) srt.getData().getWin() * 100 / (double) srt.getData().getMatchNum();
+                String evalWord = "";
+                if(winRate >= 60 ){
+                    evalWord = "Excellent";
+                } else if (winRate >= 55 ){
+                    evalWord = "Good";
+                }else if (winRate >= 50 ){
+                    evalWord = "Fair";
+                }else if (winRate >= 45 ){
+                    evalWord = "Poor";
+                }else {
+                    evalWord = "Bad";
+                }
+
+                ChampEvaluation champEvaluation = new ChampEvaluation();
+                champEvaluation.setEvalWord(evalWord);
+                champEvaluation.setPostion(cpr.getPosition());
+                champEvaluation.setChampionId(cpr.getChampionId());
+
+                withTeammates.add(champEvaluation);
+            }
+
+            for(ChampionPickReq cpr : enemies){
+                SingleRelationEnemy srt = singleRelationEnemyService.getSingleRelationEnemy
+                        (roughTier, cs.getChampionId(), myPosition, cpr.getChampionId(), cpr.getPosition() );
+                if(srt == null){
+                    continue;
+                }
+                double winRate = (double) srt.getData().getWin() * 100 / (double) srt.getData().getMatchNum();
+                String evalWord = "";
+                if(winRate >= 60 ){
+                    evalWord = "Excellent";
+                } else if (winRate >= 55 ){
+                    evalWord = "Good";
+                }else if (winRate >= 50 ){
+                    evalWord = "Fair";
+                }else if (winRate >= 45 ){
+                    evalWord = "Poor";
+                }else {
+                    evalWord = "Bad";
+                }
+
+                ChampEvaluation champEvaluation = new ChampEvaluation();
+                champEvaluation.setEvalWord(evalWord);
+                champEvaluation.setPostion(cpr.getPosition());
+                champEvaluation.setChampionId(cpr.getChampionId());
+
+                withEnimies.add(champEvaluation);
+            }
+
+            champEvaluator.setChampionId(cs.getChampionId());
+            champEvaluator.setWithTeammates(withTeammates);
+            champEvaluator.setWithEnemies(withEnimies);
+
+            evaluators.add(champEvaluator);
+
+            if(++idx >= 5){
                 break;
             }
         }
-        recommendRes.setCommonDatas(commonDatas);
+
+        recommendRes.setEvaluators(evaluators);
         return recommendRes;
     }
 
@@ -250,6 +321,20 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
     }
 
     @Override
+    public double getPickRateLane(String roughTier, String champion, String position){
+        try{
+            long laneNum = getWholeMatchNumLane(roughTier, position);
+            NoRelationCommon noRelationCommon = noRelationCommonService.getNoRelationCommonByLane(roughTier, champion, position);
+            return (double) noRelationCommon.getData().getMatchNum() / (double) laneNum;
+
+        } catch (Exception e){
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+
+    @Override
     public double getChampionBanRateAllLane(String roughTier, String championId) {
         try{
             long totalNum = getWholeMatchNum(roughTier);
@@ -313,10 +398,13 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         List<SingleRelationRival> rivals = new ArrayList<>();
         int idx = 0;
         for(ChampionScore cs : scores){
+            if(getPickRateLane(roughTier, cs.getChampionId(), myPosition)* 100 < minPercent){
+                continue;
+            }
             rivals.add(singleRelationRivalService.
                     getSingleRelationRival(roughTier, cs.getChampionId(), myPosition, rivalId));
 
-            if(idx++ >= 5){
+            if(++idx >= 5){
                 break;
             }
         }
@@ -329,7 +417,16 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         List<RecommendRes> recommendLists = new ArrayList<>();
         try{
             recommendLists.add(recommendList1(recommendReq));
-            recommendLists.add(recommendList2(recommendReq));
+
+            //맞라인인 적이 있으면 라인전 추천 리스트 보여줌
+            for(ChampionPickReq req : recommendReq.getEnemies()){
+                if(req.getPosition().equals(recommendReq.getMyPosition())){
+                    recommendLists.add(recommendList2(recommendReq));
+                    break;
+                }
+            }
+
+
         } catch(Exception e){
             e.printStackTrace();
             return null;

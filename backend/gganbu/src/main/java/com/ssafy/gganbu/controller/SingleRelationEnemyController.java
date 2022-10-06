@@ -21,7 +21,7 @@ public class SingleRelationEnemyController {
 
 
     @PostMapping("/allEnemyMatchNum")
-    public ResponseEntity<List<ChampionScore>> getAllEnemy(@ModelAttribute TierChampReq tierChampReq){
+    public ResponseEntity<List<ChampionScore>> getAllEnemy(@RequestBody TierChampReq tierChampReq){
         List<ChampionScore> championScores = singleRelationEnemyService.
                 getAllEnemyMatchNumScore(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
         if(championScores == null){

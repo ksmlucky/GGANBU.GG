@@ -5,26 +5,24 @@ export default function Footer({ setMode }) {
     <>
       <footer className={styles.footer}>
         <span className={styles.copyright}>
-          Copyrightⓒ 2020 GGanbu.gg All rights reserved
+          Copyrightⓒ 2022 GGanbu.gg All rights reserved
         </span>
         <div className={styles.modecontainer}>
           <button
             className={styles.mode}
             onClick={() => {
               setMode("light");
-              console.log("light");
             }}
           >
-            LIGHT
+            낮모드
           </button>
           <button
             className={styles.mode}
             onClick={() => {
               setMode("dark");
-              console.log("dark");
             }}
           >
-            DARK
+            밤모드
           </button>
         </div>
       </footer>

@@ -3,6 +3,8 @@ package com.ssafy.gganbu.controller;
 import com.ssafy.gganbu.Service.SingleRelationTeamService;
 import com.ssafy.gganbu.db.document.SingleRelationTeam;
 import com.ssafy.gganbu.model.request.TierChampPosReq;
+import com.ssafy.gganbu.model.request.TierChampReq;
+import com.ssafy.gganbu.model.response.ChampionScore;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,14 +20,13 @@ public class SingleRelationTeamController {
     SingleRelationTeamService singleRelationTeamService;
 
 
-    @PostMapping("/allTeam")
-    public ResponseEntity<List<SingleRelationTeam>> getAllTeam(@ModelAttribute TierChampPosReq tierChampPosReq){
-        List<SingleRelationTeam> singleRelationEnemies = singleRelationTeamService.
-                getAllTeam(tierChampPosReq.getRoughTier(), tierChampPosReq.getChampionId(),tierChampPosReq.getPosition());
-        if(singleRelationEnemies == null){
+    @PostMapping("/allTeamMatchNum")
+    public ResponseEntity<List<ChampionScore>> getAllTeam(@ModelAttribute TierChampReq tierChampReq){
+        List<ChampionScore> championScores = singleRelationTeamService.
+                getAllTeamMatchNumScore(tierChampReq.getRoughTier(), tierChampReq.getChampionId());
+        if(championScores == null){
             return ResponseEntity.status(400).body(null);
         }
-        return ResponseEntity.status(200).body(singleRelationEnemies);
-
+        return ResponseEntity.status(200).body(championScores);
     }
 }

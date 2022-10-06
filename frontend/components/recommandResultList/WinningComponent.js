@@ -109,40 +109,42 @@ export default function WinningComponent(props) {
         <div className={styles.recommand}>
           <div className={styles.text}>승률</div>
           <div className={styles.imgs}>
-            {newRecommend.map((obj, idx) => {
-              const img = `/champion/tiles/${obj.en}_0.jpg`;
-              const numm = num;
-              num++;
-              return (
-                <img
-                  key={idx}
-                  src={img}
-                  className={styles.img}
-                  name={obj.en}
-                  ref={(el) => (imgRef.current[numm] = el)}
-                ></img>
-              );
-            })}
+            {newRecommend &&
+              newRecommend.map((obj, idx) => {
+                const img = `/champion/tiles/${obj.en}_0.jpg`;
+                const numm = num;
+                num++;
+                return (
+                  <img
+                    key={idx}
+                    src={img}
+                    className={styles.img}
+                    name={obj.en}
+                    ref={(el) => (imgRef.current[numm] = el)}
+                  ></img>
+                );
+              })}
           </div>
         </div>
         <div className={styles.recommand}>
           <div className={styles.text}>라인전</div>
           <div className={styles.imgs}>
-            {rivalRecommend.map((obj, idx) => {
-              const img = `/champion/tiles/${obj.en}_0.jpg`;
-              const numm = num;
-              num++;
-              return (
-                <img
-                  key={idx}
-                  src={img}
-                  className={styles.img}
-                  name={obj.en}
-                  alt="line"
-                  ref={(el) => (imgRef.current[numm] = el)}
-                ></img>
-              );
-            })}
+            {rivalRecommend &&
+              rivalRecommend.map((obj, idx) => {
+                const img = `/champion/tiles/${obj.en}_0.jpg`;
+                const numm = num;
+                num++;
+                return (
+                  <img
+                    key={idx}
+                    src={img}
+                    className={styles.img}
+                    name={obj.en}
+                    alt="line"
+                    ref={(el) => (imgRef.current[numm] = el)}
+                  ></img>
+                );
+              })}
           </div>
         </div>
         {/* result 결과 출력 */}

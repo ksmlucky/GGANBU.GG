@@ -14,9 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @Api(value ="이상형 월드컵 API", tags = {"Champion Worldcup"})
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/v1/worldcup")
@@ -28,20 +26,6 @@ public class WorldcupController {
     @GetMapping("/")
     public ResponseEntity<List<Worldcup>> getAllChampions() {
         List<Worldcup> worldcups = worldcupService.getAllChampions();
-
-        return ResponseEntity.status(200).body(worldcups);
-    }
-
-    @GetMapping("/worldcup/winrate")
-    public ResponseEntity<List<Worldcup>> getSortedByWinRate() {
-        List<Worldcup> worldcups = worldcupService.getSortedByWinRateAllChampions();
-
-        return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
-    }
-
-    @GetMapping("/worldcup/goldmedalcount")
-    public ResponseEntity<List<Worldcup>> getSortedByGoldmedalRate() {
-        List<Worldcup> worldcups = worldcupService.getSortedByGoldmedalAllChampions();
 
         return new ResponseEntity<>(worldcups, worldcups.size() > 0 ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }

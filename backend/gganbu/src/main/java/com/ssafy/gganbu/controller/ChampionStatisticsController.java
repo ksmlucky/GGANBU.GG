@@ -29,14 +29,14 @@ public class ChampionStatisticsController {
     NoRelationCommonService noRelationCommonService;
 
     @PostMapping("/recommend")
-
-    public ResponseEntity<List<ChampionScore>> recommendMeChampions(@RequestBody RecommendReq recommendReq){
-        List<ChampionScore> rList = championStatisticsService.recommendList1(recommendReq);
+    public ResponseEntity<List<RecommendRes>> recommendMeChampions(@RequestBody RecommendReq recommendReq){
+        List<RecommendRes> rList = championStatisticsService.dispatchAlgorithm(recommendReq);
         if( rList == null){
             return ResponseEntity.status(400).body(null);
         }
         return ResponseEntity.status(200).body(rList);
     }
+
 
     @GetMapping("/allNum/{roughTier}")
     public ResponseEntity<Long> getAllMatchNum(@PathVariable String roughTier){

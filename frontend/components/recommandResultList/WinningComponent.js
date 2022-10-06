@@ -1,11 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./RecommandResultList.module.css";
-import { newRecommend } from "../championSearchInput/CSInput";
-import ProgressBar from "progressbar.js";
+import { newRecommend, rivalRecommend } from "../championSearchInput/CSInput";
 
 export default function WinningComponent(props) {
   const imgRef = useRef([]);
   const [rival, setRival] = useState("");
+  const [isLine, setIsLine] = useState(false);
+  console.log(newRecommend);
+  console.log(rivalRecommend);
   let num = 0;
   useEffect(() => {
     if (imgRef && imgRef.current.length !== 0) {
@@ -14,6 +16,11 @@ export default function WinningComponent(props) {
         // console.log(imgRef.current[i]);
         imgRef.current[i].addEventListener("mouseover", function () {
           setRival(imgRef.current[i].name);
+          if (imgRef.current[i].alt === "line") {
+            setIsLine(true);
+          } else {
+            setIsLine(false);
+          }
         });
       }
     }
@@ -23,10 +30,10 @@ export default function WinningComponent(props) {
     <div className={styles.container}>
       <div className={styles.recommands}>
         <div className={styles.recommand}>
-          <p className={styles.text}>승률</p>
+          <div className={styles.text}>승률</div>
           <div className={styles.imgs}>
-            {props.winning.map((obj, idx) => {
-              const img = `/champion/tiles/${obj}_0.jpg`;
+            {newRecommend.map((obj, idx) => {
+              const img = `/champion/tiles/${obj.en}_0.jpg`;
               const numm = num;
               num++;
               return (
@@ -34,7 +41,7 @@ export default function WinningComponent(props) {
                   key={idx}
                   src={img}
                   className={styles.img}
-                  name={obj}
+                  name={obj.en}
                   ref={(el) => (imgRef.current[numm] = el)}
                 ></img>
               );
@@ -42,10 +49,10 @@ export default function WinningComponent(props) {
           </div>
         </div>
         <div className={styles.recommand}>
-          <p className={styles.text}>라인전</p>
+          <div className={styles.text}>라인전</div>
           <div className={styles.imgs}>
-            {props.line.map((obj, idx) => {
-              const img = `/champion/tiles/${obj}_0.jpg`;
+            {rivalRecommend.map((obj, idx) => {
+              const img = `/champion/tiles/${obj.en}_0.jpg`;
               const numm = num;
               num++;
               return (
@@ -53,64 +60,8 @@ export default function WinningComponent(props) {
                   key={idx}
                   src={img}
                   className={styles.img}
-                  name={obj}
-                  ref={(el) => (imgRef.current[numm] = el)}
-                ></img>
-              );
-            })}
-          </div>
-        </div>
-        <div className={styles.recommand}>
-          <p className={styles.text}>골드량</p>
-          <div className={styles.imgs}>
-            {props.line.map((obj, idx) => {
-              const img = `/champion/tiles/${obj}_0.jpg`;
-              const numm = num;
-              num++;
-              return (
-                <img
-                  key={idx}
-                  src={img}
-                  className={styles.img}
-                  name={obj}
-                  ref={(el) => (imgRef.current[numm] = el)}
-                ></img>
-              );
-            })}
-          </div>
-        </div>
-        <div className={styles.recommand}>
-          <p className={styles.text}>포탑방패</p>
-          <div className={styles.imgs}>
-            {props.line.map((obj, idx) => {
-              const img = `/champion/tiles/${obj}_0.jpg`;
-              const numm = num;
-              num++;
-              return (
-                <img
-                  key={idx}
-                  src={img}
-                  className={styles.img}
-                  name={obj}
-                  ref={(el) => (imgRef.current[numm] = el)}
-                ></img>
-              );
-            })}
-          </div>
-        </div>
-        <div className={styles.recommand}>
-          <p className={styles.text}>???</p>
-          <div className={styles.imgs}>
-            {props.line.map((obj, idx) => {
-              const img = `/champion/tiles/${obj}_0.jpg`;
-              const numm = num;
-              num++;
-              return (
-                <img
-                  key={idx}
-                  src={img}
-                  className={styles.img}
-                  name={obj}
+                  name={obj.en}
+                  alt="line"
                   ref={(el) => (imgRef.current[numm] = el)}
                 ></img>
               );
@@ -119,8 +70,10 @@ export default function WinningComponent(props) {
         </div>
       </div>
       <div className={styles.resultdetailcontainer}>
-        {rival && <img src={`/champion/tiles/${rival}_0.jpg`}></img>}
-        <div id="progress"></div>
+        {rival && <img src={`/champion/loading/${rival}_0.jpg`}></img>}
+        {isLine && (
+          <img src={`/champion/loading/${rivalRecommend[0].rival}_0.jpg`}></img>
+        )}
       </div>
     </div>
   );

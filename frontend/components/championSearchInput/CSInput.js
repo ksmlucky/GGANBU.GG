@@ -7,6 +7,7 @@ import axios from "axios";
 import championList from "../../utils/champion";
 
 export let newRecommend;
+export let rivalRecommend;
 export default function CSInput({
   csInput,
   selectline,
@@ -34,8 +35,6 @@ export default function CSInput({
         enemies.push({ championId: el.idx, position: el.lines });
       }
     });
-    console.log(teamMates);
-    console.log(enemies);
     // if (selectline) {
     //   if (rightchampion[myline].champ) {
     //     router.push(result);
@@ -55,11 +54,29 @@ export default function CSInput({
     })
       .then((res) => {
         console.log(res.data);
-        newRecommend = res.data.map((el, idx) => {
-          const num = clist.findIndex((e) => e.key === el.championId);
-          return { ...el, ko: clist[num].ko, en: clist[num].en };
-        });
+        console.log(res.data[1].rivalDatas);
+        if (res.data[0].commonDatas) {
+          newRecommend = res.data[0].commonDatas.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.champion1);
+            const newEl = { ...el };
+            newEl.ko = clist[num].ko;
+            newEl.en = clist[num].en;
+            return newEl;
+          });
+        }
+        if (res.data[1].rivalDatas) {
+          rivalRecommend = res.data[1].rivalDatas.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.champion1);
+            const rivalNum = clist.findIndex((e) => e.key === el.champion2);
+            const newEl = { ...el };
+            newEl.ko = clist[num].ko;
+            newEl.en = clist[num].en;
+            newEl.rival = clist[rivalNum].en;
+            return newEl;
+          });
+        }
         console.log(newRecommend);
+        console.log(rivalRecommend);
         router.push(result);
       })
       .catch((e) => {

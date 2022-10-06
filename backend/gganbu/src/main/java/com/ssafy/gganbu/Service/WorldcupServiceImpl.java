@@ -44,10 +44,6 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateWincount(String englishname, int wincount) throws WorldcupCollectionException {
-<<<<<<< HEAD
-
-=======
->>>>>>> a2ca9419736f918ba4b43306bc22c84639fb6022
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {
@@ -62,10 +58,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateLosecount(String englishname) throws WorldcupCollectionException {
-<<<<<<< HEAD
 
-=======
->>>>>>> a2ca9419736f918ba4b43306bc22c84639fb6022
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {
@@ -80,10 +73,7 @@ public class WorldcupServiceImpl implements WorldcupService {
 
     @Override
     public void updateGoldMedalCount(String englishname) throws WorldcupCollectionException {
-<<<<<<< HEAD
-        
-=======
->>>>>>> a2ca9419736f918ba4b43306bc22c84639fb6022
+
         Optional<Worldcup> championOptional = worldcupRepository.findByEnglishname(englishname);
 
         if (championOptional.isPresent()) {

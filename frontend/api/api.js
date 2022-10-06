@@ -1,5 +1,5 @@
-//const HOST = "http://localhost:8080/api/v1/";
-const HOST ="http://j7cp204.p.ssafy.io/api/v1/"
+const HOST = "http://localhost:8080/api/v1/";
+//const HOST ="http://j7cp204.p.ssafy.io/api/v1/"
 
 const WORLDCUP = "worldcup/"
 const STATISTICS = "statistics/"

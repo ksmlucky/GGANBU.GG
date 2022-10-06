@@ -17,7 +17,7 @@ export default function Wordcloud({id}) {
     axios({
       method : "post",
       url : wordcloud.getAllTeam(),
-      params :{
+      data :{
         championId : champKey,
         roughTier : "high",
       }
@@ -25,7 +25,7 @@ export default function Wordcloud({id}) {
     }).then((res)=>{
       setData(res.data);
     }).catch((e)=>{
-
+      console.log(e)
     });
     setW("w");
   }, []);

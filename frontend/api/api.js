@@ -7,7 +7,7 @@ const SKILLQUIZ = "matchSkill/"
 
 const worldcup ={
     getAllChampion : () => HOST + WORLDCUP +"getall/",
-    getChampionByName : () => HOST + WORLDCUP +"/",
+    getChampionByName : () => HOST + WORLDCUP,
     updateGoldMedal : () => HOST + WORLDCUP +"goldmedal/",
     getGoldMedalCount : () => HOST +WORLDCUP+"goldmedalcount/",
     getWinRate : () => HOST + WORLDCUP +"winrate/",

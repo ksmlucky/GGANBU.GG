@@ -9,4 +9,5 @@ public class ChampEvaluator {
     String championId;
     List<ChampEvaluation> withEnemies;
     List<ChampEvaluation> withTeammates;
+    long masteryLevel;
 }

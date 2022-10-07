@@ -8,21 +8,24 @@ import championList from "../../utils/champion";
 
 export let newRecommend;
 export let rivalRecommend;
+export let myRecommend;
 export default function CSInput({
   csInput,
   selectline,
   leftchampion,
   rightchampion,
+  summoner,
 }) {
   const router = useRouter();
   const [recommend, setRecommend] = useState([]);
   const clist = championList();
+  useEffect(() => {
+    myRecommend = null;
+    rivalRecommend = null;
+  });
   function resultfunc() {
     const line = ["TOP", "JUNGLE", "MIDDLE", "BOTTOM", "UTILITY"];
     let myline = line.indexOf(selectline);
-    console.log(myline);
-    console.log(leftchampion);
-    console.log(rightchampion);
     const enemies = [];
     const teamMates = [];
     leftchampion.map((el) => {
@@ -35,13 +38,7 @@ export default function CSInput({
         enemies.push({ championId: el.idx, position: el.lines });
       }
     });
-    // if (selectline) {
-    //   if (rightchampion[myline].champ) {
-    //     router.push(result);
-    //   } else {
-    //     alert("내 맞은편 라인에는 챔피언이 있어야합니다!");
-    //   }
-    // }
+
     axios({
       method: "post",
       url: statistics.recommend(),
@@ -50,11 +47,10 @@ export default function CSInput({
         teamMates: teamMates,
         roughTier: "high",
         myPosition: line[myline],
+        summonerName: summoner,
       },
     })
       .then((res) => {
-        console.log(res.data);
-        console.log(res.data[1].rivalDatas);
         if (res.data[0].evaluators) {
           newRecommend = res.data[0].evaluators.map((el, idx) => {
             const num = clist.findIndex((e) => e.key === el.championId);
@@ -71,11 +67,10 @@ export default function CSInput({
             newEl.en = clist[num].en;
             newEl.withEnemies = withE;
             newEl.withTeammates = withT;
-            console.log(newEl);
             return newEl;
           });
         }
-        if (res.data[1].rivalDatas) {
+        if (res.data[1] && res.data[1].recommnedType === "LANING_RECOMMEND") {
           rivalRecommend = res.data[1].rivalDatas.map((el, idx) => {
             const num = clist.findIndex((e) => e.key === el.champion1);
             const rivalNum = clist.findIndex((e) => e.key === el.champion2);
@@ -86,8 +81,44 @@ export default function CSInput({
             return newEl;
           });
         }
-        console.log(newRecommend);
-        console.log(rivalRecommend);
+        if (res.data[1] && res.data[1].recommnedType === "MASTERY_RECOMMEND") {
+          myRecommend = res.data[1].evaluators.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.championId);
+            const withE = el.withEnemies.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const withT = el.withTeammates.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const newEl = { ...el };
+            newEl.ko = clist[num].ko;
+            newEl.en = clist[num].en;
+            newEl.withEnemies = withE;
+            newEl.withTeammates = withT;
+            return newEl;
+          });
+        }
+        if (res.data[2]) {
+          myRecommend = res.data[2].evaluators.map((el, idx) => {
+            const num = clist.findIndex((e) => e.key === el.championId);
+            const withE = el.withEnemies.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const withT = el.withTeammates.map((en) => {
+              const numE = clist.findIndex((ele) => ele.key === en.championId);
+              return { ...en, ko: clist[numE].ko, en: clist[numE].en };
+            });
+            const newEl = { ...el };
+            newEl.ko = clist[num].ko;
+            newEl.en = clist[num].en;
+            newEl.withEnemies = withE;
+            newEl.withTeammates = withT;
+            return newEl;
+          });
+        }
         router.push(result);
       })
       .catch((e) => {

@@ -1,22 +1,22 @@
 spring:
   #mysql
   datasource:
-    url: jdbc:mysql://3.39.251.197:3306/gganbu_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    url: jdbc:mysql://localhost/gganbu_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     #username: j7c204
     #password: seveneleven
     username: root
-    password: ssafy
+    password: gganbu
 
   data:
     mongodb:
-      #host: localhost
-      host: j7c204.p.ssafy.io
+      host: localhost
+#      host: j7c204.p.ssafy.io
       port: 27017
-      authentication-database: admin
-      username: j7c204
-      password: seveneleven
-      database: gganbu_mongo_db
+#      authentication-database: admin
+#      username: j7c204
+#      password: seveneleven
+      database: test
     web:
       pageable:
         one-indexed-parameters: true

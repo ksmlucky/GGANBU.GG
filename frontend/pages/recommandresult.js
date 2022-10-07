@@ -30,11 +30,6 @@ export default function Recommandresult() {
   const queries = router.query; // 전달받은 쿼리 내용
 
   useEffect(() => {
-    if (!router.isReady) return;
-    console.log(queries);
-  }, [router.isReady]);
-
-  useEffect(() => {
     document.body.dataset.theme = mode;
   }, [mode]);
 

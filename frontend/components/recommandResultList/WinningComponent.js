@@ -1,6 +1,10 @@
 import { useRef, useState, useEffect } from "react";
 import styles from "./RecommandResultList.module.css";
-import { newRecommend, rivalRecommend } from "../championSearchInput/CSInput";
+import {
+  newRecommend,
+  rivalRecommend,
+  myRecommend,
+} from "../championSearchInput/CSInput";
 import WithEnemies from "./WithEnemies";
 import { setRevalidateHeaders } from "next/dist/server/send-payload";
 
@@ -8,6 +12,7 @@ export default function WinningComponent(props) {
   const imgRef = useRef([]);
   const [rival, setRival] = useState("");
   const [isLine, setIsLine] = useState(false);
+  const [isMy, setIsMy] = useState(false);
   const [data, setData] = useState([
     {
       winRate: "",
@@ -22,14 +27,11 @@ export default function WinningComponent(props) {
       eexp15: "",
     },
   ]);
-  console.log(newRecommend);
-  console.log(rivalRecommend);
+
   let num = 0;
   useEffect(() => {
     if (imgRef && imgRef.current.length !== 0) {
-      console.log(imgRef.current.length);
       for (let i = 0; i < imgRef.current.length; i++) {
-        // console.log(imgRef.current[i]);
         imgRef.current[i].addEventListener("mouseover", function () {
           setRival(imgRef.current[i].name);
           if (imgRef.current[i].alt === "line") {
@@ -37,13 +39,18 @@ export default function WinningComponent(props) {
           } else {
             setIsLine(false);
           }
+          if (imgRef.current[i].alt === "my") {
+            setIsMy(true);
+          } else {
+            setIsMy(false);
+          }
         });
       }
     }
   }, []);
 
   useEffect(() => {
-    if (rival) {
+    if (rivalRecommend) {
       rivalRecommend.map((el, idx) => {
         if (el.en === rival) {
           const winRate = (el.data.me.win * 100) / el.data.me.matchNum;
@@ -126,34 +133,80 @@ export default function WinningComponent(props) {
               })}
           </div>
         </div>
-        <div className={styles.recommand}>
-          <div className={styles.text}>라인전</div>
-          <div className={styles.imgs}>
-            {rivalRecommend &&
-              rivalRecommend.map((obj, idx) => {
-                const img = `/champion/tiles/${obj.en}_0.jpg`;
-                const numm = num;
-                num++;
-                return (
-                  <img
-                    key={idx}
-                    src={img}
-                    className={styles.img}
-                    name={obj.en}
-                    alt="line"
-                    ref={(el) => (imgRef.current[numm] = el)}
-                  ></img>
-                );
-              })}
+        {rivalRecommend && (
+          <div className={styles.recommand}>
+            <div className={styles.text}>라인전</div>
+            <div className={styles.imgs}>
+              {rivalRecommend &&
+                rivalRecommend.map((obj, idx) => {
+                  const img = `/champion/tiles/${obj.en}_0.jpg`;
+                  const numm = num;
+                  num++;
+                  return (
+                    <img
+                      key={idx}
+                      src={img}
+                      className={styles.img}
+                      name={obj.en}
+                      alt="line"
+                      ref={(el) => (imgRef.current[numm] = el)}
+                    ></img>
+                  );
+                })}
+            </div>
           </div>
-        </div>
-        {/* result 결과 출력 */}
+        )}
+        {myRecommend && (
+          <div className={styles.recommand}>
+            <div className={styles.text}>숙련도</div>
+            <div className={styles.imgs}>
+              {myRecommend &&
+                myRecommend.map((obj, idx) => {
+                  const img = `/champion/tiles/${obj.en}_0.jpg`;
+                  const numm = num;
+                  num++;
+                  return (
+                    <div className={styles.mas} key={idx}>
+                      <img
+                        src={img}
+                        className={styles.img}
+                        name={obj.en}
+                        alt="my"
+                        ref={(el) => (imgRef.current[numm] = el)}
+                      ></img>
+                      <div className={styles.texts}>★{obj.masteryLevel}</div>
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+        )}
       </div>
       <div className={styles.resultdetailcontainer}>
         {rival && <img src={`/champion/loading/${rival}_0.jpg`}></img>}
-        {!isLine && rival && (
+        {!isLine && !isMy && rival && (
           <div className={styles.withEnemiesContainer}>
             {newRecommend.map((el, idx) => {
+              if (el.en === rival) {
+                return (
+                  <div key={idx} className={styles.team}>
+                    <div className={styles.tm}>
+                      <WithEnemies
+                        withTeamMates={el.withTeammates}
+                      ></WithEnemies>
+                    </div>
+                    <div className={styles.tm}>
+                      <WithEnemies withEnemies={el.withEnemies}></WithEnemies>
+                    </div>
+                  </div>
+                );
+              }
+            })}
+          </div>
+        )}
+        {isMy && rival && myRecommend && (
+          <div className={styles.withEnemiesContainer}>
+            {myRecommend.map((el, idx) => {
               if (el.en === rival) {
                 return (
                   <div key={idx} className={styles.team}>

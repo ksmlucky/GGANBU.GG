@@ -17,16 +17,16 @@ export default function ChooseChampion() {
   const [pickId, setPickId] = useState("");
   const [summoner, setSummoner] = useState("");
   const [selectline, Setselectline] = useState("TOP");
-
   const [makefive, Setmakefive] = useState(false);
 
   useEffect(() => {
     SetSelectedchampion([]);
   }, [selectline]);
-
+  useEffect(() => {
+    setSummoner("");
+  }, []);
   // 사용자가 객체(object)를 드래그하려고 시작할 때 발생함.
   const onDragStart = (event) => {
-    console.log(event.target);
     SetPickchampion(event.target.id);
     SetPickchampionEng(event.target.alt);
     setPickId(() => {
@@ -149,6 +149,7 @@ export default function ChooseChampion() {
               selectline={selectline}
               leftchampion={leftchampion}
               rightchampion={rightchampion}
+              summoner={summoner}
             />
           </div>
           <RightCham

@@ -8,6 +8,7 @@ import com.ssafy.gganbu.db.entity.Summoner;
 import com.ssafy.gganbu.db.repository.SummonerRepository;
 import com.ssafy.gganbu.model.RiotAPIDto.RiotAPISummoner;
 import com.ssafy.gganbu.model.RiotAPIDto.RiotAPIRankData;
+import com.ssafy.gganbu.model.dbDto.MasteryData;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.impl.client.BasicResponseHandler;
@@ -154,6 +155,36 @@ public class SummonerServiceImpl implements  SummonerService{
 
         }
         return true;
+    }
+
+    @Override
+    public List<MasteryData> championMastery(String encryptedSummonerId) {
+                String requestURL = "https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/"
+                + encryptedSummonerId;
+        ObjectMapper objectMapper = new ObjectMapper();
+        HttpResponse responseResult = null;
+        List<MasteryData> masteryDatas = null;
+
+        try{
+            responseResult = riotAPIService.commonRiotAPI(requestURL);
+            ResponseHandler<String> handler = new BasicResponseHandler();
+
+
+            masteryDatas = Arrays.asList(objectMapper.readValue(handler.handleResponse((responseResult)), MasteryData[].class));
+
+//            for( MasteryData data : masteryDatas){
+//                if(data.getQueueType().equals("RANKED_SOLO_5x5")){
+//                    rRankData = data;
+//                    break;
+//                }
+//            }
+        }catch(JsonProcessingException e){
+            e.printStackTrace();
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+
+        return masteryDatas;
     }
 
 }

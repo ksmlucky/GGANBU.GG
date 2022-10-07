@@ -1,4 +1,4 @@
-# ![favicon-32x32](/uploads/0065b79aaeec8b89d0386770bf08fcb7/favicon-32x32.png) GGANBU.GG (깐부.GG)
+# ![favicon-32x32](/uploads/4944dc5a980a3538a92716548917d7ca/favicon-32x32.png) GGANBU.GG (깐부.GG)
 (임시) 롤 챔피언 궁합 추천
 
 <br/>

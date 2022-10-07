@@ -418,7 +418,6 @@ public class ChampionStatisticsServiceImpl implements ChampionStatisticsService{
         List<RecommendRes> recommendLists = new ArrayList<>();
         try{
             recommendLists.add(recommendList1(recommendReq));
-
             //맞라인인 적이 있으면 라인전 추천 리스트 보여줌
             for(ChampionPickReq req : recommendReq.getEnemies()){
                 if(req.getPosition().equals(recommendReq.getMyPosition())){

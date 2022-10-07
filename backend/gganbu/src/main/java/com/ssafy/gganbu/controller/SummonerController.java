@@ -2,11 +2,14 @@ package com.ssafy.gganbu.controller;
 
 import com.ssafy.gganbu.Service.SummonerService;
 import com.ssafy.gganbu.db.entity.Summoner;
+import com.ssafy.gganbu.model.dbDto.MasteryData;
 import com.ssafy.gganbu.model.request.SummonerByNameReq;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Api(value ="소환사 정보 API", tags = {"Summoner"})
@@ -34,6 +37,15 @@ public class SummonerController {
             return ResponseEntity.status(400).body(false);
         }
         return ResponseEntity.status(200).body(true);
+    }
+
+    @GetMapping("/mastery/{encryptedSummonerId}")
+    public ResponseEntity<List<MasteryData>> getChampionMaster(@PathVariable String encryptedSummonerId){
+        List<MasteryData> masteryData = summonerService.championMastery(encryptedSummonerId);
+        if(masteryData == null){
+            return ResponseEntity.status(400).body(null);
+        }
+        return ResponseEntity.status(200).body(masteryData);
     }
 
 

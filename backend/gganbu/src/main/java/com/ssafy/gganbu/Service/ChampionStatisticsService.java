@@ -28,5 +28,7 @@ public interface ChampionStatisticsService {
     RecommendRes recommendList2(RecommendReq recommendReq);
 
     List<RecommendRes> dispatchAlgorithm(RecommendReq recommendReq);
+
+    RecommendRes recommendList3(RecommendReq recommendReq);
 //    List<ChampionScore>
 }

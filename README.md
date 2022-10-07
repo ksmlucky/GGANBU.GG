@@ -1,5 +1,5 @@
 # ![favicon-32x32](/uploads/4944dc5a980a3538a92716548917d7ca/favicon-32x32.png) GGANBU.GG (깐부.GG)
-(임시) 롤 챔피언 궁합 추천
+빅데이터를 활용한 롤 챔피언 추천
 
 <br/>
 
@@ -27,9 +27,9 @@ master : 운영 서버로 배포하기 위한 브랜치
 
 develop : 다음 출시 기능을 개발하는 브랜치
 
-front : 프론트엔드 개발하는 브랜치
+frontend : 프론트엔드 개발하는 브랜치
 
-back : 백엔드를 개발하는 브랜치
+backend : 백엔드를 개발하는 브랜치
 
 feature : 세부 기능을 개발하는 브랜치
 
@@ -69,8 +69,7 @@ feature : 세부 기능을 개발하는 브랜치
 ### 개발 환경
 - **Frontend** (프론트에서 보고 고쳐주셈)
   - HTML5, CSS3, JS(ES6)
-  - MUI
-  - React, Redux
+  - Next.js
   - Visual Studio Code
   
   <br/>
@@ -213,12 +212,13 @@ $ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-se
 
 - OS: Windows10, Linux
 - Backend Framework: Spring Boot 2.7.1
-- Frontend Framework: React 18.2.0
+- Frontend Framework: Next 12.2.5
 - DB: mongoDB version v6.0.1, mysql Ver 8.0.30-0ubuntu0.20.04.2 for Linux on x86_64 ((Ubuntu))
 - WAS: Gradle
 - JVM: javac 1.8.0_342
 - Node.js: 
-- npm: 
+- React: 18.2.0
+- npm: 8.5.5
 - Docker: 20.10.12
 - Jenkins: 
 - WEB: Nginx (1.18.0)

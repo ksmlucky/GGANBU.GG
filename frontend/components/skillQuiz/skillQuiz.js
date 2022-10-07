@@ -17,7 +17,7 @@ export default function SkillQuiz({ setMode }) {
   const [gameStart, setGameStart] = useState(false);
   const [info, setInfo] = useState("");
   const intervalId = useRef(null);
-  const [ranking, setRanking] = useState();
+  const [ranking, setRanking] = useState([]);
   const [minScore, setMinScore] = useState(0);
   const [name, setName] = useState("");
   const [bools, setBools] = useState(false);
@@ -29,7 +29,9 @@ export default function SkillQuiz({ setMode }) {
     })
       .then((res) => {
         setRanking(res.data);
-        setMinScore(res.data[res.data.length - 1].score);
+        if(res.data.length >= 10){
+          setMinScore(res.data[res.data.length - 1].score);
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -45,7 +47,9 @@ export default function SkillQuiz({ setMode }) {
       })
         .then((res) => {
           setRanking(res.data);
-          setMinScore(res.data[res.data.length - 1].score);
+          if(res.data.length>=10){
+            setMinScore(res.data[res.data.length - 1].score);
+          }
         })
         .catch((e) => {
           console.log(e);
@@ -64,7 +68,9 @@ export default function SkillQuiz({ setMode }) {
     })
       .then((res) => {
         setRanking(res.data);
-        setMinScore(res.data[res.data.length - 1].score);
+        if(res.data.length>=10){
+          setMinScore(res.data[res.data.length - 1].score);
+        }
         setRelocation(false);
       })
       .catch((e) => {

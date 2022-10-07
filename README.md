@@ -114,7 +114,7 @@ feature : 세부 기능을 개발하는 브랜치
 
 - **와이어프레임**(figma)
 
-![image](/uploads/fef3c172a69813a46ec8e44c7afea670/image.png)
+![KakaoTalk_20221007_180853053](/uploads/758295cbcbf25abae2cba5382ae0ace5/KakaoTalk_20221007_180853053.png)
 
 <br/>
 

@@ -140,7 +140,7 @@ feature : 세부 기능을 개발하는 브랜치
 
 - **시퀀스 다이어그램**
 
-<img src="/uploads/174558e5e0ad665433136461962f2adc/image.png" width="45%"> <img src="/uploads/6dd1c4a71dd68df28d9655548b462d9e/image.png" width="45%">
+<img src="/uploads/174558e5e0ad665433136461962f2adc/image.png" width="45%"/> <img src="/uploads/6dd1c4a71dd68df28d9655548b462d9e/image.png" width="45%"/>
 <img src="/uploads/71855836f707b1c0e8f07b42ab90fa63/image.png" width="45%"> <img src="/uploads/b83155f8fa963d9d3e774aaa12cfda49/image.png" width="45%">
 <img src="/uploads/f9dcee540d384403ea660dff248fd6e3/image.png" width="45%"> <img src="/uploads/54ba1d146c6d84c83a8aa632b89ade6f/image.png" width="45%">
 
@@ -233,7 +233,8 @@ $ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-se
 
 - 강석민: 
 
-- 최영선: 
+- 최영선: 특화 프로젝트에서 가장 좋아하는 게임인 리그오브레전드를 주제로한 프로젝트를 할 수 있어서 재밌었습니다. 공통때는 React를 특화때는 Next.js를 활용해 프로젝트를 해봤는데 프로젝트를 하면서 다양한 상황에 어떤 방식을 써야하고 오류가 생겼을때 어떤 원리로 생기는 오류인지 알 수 있어서 좋은 시간이였습니다. 
+또 같은 팀원들과 2번째 프로젝트를 해서 너무 재밌었고 즐겁게 프로젝트 했습니다. 자율때는 헤어지지만 각자 재밌게 프로젝트 했으면 좋겠습니다. 감사합니다.
 
 - 김지수: 
 

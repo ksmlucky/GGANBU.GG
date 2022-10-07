@@ -140,7 +140,7 @@ feature : 세부 기능을 개발하는 브랜치
 
 - **시퀀스 다이어그램**
 
-<img src="/uploads/174558e5e0ad665433136461962f2adc/image.png" width="45%"/> <img src="/uploads/6dd1c4a71dd68df28d9655548b462d9e/image.png" width="45%"/>
+<img src="/uploads/174558e5e0ad665433136461962f2adc/image.png" width="45%"> <img src="/uploads/6dd1c4a71dd68df28d9655548b462d9e/image.png" width="45%">
 <img src="/uploads/71855836f707b1c0e8f07b42ab90fa63/image.png" width="45%"> <img src="/uploads/b83155f8fa963d9d3e774aaa12cfda49/image.png" width="45%">
 <img src="/uploads/f9dcee540d384403ea660dff248fd6e3/image.png" width="45%"> <img src="/uploads/54ba1d146c6d84c83a8aa632b89ade6f/image.png" width="45%">
 

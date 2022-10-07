@@ -19,53 +19,58 @@ export default function SkillQuiz({ setMode }) {
   const intervalId = useRef(null);
   const [ranking, setRanking] = useState();
   const [minScore, setMinScore] = useState(0);
-  const [name, setName] =useState("")
+  const [name, setName] = useState("");
   const [bools, setBools] = useState(false);
   const [relocation, setRelocation] = useState(false);
-  useEffect(()=>{
+  useEffect(() => {
     axios({
-      method : "get",
-      url : skillquiz.getAll(),
-    }).then((res)=>{
-      setRanking(res.data);
-      setMinScore(res.data[res.data.length-1].score);
-    }).catch((e)=>{
-      console.log(e);
-    });
-  },[])
-
-  useEffect(()=>{
-    if(timer < 0){
-      clearInterval(intervalId.current);
-      axios({
-        method : "get",
-        url : skillquiz.getAll(),
-      }).then((res)=>{
+      method: "get",
+      url: skillquiz.getAll(),
+    })
+      .then((res) => {
         setRanking(res.data);
-        setMinScore(res.data[res.data.length-1].score);
-
-      }).catch((e)=>{
+        setMinScore(res.data[res.data.length - 1].score);
+      })
+      .catch((e) => {
         console.log(e);
       });
+  }, []);
+
+  useEffect(() => {
+    if (timer < 0) {
+      clearInterval(intervalId.current);
+      axios({
+        method: "get",
+        url: skillquiz.getAll(),
+      })
+        .then((res) => {
+          setRanking(res.data);
+          setMinScore(res.data[res.data.length - 1].score);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     }
-  },[timer])
+  }, [timer]);
 
   useEffect(() => {
     setValue("");
   }, [randomChampion, randomSkill]);
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     axios({
-      method : "get",
-      url : skillquiz.getAll(),
-    }).then((res)=>{
-      setRanking(res.data);
-      setMinScore(res.data[res.data.length-1].score);
-      setRelocation(false);
-    }).catch((e)=>{
-      console.log(e);
-    });
-  }, [relocation])
+      method: "get",
+      url: skillquiz.getAll(),
+    })
+      .then((res) => {
+        setRanking(res.data);
+        setMinScore(res.data[res.data.length - 1].score);
+        setRelocation(false);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, [relocation]);
   return (
     <>
       {gameStart === false && (
@@ -199,57 +204,67 @@ export default function SkillQuiz({ setMode }) {
           <div className={styles.table}>
             <table>
               <thead>
-              <tr>
-                <th>순위</th>
-                <th>이름</th>
-                <th>점수</th>
-              </tr>
-              </thead>
-            {ranking.map((item, idx)=>{
-              return(
-                <tbody key={idx}>
                 <tr>
-                  <td>{idx+1}</td>
-                  <td>{item.name}</td>
-                  <td>{item.score}</td>
+                  <th>순위</th>
+                  <th>이름</th>
+                  <th>점수</th>
                 </tr>
-                </tbody>
-              )
-            })}
+              </thead>
+              {ranking &&
+                ranking.map((item, idx) => {
+                  return (
+                    <tbody key={idx}>
+                      <tr>
+                        <td>{idx + 1}</td>
+                        <td>{item.name}</td>
+                        <td>{item.score}</td>
+                      </tr>
+                    </tbody>
+                  );
+                })}
             </table>
           </div>
-          {(score > minScore || ranking.length<10) && !bools &&
+          {(score > minScore || ranking.length < 10) && !bools && (
             <>
-            <input
-              className={styles.name}
-              placeholder="랭킹에 등록할 이름을 입력하세요!"
-              value={name}
-              onChange={(event) => {
-                setName(event.target.value);
-              }}
-            />
-            <button className={styles.btn} onClick={()=>{
-              axios({
-                method : "post",
-                url : skillquiz.register(),
-                data: {
-                  name : name,
-                  score : score
-                },
-              }).then((res)=>{
-                setRanking((ranking)=>{
-                  const newRanking = [...ranking];
-                  newRanking.splice(0);
-                  return newRanking;
-                })
-                setRelocation(true);
-              }).catch((e)=>{
-                console.log(e);
-              });
-              setBools(true);
-            }}>랭킹 등록</button>
+              <input
+                className={styles.name}
+                placeholder="랭킹에 등록할 이름을 입력하세요!"
+                value={name}
+                onChange={(event) => {
+                  setName(event.target.value);
+                }}
+              />
+              <button
+                className={styles.btn}
+                onClick={() => {
+                  axios({
+                    method: "post",
+                    url: skillquiz.register(),
+                    data: {
+                      name: name,
+                      score: score,
+                    },
+                  })
+                    .then((res) => {
+                      setRanking((ranking) => {
+                        if (ranking) {
+                          const newRanking = [...ranking];
+                          newRanking.splice(0);
+                          return newRanking;
+                        }
+                      });
+                      setRelocation(true);
+                    })
+                    .catch((e) => {
+                      console.log(e);
+                    });
+                  setBools(true);
+                }}
+              >
+                랭킹 등록
+              </button>
             </>
-          }
+          )}
           <button
             className={styles.btn}
             onClick={() => {
@@ -268,8 +283,6 @@ export default function SkillQuiz({ setMode }) {
           >
             메인화면으로
           </button>
-
-
         </div>
       )}
     </>

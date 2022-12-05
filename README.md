@@ -1,5 +1,5 @@
 # ![favicon-32x32](/uploads/4944dc5a980a3538a92716548917d7ca/favicon-32x32.png) GGANBU.GG (깐부.GG)
-빅데이터를 활용한 롤 챔피언 추천
+빅데이터를 활용한 롤 챔피언 추천 서비스
 
 <br/>
 

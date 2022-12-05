@@ -67,11 +67,16 @@ feature : 세부 기능을 개발하는 브랜치
 <br/><br/><br/>
 
 ### 개발 환경
-- **Frontend** (프론트에서 보고 고쳐주셈)
+- **Frontend**
   - HTML5, CSS3, JS(ES6)
   - Next.js
   - Visual Studio Code
   
+  <br/>
+
+- **Data**
+  - Hadoop MapReduce
+
   <br/>
 
 - **Backend**

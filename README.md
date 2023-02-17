@@ -1,4 +1,4 @@
-![favicon-32x32](https://lab.ssafy.com/s07-bigdata-dist-sub2/S07P22C204/uploads/4944dc5a980a3538a92716548917d7ca/favicon-32x32.png) GGANBU.GG (깐부.GG)
+![image](https://user-images.githubusercontent.com/77111523/219663608-39507d62-241f-4c3f-bdc7-90121686a523.png)  GGANBU.GG (깐부.GG)
 빅데이터를 활용한 롤 챔피언 추천 서비스
 
 <br/>
@@ -246,7 +246,7 @@ $ docker run -p 4443:4443 --rm -e OPENVIDU_SECRET=MY_SECRET openvidu/openvidu-se
 <br/><br/><br/>
 
 ## 🛠프로젝트 빌드 및 배포
-- [프로젝트 빌드 및 배포](https://lab.ssafy.com/s07-webmobile1-sub2/S07P12C111/-/blob/master/exec/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EB%B9%8C%EB%93%9C_%EB%B0%8F_%EB%B0%B0%ED%8F%AC.md)
+- [프로젝트 빌드 및 배포](https://github.com/ksmlucky/GGANBU.GG/blob/master/exec/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EB%B9%8C%EB%93%9C_%EB%B0%8F_%EB%B0%B0%ED%8F%AC.md)
 
 <br/><br/><br/>
 

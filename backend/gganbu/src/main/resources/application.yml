@@ -1,24 +1,24 @@
 spring:
   #mysql
   datasource:
-    url: jdbc:mysql://3.39.251.197:3306/gganbu_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
+    url: jdbc:mysql://deployment.example.invalid:3306/gganbu_db?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&zeroDateTimeBehavior=convertToNull&rewriteBatchedStatements=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: j7c204
-    password: seveneleven
+    password: "${SPRING_DATASOURCE_PASSWORD}"
     dbcp2:
       test-on-borrow: true
       validation-query: SELECT 1
   #    username: root
-#    password: gganbu
+#    password: "${CONFIGURE_IN_ENVIRONMENT}"
 
   data:
     mongodb:
 #      host: localhost
-      host: j7c204.p.ssafy.io
+      host: deployment.example.invalid
       port: 27017
       authentication-database: admin
       username: j7c204
-      password: seveneleven
+      password: "${SPRING_DATA_MONGODB_PASSWORD}"
       database: gganbu_mongo_db
     web:
       pageable:
@@ -40,4 +40,4 @@ spring:
 
 #for Riot-API
 riot-api:
-  api-keys: RGAPI-b04e528c-141a-4cee-91b4-44f069951dd8
+  api-keys: "${RIOT_API_API_KEYS}"

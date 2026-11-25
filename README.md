@@ -131,3 +131,7 @@ Windows에서는 `./gradlew` 대신 `gradlew.bat`를 사용합니다. 2022년 �
 - [시연 시나리오](exec/%EC%8B%9C%EC%97%B0%20%EC%8B%9C%EB%82%98%EB%A6%AC%EC%98%A4.md)
 - [당시 빌드·배포 기록](exec/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8_%EB%B9%8C%EB%93%9C_%EB%B0%8F_%EB%B0%B0%ED%8F%AC.md)
 - [기존 프로젝트 소개와 팀 회고](https://github.com/ksmlucky/GGANBU.GG/blob/db91368bb1eb6aaaa2546ca25b30f61a92a266e6/README.md)
+
+> 운영 서비스 주소는 공개하지 않습니다. 소스의 `deployment.example.invalid`는 접속할 수 없는 예시 주소이므로, 실행 시 본인 환경의 서버 주소로 설정하세요.
+
+공개 설정 파일에는 인증값을 포함하지 않습니다. 실행 환경에서 다음 환경변수를 설정하세요: `RIOT_API_API_KEYS`, `SPRING_DATASOURCE_PASSWORD`, `SPRING_DATA_MONGODB_PASSWORD`.
